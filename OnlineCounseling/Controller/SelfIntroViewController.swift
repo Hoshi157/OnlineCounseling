@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  SelfIntroViewController.swift
 //  OnlineCounseling
 //
 //  Created by 福山帆士 on 2020/05/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class SelfIntroViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436A246D6ECF0036F42F /* AppDelegate.swift */; };
 		8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436C246D6ECF0036F42F /* SceneDelegate.swift */; };
-		8D38436F246D6ECF0036F42F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436E246D6ECF0036F42F /* LoginViewController.swift */; };
+		8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436E246D6ECF0036F42F /* RootViewController.swift */; };
 		8D384372246D6ECF0036F42F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D384370246D6ECF0036F42F /* Main.storyboard */; };
 		8D384374246D6ED10036F42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D384373246D6ED10036F42F /* Assets.xcassets */; };
 		8D384377246D6ED10036F42F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D384375246D6ED10036F42F /* LaunchScreen.storyboard */; };
 		8D38437F246D6F6F0036F42F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D38437E246D6F6F0036F42F /* GoogleService-Info.plist */; };
+		8D750680246D9EA00054497A /* AreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75067F246D9EA00054497A /* AreaViewController.swift */; };
+		8D750682246D9F640054497A /* HobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750681246D9F640054497A /* HobbyViewController.swift */; };
+		8D750684246D9FA90054497A /* SelfIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750683246D9FA90054497A /* SelfIntroViewController.swift */; };
+		8D750686246DA4CD0054497A /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750685246DA4CD0054497A /* TabbarController.swift */; };
+		8D750688246DA88B0054497A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750687246DA88B0054497A /* LoginViewController.swift */; };
 		8D88C74B246D74F600145BD2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C74A246D74F600145BD2 /* Model.swift */; };
 		8D88C74D246D760300145BD2 /* AccountCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C74C246D760300145BD2 /* AccountCreateViewController.swift */; };
 		8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C74E246D76A600145BD2 /* ProfileRegisterViewController.swift */; };
@@ -32,12 +37,17 @@
 		8D384367246D6ECF0036F42F /* OnlineCounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineCounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D38436A246D6ECF0036F42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D38436C246D6ECF0036F42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8D38436E246D6ECF0036F42F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8D38436E246D6ECF0036F42F /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		8D384371246D6ECF0036F42F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D384373246D6ED10036F42F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D384376246D6ED10036F42F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D384378246D6ED10036F42F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D38437E246D6F6F0036F42F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8D75067F246D9EA00054497A /* AreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewController.swift; sourceTree = "<group>"; };
+		8D750681246D9F640054497A /* HobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbyViewController.swift; sourceTree = "<group>"; };
+		8D750683246D9FA90054497A /* SelfIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIntroViewController.swift; sourceTree = "<group>"; };
+		8D750685246DA4CD0054497A /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		8D750687246DA88B0054497A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8D88C74A246D74F600145BD2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8D88C74C246D760300145BD2 /* AccountCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreateViewController.swift; sourceTree = "<group>"; };
 		8D88C74E246D76A600145BD2 /* ProfileRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterViewController.swift; sourceTree = "<group>"; };
@@ -115,10 +125,15 @@
 			children = (
 				8D38436A246D6ECF0036F42F /* AppDelegate.swift */,
 				8D38436C246D6ECF0036F42F /* SceneDelegate.swift */,
-				8D38436E246D6ECF0036F42F /* LoginViewController.swift */,
+				8D38436E246D6ECF0036F42F /* RootViewController.swift */,
+				8D750687246DA88B0054497A /* LoginViewController.swift */,
 				8D88C74C246D760300145BD2 /* AccountCreateViewController.swift */,
 				8D88C74E246D76A600145BD2 /* ProfileRegisterViewController.swift */,
+				8D75067F246D9EA00054497A /* AreaViewController.swift */,
+				8D750681246D9F640054497A /* HobbyViewController.swift */,
+				8D750683246D9FA90054497A /* SelfIntroViewController.swift */,
 				8D88C750246D778300145BD2 /* AccountTakeoverViewController.swift */,
+				8D750685246DA4CD0054497A /* TabbarController.swift */,
 				8D88C754246D7A0A00145BD2 /* HomeViewController.swift */,
 				8D88C756246D7A8000145BD2 /* MessageViewController.swift */,
 				8D88C758246D7B7300145BD2 /* HistoryViewController.swift */,
@@ -157,6 +172,7 @@
 				8D384364246D6ECF0036F42F /* Frameworks */,
 				8D384365246D6ECF0036F42F /* Resources */,
 				BB56715E43EFB035D9301216 /* [CP] Embed Pods Frameworks */,
+				EA78C31423A781D6BA2E33D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,6 +270,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EA78C31423A781D6BA2E33D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -261,15 +294,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D38436F246D6ECF0036F42F /* LoginViewController.swift in Sources */,
+				8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */,
+				8D750686246DA4CD0054497A /* TabbarController.swift in Sources */,
 				8D88C75B246D7BAB00145BD2 /* TimelineViewController.swift in Sources */,
 				8D88C751246D778300145BD2 /* AccountTakeoverViewController.swift in Sources */,
 				8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */,
+				8D750684246D9FA90054497A /* SelfIntroViewController.swift in Sources */,
+				8D750680246D9EA00054497A /* AreaViewController.swift in Sources */,
 				8D88C759246D7B7300145BD2 /* HistoryViewController.swift in Sources */,
 				8D88C757246D7A8000145BD2 /* MessageViewController.swift in Sources */,
 				8D88C74D246D760300145BD2 /* AccountCreateViewController.swift in Sources */,
 				8D88C75D246D7BE400145BD2 /* MyPageViewController.swift in Sources */,
+				8D750682246D9F640054497A /* HobbyViewController.swift in Sources */,
 				8D88C755246D7A0A00145BD2 /* HomeViewController.swift in Sources */,
+				8D750688246DA88B0054497A /* LoginViewController.swift in Sources */,
 				8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */,
 				8D88C74B246D74F600145BD2 /* Model.swift in Sources */,
 				8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */,
