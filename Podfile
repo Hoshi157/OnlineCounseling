@@ -16,4 +16,5 @@ pod 'MaterialComponents'
 pod 'FSCalendar'
 pod 'SkyWay'
 pod 'FirebaseUI/Phone'
+pod 'SnapKit'
 end

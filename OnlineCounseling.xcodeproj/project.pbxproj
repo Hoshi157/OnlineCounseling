@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D1566DB246E4AE4009E73D0 /* UserByTappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DA246E4AE4009E73D0 /* UserByTappedViewController.swift */; };
+		8D1566DD246E4B22009E73D0 /* CounselorByTappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DC246E4B22009E73D0 /* CounselorByTappedViewController.swift */; };
+		8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */; };
+		8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */; };
 		8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436A246D6ECF0036F42F /* AppDelegate.swift */; };
 		8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436C246D6ECF0036F42F /* SceneDelegate.swift */; };
 		8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436E246D6ECF0036F42F /* RootViewController.swift */; };
@@ -14,6 +18,8 @@
 		8D384374246D6ED10036F42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D384373246D6ED10036F42F /* Assets.xcassets */; };
 		8D384377246D6ED10036F42F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D384375246D6ED10036F42F /* LaunchScreen.storyboard */; };
 		8D38437F246D6F6F0036F42F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D38437E246D6F6F0036F42F /* GoogleService-Info.plist */; };
+		8D421AAF246E706A00758F4B /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D421AAD246E706A00758F4B /* CustomTableViewCell.swift */; };
+		8D421AB0246E706A00758F4B /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D421AAE246E706A00758F4B /* CustomTableViewCell.xib */; };
 		8D750680246D9EA00054497A /* AreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75067F246D9EA00054497A /* AreaViewController.swift */; };
 		8D750682246D9F640054497A /* HobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750681246D9F640054497A /* HobbyViewController.swift */; };
 		8D750684246D9FA90054497A /* SelfIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750683246D9FA90054497A /* SelfIntroViewController.swift */; };
@@ -34,6 +40,10 @@
 /* Begin PBXFileReference section */
 		1254F21FA75B2904B0420527 /* Pods_OnlineCounseling.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineCounseling.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AAAA0547DA6935D56A5A79 /* Pods-OnlineCounseling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineCounseling.release.xcconfig"; path = "Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling.release.xcconfig"; sourceTree = "<group>"; };
+		8D1566DA246E4AE4009E73D0 /* UserByTappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByTappedViewController.swift; sourceTree = "<group>"; };
+		8D1566DC246E4B22009E73D0 /* CounselorByTappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedViewController.swift; sourceTree = "<group>"; };
+		8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByTappedContenerViewController.swift; sourceTree = "<group>"; };
+		8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedContenerViewController.swift; sourceTree = "<group>"; };
 		8D384367246D6ECF0036F42F /* OnlineCounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineCounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D38436A246D6ECF0036F42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D38436C246D6ECF0036F42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +53,8 @@
 		8D384376246D6ED10036F42F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D384378246D6ED10036F42F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D38437E246D6F6F0036F42F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8D421AAD246E706A00758F4B /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		8D421AAE246E706A00758F4B /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		8D75067F246D9EA00054497A /* AreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewController.swift; sourceTree = "<group>"; };
 		8D750681246D9F640054497A /* HobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbyViewController.swift; sourceTree = "<group>"; };
 		8D750683246D9FA90054497A /* SelfIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIntroViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +147,10 @@
 				8D88C750246D778300145BD2 /* AccountTakeoverViewController.swift */,
 				8D750685246DA4CD0054497A /* TabbarController.swift */,
 				8D88C754246D7A0A00145BD2 /* HomeViewController.swift */,
+				8D1566DA246E4AE4009E73D0 /* UserByTappedViewController.swift */,
+				8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */,
+				8D1566DC246E4B22009E73D0 /* CounselorByTappedViewController.swift */,
+				8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */,
 				8D88C756246D7A8000145BD2 /* MessageViewController.swift */,
 				8D88C758246D7B7300145BD2 /* HistoryViewController.swift */,
 				8D88C75A246D7BAB00145BD2 /* TimelineViewController.swift */,
@@ -148,6 +164,8 @@
 			children = (
 				8D384375246D6ED10036F42F /* LaunchScreen.storyboard */,
 				8D384370246D6ECF0036F42F /* Main.storyboard */,
+				8D421AAD246E706A00758F4B /* CustomTableViewCell.swift */,
+				8D421AAE246E706A00758F4B /* CustomTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,6 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D421AB0246E706A00758F4B /* CustomTableViewCell.xib in Resources */,
 				8D384377246D6ED10036F42F /* LaunchScreen.storyboard in Resources */,
 				8D38437F246D6F6F0036F42F /* GoogleService-Info.plist in Resources */,
 				8D384374246D6ED10036F42F /* Assets.xcassets in Resources */,
@@ -294,12 +313,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D421AAF246E706A00758F4B /* CustomTableViewCell.swift in Sources */,
 				8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */,
 				8D750686246DA4CD0054497A /* TabbarController.swift in Sources */,
 				8D88C75B246D7BAB00145BD2 /* TimelineViewController.swift in Sources */,
 				8D88C751246D778300145BD2 /* AccountTakeoverViewController.swift in Sources */,
 				8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */,
 				8D750684246D9FA90054497A /* SelfIntroViewController.swift in Sources */,
+				8D1566DB246E4AE4009E73D0 /* UserByTappedViewController.swift in Sources */,
+				8D1566DD246E4B22009E73D0 /* CounselorByTappedViewController.swift in Sources */,
 				8D750680246D9EA00054497A /* AreaViewController.swift in Sources */,
 				8D88C759246D7B7300145BD2 /* HistoryViewController.swift in Sources */,
 				8D88C757246D7A8000145BD2 /* MessageViewController.swift in Sources */,
@@ -308,6 +330,8 @@
 				8D750682246D9F640054497A /* HobbyViewController.swift in Sources */,
 				8D88C755246D7A0A00145BD2 /* HomeViewController.swift in Sources */,
 				8D750688246DA88B0054497A /* LoginViewController.swift in Sources */,
+				8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */,
+				8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */,
 				8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */,
 				8D88C74B246D74F600145BD2 /* Model.swift in Sources */,
 				8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */,

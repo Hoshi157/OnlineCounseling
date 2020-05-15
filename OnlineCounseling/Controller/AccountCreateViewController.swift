@@ -7,13 +7,34 @@
 //
 
 import UIKit
+import SnapKit
+import MaterialComponents
 
 class AccountCreateViewController: UIViewController {
+    
+    @IBOutlet weak var accountLabel: UILabel!
+    @IBOutlet weak var consentButton: MDCRaisedButton!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var tableArray = ["生年月日", "名前"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
 
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         // Do any additional setup after loading the view.
+        
+    }
+    
+    @objc func backViewAction() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func consentButtonAction(_ sender: Any) {
     }
     
 
@@ -27,4 +48,23 @@ class AccountCreateViewController: UIViewController {
     }
     */
 
+}
+
+extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(tableArray.count)
+        return tableArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomTableViewCell
+        tableView.rowHeight = 50
+        cell.textLabel?.text = tableArray[indexPath.row]
+        cell.rightLabel.text = tableArray[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
 }
