@@ -61,7 +61,6 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
         let cell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomTableViewCell
         tableView.rowHeight = 50
         cell.textLabel?.text = tableArray[indexPath.row]
-        cell.rightLabel.text = tableArray[indexPath.row]
         return cell
     }
     
