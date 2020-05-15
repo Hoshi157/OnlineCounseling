@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -366,20 +367,37 @@ gb7jgZvjgpPjgII
             </objects>
             <point key="canvasLocation" x="2129" y="1418"/>
         </scene>
-        <!--Hobby View Controller-->
-        <scene sceneID="WQU-6S-261">
+        <!--Text Input Profile View Controller-->
+        <scene sceneID="BgA-K9-w07">
             <objects>
-                <viewController id="8Jc-rg-z2Z" customClass="HobbyViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="rxw-MP-q4P">
+                <viewController id="ZMZ-Q6-XOD" customClass="TextInputProfileViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Emg-NY-WAm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUh-Nb-i6X">
+                                <rect key="frame" x="5" y="44" width="404" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="87Y-Yp-IZr"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="qJf-pm-Qbo"/>
+                        <constraints>
+                            <constraint firstItem="MUh-Nb-i6X" firstAttribute="trailing" secondItem="ub2-6b-cNN" secondAttribute="trailing" constant="-5" id="9Nf-CL-lxk"/>
+                            <constraint firstItem="MUh-Nb-i6X" firstAttribute="leading" secondItem="ub2-6b-cNN" secondAttribute="leading" constant="5" id="TRL-80-bAp"/>
+                            <constraint firstItem="MUh-Nb-i6X" firstAttribute="top" secondItem="ub2-6b-cNN" secondAttribute="top" id="s64-vA-sE1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ub2-6b-cNN"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aWb-DZ-1CL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ex3-hZ-Kz5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3328" y="891"/>
+            <point key="canvasLocation" x="3140.579710144928" y="880.58035714285711"/>
         </scene>
         <!--アカウントデータ引き継ぎ-->
         <scene sceneID="LpK-4d-pXU">
@@ -465,14 +483,42 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                     <view key="view" contentMode="scaleToFill" id="afU-Uf-ob0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9aQ-lR-4IV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tIy-ud-G7A">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Sj1-FU-gSa">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="L8b-gG-UCk">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9aQ-lR-4IV" firstAttribute="bottom" secondItem="xqO-ym-sUs" secondAttribute="bottom" id="Npt-KX-EXb"/>
+                            <constraint firstItem="9aQ-lR-4IV" firstAttribute="top" secondItem="xqO-ym-sUs" secondAttribute="top" id="PwA-df-j7x"/>
+                            <constraint firstItem="9aQ-lR-4IV" firstAttribute="trailing" secondItem="xqO-ym-sUs" secondAttribute="trailing" id="QhW-ve-KOL"/>
+                            <constraint firstItem="9aQ-lR-4IV" firstAttribute="leading" secondItem="xqO-ym-sUs" secondAttribute="leading" id="t2h-wB-EeZ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xqO-ym-sUs"/>
                     </view>
                     <navigationItem key="navigationItem" id="UcT-8b-0Vq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgW-5Y-cke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6386" y="599"/>
+            <point key="canvasLocation" x="6385.507246376812" y="598.66071428571422"/>
         </scene>
         <!--User By Tapped View Controller-->
         <scene sceneID="gfm-Bc-lLg">
@@ -567,21 +613,6 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJc-fK-awv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="12164" y="599"/>
-        </scene>
-        <!--Self Intro View Controller-->
-        <scene sceneID="cxB-We-jtZ">
-            <objects>
-                <viewController id="tzv-oC-dlC" customClass="SelfIntroViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0RB-ro-nBI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="D0f-WV-ku4"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tul-ov-136" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4337" y="866"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8eW-I7-nmy">
