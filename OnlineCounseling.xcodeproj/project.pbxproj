@@ -13,6 +13,10 @@
 		8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */; };
 		8D2893FB246FB89B00855CCD /* BookmarkHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */; };
 		8D2893FD246FB8CF00855CCD /* TellHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */; };
+		8D289400246FBE8900855CCD /* CustomMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FE246FBE8900855CCD /* CustomMessageTableViewCell.swift */; };
+		8D289401246FBE8900855CCD /* CustomMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2893FF246FBE8900855CCD /* CustomMessageTableViewCell.xib */; };
+		8D289404246FC0CB00855CCD /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D289402246FC0CB00855CCD /* TimelineTableViewCell.swift */; };
+		8D289405246FC0CB00855CCD /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */; };
 		8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436A246D6ECF0036F42F /* AppDelegate.swift */; };
 		8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436C246D6ECF0036F42F /* SceneDelegate.swift */; };
 		8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436E246D6ECF0036F42F /* RootViewController.swift */; };
@@ -49,6 +53,10 @@
 		8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedContenerViewController.swift; sourceTree = "<group>"; };
 		8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkHistoryViewController.swift; sourceTree = "<group>"; };
 		8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TellHistoryViewController.swift; sourceTree = "<group>"; };
+		8D2893FE246FBE8900855CCD /* CustomMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageTableViewCell.swift; sourceTree = "<group>"; };
+		8D2893FF246FBE8900855CCD /* CustomMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageTableViewCell.xib; sourceTree = "<group>"; };
+		8D289402246FC0CB00855CCD /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
+		8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
 		8D384367246D6ECF0036F42F /* OnlineCounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineCounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D38436A246D6ECF0036F42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D38436C246D6ECF0036F42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +183,10 @@
 				8D421AAE246E706A00758F4B /* CustomTableViewCell.xib */,
 				8D421AB3246F1BAF00758F4B /* CustomCollectionViewCell.swift */,
 				8D421AB4246F1BAF00758F4B /* CustomCollectionViewCell.xib */,
+				8D2893FE246FBE8900855CCD /* CustomMessageTableViewCell.swift */,
+				8D2893FF246FBE8900855CCD /* CustomMessageTableViewCell.xib */,
+				8D289402246FC0CB00855CCD /* TimelineTableViewCell.swift */,
+				8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -249,8 +261,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D421AB0246E706A00758F4B /* CustomTableViewCell.xib in Resources */,
+				8D289401246FBE8900855CCD /* CustomMessageTableViewCell.xib in Resources */,
 				8D421AB6246F1BAF00758F4B /* CustomCollectionViewCell.xib in Resources */,
 				8D384377246D6ED10036F42F /* LaunchScreen.storyboard in Resources */,
+				8D289405246FC0CB00855CCD /* TimelineTableViewCell.xib in Resources */,
 				8D38437F246D6F6F0036F42F /* GoogleService-Info.plist in Resources */,
 				8D384374246D6ED10036F42F /* Assets.xcassets in Resources */,
 				8D384372246D6ECF0036F42F /* Main.storyboard in Resources */,
@@ -336,8 +350,10 @@
 				8D1566DD246E4B22009E73D0 /* CounselorByTappedViewController.swift in Sources */,
 				8D750680246D9EA00054497A /* AreaViewController.swift in Sources */,
 				8D88C759246D7B7300145BD2 /* HistoryViewController.swift in Sources */,
+				8D289400246FBE8900855CCD /* CustomMessageTableViewCell.swift in Sources */,
 				8D88C757246D7A8000145BD2 /* MessageViewController.swift in Sources */,
 				8D88C74D246D760300145BD2 /* AccountCreateViewController.swift in Sources */,
+				8D289404246FC0CB00855CCD /* TimelineTableViewCell.swift in Sources */,
 				8D88C75D246D7BE400145BD2 /* MyPageViewController.swift in Sources */,
 				8D88C755246D7A0A00145BD2 /* HomeViewController.swift in Sources */,
 				8D750688246DA88B0054497A /* LoginViewController.swift in Sources */,

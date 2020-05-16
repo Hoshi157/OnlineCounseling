@@ -739,14 +739,26 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                     <view key="view" contentMode="scaleToFill" id="WcQ-MM-jOf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sQd-wg-vjj">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="sQd-wg-vjj" secondAttribute="bottom" id="EKk-wr-bbt"/>
+                            <constraint firstItem="sQd-wg-vjj" firstAttribute="top" secondItem="JHH-AO-xed" secondAttribute="top" id="GSW-4V-4cN"/>
+                            <constraint firstItem="sQd-wg-vjj" firstAttribute="leading" secondItem="JHH-AO-xed" secondAttribute="leading" id="QXf-ja-JVp"/>
+                            <constraint firstItem="sQd-wg-vjj" firstAttribute="trailing" secondItem="JHH-AO-xed" secondAttribute="trailing" id="Qub-9h-ngu"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JHH-AO-xed"/>
                     </view>
                     <navigationItem key="navigationItem" id="vUX-8g-NK1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRQ-d5-WHK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9004" y="599"/>
+            <point key="canvasLocation" x="9002.898550724638" y="598.66071428571422"/>
         </scene>
         <!--メッセージ一覧-->
         <scene sceneID="g7C-r6-aut">
@@ -755,14 +767,26 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                     <view key="view" contentMode="scaleToFill" id="ArP-of-pn0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8y0-hg-fu1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8y0-hg-fu1" firstAttribute="trailing" secondItem="5yC-3c-CP9" secondAttribute="trailing" id="4LN-el-W2x"/>
+                            <constraint firstItem="8y0-hg-fu1" firstAttribute="leading" secondItem="5yC-3c-CP9" secondAttribute="leading" id="JFB-JF-Dyh"/>
+                            <constraint firstAttribute="bottom" secondItem="8y0-hg-fu1" secondAttribute="bottom" id="Wtq-lt-Nya"/>
+                            <constraint firstItem="8y0-hg-fu1" firstAttribute="top" secondItem="5yC-3c-CP9" secondAttribute="top" id="v1b-Zk-9Hk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="5yC-3c-CP9"/>
                     </view>
                     <navigationItem key="navigationItem" id="jBX-5A-A44"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MzV-9t-10d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10607" y="599"/>
+            <point key="canvasLocation" x="10605.797101449276" y="598.66071428571422"/>
         </scene>
         <!--マイページ-->
         <scene sceneID="DnT-uz-dqX">
