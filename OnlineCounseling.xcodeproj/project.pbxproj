@@ -41,6 +41,9 @@
 		8D88C759246D7B7300145BD2 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C758246D7B7300145BD2 /* HistoryViewController.swift */; };
 		8D88C75B246D7BAB00145BD2 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C75A246D7BAB00145BD2 /* TimelineViewController.swift */; };
 		8D88C75D246D7BE400145BD2 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */; };
+		8DCD2FCD247058A700D2C9ED /* SidemenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */; };
+		8DCD2FD024705B8000D2C9ED /* CustomTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD2FCE24705B8000D2C9ED /* CustomTextTableViewCell.swift */; };
+		8DCD2FD124705B8000D2C9ED /* CustomTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DCD2FCF24705B8000D2C9ED /* CustomTextTableViewCell.xib */; };
 		D0F9A2F8D10464F11C14F1BF /* Pods_OnlineCounseling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1254F21FA75B2904B0420527 /* Pods_OnlineCounseling.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +86,9 @@
 		8D88C758246D7B7300145BD2 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		8D88C75A246D7BAB00145BD2 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidemenuViewController.swift; sourceTree = "<group>"; };
+		8DCD2FCE24705B8000D2C9ED /* CustomTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextTableViewCell.swift; sourceTree = "<group>"; };
+		8DCD2FCF24705B8000D2C9ED /* CustomTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextTableViewCell.xib; sourceTree = "<group>"; };
 		92E5C629918B0906E252E473 /* Pods-OnlineCounseling.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineCounseling.debug.xcconfig"; path = "Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +176,7 @@
 				8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */,
 				8D88C75A246D7BAB00145BD2 /* TimelineViewController.swift */,
 				8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */,
+				8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -187,6 +194,8 @@
 				8D2893FF246FBE8900855CCD /* CustomMessageTableViewCell.xib */,
 				8D289402246FC0CB00855CCD /* TimelineTableViewCell.swift */,
 				8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */,
+				8DCD2FCE24705B8000D2C9ED /* CustomTextTableViewCell.swift */,
+				8DCD2FCF24705B8000D2C9ED /* CustomTextTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -264,6 +273,7 @@
 				8D289401246FBE8900855CCD /* CustomMessageTableViewCell.xib in Resources */,
 				8D421AB6246F1BAF00758F4B /* CustomCollectionViewCell.xib in Resources */,
 				8D384377246D6ED10036F42F /* LaunchScreen.storyboard in Resources */,
+				8DCD2FD124705B8000D2C9ED /* CustomTextTableViewCell.xib in Resources */,
 				8D289405246FC0CB00855CCD /* TimelineTableViewCell.xib in Resources */,
 				8D38437F246D6F6F0036F42F /* GoogleService-Info.plist in Resources */,
 				8D384374246D6ED10036F42F /* Assets.xcassets in Resources */,
@@ -339,6 +349,7 @@
 			files = (
 				8D421AAF246E706A00758F4B /* CustomTableViewCell.swift in Sources */,
 				8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */,
+				8DCD2FCD247058A700D2C9ED /* SidemenuViewController.swift in Sources */,
 				8D2893FB246FB89B00855CCD /* BookmarkHistoryViewController.swift in Sources */,
 				8D750686246DA4CD0054497A /* TabbarController.swift in Sources */,
 				8D2893FD246FB8CF00855CCD /* TellHistoryViewController.swift in Sources */,
@@ -363,6 +374,7 @@
 				8D88C74B246D74F600145BD2 /* Model.swift in Sources */,
 				8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */,
 				8D421AB5246F1BAF00758F4B /* CustomCollectionViewCell.swift in Sources */,
+				8DCD2FD024705B8000D2C9ED /* CustomTextTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
