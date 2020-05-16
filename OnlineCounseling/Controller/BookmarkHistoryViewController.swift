@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import XLPagerTabStrip
 
-class BookmarkHistoryViewController: UIViewController {
+class BookmarkHistoryViewController: UIViewController, IndicatorInfoProvider {
 
+    let itemInfo:IndicatorInfo = "お気に入り"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+        return itemInfo
     }
     
 

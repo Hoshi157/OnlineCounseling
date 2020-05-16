@@ -18,7 +18,11 @@ class HistoryViewController: ButtonBarPagerTabStripViewController {
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+        let bookmarkVC = BookmarkHistoryViewController()
+        let tellHistoryVC = TellHistoryViewController()
+        let childViewControllers = [bookmarkVC, tellHistoryVC]
         
+        return childViewControllers
     }
     
 
