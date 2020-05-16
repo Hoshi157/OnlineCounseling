@@ -11,6 +11,8 @@
 		8D1566DD246E4B22009E73D0 /* CounselorByTappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DC246E4B22009E73D0 /* CounselorByTappedViewController.swift */; };
 		8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */; };
 		8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */; };
+		8D2893FB246FB89B00855CCD /* BookmarkHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */; };
+		8D2893FD246FB8CF00855CCD /* TellHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */; };
 		8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436A246D6ECF0036F42F /* AppDelegate.swift */; };
 		8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436C246D6ECF0036F42F /* SceneDelegate.swift */; };
 		8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436E246D6ECF0036F42F /* RootViewController.swift */; };
@@ -45,6 +47,8 @@
 		8D1566DC246E4B22009E73D0 /* CounselorByTappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedViewController.swift; sourceTree = "<group>"; };
 		8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByTappedContenerViewController.swift; sourceTree = "<group>"; };
 		8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedContenerViewController.swift; sourceTree = "<group>"; };
+		8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkHistoryViewController.swift; sourceTree = "<group>"; };
+		8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TellHistoryViewController.swift; sourceTree = "<group>"; };
 		8D384367246D6ECF0036F42F /* OnlineCounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineCounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D38436A246D6ECF0036F42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D38436C246D6ECF0036F42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */,
 				8D88C756246D7A8000145BD2 /* MessageViewController.swift */,
 				8D88C758246D7B7300145BD2 /* HistoryViewController.swift */,
+				8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */,
+				8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */,
 				8D88C75A246D7BAB00145BD2 /* TimelineViewController.swift */,
 				8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */,
 			);
@@ -319,7 +325,9 @@
 			files = (
 				8D421AAF246E706A00758F4B /* CustomTableViewCell.swift in Sources */,
 				8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */,
+				8D2893FB246FB89B00855CCD /* BookmarkHistoryViewController.swift in Sources */,
 				8D750686246DA4CD0054497A /* TabbarController.swift in Sources */,
+				8D2893FD246FB8CF00855CCD /* TellHistoryViewController.swift in Sources */,
 				8D421AB2246F150700758F4B /* TextInputProfileViewController.swift in Sources */,
 				8D88C75B246D7BAB00145BD2 /* TimelineViewController.swift in Sources */,
 				8D88C751246D778300145BD2 /* AccountTakeoverViewController.swift in Sources */,

@@ -1,24 +1,19 @@
 //
-//  HistoryViewController.swift
+//  BookmarkHistoryViewController.swift
 //  OnlineCounseling
 //
-//  Created by 福山帆士 on 2020/05/14.
+//  Created by 福山帆士 on 2020/05/16.
 //  Copyright © 2020 福山帆士. All rights reserved.
 //
 
 import UIKit
-import XLPagerTabStrip
 
-class HistoryViewController: ButtonBarPagerTabStripViewController {
+class BookmarkHistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        
     }
     
 
