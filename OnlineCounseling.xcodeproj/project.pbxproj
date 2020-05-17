@@ -43,6 +43,10 @@
 		8DCD2FCD247058A700D2C9ED /* SidemenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */; };
 		8DCD2FD024705B8000D2C9ED /* CustomTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD2FCE24705B8000D2C9ED /* CustomTextTableViewCell.swift */; };
 		8DCD2FD124705B8000D2C9ED /* CustomTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DCD2FCF24705B8000D2C9ED /* CustomTextTableViewCell.xib */; };
+		8DE057C224711DF900E97943 /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE057C124711DF900E97943 /* WelcomeView.xib */; };
+		8DE057C4247121C300E97943 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE057C3247121C300E97943 /* WelcomeView.swift */; };
+		8DE057C62471230800E97943 /* ExplanationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE057C52471230800E97943 /* ExplanationView.xib */; };
+		8DE057C82471232400E97943 /* ExplenationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE057C72471232400E97943 /* ExplenationView.swift */; };
 		D0F9A2F8D10464F11C14F1BF /* Pods_OnlineCounseling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1254F21FA75B2904B0420527 /* Pods_OnlineCounseling.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +91,10 @@
 		8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidemenuViewController.swift; sourceTree = "<group>"; };
 		8DCD2FCE24705B8000D2C9ED /* CustomTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextTableViewCell.swift; sourceTree = "<group>"; };
 		8DCD2FCF24705B8000D2C9ED /* CustomTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextTableViewCell.xib; sourceTree = "<group>"; };
+		8DE057C124711DF900E97943 /* WelcomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
+		8DE057C3247121C300E97943 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		8DE057C52471230800E97943 /* ExplanationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExplanationView.xib; sourceTree = "<group>"; };
+		8DE057C72471232400E97943 /* ExplenationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplenationView.swift; sourceTree = "<group>"; };
 		92E5C629918B0906E252E473 /* Pods-OnlineCounseling.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineCounseling.debug.xcconfig"; path = "Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +201,10 @@
 				8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */,
 				8DCD2FCE24705B8000D2C9ED /* CustomTextTableViewCell.swift */,
 				8DCD2FCF24705B8000D2C9ED /* CustomTextTableViewCell.xib */,
+				8DE057C124711DF900E97943 /* WelcomeView.xib */,
+				8DE057C3247121C300E97943 /* WelcomeView.swift */,
+				8DE057C52471230800E97943 /* ExplanationView.xib */,
+				8DE057C72471232400E97943 /* ExplenationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -267,11 +279,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D421AB0246E706A00758F4B /* CustomTableViewCell.xib in Resources */,
+				8DE057C224711DF900E97943 /* WelcomeView.xib in Resources */,
 				8D289401246FBE8900855CCD /* CustomMessageTableViewCell.xib in Resources */,
 				8D421AB6246F1BAF00758F4B /* CustomCollectionViewCell.xib in Resources */,
 				8D384377246D6ED10036F42F /* LaunchScreen.storyboard in Resources */,
 				8DCD2FD124705B8000D2C9ED /* CustomTextTableViewCell.xib in Resources */,
 				8D289405246FC0CB00855CCD /* TimelineTableViewCell.xib in Resources */,
+				8DE057C62471230800E97943 /* ExplanationView.xib in Resources */,
 				8D38437F246D6F6F0036F42F /* GoogleService-Info.plist in Resources */,
 				8D384374246D6ED10036F42F /* Assets.xcassets in Resources */,
 				8D384372246D6ECF0036F42F /* Main.storyboard in Resources */,
@@ -362,6 +376,7 @@
 				8D88C74D246D760300145BD2 /* AccountCreateViewController.swift in Sources */,
 				8D289404246FC0CB00855CCD /* TimelineTableViewCell.swift in Sources */,
 				8D88C75D246D7BE400145BD2 /* MyPageViewController.swift in Sources */,
+				8DE057C82471232400E97943 /* ExplenationView.swift in Sources */,
 				8D88C755246D7A0A00145BD2 /* HomeViewController.swift in Sources */,
 				8D750688246DA88B0054497A /* LoginViewController.swift in Sources */,
 				8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */,
@@ -371,6 +386,7 @@
 				8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */,
 				8D421AB5246F1BAF00758F4B /* CustomCollectionViewCell.swift in Sources */,
 				8DCD2FD024705B8000D2C9ED /* CustomTextTableViewCell.swift in Sources */,
+				8DE057C4247121C300E97943 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
