@@ -36,11 +36,13 @@
 		8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C74E246D76A600145BD2 /* ProfileRegisterViewController.swift */; };
 		8D88C751246D778300145BD2 /* AccountTakeoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C750246D778300145BD2 /* AccountTakeoverViewController.swift */; };
 		8D88C755246D7A0A00145BD2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C754246D7A0A00145BD2 /* HomeViewController.swift */; };
-		8D88C757246D7A8000145BD2 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C756246D7A8000145BD2 /* MessageViewController.swift */; };
+		8D88C757246D7A8000145BD2 /* MessageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C756246D7A8000145BD2 /* MessageHistoryViewController.swift */; };
 		8D88C759246D7B7300145BD2 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C758246D7B7300145BD2 /* HistoryViewController.swift */; };
 		8D88C75B246D7BAB00145BD2 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C75A246D7BAB00145BD2 /* TimelineViewController.swift */; };
 		8D88C75D246D7BE400145BD2 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */; };
 		8D997F1424713BCA008EBA39 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D997F1324713BCA008EBA39 /* TutorialViewController.swift */; };
+		8D997F16247163AE008EBA39 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D997F15247163AE008EBA39 /* MessageViewController.swift */; };
+		8D997F18247163D8008EBA39 /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D997F17247163D8008EBA39 /* MockMessage.swift */; };
 		8DA9DEFA2471279A0078524B /* ReservationExplanationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DA9DEF92471279A0078524B /* ReservationExplanationView.xib */; };
 		8DA9DEFC247127D20078524B /* ReservationExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9DEFB247127D20078524B /* ReservationExplanationView.swift */; };
 		8DCD2FCD247058A700D2C9ED /* SidemenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */; };
@@ -87,11 +89,13 @@
 		8D88C74E246D76A600145BD2 /* ProfileRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterViewController.swift; sourceTree = "<group>"; };
 		8D88C750246D778300145BD2 /* AccountTakeoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTakeoverViewController.swift; sourceTree = "<group>"; };
 		8D88C754246D7A0A00145BD2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		8D88C756246D7A8000145BD2 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		8D88C756246D7A8000145BD2 /* MessageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageHistoryViewController.swift; sourceTree = "<group>"; };
 		8D88C758246D7B7300145BD2 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		8D88C75A246D7BAB00145BD2 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		8D997F1324713BCA008EBA39 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		8D997F15247163AE008EBA39 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		8D997F17247163D8008EBA39 /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
 		8DA9DEF92471279A0078524B /* ReservationExplanationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReservationExplanationView.xib; sourceTree = "<group>"; };
 		8DA9DEFB247127D20078524B /* ReservationExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationExplanationView.swift; sourceTree = "<group>"; };
 		8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidemenuViewController.swift; sourceTree = "<group>"; };
@@ -185,7 +189,9 @@
 				8D88C758246D7B7300145BD2 /* HistoryViewController.swift */,
 				8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */,
 				8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */,
-				8D88C756246D7A8000145BD2 /* MessageViewController.swift */,
+				8D88C756246D7A8000145BD2 /* MessageHistoryViewController.swift */,
+				8D997F15247163AE008EBA39 /* MessageViewController.swift */,
+				8D997F17247163D8008EBA39 /* MockMessage.swift */,
 				8D88C75A246D7BAB00145BD2 /* TimelineViewController.swift */,
 				8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */,
 				8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */,
@@ -383,17 +389,19 @@
 				8DA9DEFC247127D20078524B /* ReservationExplanationView.swift in Sources */,
 				8D88C759246D7B7300145BD2 /* HistoryViewController.swift in Sources */,
 				8D289400246FBE8900855CCD /* CustomMessageTableViewCell.swift in Sources */,
-				8D88C757246D7A8000145BD2 /* MessageViewController.swift in Sources */,
+				8D88C757246D7A8000145BD2 /* MessageHistoryViewController.swift in Sources */,
 				8D88C74D246D760300145BD2 /* AccountCreateViewController.swift in Sources */,
 				8D289404246FC0CB00855CCD /* TimelineTableViewCell.swift in Sources */,
 				8D88C75D246D7BE400145BD2 /* MyPageViewController.swift in Sources */,
 				8DE057C82471232400E97943 /* ExplenationView.swift in Sources */,
 				8D88C755246D7A0A00145BD2 /* HomeViewController.swift in Sources */,
+				8D997F18247163D8008EBA39 /* MockMessage.swift in Sources */,
 				8D750688246DA88B0054497A /* LoginViewController.swift in Sources */,
 				8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */,
 				8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */,
 				8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */,
 				8D88C74B246D74F600145BD2 /* Model.swift in Sources */,
+				8D997F16247163AE008EBA39 /* MessageViewController.swift in Sources */,
 				8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */,
 				8D997F1424713BCA008EBA39 /* TutorialViewController.swift in Sources */,
 				8D421AB5246F1BAF00758F4B /* CustomCollectionViewCell.swift in Sources */,
