@@ -18,9 +18,9 @@ class HistoryViewController: ButtonBarPagerTabStripViewController {
     }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        let bookmarkVC = BookmarkHistoryViewController()
-        let tellHistoryVC = TellHistoryViewController()
-        let childViewControllers = [bookmarkVC, tellHistoryVC]
+        let bookmarkVC = self.storyboard?.instantiateViewController(identifier: "BookmarkHistory")
+        let tellHistoryVC = self.storyboard?.instantiateViewController(identifier: "TellHistory")
+        let childViewControllers = [bookmarkVC!, tellHistoryVC!]
         
         return childViewControllers
     }

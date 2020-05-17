@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IBAnimatable
 
 class MyPageViewController: UIViewController {
     

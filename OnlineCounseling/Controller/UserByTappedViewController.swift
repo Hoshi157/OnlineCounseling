@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserByTappedViewController: UIViewController {
+class CollectionCellTappedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

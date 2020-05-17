@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8D1566DB246E4AE4009E73D0 /* UserByTappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DA246E4AE4009E73D0 /* UserByTappedViewController.swift */; };
-		8D1566DD246E4B22009E73D0 /* CounselorByTappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DC246E4B22009E73D0 /* CounselorByTappedViewController.swift */; };
 		8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */; };
 		8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */; };
 		8D2893FB246FB89B00855CCD /* BookmarkHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */; };
@@ -51,7 +50,6 @@
 		1254F21FA75B2904B0420527 /* Pods_OnlineCounseling.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineCounseling.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AAAA0547DA6935D56A5A79 /* Pods-OnlineCounseling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineCounseling.release.xcconfig"; path = "Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling.release.xcconfig"; sourceTree = "<group>"; };
 		8D1566DA246E4AE4009E73D0 /* UserByTappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByTappedViewController.swift; sourceTree = "<group>"; };
-		8D1566DC246E4B22009E73D0 /* CounselorByTappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedViewController.swift; sourceTree = "<group>"; };
 		8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByTappedContenerViewController.swift; sourceTree = "<group>"; };
 		8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedContenerViewController.swift; sourceTree = "<group>"; };
 		8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkHistoryViewController.swift; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 				8D88C754246D7A0A00145BD2 /* HomeViewController.swift */,
 				8D1566DA246E4AE4009E73D0 /* UserByTappedViewController.swift */,
 				8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */,
-				8D1566DC246E4B22009E73D0 /* CounselorByTappedViewController.swift */,
 				8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */,
 				8D88C756246D7A8000145BD2 /* MessageViewController.swift */,
 				8D88C758246D7B7300145BD2 /* HistoryViewController.swift */,
@@ -358,7 +355,6 @@
 				8D88C751246D778300145BD2 /* AccountTakeoverViewController.swift in Sources */,
 				8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */,
 				8D1566DB246E4AE4009E73D0 /* UserByTappedViewController.swift in Sources */,
-				8D1566DD246E4B22009E73D0 /* CounselorByTappedViewController.swift in Sources */,
 				8D750680246D9EA00054497A /* AreaViewController.swift in Sources */,
 				8D88C759246D7B7300145BD2 /* HistoryViewController.swift in Sources */,
 				8D289400246FBE8900855CCD /* CustomMessageTableViewCell.swift in Sources */,
