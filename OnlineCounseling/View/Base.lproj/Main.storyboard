@@ -879,7 +879,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
         <!--メッセージ-->
         <scene sceneID="tbc-hl-nNF">
             <objects>
-                <viewController id="fQA-VT-CdI" userLabel="メッセージ" customClass="MessageViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessageVC" id="fQA-VT-CdI" userLabel="メッセージ" customClass="MessageViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LAU-bf-cRC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -894,7 +894,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
         <!--メッセージ一覧-->
         <scene sceneID="g7C-r6-aut">
             <objects>
-                <viewController storyboardIdentifier="messageVC" title="メッセージ一覧" id="IO7-9L-a01" customClass="MessageHistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="messageHistoryVC" title="メッセージ一覧" id="IO7-9L-a01" customClass="MessageHistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ArP-of-pn0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
