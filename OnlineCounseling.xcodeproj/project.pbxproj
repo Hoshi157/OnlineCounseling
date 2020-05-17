@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D1566DB246E4AE4009E73D0 /* UserByTappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DA246E4AE4009E73D0 /* UserByTappedViewController.swift */; };
+		8D1566DB246E4AE4009E73D0 /* CollectionCellTappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */; };
 		8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */; };
 		8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */; };
 		8D2893FB246FB89B00855CCD /* BookmarkHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */; };
@@ -40,6 +40,7 @@
 		8D88C759246D7B7300145BD2 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C758246D7B7300145BD2 /* HistoryViewController.swift */; };
 		8D88C75B246D7BAB00145BD2 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C75A246D7BAB00145BD2 /* TimelineViewController.swift */; };
 		8D88C75D246D7BE400145BD2 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */; };
+		8D997F1424713BCA008EBA39 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D997F1324713BCA008EBA39 /* TutorialViewController.swift */; };
 		8DA9DEFA2471279A0078524B /* ReservationExplanationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DA9DEF92471279A0078524B /* ReservationExplanationView.xib */; };
 		8DA9DEFC247127D20078524B /* ReservationExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9DEFB247127D20078524B /* ReservationExplanationView.swift */; };
 		8DCD2FCD247058A700D2C9ED /* SidemenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */; };
@@ -55,7 +56,7 @@
 /* Begin PBXFileReference section */
 		1254F21FA75B2904B0420527 /* Pods_OnlineCounseling.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineCounseling.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AAAA0547DA6935D56A5A79 /* Pods-OnlineCounseling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineCounseling.release.xcconfig"; path = "Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling.release.xcconfig"; sourceTree = "<group>"; };
-		8D1566DA246E4AE4009E73D0 /* UserByTappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByTappedViewController.swift; sourceTree = "<group>"; };
+		8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellTappedViewController.swift; sourceTree = "<group>"; };
 		8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByTappedContenerViewController.swift; sourceTree = "<group>"; };
 		8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedContenerViewController.swift; sourceTree = "<group>"; };
 		8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkHistoryViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 		8D88C758246D7B7300145BD2 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		8D88C75A246D7BAB00145BD2 /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		8D997F1324713BCA008EBA39 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		8DA9DEF92471279A0078524B /* ReservationExplanationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReservationExplanationView.xib; sourceTree = "<group>"; };
 		8DA9DEFB247127D20078524B /* ReservationExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationExplanationView.swift; sourceTree = "<group>"; };
 		8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidemenuViewController.swift; sourceTree = "<group>"; };
@@ -174,18 +176,19 @@
 				8D75067F246D9EA00054497A /* AreaViewController.swift */,
 				8D421AB1246F150700758F4B /* TextInputProfileViewController.swift */,
 				8D88C750246D778300145BD2 /* AccountTakeoverViewController.swift */,
+				8D997F1324713BCA008EBA39 /* TutorialViewController.swift */,
 				8D750685246DA4CD0054497A /* TabbarController.swift */,
 				8D88C754246D7A0A00145BD2 /* HomeViewController.swift */,
-				8D1566DA246E4AE4009E73D0 /* UserByTappedViewController.swift */,
+				8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */,
 				8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */,
 				8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */,
-				8D88C756246D7A8000145BD2 /* MessageViewController.swift */,
 				8D88C758246D7B7300145BD2 /* HistoryViewController.swift */,
 				8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */,
 				8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */,
+				8D88C756246D7A8000145BD2 /* MessageViewController.swift */,
 				8D88C75A246D7BAB00145BD2 /* TimelineViewController.swift */,
-				8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */,
 				8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */,
+				8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -375,7 +378,7 @@
 				8D88C75B246D7BAB00145BD2 /* TimelineViewController.swift in Sources */,
 				8D88C751246D778300145BD2 /* AccountTakeoverViewController.swift in Sources */,
 				8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */,
-				8D1566DB246E4AE4009E73D0 /* UserByTappedViewController.swift in Sources */,
+				8D1566DB246E4AE4009E73D0 /* CollectionCellTappedViewController.swift in Sources */,
 				8D750680246D9EA00054497A /* AreaViewController.swift in Sources */,
 				8DA9DEFC247127D20078524B /* ReservationExplanationView.swift in Sources */,
 				8D88C759246D7B7300145BD2 /* HistoryViewController.swift in Sources */,
@@ -392,6 +395,7 @@
 				8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */,
 				8D88C74B246D74F600145BD2 /* Model.swift in Sources */,
 				8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */,
+				8D997F1424713BCA008EBA39 /* TutorialViewController.swift in Sources */,
 				8D421AB5246F1BAF00758F4B /* CustomCollectionViewCell.swift in Sources */,
 				8DCD2FD024705B8000D2C9ED /* CustomTextTableViewCell.swift in Sources */,
 				8DE057C4247121C300E97943 /* WelcomeView.swift in Sources */,

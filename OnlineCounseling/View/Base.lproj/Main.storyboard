@@ -4,14 +4,13 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--ルートVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="RootViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rootVC" id="BYZ-38-t0r" userLabel="ルートVC" customClass="RootViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,7 +32,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2M-7X-Jzn">
                                 <rect key="frame" x="172" y="797" width="70" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="Oeo-7z-aql"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="Oeo-7z-aql"/>
                                     <constraint firstAttribute="height" constant="35" id="ov5-Uj-XYf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -49,7 +48,7 @@
                         <constraints>
                             <constraint firstItem="adM-2R-1AD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="33" id="3eu-qW-7E3"/>
                             <constraint firstItem="adM-2R-1AD" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="185" id="7YX-49-cbR"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="adM-2R-1AD" secondAttribute="trailing" constant="33" id="U72-aI-oug"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="adM-2R-1AD" secondAttribute="trailing" id="U72-aI-oug"/>
                             <constraint firstItem="m2M-7X-Jzn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WKL-eW-Ht2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="m2M-7X-Jzn" secondAttribute="bottom" constant="30" id="WkH-Rp-o83"/>
                             <constraint firstItem="adM-2R-1AD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kbp-2f-Q88"/>
@@ -62,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="129.91071428571428"/>
         </scene>
-        <!--Account Create View Controller-->
+        <!--アカウント作成-->
         <scene sceneID="9lb-9o-iGv">
             <objects>
-                <viewController id="gn2-T6-N1k" customClass="AccountCreateViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="accountCreateVC" id="gn2-T6-N1k" userLabel="アカウント作成" customClass="AccountCreateViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jef-C6-OTm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,8 +106,9 @@
                             <constraint firstItem="w9b-uB-mhK" firstAttribute="top" secondItem="qHW-aK-TLa" secondAttribute="top" constant="20" id="512-EX-wPc"/>
                             <constraint firstItem="XDn-ws-Dot" firstAttribute="trailing" secondItem="qHW-aK-TLa" secondAttribute="trailing" id="CT5-xE-GzX"/>
                             <constraint firstItem="4cz-rx-7Lm" firstAttribute="leading" secondItem="qHW-aK-TLa" secondAttribute="leading" constant="33" id="Gkh-3a-kQc"/>
-                            <constraint firstItem="qHW-aK-TLa" firstAttribute="trailing" secondItem="4cz-rx-7Lm" secondAttribute="trailing" constant="33" id="KYF-Ke-gG2"/>
-                            <constraint firstItem="w9b-uB-mhK" firstAttribute="leading" secondItem="qHW-aK-TLa" secondAttribute="leading" constant="20" id="imz-ki-rgh"/>
+                            <constraint firstItem="qHW-aK-TLa" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4cz-rx-7Lm" secondAttribute="trailing" id="KYF-Ke-gG2"/>
+                            <constraint firstItem="w9b-uB-mhK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qHW-aK-TLa" secondAttribute="leading" id="imz-ki-rgh"/>
+                            <constraint firstItem="qHW-aK-TLa" firstAttribute="trailing" secondItem="w9b-uB-mhK" secondAttribute="trailing" constant="230.5" id="jmH-Tm-smi"/>
                             <constraint firstItem="XDn-ws-Dot" firstAttribute="top" secondItem="w9b-uB-mhK" secondAttribute="bottom" constant="50" id="kHX-m5-EPf"/>
                             <constraint firstItem="XDn-ws-Dot" firstAttribute="leading" secondItem="qHW-aK-TLa" secondAttribute="leading" id="rgP-oz-P5n"/>
                             <constraint firstItem="4cz-rx-7Lm" firstAttribute="centerX" secondItem="jef-C6-OTm" secondAttribute="centerX" id="tvc-ff-1EU"/>
@@ -127,10 +127,10 @@
             </objects>
             <point key="canvasLocation" x="2075.36231884058" y="129.91071428571428"/>
         </scene>
-        <!--Profile Register View Controller-->
+        <!--プロフィール登録-->
         <scene sceneID="VYE-0G-IET">
             <objects>
-                <viewController id="ebq-nS-PUK" customClass="ProfileRegisterViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profileRegisterVC" id="ebq-nS-PUK" userLabel="プロフィール登録" customClass="ProfileRegisterViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eEf-jq-yyE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,7 +263,7 @@ gb7jgZvjgpPjgII
         <!--ログイン-->
         <scene sceneID="h6g-RN-0RV">
             <objects>
-                <viewController id="p23-ck-z5S" customClass="LoginViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" id="p23-ck-z5S" customClass="LoginViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z4A-ty-TNc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -325,10 +325,10 @@ gb7jgZvjgpPjgII
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="880.58035714285711"/>
         </scene>
-        <!--Area View Controller-->
+        <!--地域選択-->
         <scene sceneID="r41-IN-06O">
             <objects>
-                <viewController id="ViP-lk-gye" customClass="AreaViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="areaVC" id="ViP-lk-gye" userLabel="地域選択" customClass="AreaViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NJ8-dl-HyO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="2500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -406,10 +406,10 @@ gb7jgZvjgpPjgII
             </objects>
             <point key="canvasLocation" x="2129" y="1418"/>
         </scene>
-        <!--Text Input Profile View Controller-->
+        <!--テーブルビューテキスト入力-->
         <scene sceneID="BgA-K9-w07">
             <objects>
-                <viewController id="ZMZ-Q6-XOD" customClass="TextInputProfileViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="textInputVC" id="ZMZ-Q6-XOD" userLabel="テーブルビューテキスト入力" customClass="TextInputProfileViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Emg-NY-WAm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -425,7 +425,7 @@ gb7jgZvjgpPjgII
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MUh-Nb-i6X" firstAttribute="trailing" secondItem="ub2-6b-cNN" secondAttribute="trailing" constant="-5" id="9Nf-CL-lxk"/>
                             <constraint firstItem="MUh-Nb-i6X" firstAttribute="leading" secondItem="ub2-6b-cNN" secondAttribute="leading" constant="5" id="TRL-80-bAp"/>
@@ -438,10 +438,33 @@ gb7jgZvjgpPjgII
             </objects>
             <point key="canvasLocation" x="3140.579710144928" y="880.58035714285711"/>
         </scene>
+        <!--チュートリアルスライド-->
+        <scene sceneID="7KY-oe-oZ0">
+            <objects>
+                <viewController storyboardIdentifier="tutorilaVC" id="z4h-jQ-LtP" userLabel="チュートリアルスライド" customClass="TutorialViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cb9-OM-Cyx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xpf-zJ-yqK">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="Gtl-ZO-b2i"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="ChZ-8i-2pN"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="uN2-f7-Omc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kkb-hE-Qa5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4182.608695652174" y="888.61607142857144"/>
+        </scene>
         <!--アカウントデータ引き継ぎ-->
         <scene sceneID="LpK-4d-pXU">
             <objects>
-                <viewController id="Fgz-yb-e8V" customClass="AccountTakeoverViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="accountTakeVC" id="Fgz-yb-e8V" customClass="AccountTakeoverViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OCQ-d9-bRP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -515,10 +538,10 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
             </objects>
             <point key="canvasLocation" x="4160.8695652173919" y="129.91071428571428"/>
         </scene>
-        <!--Home-->
+        <!--ホーム-->
         <scene sceneID="mj9-Y9-uug">
             <objects>
-                <viewController title="Home" id="YPB-my-D4r" customClass="HomeViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeVC" title="Home" id="YPB-my-D4r" userLabel="ホーム" customClass="HomeViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="afU-Uf-ob0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -532,16 +555,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Sj1-FU-gSa">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="L8b-gG-UCk">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -559,10 +573,10 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
             </objects>
             <point key="canvasLocation" x="6385.507246376812" y="598.66071428571422"/>
         </scene>
-        <!--Collection Cell Tapped View Controller-->
+        <!--コレクションタップ-->
         <scene sceneID="gfm-Bc-lLg">
             <objects>
-                <viewController id="tFJ-3j-ood" customClass="CollectionCellTappedViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="collectionTapVC" id="tFJ-3j-ood" userLabel="コレクションタップ" customClass="CollectionCellTappedViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qgz-VV-EpM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -605,12 +619,13 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DO-wQ-gnL">
-                                                <rect key="frame" x="50" y="388" width="314" height="100"/>
+                                                <rect key="frame" x="57.5" y="388" width="306.5" height="100"/>
                                                 <color key="backgroundColor" red="0.93578767119999995" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="Gv6-nW-hIy"/>
                                                 </constraints>
-                                                <string key="text">カウンセラーに伝えたい事を記入する場所。つぶやき。</string>
+                                                <string key="text">カウンセラーに伝えたい事を記入する場所。
+つぶやき。</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -625,7 +640,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自己紹介文を転載する" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vL2-ec-vae">
-                                                <rect key="frame" x="58" y="533" width="298" height="80"/>
+                                                <rect key="frame" x="223" y="533" width="133" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="3pl-TD-7xw"/>
                                                 </constraints>
@@ -654,8 +669,10 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                                         <constraints>
                                             <constraint firstItem="gCh-r1-Tx1" firstAttribute="leading" secondItem="GSG-MX-xSI" secondAttribute="leading" id="23t-yf-9iY"/>
                                             <constraint firstItem="5DO-wQ-gnL" firstAttribute="top" secondItem="HfF-cH-mGV" secondAttribute="bottom" constant="30" id="3Ny-ei-zVu"/>
+                                            <constraint firstAttribute="trailing" secondItem="Yff-q4-8LV" secondAttribute="trailing" constant="326" id="5FU-Om-Be8"/>
                                             <constraint firstItem="Yff-q4-8LV" firstAttribute="top" secondItem="5DO-wQ-gnL" secondAttribute="bottom" constant="10" id="6LG-Am-SLi"/>
                                             <constraint firstItem="SY0-rS-fOz" firstAttribute="leading" secondItem="GSG-MX-xSI" secondAttribute="leadingMargin" id="Cgi-Bb-Vvi"/>
+                                            <constraint firstItem="OUJ-4N-cmf" firstAttribute="leading" secondItem="adr-Ya-sPm" secondAttribute="trailing" constant="221" id="DNg-6B-Qof"/>
                                             <constraint firstAttribute="trailing" secondItem="gCh-r1-Tx1" secondAttribute="trailing" constant="8" id="G58-ds-Yma"/>
                                             <constraint firstItem="OUJ-4N-cmf" firstAttribute="top" secondItem="HfF-cH-mGV" secondAttribute="top" id="Hxv-ZU-BjQ"/>
                                             <constraint firstItem="vL2-ec-vae" firstAttribute="top" secondItem="Yff-q4-8LV" secondAttribute="bottom" constant="10" id="JEC-6F-l9W"/>
@@ -663,17 +680,18 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                                             <constraint firstAttribute="trailing" secondItem="OUJ-4N-cmf" secondAttribute="trailing" constant="30" id="O6R-Gd-Jru"/>
                                             <constraint firstItem="adr-Ya-sPm" firstAttribute="top" secondItem="HfF-cH-mGV" secondAttribute="top" id="SWE-EW-maI"/>
                                             <constraint firstItem="Yff-q4-8LV" firstAttribute="leading" secondItem="GSG-MX-xSI" secondAttribute="leadingMargin" constant="10" id="Sut-C5-Bvr"/>
-                                            <constraint firstItem="vL2-ec-vae" firstAttribute="leading" secondItem="GSG-MX-xSI" secondAttribute="leadingMargin" constant="50" id="adc-x3-5A8"/>
+                                            <constraint firstItem="vL2-ec-vae" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GSG-MX-xSI" secondAttribute="leadingMargin" id="adc-x3-5A8"/>
                                             <constraint firstAttribute="trailing" secondItem="5DO-wQ-gnL" secondAttribute="trailing" constant="50" id="ajR-Qw-wzQ"/>
                                             <constraint firstItem="gCh-r1-Tx1" firstAttribute="top" secondItem="GSG-MX-xSI" secondAttribute="top" constant="8" id="blL-iK-IY9"/>
                                             <constraint firstItem="z3d-ud-cLc" firstAttribute="top" secondItem="vL2-ec-vae" secondAttribute="bottom" constant="20" id="cX4-1F-FDJ"/>
-                                            <constraint firstItem="z3d-ud-cLc" firstAttribute="leading" secondItem="Yff-q4-8LV" secondAttribute="leading" id="eZM-FW-c09"/>
+                                            <constraint firstItem="z3d-ud-cLc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yff-q4-8LV" secondAttribute="leading" id="eZM-FW-c09"/>
+                                            <constraint firstAttribute="trailing" secondItem="z3d-ud-cLc" secondAttribute="trailing" constant="292" id="mXD-PA-x4K"/>
                                             <constraint firstItem="SY0-rS-fOz" firstAttribute="trailing" secondItem="GSG-MX-xSI" secondAttribute="trailingMargin" id="o97-3o-RWV"/>
                                             <constraint firstAttribute="bottom" secondItem="SY0-rS-fOz" secondAttribute="bottom" constant="-1" id="qp6-Im-CTM"/>
                                             <constraint firstItem="SY0-rS-fOz" firstAttribute="top" secondItem="z3d-ud-cLc" secondAttribute="bottom" constant="10" id="rA9-Ka-OLg"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="vL2-ec-vae" secondAttribute="trailing" constant="50" id="udX-pm-glp"/>
-                                            <constraint firstItem="5DO-wQ-gnL" firstAttribute="leading" secondItem="GSG-MX-xSI" secondAttribute="leading" constant="50" id="wHW-ln-UC7"/>
-                                            <constraint firstItem="adr-Ya-sPm" firstAttribute="leading" secondItem="HfF-cH-mGV" secondAttribute="trailing" constant="20" id="x2N-i1-ZzL"/>
+                                            <constraint firstItem="5DO-wQ-gnL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GSG-MX-xSI" secondAttribute="leading" symbolic="YES" id="wHW-ln-UC7"/>
+                                            <constraint firstItem="adr-Ya-sPm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HfF-cH-mGV" secondAttribute="trailing" symbolic="YES" id="x2N-i1-ZzL"/>
                                             <constraint firstItem="HfF-cH-mGV" firstAttribute="top" secondItem="gCh-r1-Tx1" secondAttribute="bottom" constant="20" id="ytL-fg-rt5"/>
                                         </constraints>
                                     </view>
@@ -705,15 +723,15 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
             </objects>
             <point key="canvasLocation" x="6366.666666666667" y="1479.9107142857142"/>
         </scene>
-        <!--Bookmark History View Controller-->
+        <!--お気に入り履歴-->
         <scene sceneID="Tez-3Z-Bqh">
             <objects>
-                <viewController storyboardIdentifier="BookmarkHistory" id="A7w-nJ-Pc5" customClass="BookmarkHistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookmarkHistory" id="A7w-nJ-Pc5" userLabel="お気に入り履歴" customClass="BookmarkHistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KaH-hv-U0a">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お気に入りした相手が表示されています" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgL-gw-XMl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お気に入りの相手が表示されています" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgL-gw-XMl">
                                 <rect key="frame" x="0.0" y="44" width="414" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="9uc-CZ-siK"/>
@@ -725,16 +743,6 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VhH-Rs-Cc2">
                                 <rect key="frame" x="0.0" y="84" width="414" height="812"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookmarkCell" id="c9T-wp-hMT">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c9T-wp-hMT" id="m02-cQ-aJx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -754,10 +762,10 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
             </objects>
             <point key="canvasLocation" x="7685.507246376812" y="1479.9107142857142"/>
         </scene>
-        <!--Tell History View Controller-->
+        <!--電話履歴-->
         <scene sceneID="zZN-KP-zTg">
             <objects>
-                <viewController storyboardIdentifier="TellHistory" id="pF1-dy-YQR" customClass="TellHistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TellHistory" id="pF1-dy-YQR" userLabel="電話履歴" customClass="TellHistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LgR-Av-D90">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -774,16 +782,6 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D8X-zs-5Yd">
                                 <rect key="frame" x="0.0" y="84" width="414" height="812"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tellHistoryCell" id="sPy-nB-MQf">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sPy-nB-MQf" id="kkv-JS-TjK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -806,7 +804,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
         <!--履歴-->
         <scene sceneID="dGo-eg-Pcb">
             <objects>
-                <viewController title="履歴" id="yZf-u5-2RQ" customClass="HistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="historyVC" title="履歴" id="yZf-u5-2RQ" customClass="HistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mxy-jQ-c0M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -825,8 +823,9 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y1O-KE-ZwP">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y1O-KE-ZwP">
                                 <rect key="frame" x="0.0" y="102" width="414" height="794"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="kG8-YF-ZO8"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="4hh-b0-FuH"/>
                             </scrollView>
@@ -834,12 +833,8 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="PwK-Z5-yYk" firstAttribute="trailing" secondItem="Pbp-CM-TFP" secondAttribute="trailing" id="6wF-cr-7JU"/>
-                            <constraint firstItem="Y1O-KE-ZwP" firstAttribute="top" secondItem="PwK-Z5-yYk" secondAttribute="bottom" id="7fv-Rp-p8r"/>
                             <constraint firstItem="PwK-Z5-yYk" firstAttribute="leading" secondItem="Pbp-CM-TFP" secondAttribute="leading" id="IR8-T0-NgG"/>
                             <constraint firstItem="PwK-Z5-yYk" firstAttribute="top" secondItem="Pbp-CM-TFP" secondAttribute="top" id="ifT-TQ-kVm"/>
-                            <constraint firstItem="Y1O-KE-ZwP" firstAttribute="leading" secondItem="Pbp-CM-TFP" secondAttribute="leading" id="ovx-Id-u5D"/>
-                            <constraint firstItem="Y1O-KE-ZwP" firstAttribute="trailing" secondItem="Pbp-CM-TFP" secondAttribute="trailing" id="tvA-pO-tjE"/>
-                            <constraint firstAttribute="bottom" secondItem="Y1O-KE-ZwP" secondAttribute="bottom" id="wQ7-my-dvG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pbp-CM-TFP"/>
                     </view>
@@ -856,7 +851,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
         <!--タイムライン-->
         <scene sceneID="qWw-T2-WN1">
             <objects>
-                <viewController title="タイムライン" id="t73-zL-Y84" customClass="TimelineViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="timelineVC" title="タイムライン" id="t73-zL-Y84" customClass="TimelineViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WcQ-MM-jOf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -884,7 +879,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
         <!--メッセージ一覧-->
         <scene sceneID="g7C-r6-aut">
             <objects>
-                <viewController title="メッセージ一覧" id="IO7-9L-a01" customClass="MessageViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="messageVC" title="メッセージ一覧" id="IO7-9L-a01" customClass="MessageViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ArP-of-pn0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -909,10 +904,10 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
             </objects>
             <point key="canvasLocation" x="10265" y="599"/>
         </scene>
-        <!--Sidemenu View Controller-->
+        <!--スライドメニュー-->
         <scene sceneID="KIQ-Bk-NYk">
             <objects>
-                <viewController id="fnm-F0-S5p" customClass="SidemenuViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sidemenuVC" id="fnm-F0-S5p" userLabel="スライドメニュー" customClass="SidemenuViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OXu-fy-Yow">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -924,19 +919,19 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
             </objects>
             <point key="canvasLocation" x="6386" y="-292"/>
         </scene>
-        <!--マイページ-->
+        <!--マイページ編集-->
         <scene sceneID="DnT-uz-dqX">
             <objects>
-                <viewController title="マイページ" id="dGl-iT-OIX" customClass="MyPageViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="eTq-LW-jGm">
+                <viewController storyboardIdentifier="myPageVC" title="マイページ" id="dGl-iT-OIX" userLabel="マイページ編集" customClass="MyPageViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eTq-LW-jGm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="860"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gfB-uS-tUg">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="884"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfB-uS-tUg">
+                                <rect key="frame" x="0.0" y="44" width="414" height="1656"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Qa-RQ-egw" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="824"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Qa-RQ-egw" userLabel="contentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="884"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture-973460_640-e1542530002984" translatesAutoresizingMaskIntoConstraints="NO" id="z9h-Lh-Vbd" customClass="AnimatableImageView" customModule="IBAnimatable">
                                                 <rect key="frame" x="107" y="70" width="200" height="200"/>
@@ -1051,10 +1046,10 @@ gb7jgZvjgpPjgII
             </objects>
             <point key="canvasLocation" x="7685.507246376812" y="-307.36607142857139"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--ルートNavi-->
         <scene sceneID="8eW-I7-nmy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vqv-IV-bkL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="rootNavi" automaticallyAdjustsScrollViewInsets="NO" id="Vqv-IV-bkL" userLabel="ルートNavi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kQQ-Xj-Uun">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

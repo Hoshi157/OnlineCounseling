@@ -20,9 +20,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzW-A6-ZaZ">
-                    <rect key="frame" x="46" y="380.5" width="208.5" height="57.5"/>
-                    <string key="text">ホーム画面からカウンセラーを選んで通話の予約をしてみよう！気になるカウンセラーがいればお気に入りに追加しよう！</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <rect key="frame" x="49" y="380.5" width="202.5" height="39.5"/>
+                    <string key="text">ホーム画面からカウンセラーを選んで
+プロフィールを見てみましょう！
+気になるカウンセラーが見つかるかも！</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
