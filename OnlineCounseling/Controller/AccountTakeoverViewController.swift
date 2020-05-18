@@ -16,6 +16,8 @@ class AccountTakeoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewButtonAction))
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CustomAccountTakeOverTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountTakeoverCell")
@@ -24,8 +26,13 @@ class AccountTakeoverViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func skipButtonAction(_ sender: Any) {
-        let tabbarController = TabbarController()
+        let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
+        tabbarController.modalPresentationStyle = .fullScreen
         self.present(tabbarController, animated: true)
+    }
+    
+    @objc func backViewButtonAction() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 

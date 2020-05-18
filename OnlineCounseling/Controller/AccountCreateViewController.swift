@@ -16,7 +16,7 @@ class AccountCreateViewController: UIViewController {
     @IBOutlet weak var consentButton: MDCRaisedButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var tableArray = ["生年月日", "名前"]
+    var tableArray = ["名前", "生年月日"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,8 @@ class AccountCreateViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
+        tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
+        tableView.rowHeight = 50
         // Do any additional setup after loading the view.
         
     }
@@ -58,10 +60,22 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
-        cell.textLabel?.text = tableArray[indexPath.row]
-        tableView.rowHeight = 50
-        return cell
+        let pickercell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
+        let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
+        
+        switch (indexPath.row) {
+        case 0:
+            let text = tableArray[0]
+            textCell.leftLabel.text = text
+            return textCell
+        case 1:
+            let text = tableArray[1]
+            pickercell.textLabel?.text = text
+            return pickercell
+        default:
+            print("error")
+            return UITableViewCell()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

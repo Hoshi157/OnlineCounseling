@@ -17,20 +17,19 @@ class TabbarController: UITabBarController {
 
         // Do any additional setup after loading the view.
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
+        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
         homeVC.tabBarItem.title = "ホーム"
         ViewControllers.append(homeVC)
         
-        let historyVC = storyboard.instantiateViewController(withIdentifier: "HistoryVC") as! HistoryViewController
+        let historyVC = self.storyboard?.instantiateViewController(withIdentifier: "HistoryVC") as! HistoryViewController
         historyVC.tabBarItem.title = "履歴"
         ViewControllers.append(historyVC)
         
-        let timelineVC = storyboard.instantiateViewController(withIdentifier: "TimelineVC") as! TimelineViewController
+        let timelineVC = self.storyboard?.instantiateViewController(withIdentifier: "TimelineVC") as! TimelineViewController
         timelineVC.tabBarItem.title = "タイムライン"
         ViewControllers.append(timelineVC)
         
-        let messageHistoryVC = storyboard.instantiateViewController(withIdentifier: "MessageHistoryVC") as! MessageHistoryViewController
+        let messageHistoryVC = self.storyboard?.instantiateViewController(withIdentifier: "MessageHistoryVC") as! MessageHistoryViewController
         messageHistoryVC.tabBarItem.title = "メッセージ"
         ViewControllers.append(messageHistoryVC)
         

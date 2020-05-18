@@ -17,21 +17,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtD-Pl-D9W">
-                        <rect key="frame" x="5" y="10" width="30" height="15"/>
+                        <rect key="frame" x="20" y="10" width="27.5" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="BE4-So-o5V"/>
-                            <constraint firstAttribute="width" constant="30" id="mnq-q3-Ybg"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自由に記入してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o14-kU-BaX">
-                        <rect key="frame" x="5" y="35" width="146" height="15"/>
+                        <rect key="frame" x="20" y="35" width="112.5" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="pOo-A1-JdI"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -39,11 +38,15 @@
                 <constraints>
                     <constraint firstItem="o14-kU-BaX" firstAttribute="leading" secondItem="TtD-Pl-D9W" secondAttribute="leading" id="QPy-DT-2Kp"/>
                     <constraint firstItem="o14-kU-BaX" firstAttribute="top" secondItem="TtD-Pl-D9W" secondAttribute="bottom" constant="10" id="idC-id-fvm"/>
-                    <constraint firstItem="TtD-Pl-D9W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="oys-DV-2fS"/>
+                    <constraint firstItem="TtD-Pl-D9W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="oys-DV-2fS"/>
                     <constraint firstItem="TtD-Pl-D9W" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="viU-lA-7aN"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="leftLabel" destination="TtD-Pl-D9W" id="T61-9g-AXW"/>
+                <outlet property="textDisplayLabel" destination="o14-kU-BaX" id="gJd-Qj-bQB"/>
+            </connections>
             <point key="canvasLocation" x="140.57971014492756" y="150.33482142857142"/>
         </tableViewCell>
     </objects>

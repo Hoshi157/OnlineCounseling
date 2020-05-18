@@ -16,13 +16,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="プレイスホルダー" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="obA-ba-CNv">
-                        <rect key="frame" x="0.0" y="5" width="320" height="34"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="プレイスホルダー" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="obA-ba-CNv">
+                        <rect key="frame" x="20" y="0.0" width="300" height="44"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="obA-ba-CNv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="5nC-lf-U7e"/>
+                    <constraint firstAttribute="trailing" secondItem="obA-ba-CNv" secondAttribute="trailing" id="WGa-Xm-X0l"/>
+                    <constraint firstItem="obA-ba-CNv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fbT-jk-HBT"/>
+                    <constraint firstAttribute="bottom" secondItem="obA-ba-CNv" secondAttribute="bottom" id="oWY-Sv-1fn"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>

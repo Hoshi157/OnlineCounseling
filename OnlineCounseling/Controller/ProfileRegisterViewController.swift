@@ -56,36 +56,36 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
         
         switch (indexPath.row) {
         case 0:
-            let rightText = tableArray[0]
-            textCell.textLabel?.text = rightText
+            let leftText = tableArray[0]
+            textCell.leftLabel.text = leftText
             return textCell
         case 1:
-            let rightText = tableArray[1]
-            pickerCell.textLabel?.text = rightText
+            let leftText = tableArray[1]
+            pickerCell.textLabel?.text = leftText
             return pickerCell
         case 2:
-            let rightText = tableArray[2]
-            pickerCell.textLabel?.text = rightText
+            let leftText = tableArray[2]
+            pickerCell.textLabel?.text = leftText
             return pickerCell
         case 3:
-            let rightText = tableArray[3]
-            pickerCell.textLabel?.text = rightText
+            let leftText = tableArray[3]
+            pickerCell.textLabel?.text = leftText
             return pickerCell
         case 4:
-            let rightText = tableArray[4]
-            textCell.textLabel?.text = rightText
+            let leftText = tableArray[4]
+            textCell.leftLabel.text = leftText
             return textCell
         case 5:
-            let rightText = tableArray[5]
-            textCell.textLabel?.text = rightText
+            let leftText = tableArray[5]
+            textCell.leftLabel.text = leftText
             return textCell
         case 6:
-            let rightText = tableArray[6]
-            textCell.textLabel?.text = rightText
+            let leftText = tableArray[6]
+            textCell.leftLabel.text = leftText
             return textCell
         default:
             print("error")
-            return textCell
+            return UITableViewCell()
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

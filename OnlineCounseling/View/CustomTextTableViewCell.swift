@@ -10,6 +10,9 @@ import UIKit
 
 class CustomTextTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var leftLabel: UILabel!
+    @IBOutlet weak var textDisplayLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
