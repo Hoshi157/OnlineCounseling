@@ -79,5 +79,17 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        print(indexPath.row)
+        switch (indexPath.row) {
+        case 0:
+            let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            self.navigationController?.pushViewController(textInputVC, animated: true)
+        case 1:
+            print("生年月日")
+        default:
+            print("error")
+            return
+        }
     }
 }
