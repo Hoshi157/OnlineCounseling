@@ -25,7 +25,7 @@ class AccountCreateViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
         // Do any additional setup after loading the view.
         
     }
@@ -58,9 +58,9 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomTableViewCell
-        tableView.rowHeight = 50
+        let cell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
         cell.textLabel?.text = tableArray[indexPath.row]
+        tableView.rowHeight = 50
         return cell
     }
     

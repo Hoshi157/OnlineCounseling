@@ -45,6 +45,8 @@
 		8D997F18247163D8008EBA39 /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D997F17247163D8008EBA39 /* MockMessage.swift */; };
 		8DA9DEFA2471279A0078524B /* ReservationExplanationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DA9DEF92471279A0078524B /* ReservationExplanationView.xib */; };
 		8DA9DEFC247127D20078524B /* ReservationExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9DEFB247127D20078524B /* ReservationExplanationView.swift */; };
+		8DB5CEAB24727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5CEA924727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift */; };
+		8DB5CEAC24727D99007AF747 /* CustomAccountTakeOverTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DB5CEAA24727D99007AF747 /* CustomAccountTakeOverTableViewCell.xib */; };
 		8DCD2FCD247058A700D2C9ED /* SidemenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */; };
 		8DCD2FD024705B8000D2C9ED /* CustomTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCD2FCE24705B8000D2C9ED /* CustomTextTableViewCell.swift */; };
 		8DCD2FD124705B8000D2C9ED /* CustomTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DCD2FCF24705B8000D2C9ED /* CustomTextTableViewCell.xib */; };
@@ -98,6 +100,8 @@
 		8D997F17247163D8008EBA39 /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
 		8DA9DEF92471279A0078524B /* ReservationExplanationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReservationExplanationView.xib; sourceTree = "<group>"; };
 		8DA9DEFB247127D20078524B /* ReservationExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationExplanationView.swift; sourceTree = "<group>"; };
+		8DB5CEA924727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAccountTakeOverTableViewCell.swift; sourceTree = "<group>"; };
+		8DB5CEAA24727D99007AF747 /* CustomAccountTakeOverTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAccountTakeOverTableViewCell.xib; sourceTree = "<group>"; };
 		8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidemenuViewController.swift; sourceTree = "<group>"; };
 		8DCD2FCE24705B8000D2C9ED /* CustomTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextTableViewCell.swift; sourceTree = "<group>"; };
 		8DCD2FCF24705B8000D2C9ED /* CustomTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTextTableViewCell.xib; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 				8DE057C72471232400E97943 /* ExplenationView.swift */,
 				8DA9DEF92471279A0078524B /* ReservationExplanationView.xib */,
 				8DA9DEFB247127D20078524B /* ReservationExplanationView.swift */,
+				8DB5CEA924727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift */,
+				8DB5CEAA24727D99007AF747 /* CustomAccountTakeOverTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D421AB0246E706A00758F4B /* CustomTableViewCell.xib in Resources */,
+				8DB5CEAC24727D99007AF747 /* CustomAccountTakeOverTableViewCell.xib in Resources */,
 				8DE057C224711DF900E97943 /* WelcomeView.xib in Resources */,
 				8D289401246FBE8900855CCD /* CustomMessageTableViewCell.xib in Resources */,
 				8DA9DEFA2471279A0078524B /* ReservationExplanationView.xib in Resources */,
@@ -401,6 +408,7 @@
 				8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */,
 				8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */,
 				8D88C74B246D74F600145BD2 /* Model.swift in Sources */,
+				8DB5CEAB24727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift in Sources */,
 				8D997F16247163AE008EBA39 /* MessageViewController.swift in Sources */,
 				8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */,
 				8D997F1424713BCA008EBA39 /* TutorialViewController.swift in Sources */,

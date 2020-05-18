@@ -10,10 +10,21 @@ import UIKit
 
 class AccountTakeoverViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    let tableArray: [String] = ["メールアドレス", "パスワード", "パスワードの確認"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "CustomAccountTakeOverTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountTakeoverCell")
+        tableView.rowHeight = 50
 
         // Do any additional setup after loading the view.
+    }
+    @IBAction func skipButtonAction(_ sender: Any) {
+        navigationController?.pushViewController(TabbarController(), animated: true)
     }
     
 
@@ -27,4 +38,19 @@ class AccountTakeoverViewController: UIViewController {
     }
     */
 
+}
+
+extension AccountTakeoverViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableArray.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTakeoverCell", for: indexPath) as! CustomAccountTakeOverTableViewCell
+        let text = tableArray[indexPath.row]
+        cell.textField.placeholder = text
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }

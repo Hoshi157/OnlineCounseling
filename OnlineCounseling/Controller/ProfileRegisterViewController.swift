@@ -11,12 +11,21 @@ import IBAnimatable
 
 class ProfileRegisterViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    let tableArray: [String] = ["名前", "生年月日", "性別", "地域", "自己紹介", "趣味", "既往歴"]
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
+        tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
+        tableView.rowHeight = 50
     }
     
     @objc func backViewAction(){
@@ -34,4 +43,52 @@ class ProfileRegisterViewController: UIViewController {
     }
     */
 
+}
+
+extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
+        let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
+        
+        switch (indexPath.row) {
+        case 0:
+            let rightText = tableArray[0]
+            textCell.textLabel?.text = rightText
+            return textCell
+        case 1:
+            let rightText = tableArray[1]
+            pickerCell.textLabel?.text = rightText
+            return pickerCell
+        case 2:
+            let rightText = tableArray[2]
+            pickerCell.textLabel?.text = rightText
+            return pickerCell
+        case 3:
+            let rightText = tableArray[3]
+            pickerCell.textLabel?.text = rightText
+            return pickerCell
+        case 4:
+            let rightText = tableArray[4]
+            textCell.textLabel?.text = rightText
+            return textCell
+        case 5:
+            let rightText = tableArray[5]
+            textCell.textLabel?.text = rightText
+            return textCell
+        case 6:
+            let rightText = tableArray[6]
+            textCell.textLabel?.text = rightText
+            return textCell
+        default:
+            print("error")
+            return textCell
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }

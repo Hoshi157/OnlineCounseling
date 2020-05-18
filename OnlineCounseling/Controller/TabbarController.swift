@@ -9,11 +9,30 @@
 import UIKit
 
 class TabbarController: UITabBarController {
+    
+    var ViewControllers = [UIViewController]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let homeVC: UINavigationController = UINavigationController(rootViewController: self.storyboard?.instantiateViewController(identifier: "HomeVC") as! HomeViewController)
+        homeVC.tabBarItem.title = "ホーム"
+        ViewControllers.append(homeVC)
+        
+        let historuVC: UINavigationController = UINavigationController(rootViewController: self.storyboard?.instantiateViewController(identifier: "HistoryVC") as! HistoryViewController)
+        historuVC.tabBarItem.title = "履歴"
+        ViewControllers.append(historuVC)
+        
+        let timelineVC: UINavigationController = UINavigationController(rootViewController: self.storyboard?.instantiateViewController(identifier: "TimelineVC") as! TimelineViewController)
+        timelineVC.tabBarItem.title = "タイムライン"
+        ViewControllers.append(timelineVC)
+        
+        let messageHistoryVC: UINavigationController = UINavigationController(rootViewController: self.storyboard?.instantiateViewController(identifier: "MessageHistoryVC") as! MessageHistoryViewController)
+        messageHistoryVC.tabBarItem.title = "メッセージ"
+        ViewControllers.append(messageHistoryVC)
+        
     }
     
 
