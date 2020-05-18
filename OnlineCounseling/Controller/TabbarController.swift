@@ -17,22 +17,25 @@ class TabbarController: UITabBarController {
 
         // Do any additional setup after loading the view.
         
-        let homeVC: UINavigationController = UINavigationController(rootViewController: self.storyboard?.instantiateViewController(identifier: "HomeVC") as! HomeViewController)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
         homeVC.tabBarItem.title = "ホーム"
         ViewControllers.append(homeVC)
         
-        let historuVC: UINavigationController = UINavigationController(rootViewController: self.storyboard?.instantiateViewController(identifier: "HistoryVC") as! HistoryViewController)
-        historuVC.tabBarItem.title = "履歴"
-        ViewControllers.append(historuVC)
+        let historyVC = storyboard.instantiateViewController(withIdentifier: "HistoryVC") as! HistoryViewController
+        historyVC.tabBarItem.title = "履歴"
+        ViewControllers.append(historyVC)
         
-        let timelineVC: UINavigationController = UINavigationController(rootViewController: self.storyboard?.instantiateViewController(identifier: "TimelineVC") as! TimelineViewController)
+        let timelineVC = storyboard.instantiateViewController(withIdentifier: "TimelineVC") as! TimelineViewController
         timelineVC.tabBarItem.title = "タイムライン"
         ViewControllers.append(timelineVC)
         
-        let messageHistoryVC: UINavigationController = UINavigationController(rootViewController: self.storyboard?.instantiateViewController(identifier: "MessageHistoryVC") as! MessageHistoryViewController)
+        let messageHistoryVC = storyboard.instantiateViewController(withIdentifier: "MessageHistoryVC") as! MessageHistoryViewController
         messageHistoryVC.tabBarItem.title = "メッセージ"
         ViewControllers.append(messageHistoryVC)
         
+        self.ViewControllers = ViewControllers.map{ (UINavigationController(rootViewController: $0)) }
+        setViewControllers(ViewControllers, animated: false)
     }
     
 

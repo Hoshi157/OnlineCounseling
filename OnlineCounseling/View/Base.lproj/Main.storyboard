@@ -132,7 +132,7 @@
             <objects>
                 <viewController storyboardIdentifier="profileRegisterVC" id="ebq-nS-PUK" userLabel="プロフィール登録" customClass="ProfileRegisterViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eEf-jq-yyE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="950"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzb-07-Vzy">
@@ -550,7 +550,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
         <!--ホーム-->
         <scene sceneID="mj9-Y9-uug">
             <objects>
-                <viewController storyboardIdentifier="homeVC" title="Home" id="YPB-my-D4r" userLabel="ホーム" customClass="HomeViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" title="Home" id="YPB-my-D4r" userLabel="ホーム" customClass="HomeViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="afU-Uf-ob0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -813,7 +813,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
         <!--履歴-->
         <scene sceneID="dGo-eg-Pcb">
             <objects>
-                <viewController storyboardIdentifier="historyVC" title="履歴" id="yZf-u5-2RQ" customClass="HistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryVC" title="履歴" id="yZf-u5-2RQ" customClass="HistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mxy-jQ-c0M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -860,7 +860,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
         <!--タイムライン-->
         <scene sceneID="qWw-T2-WN1">
             <objects>
-                <viewController storyboardIdentifier="timelineVC" title="タイムライン" id="t73-zL-Y84" customClass="TimelineViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimelineVC" title="タイムライン" id="t73-zL-Y84" customClass="TimelineViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WcQ-MM-jOf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -903,7 +903,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
         <!--メッセージ一覧-->
         <scene sceneID="g7C-r6-aut">
             <objects>
-                <viewController storyboardIdentifier="messageHistoryVC" title="メッセージ一覧" id="IO7-9L-a01" customClass="MessageHistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessageHistoryVC" title="メッセージ一覧" id="IO7-9L-a01" customClass="MessageHistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ArP-of-pn0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -948,7 +948,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
             <objects>
                 <viewController storyboardIdentifier="myPageVC" title="マイページ" id="dGl-iT-OIX" userLabel="マイページ編集" customClass="MyPageViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eTq-LW-jGm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="860"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfB-uS-tUg">

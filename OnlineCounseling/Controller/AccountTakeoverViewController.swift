@@ -24,7 +24,8 @@ class AccountTakeoverViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func skipButtonAction(_ sender: Any) {
-        navigationController?.pushViewController(TabbarController(), animated: true)
+        let tabbarController = TabbarController()
+        self.present(tabbarController, animated: true)
     }
     
 
