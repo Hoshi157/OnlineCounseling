@@ -19,22 +19,29 @@ class TabbarController: UITabBarController {
         
         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
         homeVC.tabBarItem.title = "ホーム"
+        homeVC.tabBarItem.image = #imageLiteral(resourceName: "icons8-ホーム-25")
         ViewControllers.append(homeVC)
         
         let historyVC = self.storyboard?.instantiateViewController(withIdentifier: "HistoryVC") as! HistoryViewController
         historyVC.tabBarItem.title = "履歴"
+        historyVC.tabBarItem.image = #imageLiteral(resourceName: "icons8-複数行テキスト-25")
         ViewControllers.append(historyVC)
         
         let timelineVC = self.storyboard?.instantiateViewController(withIdentifier: "TimelineVC") as! TimelineViewController
         timelineVC.tabBarItem.title = "タイムライン"
+        timelineVC.tabBarItem.image = #imageLiteral(resourceName: "icons8-タスク計画-25")
         ViewControllers.append(timelineVC)
         
         let messageHistoryVC = self.storyboard?.instantiateViewController(withIdentifier: "MessageHistoryVC") as! MessageHistoryViewController
         messageHistoryVC.tabBarItem.title = "メッセージ"
+        messageHistoryVC.tabBarItem.image = #imageLiteral(resourceName: "icons8-chat-bubble-25")
         ViewControllers.append(messageHistoryVC)
         
         self.ViewControllers = ViewControllers.map{ (UINavigationController(rootViewController: $0)) }
         setViewControllers(ViewControllers, animated: false)
+        
+        self.tabBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        self.tabBar.tintColor = #colorLiteral(red: 0.09708004216, green: 0.7204460874, blue: 1, alpha: 1)
     }
     
 

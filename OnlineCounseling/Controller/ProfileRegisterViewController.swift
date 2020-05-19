@@ -233,7 +233,6 @@ extension ProfileRegisterViewController: UIPickerViewDelegate, UIPickerViewDataS
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if (tableViewSelecteIndexpath.row != nil) {
             switch (tableViewSelecteIndexpath.row) {
             case 2:
                 return genderArray[row]
@@ -243,9 +242,5 @@ extension ProfileRegisterViewController: UIPickerViewDelegate, UIPickerViewDataS
                 print("error")
                 return ""
             }
-        }else {
-            print("eroor")
-            return ""
-        }
     }
 }

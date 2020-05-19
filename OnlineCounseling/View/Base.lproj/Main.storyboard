@@ -739,28 +739,31 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お気に入りの相手が表示されています" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgL-gw-XMl">
-                                <rect key="frame" x="0.0" y="44" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="9uc-CZ-siK"/>
+                                    <constraint firstAttribute="height" constant="50" id="9uc-CZ-siK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VhH-Rs-Cc2">
-                                <rect key="frame" x="0.0" y="74" width="414" height="822"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="802"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="VhH-Rs-Cc2" secondAttribute="bottom" id="Esu-Rb-vIi"/>
+                            <constraint firstItem="VhH-Rs-Cc2" firstAttribute="top" secondItem="jgL-gw-XMl" secondAttribute="bottom" id="4Rk-IF-gKq"/>
+                            <constraint firstItem="VhH-Rs-Cc2" firstAttribute="trailing" secondItem="gDV-PJ-hHZ" secondAttribute="trailing" id="C0K-YI-zIA"/>
+                            <constraint firstAttribute="bottom" secondItem="VhH-Rs-Cc2" secondAttribute="bottom" id="Eq6-TW-I3D"/>
+                            <constraint firstItem="jgL-gw-XMl" firstAttribute="trailing" secondItem="gDV-PJ-hHZ" secondAttribute="trailing" id="IlA-Yo-Wb6"/>
                             <constraint firstItem="jgL-gw-XMl" firstAttribute="trailing" secondItem="gDV-PJ-hHZ" secondAttribute="trailing" id="NHU-A5-EOG"/>
-                            <constraint firstItem="VhH-Rs-Cc2" firstAttribute="leading" secondItem="gDV-PJ-hHZ" secondAttribute="leading" id="TNR-ce-41x"/>
-                            <constraint firstItem="VhH-Rs-Cc2" firstAttribute="trailing" secondItem="gDV-PJ-hHZ" secondAttribute="trailing" id="VdU-Wx-rOH"/>
+                            <constraint firstItem="jgL-gw-XMl" firstAttribute="top" secondItem="gDV-PJ-hHZ" secondAttribute="top" id="Rat-cM-mij"/>
+                            <constraint firstItem="VhH-Rs-Cc2" firstAttribute="leading" secondItem="gDV-PJ-hHZ" secondAttribute="leading" id="VNL-j1-OEm"/>
                             <constraint firstItem="jgL-gw-XMl" firstAttribute="top" secondItem="gDV-PJ-hHZ" secondAttribute="top" id="ah9-Ni-RWN"/>
-                            <constraint firstItem="jgL-gw-XMl" firstAttribute="leading" secondItem="gDV-PJ-hHZ" secondAttribute="leading" id="kzJ-Pm-tPn"/>
-                            <constraint firstItem="VhH-Rs-Cc2" firstAttribute="top" secondItem="jgL-gw-XMl" secondAttribute="bottom" id="rWY-Ya-tuC"/>
+                            <constraint firstItem="jgL-gw-XMl" firstAttribute="leading" secondItem="gDV-PJ-hHZ" secondAttribute="leading" id="f8G-qj-iPk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gDV-PJ-hHZ"/>
                     </view>
@@ -778,16 +781,16 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通話した相手が表示されています" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZQ-tI-sFt">
-                                <rect key="frame" x="0.0" y="44" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="GCk-no-zEK"/>
+                                    <constraint firstAttribute="height" constant="50" id="GCk-no-zEK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D8X-zs-5Yd">
-                                <rect key="frame" x="0.0" y="74" width="414" height="822"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="802"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -820,7 +823,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="aTe-qA-y0i"/>
+                                    <constraint firstAttribute="height" constant="50" id="ZcO-Ex-aOo"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IKe-75-yEW">
                                     <size key="itemSize" width="128" height="128"/>
@@ -830,26 +833,44 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y1O-KE-ZwP">
-                                <rect key="frame" x="0.0" y="102" width="414" height="794"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y1O-KE-ZwP">
+                                <rect key="frame" x="0.0" y="94" width="414" height="802"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVw-89-OKZ" userLabel="contentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="802"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="cVw-89-OKZ" firstAttribute="height" secondItem="Y1O-KE-ZwP" secondAttribute="height" id="6ib-N7-fUo"/>
+                                    <constraint firstAttribute="trailing" secondItem="cVw-89-OKZ" secondAttribute="trailing" id="MVn-vD-Oyx"/>
+                                    <constraint firstAttribute="bottom" secondItem="cVw-89-OKZ" secondAttribute="bottom" id="MnA-C6-Bqg"/>
+                                    <constraint firstItem="cVw-89-OKZ" firstAttribute="width" secondItem="Y1O-KE-ZwP" secondAttribute="width" id="SSA-z9-FYl"/>
+                                    <constraint firstItem="cVw-89-OKZ" firstAttribute="top" secondItem="Y1O-KE-ZwP" secondAttribute="top" id="kro-Hr-ydN"/>
+                                    <constraint firstItem="cVw-89-OKZ" firstAttribute="leading" secondItem="Y1O-KE-ZwP" secondAttribute="leading" id="zDa-ZQ-WP6"/>
+                                </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="kG8-YF-ZO8"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="4hh-b0-FuH"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="PwK-Z5-yYk" firstAttribute="trailing" secondItem="Pbp-CM-TFP" secondAttribute="trailing" id="6wF-cr-7JU"/>
-                            <constraint firstItem="PwK-Z5-yYk" firstAttribute="leading" secondItem="Pbp-CM-TFP" secondAttribute="leading" id="IR8-T0-NgG"/>
-                            <constraint firstItem="PwK-Z5-yYk" firstAttribute="top" secondItem="Pbp-CM-TFP" secondAttribute="top" id="ifT-TQ-kVm"/>
+                            <constraint firstAttribute="bottom" secondItem="Y1O-KE-ZwP" secondAttribute="bottom" id="0tg-cb-h3z"/>
+                            <constraint firstItem="Y1O-KE-ZwP" firstAttribute="top" secondItem="PwK-Z5-yYk" secondAttribute="bottom" id="1Xv-i6-Oao"/>
+                            <constraint firstItem="PwK-Z5-yYk" firstAttribute="leading" secondItem="Pbp-CM-TFP" secondAttribute="leading" id="Mxa-uf-2tB"/>
+                            <constraint firstItem="PwK-Z5-yYk" firstAttribute="trailing" secondItem="Pbp-CM-TFP" secondAttribute="trailing" id="PM8-mx-hA6"/>
+                            <constraint firstItem="Y1O-KE-ZwP" firstAttribute="trailing" secondItem="Pbp-CM-TFP" secondAttribute="trailing" id="T7M-da-M8b"/>
+                            <constraint firstItem="Y1O-KE-ZwP" firstAttribute="leading" secondItem="Pbp-CM-TFP" secondAttribute="leading" id="V11-HN-DtR"/>
+                            <constraint firstItem="PwK-Z5-yYk" firstAttribute="top" secondItem="Pbp-CM-TFP" secondAttribute="top" id="eUE-e6-J7D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pbp-CM-TFP"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="og8-d3-hhU"/>
                     <connections>
-                        <outlet property="buttonBarView" destination="PwK-Z5-yYk" id="MBp-g9-TRm"/>
+                        <outlet property="buttonBarView" destination="PwK-Z5-yYk" id="Irn-o9-Xqr"/>
                         <outlet property="containerView" destination="Y1O-KE-ZwP" id="QnC-sU-zra"/>
+                        <outlet property="scrollView" destination="Y1O-KE-ZwP" id="CnF-oW-bEr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mgu-ES-65z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -917,7 +938,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
         <!--メッセージ一覧-->
         <scene sceneID="g7C-r6-aut">
             <objects>
-                <viewController storyboardIdentifier="MessageHistoryVC" title="メッセージ一覧" id="IO7-9L-a01" customClass="MessageHistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessageHistoryVC" title="メッセージ" id="IO7-9L-a01" userLabel="メッセージ一覧" customClass="MessageHistoryViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ArP-of-pn0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
