@@ -18,5 +18,4 @@ pod 'SkyWay'
 pod 'FirebaseUI/Phone'
 pod 'SnapKit'
 pod 'XLPagerTabStrip'
-pod 'IBAnimatable'
 end

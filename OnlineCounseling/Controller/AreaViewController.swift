@@ -23,12 +23,18 @@ class AreaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AreaCell")
         tableView.rowHeight = 50
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func backViewAction() {
+        navigationController?.popViewController(animated: true)
     }
     
 

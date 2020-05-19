@@ -13,6 +13,7 @@ class AccountTakeoverViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let tableArray: [String] = ["メールアドレス", "パスワード", "パスワードの確認"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +26,11 @@ class AccountTakeoverViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     @IBAction func skipButtonAction(_ sender: Any) {
         let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
         tabbarController.modalPresentationStyle = .fullScreen

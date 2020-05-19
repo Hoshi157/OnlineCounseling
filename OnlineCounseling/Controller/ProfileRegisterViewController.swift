@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import IBAnimatable
 
 class ProfileRegisterViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    private var tableViewSelecteIndexpath: IndexPath!
     
     lazy var datePickerView: UIDatePicker = {
        let picker = UIDatePicker()
@@ -54,8 +55,18 @@ class ProfileRegisterViewController: UIViewController {
         return spece
     }()
     
-    private let tableArray: [String] = ["名前", "生年月日", "性別", "地域", "自己紹介", "趣味", "既往歴"]
-    private let genderArray = ["未選択", "男", "女"]
+    private let tableArray: [String] = ["名前", "生年月日", "性別", "職業", "地域", "自己紹介", "趣味", "既往歴"]
+    private let genderArray: [String] = [
+        "未選択",
+        "男", "女"]
+    private let jobsArray: [String] = [
+           "未選択",
+           "営業", "販売,フード,アミューズメント", "医療・福祉", "企画・経営", "建築・土木",
+           "ITエンジニア", "電気・電子・機械", "医薬・化学・素材", "コンサルタント・金融",
+           "不動産専門職", "クリエイティブ", "技能工・設備・配送", "農業", "公共サービス",
+           "管理・事務", "美容・ブライダル・ホテル", "保育・教育", "WEB・インターネット"
+       ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -81,11 +92,19 @@ class ProfileRegisterViewController: UIViewController {
     }
     
     @objc func donePickerAction() {
-        
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
+        }, completion: nil)
     }
     
     @objc func canselPickerAction() {
-        
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
+        }, completion: nil)
     }
     
 
@@ -129,14 +148,18 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             return pickerCell
         case 4:
             let leftText = tableArray[4]
-            textCell.leftLabel.text = leftText
-            return textCell
+            pickerCell.textLabel?.text = leftText
+            return pickerCell
         case 5:
             let leftText = tableArray[5]
             textCell.leftLabel.text = leftText
             return textCell
         case 6:
             let leftText = tableArray[6]
+            textCell.leftLabel.text = leftText
+            return textCell
+        case 7:
+            let leftText = tableArray[7]
             textCell.leftLabel.text = leftText
             return textCell
         default:
@@ -146,6 +169,9 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        tableViewSelecteIndexpath = indexPath
+        pickerView.reloadAllComponents()
+        
         switch (indexPath.row) {
         case 0:
             let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
@@ -161,15 +187,20 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
             }, completion: nil)
         case 3:
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+            self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
+            }, completion: nil)
+        case 4:
             let areaVC = self.storyboard?.instantiateViewController(withIdentifier: "areaVC") as! AreaViewController
             self.navigationController?.pushViewController(areaVC, animated: true)
-        case 4:
-            let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
-            self.navigationController?.pushViewController(textInputVC, animated: true)
         case 5:
             let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
             self.navigationController?.pushViewController(textInputVC, animated: true)
         case 6:
+            let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            self.navigationController?.pushViewController(textInputVC, animated: true)
+        case 7:
             let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
             self.navigationController?.pushViewController(textInputVC, animated: true)
         default:
@@ -185,10 +216,36 @@ extension ProfileRegisterViewController: UIPickerViewDelegate, UIPickerViewDataS
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return genderArray.count
+        if (tableViewSelecteIndexpath != nil) {
+            switch (tableViewSelecteIndexpath.row) {
+        case 2:
+            return genderArray.count
+        case 3:
+            return jobsArray.count
+        default:
+            print("error")
+            return Int()
+        }
+        }else {
+            print("nil")
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return genderArray[row]
+        if (tableViewSelecteIndexpath.row != nil) {
+            switch (tableViewSelecteIndexpath.row) {
+            case 2:
+                return genderArray[row]
+            case 3:
+                return jobsArray[row]
+            default:
+                print("error")
+                return ""
+            }
+        }else {
+            print("eroor")
+            return ""
+        }
     }
 }

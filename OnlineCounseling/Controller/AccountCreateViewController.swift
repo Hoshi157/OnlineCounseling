@@ -72,15 +72,19 @@ class AccountCreateViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func consentButtonAction(_ sender: Any) {
-    }
     
     @objc func donePickerAction() {
-        
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
+        }, completion: nil)
     }
     
     @objc func canselPickerAction() {
-        
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+                   self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+                   self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
+               }, completion: nil)
     }
     
 
