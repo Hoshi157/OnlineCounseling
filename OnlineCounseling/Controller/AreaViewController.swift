@@ -9,9 +9,24 @@
 import UIKit
 
 class AreaViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    private let areaArray: [String] = [
+        "北海道", "青森", "岩手", "宮城", "秋田", "山形", "福島", "茨城", "栃木", "群馬",
+        "埼玉", "千葉", "東京", "神奈川", "新潟", "富山", "石川", "福島", "山梨", "長野",
+        "岐阜", "静岡", "愛知", "三重", "滋賀", "京都", "大阪", "兵庫", "奈良", "和歌山",
+        "鳥取", "島根", "岡山", "広島", "山口", "徳島", "香川", "愛媛", "高知", "福岡",
+        "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄"
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AreaCell")
+        tableView.rowHeight = 50
 
         // Do any additional setup after loading the view.
     }
@@ -27,4 +42,18 @@ class AreaViewController: UIViewController {
     }
     */
 
+}
+
+extension AreaViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return areaArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AreaCell", for: indexPath) as UITableViewCell
+        cell.textLabel?.text = areaArray[indexPath.row]
+        return cell
+    }
+    
+    
 }
