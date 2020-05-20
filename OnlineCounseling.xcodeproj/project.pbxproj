@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D02597C2475ABB300D4EA10 /* SidemenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D02597A2475ABB300D4EA10 /* SidemenuTableViewCell.swift */; };
+		8D02597D2475ABB300D4EA10 /* SidemenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D02597B2475ABB300D4EA10 /* SidemenuTableViewCell.xib */; };
 		8D1566DB246E4AE4009E73D0 /* CollectionCellTappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */; };
 		8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */; };
 		8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */; };
@@ -60,6 +62,8 @@
 /* Begin PBXFileReference section */
 		1254F21FA75B2904B0420527 /* Pods_OnlineCounseling.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineCounseling.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AAAA0547DA6935D56A5A79 /* Pods-OnlineCounseling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineCounseling.release.xcconfig"; path = "Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling.release.xcconfig"; sourceTree = "<group>"; };
+		8D02597A2475ABB300D4EA10 /* SidemenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidemenuTableViewCell.swift; sourceTree = "<group>"; };
+		8D02597B2475ABB300D4EA10 /* SidemenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SidemenuTableViewCell.xib; sourceTree = "<group>"; };
 		8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellTappedViewController.swift; sourceTree = "<group>"; };
 		8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByTappedContenerViewController.swift; sourceTree = "<group>"; };
 		8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedContenerViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 				8DA9DEFB247127D20078524B /* ReservationExplanationView.swift */,
 				8DB5CEA924727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift */,
 				8DB5CEAA24727D99007AF747 /* CustomAccountTakeOverTableViewCell.xib */,
+				8D02597A2475ABB300D4EA10 /* SidemenuTableViewCell.swift */,
+				8D02597B2475ABB300D4EA10 /* SidemenuTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 				8D38437F246D6F6F0036F42F /* GoogleService-Info.plist in Resources */,
 				8D384374246D6ED10036F42F /* Assets.xcassets in Resources */,
 				8D384372246D6ECF0036F42F /* Main.storyboard in Resources */,
+				8D02597D2475ABB300D4EA10 /* SidemenuTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +396,7 @@
 				8D2893FD246FB8CF00855CCD /* TellHistoryViewController.swift in Sources */,
 				8D421AB2246F150700758F4B /* TextInputProfileViewController.swift in Sources */,
 				8D88C75B246D7BAB00145BD2 /* TimelineViewController.swift in Sources */,
+				8D02597C2475ABB300D4EA10 /* SidemenuTableViewCell.swift in Sources */,
 				8D88C751246D778300145BD2 /* AccountTakeoverViewController.swift in Sources */,
 				8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */,
 				8D1566DB246E4AE4009E73D0 /* CollectionCellTappedViewController.swift in Sources */,

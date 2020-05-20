@@ -72,11 +72,17 @@ class SidemenuViewController: UIViewController {
         return label
     }()
     
-    private var tableView: UITableView = {
+    lazy var tableView: UITableView = {
        let tableview = UITableView()
         tableview.rowHeight = 50
+        tableview.register(UINib(nibName: "SidemenuTableViewCell", bundle: nil), forCellReuseIdentifier: "SidemenuCell")
+        tableview.delegate = self
+        tableview.dataSource = self
         return tableview
     }()
+    
+    private let tableArray: [String] = ["マイページ", "カウンセラーログイン"]
+    private let tableImageArray: [UIImage] = [#imageLiteral(resourceName: "icons8-性中立ユーザー-25"), #imageLiteral(resourceName: "icons8-カウンセラー-25")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -233,4 +239,36 @@ protocol SidemenuViewControllerDelegate: class {
 }
 
 extension SidemenuViewController: UIGestureRecognizerDelegate {
+}
+
+extension SidemenuViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SidemenuCell", for: indexPath) as! SidemenuTableViewCell
+        cell.tableLabel.text = tableArray[indexPath.row]
+        let image: UIImage = tableImageArray[indexPath.row].withRenderingMode(.alwaysTemplate)
+        cell.iconImageView.image = image
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let storyboard = UIStoryboard(name: "main", bundle: nil)
+        
+        switch (indexPath.row) {
+        case 0:
+            let mypageVC = storyboard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
+            self.navigationController?.pushViewController(mypageVC, animated: true)
+        case 1:
+            print("カウンセラーページへ")
+        default:
+            print("error")
+            return
+        }
+    }
+    
 }
