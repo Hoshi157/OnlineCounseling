@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SidemenuViewController: UIViewController {
     
@@ -37,22 +38,45 @@ class SidemenuViewController: UIViewController {
     private var beganLocation: CGPoint = .zero
     private var screenEdgePanGestureRecognizer: UIScreenEdgePanGestureRecognizer!
 
-    private var avaterImageView: UIImageView {
+    private var avaterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
-        imageView.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
-        imageView.layer.cornerRadius = 25
+        imageView.layer.cornerRadius = 30
         imageView.clipsToBounds = true
+        imageView.frame = CGRect(x: 30, y: 50, width: 60, height: 60)
         return imageView
-    }
+    }()
     
-    private var nameLabel: UILabel {
+    private var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name"
         label.sizeToFit()
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 21, weight: .medium)
         return label
-    }
+    }()
+    
+    private var bookmarkIntLabel: UILabel = {
+        let label: UILabel = UILabel()
+        label.text = "11"
+        label.sizeToFit()
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
+    
+    private let bookmarkStrLabel: UILabel = {
+       let label = UILabel()
+        label.text = "お気に入り"
+        label.sizeToFit()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        return label
+    }()
+    
+    private var tableView: UITableView = {
+       let tableview = UITableView()
+        tableview.rowHeight = 50
+        return tableview
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +90,31 @@ class SidemenuViewController: UIViewController {
         
         contentView.addSubview(avaterImageView)
         contentView.addSubview(nameLabel)
+        contentView.addSubview(bookmarkIntLabel)
+        contentView.addSubview(bookmarkStrLabel)
+        contentView.addSubview(tableView)
+        
+        nameLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(avaterImageView.snp.bottom).offset(10)
+            make.left.equalTo(avaterImageView)
+        }
+        
+        bookmarkIntLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(nameLabel.snp.bottom).offset(15)
+            make.left.equalTo(avaterImageView)
+        }
+        
+        bookmarkStrLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(bookmarkIntLabel)
+            make.left.equalTo(bookmarkIntLabel.snp.right).offset(10)
+        }
+        
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(bookmarkIntLabel.snp.bottom).offset(20)
+            make.left.equalTo(avaterImageView)
+            make.height.equalTo(100)
+            make.width.equalTo(contentView.frame.width * 0.8)
+        }
         
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backViewTapped(_:)))
