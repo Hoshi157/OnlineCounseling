@@ -37,6 +37,23 @@ class SidemenuViewController: UIViewController {
     private var beganLocation: CGPoint = .zero
     private var screenEdgePanGestureRecognizer: UIScreenEdgePanGestureRecognizer!
 
+    private var avaterImageView: UIImageView {
+        let imageView = UIImageView()
+        imageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
+        imageView.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
+        imageView.layer.cornerRadius = 25
+        imageView.clipsToBounds = true
+        return imageView
+    }
+    
+    private var nameLabel: UILabel {
+        let label = UILabel()
+        label.text = "Name"
+        label.sizeToFit()
+        label.font = UIFont.systemFont(ofSize: 20)
+        return label
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,10 +64,15 @@ class SidemenuViewController: UIViewController {
         contentView.autoresizingMask = .flexibleHeight
         view.addSubview(contentView)
         
+        contentView.addSubview(avaterImageView)
+        contentView.addSubview(nameLabel)
+        
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backViewTapped(_:)))
         tapGestureRecognizer.delegate = self
         view.addGestureRecognizer(tapGestureRecognizer)
 
+        
         // Do any additional setup after loading the view.
     }
     

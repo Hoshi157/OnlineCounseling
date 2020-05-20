@@ -8,7 +8,6 @@
 
 import UIKit
 import XLPagerTabStrip
-import SnapKit
 
 class HistoryViewController: ButtonBarPagerTabStripViewController {
 
