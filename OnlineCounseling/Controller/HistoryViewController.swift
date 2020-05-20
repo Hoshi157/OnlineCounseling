@@ -13,6 +13,8 @@ import SnapKit
 class HistoryViewController: ButtonBarPagerTabStripViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
+    let sidemenuVC = SidemenuViewController()
+    weak var sidemenuDelegate: SidemenuViewControllerDelegate?
     
     override func viewDidLoad() {
         
@@ -42,6 +44,7 @@ class HistoryViewController: ButtonBarPagerTabStripViewController {
     }
     
     @objc func sidemenuButtonAction() {
+        self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
     }
     
 

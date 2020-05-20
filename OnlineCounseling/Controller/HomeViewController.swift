@@ -10,9 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    lazy var tabbarVC = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
     let sidemenuVC = SidemenuViewController()
-    weak var delegate: SidemenuViewControllerDelegate?
+    weak var sidemenuDelegate: SidemenuViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +26,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func sidemenuButtonAction() {
-        self.delegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true)
+        self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
     }
     
 

@@ -9,6 +9,9 @@
 import UIKit
 
 class MessageHistoryViewController: UIViewController {
+    
+    let sidemenuVC = SidemenuViewController()
+    weak var sidemenuDelegate: SidemenuViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,7 @@ class MessageHistoryViewController: UIViewController {
     }
     
     @objc func sidemenuButtonAction() {
+        self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
     }
     
 

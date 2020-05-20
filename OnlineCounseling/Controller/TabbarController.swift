@@ -50,19 +50,23 @@ class TabbarController: UITabBarController {
         self.tabBar.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.tabBar.tintColor = #colorLiteral(red: 0.09708004216, green: 0.7204460874, blue: 1, alpha: 1)
         
-        sidemenuVC.delegate = self
-        homeVC.delegate = self
+        homeVC.sidemenuDelegate = self
+        historyVC.sidemenuDelegate = self
+        timelineVC.sidemenuDelegate = self
+        messageHistoryVC.sidemenuDelegate = self
         
+        sidemenuVC.delegate = self
+        sidemenuVC.startPanGestureRecognizing()
     }
     
-    func showSidemenu(contentAvailabilty: Bool = true, animated: Bool) {
+    func showSidemenu(contentAvailabilty: Bool = true, animated: Bool, currentViewController: UIViewController) {
         
         if isShowSidemenu {return}
         
         addChild(sidemenuVC)
         sidemenuVC.view.autoresizingMask = .flexibleHeight
         sidemenuVC.view.frame = self.view.bounds
-        view.insertSubview(sidemenuVC.view, aboveSubview: HomeVC.view)
+        view.insertSubview(sidemenuVC.view, aboveSubview: currentViewController.view)
         sidemenuVC.didMove(toParent: self)
         
         if contentAvailabilty {
@@ -100,8 +104,8 @@ extension TabbarController: SidemenuViewControllerDelegate {
     func shouldPresentSidemenuViewController(_ sidemenuViewController: SidemenuViewController) -> Bool {
         return true
     }
-    func sidemenuViewControllerDidRequestShowing(_ sidemenuViewController: SidemenuViewController, contentAvailability: Bool, animeted: Bool) {
-        showSidemenu(contentAvailabilty: contentAvailability, animated: animeted)
+    func sidemenuViewControllerDidRequestShowing(_ sidemenuViewController: SidemenuViewController, contentAvailability: Bool, animeted: Bool, currentViewController: UIViewController) {
+        showSidemenu(contentAvailabilty: contentAvailability, animated: animeted, currentViewController: currentViewController)
     }
     func sidemenuViewControllerDidRequestHiding(_ sidemenuViewController: SidemenuViewController, animeted: Bool) {
         hideSideMenu(animated: animeted)
