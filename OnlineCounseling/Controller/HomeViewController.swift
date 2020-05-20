@@ -11,6 +11,8 @@ import UIKit
 class HomeViewController: UIViewController {
     
     lazy var tabbarVC = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
+    let sidemenuVC = SidemenuViewController()
+    weak var delegate: SidemenuViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +23,11 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
         self.title = "ホーム"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-メニュー-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-メニュー-25"), style: .plain, target: self, action: #selector(sidemenuButtonAction))
+        
     }
     
     @objc func sidemenuButtonAction() {
-        print("tap")
-        tabbarVC.showSidemenu(animated: true)
+        self.delegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true)
     }
     
 

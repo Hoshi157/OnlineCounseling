@@ -12,11 +12,13 @@ class TabbarController: UITabBarController {
     
     var ViewControllers = [UIViewController]()
     
+    lazy var HomeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
+    
     private let sidemenuVC = SidemenuViewController()
     private var isShowSidemenu: Bool {
         return sidemenuVC.parent == self
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,16 +51,18 @@ class TabbarController: UITabBarController {
         self.tabBar.tintColor = #colorLiteral(red: 0.09708004216, green: 0.7204460874, blue: 1, alpha: 1)
         
         sidemenuVC.delegate = self
+        homeVC.delegate = self
+        
     }
     
     func showSidemenu(contentAvailabilty: Bool = true, animated: Bool) {
         
         if isShowSidemenu {return}
         
-        self.addChild(sidemenuVC)
+        addChild(sidemenuVC)
         sidemenuVC.view.autoresizingMask = .flexibleHeight
         sidemenuVC.view.frame = self.view.bounds
-        self.view.insertSubview(sidemenuVC.view, at: 0)
+        view.insertSubview(sidemenuVC.view, aboveSubview: HomeVC.view)
         sidemenuVC.didMove(toParent: self)
         
         if contentAvailabilty {

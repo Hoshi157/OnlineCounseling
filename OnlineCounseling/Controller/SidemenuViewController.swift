@@ -39,8 +39,19 @@ class SidemenuViewController: UIViewController {
         contentView.backgroundColor = .white
         contentView.autoresizingMask = .flexibleHeight
         view.addSubview(contentView)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backViewTapped(_:)))
+        view.addGestureRecognizer(tapGestureRecognizer)
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func backViewTapped(_ sender: UITapGestureRecognizer) {
+        hideContentView(animated: true) { (_) in
+            self.willMove(toParent: self)
+            self.removeFromParent()
+            self.view.removeFromSuperview()
+        }
     }
     
     func showContentView(animated: Bool) {
