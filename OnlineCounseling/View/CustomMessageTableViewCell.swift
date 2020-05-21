@@ -10,6 +10,10 @@ import UIKit
 
 class CustomMessageTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var avaterImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var underLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

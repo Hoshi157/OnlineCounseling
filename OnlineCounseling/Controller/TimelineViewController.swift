@@ -12,6 +12,7 @@ class TimelineViewController: UIViewController {
     
     let sidemenuVC = SidemenuViewController()
     weak var sidemenuDelegate: SidemenuViewControllerDelegate?
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,11 @@ class TimelineViewController: UIViewController {
         self.title = "タイムライン"
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-メニュー-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-メニュー-25"), style: .plain, target: self, action: #selector(sidemenuButtonAction))
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "TimelineTableViewCell", bundle: nil), forCellReuseIdentifier: "TimelineCell")
+        tableView.rowHeight = 430
     }
     
     @objc func sidemenuButtonAction() {
@@ -40,4 +46,17 @@ class TimelineViewController: UIViewController {
     }
     */
 
+}
+
+extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineCell", for: indexPath) as! TimelineTableViewCell
+        return cell
+    }
+    
+    
 }

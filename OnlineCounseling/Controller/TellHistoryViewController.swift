@@ -12,9 +12,15 @@ import XLPagerTabStrip
 class TellHistoryViewController: UIViewController, IndicatorInfoProvider {
 
     let itemInfo: IndicatorInfo = "通話した相手"
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 60
+        tableView.register(UINib(nibName: "CustomMessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
 
         // Do any additional setup after loading the view.
     }
@@ -34,4 +40,17 @@ class TellHistoryViewController: UIViewController, IndicatorInfoProvider {
     }
     */
 
+}
+
+extension TellHistoryViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageTableViewCell
+        return cell
+    }
+    
+    
 }

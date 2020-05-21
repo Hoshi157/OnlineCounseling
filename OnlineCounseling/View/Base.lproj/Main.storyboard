@@ -575,6 +575,9 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                         <viewLayoutGuide key="safeArea" id="xqO-ym-sUs"/>
                     </view>
                     <navigationItem key="navigationItem" id="UcT-8b-0Vq"/>
+                    <connections>
+                        <outlet property="collectionView" destination="9aQ-lR-4IV" id="J2N-0l-BkX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgW-5Y-cke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -583,7 +586,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
         <!--コレクションタップ-->
         <scene sceneID="gfm-Bc-lLg">
             <objects>
-                <viewController storyboardIdentifier="collectionTapVC" id="tFJ-3j-ood" userLabel="コレクションタップ" customClass="CollectionCellTappedViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectionTapVC" id="tFJ-3j-ood" userLabel="コレクションタップ" customClass="CollectionCellTappedViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qgz-VV-EpM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -594,7 +597,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSG-MX-xSI" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1022"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gCh-r1-Tx1">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture-973460_640-e1542530002984" translatesAutoresizingMaskIntoConstraints="NO" id="gCh-r1-Tx1">
                                                 <rect key="frame" x="0.0" y="8" width="406" height="300"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="TiQ-qF-hRP"/>
@@ -767,6 +770,9 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gDV-PJ-hHZ"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="VhH-Rs-Cc2" id="izP-io-Shg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ro7-EY-uzV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -806,6 +812,9 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pj2-sT-0hz"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="D8X-zs-5Yd" id="mwg-49-x8H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B82-8G-FgH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -915,6 +924,9 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                         <viewLayoutGuide key="safeArea" id="JHH-AO-xed"/>
                     </view>
                     <navigationItem key="navigationItem" id="vUX-8g-NK1"/>
+                    <connections>
+                        <outlet property="tableView" destination="sQd-wg-vjj" id="16L-SS-gzU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRQ-d5-WHK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -933,7 +945,7 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVK-rs-hrY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9543" y="-950"/>
+            <point key="canvasLocation" x="10264" y="1494"/>
         </scene>
         <!--メッセージ一覧-->
         <scene sceneID="g7C-r6-aut">
@@ -958,6 +970,9 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                         <viewLayoutGuide key="safeArea" id="5yC-3c-CP9"/>
                     </view>
                     <navigationItem key="navigationItem" id="jBX-5A-A44"/>
+                    <connections>
+                        <outlet property="tableView" destination="8y0-hg-fu1" id="kEa-9K-gkr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MzV-9t-10d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
