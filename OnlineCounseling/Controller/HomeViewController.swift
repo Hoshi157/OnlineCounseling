@@ -23,6 +23,7 @@ class HomeViewController: UIViewController {
         self.title = "ホーム"
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-メニュー-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-メニュー-25"), style: .plain, target: self, action: #selector(sidemenuButtonAction))
         
+        
     }
     
     @objc func sidemenuButtonAction() {

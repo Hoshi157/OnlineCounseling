@@ -99,6 +99,7 @@ class SidemenuViewController: UIViewController {
         contentView.addSubview(bookmarkIntLabel)
         contentView.addSubview(bookmarkStrLabel)
         contentView.addSubview(tableView)
+        tableView.reloadData()
         
         nameLabel.snp.makeConstraints { (make) in
             make.top.equalTo(avaterImageView.snp.bottom).offset(10)
@@ -239,6 +240,13 @@ protocol SidemenuViewControllerDelegate: class {
 }
 
 extension SidemenuViewController: UIGestureRecognizerDelegate {
+    internal func gestureRecognizerShouldBegin(_ gestureRecogizer: UIGestureRecognizer) -> Bool {
+        let location = gestureRecogizer.location(in: tableView)
+        if tableView.indexPathForRow(at: location) != nil {
+            return false
+        }
+        return true
+    }
 }
 
 extension SidemenuViewController: UITableViewDelegate, UITableViewDataSource {
@@ -256,13 +264,13 @@ extension SidemenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let storyboard = UIStoryboard(name: "main", bundle: nil)
+        print(indexPath.row)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         switch (indexPath.row) {
         case 0:
             let mypageVC = storyboard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
-            self.navigationController?.pushViewController(mypageVC, animated: true)
+            self.present(mypageVC, animated: true)
         case 1:
             print("カウンセラーページへ")
         default:

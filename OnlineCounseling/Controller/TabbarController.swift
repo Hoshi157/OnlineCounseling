@@ -12,8 +12,6 @@ class TabbarController: UITabBarController {
     
     var ViewControllers = [UIViewController]()
     
-    lazy var HomeVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeViewController
-    
     private let sidemenuVC = SidemenuViewController()
     private var isShowSidemenu: Bool {
         return sidemenuVC.parent == self
