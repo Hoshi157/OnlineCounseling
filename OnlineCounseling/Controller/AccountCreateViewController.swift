@@ -8,14 +8,25 @@
 
 import UIKit
 import MaterialComponents
+import SnapKit
 
 class AccountCreateViewController: UIViewController {
     
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var consentButton: MDCRaisedButton!
-    @IBOutlet weak var tableView: UITableView!
     
     private let tableArray = ["名前", "生年月日"]
+    
+    lazy var myTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
+        tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 40
+        return tableView
+    }()
     
     lazy var datePickerView: UIDatePicker = {
        let picker = UIDatePicker()
@@ -52,19 +63,23 @@ class AccountCreateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(myTableView)
         view.addSubview(datePickerView)
         view.addSubview(pickerToolbar)
         pickerToolbar.items = [canselPickerButton, flexble, donePickerButton]
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
 
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
-        tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
-        tableView.rowHeight = 50
         // Do any additional setup after loading the view.
         
+        myTableView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.accountLabel.snp.bottom).offset(20)
+            make.left.equalTo(self.view)
+            make.right.equalTo(self.view)
+            make.height.equalTo(100)
+        }
+        
+        print(myTableView.frame.height)
     }
     
     @objc func backViewAction() {
@@ -108,15 +123,19 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let pickercell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
         let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
-        
+        print(indexPath)
         switch (indexPath.row) {
         case 0:
             let text = tableArray[0]
             textCell.leftLabel.text = text
+            textCell.backgroundColor = .red
+            print(textCell.frame.height)
             return textCell
         case 1:
             let text = tableArray[1]
             pickercell.textLabel?.text = text
+            pickercell.backgroundColor = .blue
+            print(pickercell.frame.height)
             return pickercell
         default:
             print("error")

@@ -43,6 +43,7 @@ class CalendarViewController: UIViewController {
         title = "予約ページ"
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
         
         myCalendar.snp.makeConstraints { (make) in
             make.top.equalTo(self.view).offset(80)
@@ -57,6 +58,10 @@ class CalendarViewController: UIViewController {
             make.bottom.equalTo(self.view)
         }
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func backViewAction() {
+        dismiss(animated: true, completion: nil)
     }
     
 

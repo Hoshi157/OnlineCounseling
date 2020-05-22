@@ -14,8 +14,8 @@ class UserByTappedContenerViewController: UIViewController {
     
     lazy var storyBoard = UIStoryboard(name: "Main", bundle: nil)
     
-    lazy var messageButton: MDCRaisedButton = {
-       let button = MDCRaisedButton()
+    lazy var messageButton: MDCFloatingButton = {
+       let button = MDCFloatingButton()
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
         button.backgroundColor = #colorLiteral(red: 0.09708004216, green: 0.7204460874, blue: 1, alpha: 1)
@@ -25,8 +25,8 @@ class UserByTappedContenerViewController: UIViewController {
         return button
     }()
     
-    lazy var calendarButton: MDCRaisedButton = {
-       let button = MDCRaisedButton()
+    lazy var calendarButton: MDCFloatingButton = {
+       let button = MDCFloatingButton()
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
         button.backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
@@ -37,8 +37,8 @@ class UserByTappedContenerViewController: UIViewController {
         return button
     }()
     
-    lazy var dismissButton: MDCRaisedButton = {
-        let button = MDCRaisedButton()
+    lazy var dismissButton: MDCFloatingButton = {
+        let button = MDCFloatingButton()
         button.layer.cornerRadius = 20
         button.clipsToBounds = true
         button.backgroundColor = #colorLiteral(red: 0.370555222, green: 0.3705646992, blue: 0.3705595732, alpha: 1).withAlphaComponent(0.8)

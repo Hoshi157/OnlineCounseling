@@ -28,7 +28,7 @@ class TutorialViewController: UIViewController {
     private let myPageControl: UIPageControl = {
        let pagecontrol = UIPageControl()
         pagecontrol.numberOfPages = 3
-        pagecontrol.pageIndicatorTintColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        pagecontrol.pageIndicatorTintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         pagecontrol.currentPageIndicatorTintColor = #colorLiteral(red: 0.09708004216, green: 0.7204460874, blue: 1, alpha: 1)
         return pagecontrol
     }()
@@ -57,8 +57,8 @@ class TutorialViewController: UIViewController {
     lazy var startButton: MDCRaisedButton = {
         let button = MDCRaisedButton()
         button.setTitle("開始する", for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.4620226622, green: 0.8382837176, blue: 1, alpha: 1)
-        button.layer.cornerRadius = 10
+        button.backgroundColor = #colorLiteral(red: 0.09708004216, green: 0.7204460874, blue: 1, alpha: 1)
+        button.layer.cornerRadius = 15
         button.clipsToBounds = true
         return button
     }()
@@ -67,7 +67,7 @@ class TutorialViewController: UIViewController {
         super.viewDidLoad()
         
         screenSizeWidth = screenSize.width
-        view.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
         view.addSubview(myScrollView)
         view.addSubview(myPageControl)
@@ -107,7 +107,7 @@ class TutorialViewController: UIViewController {
             make.top.equalTo(reservationExplatinView.snp.bottom).offset(20)
             make.centerX.equalTo(self.myScrollView).offset(screenSizeWidth! * 2)
             make.height.equalTo(40)
-            make.width.equalTo(200)
+            make.width.equalTo(250)
         }
         
         

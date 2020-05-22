@@ -30,7 +30,9 @@ class HomeViewController: UIViewController {
         collectionView.register(UINib(nibName: "CustomCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeCell")
         
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
         collectionView.collectionViewLayout = layout
         
     }
@@ -54,11 +56,13 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCell", for: indexPath) as! CustomCollectionViewCell
+        cell.layer.cornerRadius = 20
+        cell.clipsToBounds = true
         return cell
     }
     
@@ -71,9 +75,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
-    // func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // let cellHight = UIScreen.main.bounds.height / 3
-        // let cellWidth = UIScreen.main.bounds.width / 2
-        // return CGSize(width: cellWidth, height: cellHight)
-    // }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellHight = UIScreen.main.bounds.height / 3 - 30
+        let cellWidth = UIScreen.main.bounds.width / 2
+        return CGSize(width: cellWidth, height: cellHight)
+    }
 }

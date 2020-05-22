@@ -14,36 +14,40 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="気になるカウンセラーを探そう" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKX-5L-ulz">
-                    <rect key="frame" x="28.5" y="339.5" width="243" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="0.5" y="320" width="299" height="25.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
                     <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzW-A6-ZaZ">
-                    <rect key="frame" x="49" y="380.5" width="202.5" height="39.5"/>
+                    <rect key="frame" x="42" y="355.5" width="216" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="Ka5-EB-ReG"/>
+                        <constraint firstAttribute="width" constant="216" id="xcw-cN-ZhD"/>
+                    </constraints>
                     <string key="text">ホーム画面からカウンセラーを選んで
 プロフィールを見てみましょう！
 気になるカウンセラーが見つかるかも！</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ExplenationView" image="blank-profile-picture-973460_640-e1542530002984" translatesAutoresizingMaskIntoConstraints="NO" id="LHa-Xd-wcP">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="250" id="G5t-Mf-50I"/>
+                        <constraint firstAttribute="height" constant="300" id="G5t-Mf-50I"/>
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.93578767119999995" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="TKX-5L-ulz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8jz-Xg-i23"/>
-                <constraint firstItem="hzW-A6-ZaZ" firstAttribute="top" secondItem="TKX-5L-ulz" secondAttribute="bottom" constant="20" id="KSZ-M2-YAs"/>
+                <constraint firstItem="TKX-5L-ulz" firstAttribute="top" secondItem="LHa-Xd-wcP" secondAttribute="bottom" constant="20" id="FJJ-lE-Jjm"/>
+                <constraint firstItem="hzW-A6-ZaZ" firstAttribute="top" secondItem="TKX-5L-ulz" secondAttribute="bottom" constant="10" id="KSZ-M2-YAs"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="LHa-Xd-wcP" secondAttribute="trailing" id="U0k-rv-wHg"/>
                 <constraint firstItem="LHa-Xd-wcP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bAd-F8-ySM"/>
                 <constraint firstItem="hzW-A6-ZaZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eK8-kM-oWP"/>
                 <constraint firstItem="LHa-Xd-wcP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="le4-Pq-aQ9"/>
-                <constraint firstItem="TKX-5L-ulz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="100" id="p4C-5X-4Vx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
