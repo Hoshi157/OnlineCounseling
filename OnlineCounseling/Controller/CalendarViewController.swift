@@ -12,13 +12,17 @@ import SnapKit
 
 class CalendarViewController: UIViewController {
     
-    private var myCalendar = FSCalendar()
-    
     private let timeArray = [
         "0時~1時", "1時~2時", "2時~3時", "3時~4時", "4時~5時", "5時~6時", "6時~7時", "7時~8時", "8時~9時", "9時~10時", "10時~11時", "11時~12時",
     "12時~13時", "13時~14時", "14時~15時", "15時~16時", "16時~17時", "17時~18時", "18時~19時",
     "19時~20時", "20時~21時", "21時~22時", "22時~23時", "23時=24時"
     ]
+    
+    private var myCalendar: FSCalendar = {
+      let calendar = FSCalendar()
+        calendar.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        return calendar
+    }()
     
     lazy var tableView: UITableView = {
        let tableview = UITableView()
@@ -31,6 +35,8 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         view.addSubview(myCalendar)
         view.addSubview(tableView)
@@ -76,6 +82,4 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = timeArray[indexPath.row]
         return cell
     }
-    
-    
 }
