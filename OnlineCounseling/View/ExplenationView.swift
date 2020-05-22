@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExplenationView: UIView {
+class ExplanationView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -18,4 +18,22 @@ class ExplenationView: UIView {
     }
     */
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadView()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        loadView()
+    }
+    
+    func loadView() {
+        guard let view = UINib(nibName: "ExplanationView", bundle: nil).instantiate(withOwner: self, options: nil).first as? UIView else {
+            return
+        }
+        view.frame = self.bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(view)
+}
 }
