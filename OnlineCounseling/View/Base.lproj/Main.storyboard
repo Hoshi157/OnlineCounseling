@@ -932,21 +932,6 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
             </objects>
             <point key="canvasLocation" x="9002.898550724638" y="598.66071428571422"/>
         </scene>
-        <!--メッセージ-->
-        <scene sceneID="tbc-hl-nNF">
-            <objects>
-                <viewController storyboardIdentifier="MessageVC" id="fQA-VT-CdI" userLabel="メッセージ" customClass="MessageViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LAU-bf-cRC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="VaN-8q-xox"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fVK-rs-hrY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="10264" y="1494"/>
-        </scene>
         <!--メッセージ一覧-->
         <scene sceneID="g7C-r6-aut">
             <objects>
@@ -1103,7 +1088,7 @@ gb7jgZvjgpPjgII
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJc-fK-awv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7570" y="-963"/>
+            <point key="canvasLocation" x="6387" y="-347"/>
         </scene>
         <!--ルートNavi-->
         <scene sceneID="8eW-I7-nmy">

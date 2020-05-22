@@ -64,6 +64,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let userByTappedVC = UserByTappedContenerViewController()
+        userByTappedVC.modalPresentationStyle = .fullScreen
         self.present(userByTappedVC, animated: true)
     }
     

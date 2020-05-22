@@ -270,7 +270,9 @@ extension SidemenuViewController: UITableViewDelegate, UITableViewDataSource {
         switch (indexPath.row) {
         case 0:
             let mypageVC = storyboard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
-            self.present(mypageVC, animated: true)
+            let naviController = UINavigationController(rootViewController: mypageVC)
+            naviController.modalPresentationStyle = .fullScreen
+            self.present(naviController, animated: true)
         case 1:
             print("カウンセラーページへ")
         default:
