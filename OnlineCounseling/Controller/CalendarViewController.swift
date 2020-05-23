@@ -99,7 +99,8 @@ class CalendarViewController: UIViewController {
     }
     
     @objc func ReservationButtonAction() {
-        self.alert.okAlert(title: "予約しました", message: "", currentController: self, completionHandler: { (_) in
+        guard let reservationDateText = selectedDateLabel.text else { return }
+        self.alert.okAlert(title: "予約しました", message: "\(reservationDateText)にて\n予約致しました。", currentController: self, completionHandler: { (_) in
             print("completinHandler")
             self.dismiss(animated: true, completion: nil)
         })
