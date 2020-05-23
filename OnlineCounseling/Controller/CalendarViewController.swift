@@ -24,6 +24,8 @@ class CalendarViewController: UIViewController {
     private var timeArrayText: String?
     private var currentSelectedDate: String?
     
+    private var alert = AlertController()
+    
     lazy var myCalendar: FSCalendar = {
       let calendar = FSCalendar()
         calendar.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -97,7 +99,7 @@ class CalendarViewController: UIViewController {
     }
     
     @objc func ReservationButtonAction() {
-        dismiss(animated: true, completion: nil)
+        self.alert.okAlert(title: "nnnn", message: "nnn", currentController: self)
     }
     
 
