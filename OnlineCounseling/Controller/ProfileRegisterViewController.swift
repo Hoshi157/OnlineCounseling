@@ -11,8 +11,11 @@ import UIKit
 class ProfileRegisterViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var avaterImageView: UIImageView!
+    @IBOutlet weak var singleWordLabel: UILabel!
     
     private var tableViewSelecteIndexpath: IndexPath!
+    private var photoImage: UIImage?
     
     lazy var datePickerView: UIDatePicker = {
        let picker = UIDatePicker()
@@ -85,6 +88,12 @@ class ProfileRegisterViewController: UIViewController {
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
         tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
         tableView.rowHeight = 50
+        
+        avaterImageView.isUserInteractionEnabled = true
+        avaterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avaterImageTapAction(_:))))
+        
+        singleWordLabel.isUserInteractionEnabled = true
+        singleWordLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleWordLabelTapAction(_:))))
     }
     
     @objc func backViewAction(){
@@ -105,6 +114,38 @@ class ProfileRegisterViewController: UIViewController {
             self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
             self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
         }, completion: nil)
+    }
+    
+    @objc func avaterImageTapAction(_ sender: UITapGestureRecognizer) {
+        let aleatController = UIAlertController(title: "自分のアバターを設定する", message: "選択してください", preferredStyle: .alert)
+            let cameraAction = UIAlertAction(title: "カメラ", style: .default) { (action:UIAlertAction) in
+                if UIImagePickerController.isSourceTypeAvailable(.camera){
+                    let picker = UIImagePickerController()
+                    picker.sourceType = .camera
+                    picker.delegate = self
+                    self.present(picker,animated: true)
+                }
+            }
+            aleatController.addAction(cameraAction)
+            
+            let photoAction = UIAlertAction(title: "アルバム", style: .default) { (action:UIAlertAction) in
+                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                    let picker = UIImagePickerController()
+                    picker.sourceType = .photoLibrary
+                    picker.delegate = self
+                    self.present(picker,animated: true)
+                }}
+            aleatController.addAction(photoAction)
+            
+            let canselAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+            aleatController.addAction(canselAction)
+            self.present(aleatController,animated: true)
+    }
+    
+    @objc func singleWordLabelTapAction(_ sender: UITapGestureRecognizer) {
+        let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+        textInputVC.titleText = "カウンセラーに伝えておきたい事"
+        self.navigationController?.pushViewController(textInputVC, animated: true)
     }
     
 
@@ -175,6 +216,7 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
         switch (indexPath.row) {
         case 0:
             let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            textInputVC.titleText = "名前"
             self.navigationController?.pushViewController(textInputVC, animated: true)
         case 1:
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
@@ -196,12 +238,15 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             self.navigationController?.pushViewController(areaVC, animated: true)
         case 5:
             let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            textInputVC.titleText = "自己紹介"
             self.navigationController?.pushViewController(textInputVC, animated: true)
         case 6:
             let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            textInputVC.titleText = "趣味"
             self.navigationController?.pushViewController(textInputVC, animated: true)
         case 7:
             let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            textInputVC.titleText = "既往歴"
             self.navigationController?.pushViewController(textInputVC, animated: true)
         default:
             print("eroor")
@@ -243,4 +288,13 @@ extension ProfileRegisterViewController: UIPickerViewDelegate, UIPickerViewDataS
                 return ""
             }
     }
+}
+
+extension ProfileRegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        photoImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.avaterImageView.image = photoImage
+        self.dismiss(animated: true, completion: nil)
+}
 }

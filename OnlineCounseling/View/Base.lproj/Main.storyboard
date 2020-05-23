@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PEd-Ip-7Mq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vqv-IV-bkL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -244,6 +244,8 @@ gb7jgZvjgpPjgII
                     </navigationItem>
                     <size key="freeformSize" width="414" height="950"/>
                     <connections>
+                        <outlet property="avaterImageView" destination="58h-Wf-TQs" id="rGk-Nd-8dz"/>
+                        <outlet property="singleWordLabel" destination="Z1Y-vx-nDV" id="t4A-42-ZvG"/>
                         <outlet property="tableView" destination="qfl-pj-Da8" id="eJm-Wz-dYk"/>
                     </connections>
                 </viewController>
@@ -406,7 +408,7 @@ gb7jgZvjgpPjgII
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUh-Nb-i6X">
                                 <rect key="frame" x="5" y="44" width="404" height="300"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="0.80356378424657537" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="87Y-Yp-IZr"/>
                                 </constraints>
@@ -1069,6 +1071,11 @@ gb7jgZvjgpPjgII
                     </view>
                     <navigationItem key="navigationItem" id="aPE-6P-RmL"/>
                     <size key="freeformSize" width="414" height="860"/>
+                    <connections>
+                        <outlet property="avaterImageView" destination="z9h-Lh-Vbd" id="xAC-Fc-1V6"/>
+                        <outlet property="singleWordLabel" destination="R06-MI-vMJ" id="QNq-5r-1ol"/>
+                        <outlet property="tableView" destination="GIC-9R-9Rf" id="bvG-1A-crY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJc-fK-awv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

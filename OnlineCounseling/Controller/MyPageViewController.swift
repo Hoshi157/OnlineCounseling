@@ -10,11 +10,91 @@ import UIKit
 
 class MyPageViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var avaterImageView: UIImageView!
+    @IBOutlet weak var singleWordLabel: UILabel!
+    
+    private var tableViewSelecteIndexpath: IndexPath!
+    private var photoImage: UIImage?
+    
+    lazy var datePickerView: UIDatePicker = {
+       let picker = UIDatePicker()
+        picker.backgroundColor = .white
+        picker.locale = Locale.current
+        picker.timeZone = NSTimeZone.local
+        picker.datePickerMode = UIDatePicker.Mode.date
+        picker.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+        return picker
+    }()
+    
+    lazy var pickerView: UIPickerView = {
+       let picker = UIPickerView()
+        picker.backgroundColor = .white
+        picker.delegate = self
+        picker.dataSource = self
+        picker.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+        return picker
+    }()
+    
+    lazy var pickerToolbar: UIToolbar = {
+       let toolBar = UIToolbar()
+        toolBar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
+        return toolBar
+    }()
+    
+    lazy var donePickerButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "完了", style: .done, target: self, action: #selector(donePickerAction))
+        return button
+    }()
+    
+    lazy var canselPickerButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "キャンセル", style: .plain, target: self, action: #selector(canselPickerAction))
+        return button
+    }()
+    
+    lazy var flexble: UIBarButtonItem = {
+        let spece = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: self, action: nil)
+        spece.width = self.view.frame.width * 0.6
+        return spece
+    }()
+    
+    private let tableArray: [String] = ["名前", "生年月日", "性別", "職業", "地域", "自己紹介", "趣味", "既往歴"]
+    private let genderArray: [String] = [
+        "未選択",
+        "男", "女"]
+    private let jobsArray: [String] = [
+           "未選択",
+           "営業", "販売,フード,アミューズメント", "医療・福祉", "企画・経営", "建築・土木",
+           "ITエンジニア", "電気・電子・機械", "医薬・化学・素材", "コンサルタント・金融",
+           "不動産専門職", "クリエイティブ", "技能工・設備・配送", "農業", "公共サービス",
+           "管理・事務", "美容・ブライダル・ホテル", "保育・教育", "WEB・インターネット"
+       ]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(datePickerView)
+        view.addSubview(pickerView)
+        view.addSubview(pickerToolbar)
+        
+        pickerToolbar.items = [canselPickerButton, flexble, donePickerButton]
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 1)
         title = "マイページを編集"
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
+        tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
+        tableView.rowHeight = 50
+        
+        avaterImageView.isUserInteractionEnabled = true
+        avaterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avaterImageTapAction(_:))))
+        
+        singleWordLabel.isUserInteractionEnabled = true
+        singleWordLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleWordLabelTapAction(_:))))
 
         // Do any additional setup after loading the view.
     }
@@ -22,7 +102,56 @@ class MyPageViewController: UIViewController {
     @objc func backViewAction() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @objc func donePickerAction() {
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
+        }, completion: nil)
+    }
+    
+    @objc func canselPickerAction() {
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
+            self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
+        }, completion: nil)
+    }
 
+    @objc func avaterImageTapAction(_ sender: UITapGestureRecognizer) {
+        let aleatController = UIAlertController(title: "自分のアバターを設定する", message: "選択してください", preferredStyle: .alert)
+            let cameraAction = UIAlertAction(title: "カメラ", style: .default) { (action:UIAlertAction) in
+                if UIImagePickerController.isSourceTypeAvailable(.camera){
+                    let picker = UIImagePickerController()
+                    picker.sourceType = .camera
+                    picker.delegate = self
+                    self.present(picker,animated: true)
+                }
+            }
+            aleatController.addAction(cameraAction)
+            
+            let photoAction = UIAlertAction(title: "アルバム", style: .default) { (action:UIAlertAction) in
+                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                    let picker = UIImagePickerController()
+                    picker.sourceType = .photoLibrary
+                    picker.delegate = self
+                    self.present(picker,animated: true)
+                }}
+            aleatController.addAction(photoAction)
+            
+            let canselAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+            aleatController.addAction(canselAction)
+            self.present(aleatController,animated: true)
+    }
+    
+    @objc func singleWordLabelTapAction(_ sender: UITapGestureRecognizer) {
+        let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+        textInputVC.titleText = "カウンセラーに伝えておきたい事"
+        self.navigationController?.pushViewController(textInputVC, animated: true)
+    }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -34,3 +163,144 @@ class MyPageViewController: UIViewController {
     */
 
 }
+
+extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
+        let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
+        
+        switch (indexPath.row) {
+        case 0:
+            let leftText = tableArray[0]
+            textCell.leftLabel.text = leftText
+            return textCell
+        case 1:
+            let leftText = tableArray[1]
+            pickerCell.textLabel?.text = leftText
+            return pickerCell
+        case 2:
+            let leftText = tableArray[2]
+            pickerCell.textLabel?.text = leftText
+            return pickerCell
+        case 3:
+            let leftText = tableArray[3]
+            pickerCell.textLabel?.text = leftText
+            return pickerCell
+        case 4:
+            let leftText = tableArray[4]
+            pickerCell.textLabel?.text = leftText
+            return pickerCell
+        case 5:
+            let leftText = tableArray[5]
+            textCell.leftLabel.text = leftText
+            return textCell
+        case 6:
+            let leftText = tableArray[6]
+            textCell.leftLabel.text = leftText
+            return textCell
+        case 7:
+            let leftText = tableArray[7]
+            textCell.leftLabel.text = leftText
+            return textCell
+        default:
+            print("error")
+            return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        tableViewSelecteIndexpath = indexPath
+        pickerView.reloadAllComponents()
+        
+        switch (indexPath.row) {
+        case 0:
+            let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            textInputVC.titleText = "名前"
+            self.navigationController?.pushViewController(textInputVC, animated: true)
+        case 1:
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+            self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
+            }, completion: nil)
+        case 2:
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+            self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
+            }, completion: nil)
+        case 3:
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+            self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
+            }, completion: nil)
+        case 4:
+            let areaVC = self.storyboard?.instantiateViewController(withIdentifier: "areaVC") as! AreaViewController
+            self.navigationController?.pushViewController(areaVC, animated: true)
+        case 5:
+            let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            textInputVC.titleText = "自己紹介"
+            self.navigationController?.pushViewController(textInputVC, animated: true)
+        case 6:
+            let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            textInputVC.titleText = "趣味"
+            self.navigationController?.pushViewController(textInputVC, animated: true)
+        case 7:
+            let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            textInputVC.titleText = "既往歴"
+            self.navigationController?.pushViewController(textInputVC, animated: true)
+        default:
+            print("eroor")
+            return
+        }
+    }
+}
+
+extension MyPageViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if (tableViewSelecteIndexpath != nil) {
+            switch (tableViewSelecteIndexpath.row) {
+        case 2:
+            return genderArray.count
+        case 3:
+            return jobsArray.count
+        default:
+            print("error")
+            return Int()
+        }
+        }else {
+            print("nil")
+            return 0
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            switch (tableViewSelecteIndexpath.row) {
+            case 2:
+                return genderArray[row]
+            case 3:
+                return jobsArray[row]
+            default:
+                print("error")
+                return ""
+            }
+    }
+}
+
+extension MyPageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        photoImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        self.avaterImageView.image = photoImage
+        self.dismiss(animated: true, completion: nil)
+}
+}
+

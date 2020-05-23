@@ -9,6 +9,8 @@
 import UIKit
 
 class TextInputProfileViewController: UIViewController {
+    
+    var titleText: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +18,18 @@ class TextInputProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if (titleText != nil) {
+            self.title = titleText
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     @objc func backViewAction() {

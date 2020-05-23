@@ -11,6 +11,7 @@ import SnapKit
 
 class SidemenuViewController: UIViewController {
     
+    lazy var storyBoard = UIStoryboard(name: "Main", bundle: nil)
     weak var delegate: SidemenuViewControllerDelegate?
     private let contentView = UIView(frame: .zero)
        private var contentMaxWidth: CGFloat {
@@ -38,12 +39,14 @@ class SidemenuViewController: UIViewController {
     private var beganLocation: CGPoint = .zero
     private var screenEdgePanGestureRecognizer: UIScreenEdgePanGestureRecognizer!
 
-    private var avaterImageView: UIImageView = {
+    lazy var avaterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
         imageView.layer.cornerRadius = 30
         imageView.clipsToBounds = true
         imageView.frame = CGRect(x: 30, y: 50, width: 60, height: 60)
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(myPageViewAction(_:))))
         return imageView
     }()
     
@@ -138,6 +141,13 @@ class SidemenuViewController: UIViewController {
             self.removeFromParent()
             self.view.removeFromSuperview()
         }
+    }
+    
+    @objc func myPageViewAction(_ sender: UITapGestureRecognizer) {
+        let mypageVC = storyBoard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
+        let naviController = UINavigationController(rootViewController: mypageVC)
+        naviController.modalPresentationStyle = .fullScreen
+        self.present(naviController, animated: true)
     }
     
     func showContentView(animated: Bool) {
@@ -265,11 +275,10 @@ extension SidemenuViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         print(indexPath.row)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         switch (indexPath.row) {
         case 0:
-            let mypageVC = storyboard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
+            let mypageVC = storyBoard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
             let naviController = UINavigationController(rootViewController: mypageVC)
             naviController.modalPresentationStyle = .fullScreen
             self.present(naviController, animated: true)

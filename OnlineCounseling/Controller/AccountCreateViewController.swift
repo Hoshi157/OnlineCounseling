@@ -148,6 +148,7 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
         switch (indexPath.row) {
         case 0:
             let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            textInputVC.titleText = "名前"
             self.navigationController?.pushViewController(textInputVC, animated: true)
         case 1:
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
