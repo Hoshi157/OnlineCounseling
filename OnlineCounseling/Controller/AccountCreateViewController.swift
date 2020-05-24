@@ -128,13 +128,11 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
         case 0:
             let text = tableArray[0]
             textCell.leftLabel.text = text
-            textCell.backgroundColor = .red
             print(textCell.frame.height)
             return textCell
         case 1:
             let text = tableArray[1]
             pickercell.textLabel?.text = text
-            pickercell.backgroundColor = .blue
             print(pickercell.frame.height)
             return pickercell
         default:

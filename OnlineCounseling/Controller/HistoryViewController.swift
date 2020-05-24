@@ -18,7 +18,7 @@ class HistoryViewController: ButtonBarPagerTabStripViewController {
     override func viewDidLoad() {
         
         settings.style.buttonBarItemBackgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        settings.style.buttonBarItemTitleColor = #colorLiteral(red: 0.09708004216, green: 0.7204460874, blue: 1, alpha: 1)
+        settings.style.buttonBarItemTitleColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         settings.style.selectedBarBackgroundColor = #colorLiteral(red: 0.09708004216, green: 0.7204460874, blue: 1, alpha: 1)
         settings.style.buttonBarMinimumLineSpacing = 0
         settings.style.selectedBarHeight = 2
@@ -29,6 +29,7 @@ class HistoryViewController: ButtonBarPagerTabStripViewController {
         
         self.navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemBlue.withAlphaComponent(0.7)]
         self.title = "履歴"
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-メニュー-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-メニュー-25"), style: .plain, target: self, action: #selector(sidemenuButtonAction))
