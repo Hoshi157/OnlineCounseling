@@ -21,10 +21,8 @@ class AccountCreateViewController: UIViewController {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
-        tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 40
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell2")
         return tableView
     }()
     
@@ -69,17 +67,17 @@ class AccountCreateViewController: UIViewController {
         pickerToolbar.items = [canselPickerButton, flexble, donePickerButton]
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
-
-        // Do any additional setup after loading the view.
         
-        myTableView.snp.makeConstraints { (make) in
+        self.myTableView.snp.makeConstraints { (make) in
             make.top.equalTo(self.accountLabel.snp.bottom).offset(20)
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
-            make.height.equalTo(100)
+            make.height.equalTo(1)
         }
         
-        print(myTableView.frame.height)
+
+        // Do any additional setup after loading the view.
+        
     }
     
     @objc func backViewAction() {
@@ -101,6 +99,11 @@ class AccountCreateViewController: UIViewController {
                }, completion: nil)
     }
     
+    func automaticTableviewHeight() {
+        self.view.layoutIfNeeded()
+        print(myTableView.contentSize.height)
+        self.myTableView.frame.size.height = myTableView.contentSize.height
+    }
 
     /*
     // MARK: - Navigation
@@ -121,41 +124,27 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let pickercell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
-        let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
-        print(indexPath)
-        switch (indexPath.row) {
-        case 0:
-            let text = tableArray[0]
-            textCell.leftLabel.text = text
-            print(textCell.frame.height)
-            return textCell
-        case 1:
-            let text = tableArray[1]
-            pickercell.textLabel?.text = text
-            print(pickercell.frame.height)
-            return pickercell
-        default:
-            print("error")
-            return UITableViewCell()
+        if (indexPath.row == 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
+            cell.textLabel?.text = tableArray[indexPath.row]
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as UITableViewCell
+            cell.textLabel?.text = tableArray[indexPath.row]
+            return cell
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        switch (indexPath.row) {
-        case 0:
-            let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
-            textInputVC.titleText = "名前"
-            self.navigationController?.pushViewController(textInputVC, animated: true)
-        case 1:
-            UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
-                self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
-                self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
-            }, completion: nil)
-        default:
-            print("error")
-            return
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print("1")
+        if (indexPath.row == 0) {
+            return 50
+        }else {
+            return 70
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.automaticTableviewHeight()
     }
 }

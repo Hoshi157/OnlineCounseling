@@ -29,7 +29,7 @@ class TabbarController: UITabBarController {
         
         let resevationVC = self.storyboard?.instantiateViewController(withIdentifier: "ResevationVC") as! ResevationViewController
         resevationVC.tabBarItem.title = "カウンセリング予約"
-        resevationVC.tabBarItem.image = #imageLiteral(resourceName: "icons8-タスク計画-25")
+        resevationVC.tabBarItem.image = #imageLiteral(resourceName: "icons8-予約-25")
         ViewControllers.append(resevationVC)
         
         let historyVC = self.storyboard?.instantiateViewController(withIdentifier: "HistoryVC") as! HistoryViewController
