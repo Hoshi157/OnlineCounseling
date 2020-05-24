@@ -27,15 +27,15 @@ class TabbarController: UITabBarController {
         homeVC.tabBarItem.image = #imageLiteral(resourceName: "icons8-ホーム-25")
         ViewControllers.append(homeVC)
         
+        let resevationVC = self.storyboard?.instantiateViewController(withIdentifier: "ResevationVC") as! ResevationViewController
+        resevationVC.tabBarItem.title = "カウンセリング予約"
+        resevationVC.tabBarItem.image = #imageLiteral(resourceName: "icons8-タスク計画-25")
+        ViewControllers.append(resevationVC)
+        
         let historyVC = self.storyboard?.instantiateViewController(withIdentifier: "HistoryVC") as! HistoryViewController
         historyVC.tabBarItem.title = "履歴"
         historyVC.tabBarItem.image = #imageLiteral(resourceName: "icons8-複数行テキスト-25")
         ViewControllers.append(historyVC)
-        
-        let timelineVC = self.storyboard?.instantiateViewController(withIdentifier: "TimelineVC") as! TimelineViewController
-        timelineVC.tabBarItem.title = "タイムライン"
-        timelineVC.tabBarItem.image = #imageLiteral(resourceName: "icons8-タスク計画-25")
-        ViewControllers.append(timelineVC)
         
         let messageHistoryVC = self.storyboard?.instantiateViewController(withIdentifier: "MessageHistoryVC") as! MessageHistoryViewController
         messageHistoryVC.tabBarItem.title = "メッセージ"
@@ -50,7 +50,7 @@ class TabbarController: UITabBarController {
         
         homeVC.sidemenuDelegate = self
         historyVC.sidemenuDelegate = self
-        timelineVC.sidemenuDelegate = self
+        resevationVC.sidemenuDelegate = self
         messageHistoryVC.sidemenuDelegate = self
         
         sidemenuVC.delegate = self

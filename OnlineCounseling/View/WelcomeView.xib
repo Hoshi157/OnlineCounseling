@@ -36,7 +36,7 @@ g7Pjgrvjg6rjg7PjgrDjgYzjgafjgY3jgovjgqLjg5fjg6rjgafjgZnjgII
 </string>
                             <attributes>
                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <font key="NSFont" size="13" name=".HiraKakuInterface-W3"/>
+                                <font key="NSFont" metaFont="system"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>

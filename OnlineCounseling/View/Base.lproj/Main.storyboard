@@ -897,32 +897,17 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
             </objects>
             <point key="canvasLocation" x="5474" y="130"/>
         </scene>
-        <!--タイムライン-->
+        <!--カウンセリング予約-->
         <scene sceneID="qWw-T2-WN1">
             <objects>
-                <viewController storyboardIdentifier="TimelineVC" title="タイムライン" id="t73-zL-Y84" customClass="TimelineViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResevationVC" title="カウンセリング予約" id="t73-zL-Y84" customClass="ResevationViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WcQ-MM-jOf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sQd-wg-vjj">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="sQd-wg-vjj" secondAttribute="bottom" id="EKk-wr-bbt"/>
-                            <constraint firstItem="sQd-wg-vjj" firstAttribute="top" secondItem="JHH-AO-xed" secondAttribute="top" id="GSW-4V-4cN"/>
-                            <constraint firstItem="sQd-wg-vjj" firstAttribute="leading" secondItem="JHH-AO-xed" secondAttribute="leading" id="QXf-ja-JVp"/>
-                            <constraint firstItem="sQd-wg-vjj" firstAttribute="trailing" secondItem="JHH-AO-xed" secondAttribute="trailing" id="Qub-9h-ngu"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="JHH-AO-xed"/>
                     </view>
                     <navigationItem key="navigationItem" id="vUX-8g-NK1"/>
-                    <connections>
-                        <outlet property="tableView" destination="sQd-wg-vjj" id="16L-SS-gzU"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRQ-d5-WHK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
