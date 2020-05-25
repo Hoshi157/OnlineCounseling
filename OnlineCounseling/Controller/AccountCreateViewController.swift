@@ -15,14 +15,15 @@ class AccountCreateViewController: UIViewController {
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var consentButton: MDCRaisedButton!
     
+    private var tableViewSelecteIndexpath: IndexPath!
     private let tableArray = ["名前", "生年月日"]
     
     lazy var myTableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell2")
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
+        tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
         return tableView
     }()
     
@@ -124,23 +125,49 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if (indexPath.row == 0) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
-            cell.textLabel?.text = tableArray[indexPath.row]
-            return cell
-        }else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2", for: indexPath) as UITableViewCell
-            cell.textLabel?.text = tableArray[indexPath.row]
-            return cell
+        switch (indexPath.row) {
+        case 0:
+            let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
+            textCell.leftLabel.text = tableArray[indexPath.row]
+            return textCell
+        case 1:
+            let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
+            pickerCell.textLabel?.text = tableArray[indexPath.row]
+            return pickerCell
+        default:
+            print("error")
+            return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    tableViewSelecteIndexpath = indexPath
+        switch (indexPath.row) {
+        case 0:
+            let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
+            textInputVC.titleText = "名前"
+            self.navigationController?.pushViewController(textInputVC, animated: true)
+        case 1:
+            UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
+            self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
+            }, completion: nil)
+        default:
+            print("error")
+            return
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("1")
-        if (indexPath.row == 0) {
-            return 50
-        }else {
+        switch (indexPath.row) {
+        case 0:
             return 70
+        case 1:
+            return 50
+        default:
+            print("error")
+            return 0
         }
     }
     

@@ -81,6 +81,7 @@ class SidemenuViewController: UIViewController {
         tableview.register(UINib(nibName: "SidemenuTableViewCell", bundle: nil), forCellReuseIdentifier: "SidemenuCell")
         tableview.delegate = self
         tableview.dataSource = self
+        tableview.separatorStyle = .none
         return tableview
     }()
     

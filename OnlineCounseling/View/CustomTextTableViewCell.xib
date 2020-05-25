@@ -17,20 +17,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtD-Pl-D9W">
-                        <rect key="frame" x="20" y="10" width="27.5" height="15"/>
+                        <rect key="frame" x="20" y="10" width="29" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="BE4-So-o5V"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自由に記入してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o14-kU-BaX">
-                        <rect key="frame" x="20" y="35" width="112.5" height="15"/>
+                        <rect key="frame" x="20" y="35" width="146" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="pOo-A1-JdI"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>

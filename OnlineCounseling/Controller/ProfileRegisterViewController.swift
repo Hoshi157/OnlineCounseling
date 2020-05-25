@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileRegisterViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var avaterImageView: UIImageView!
     @IBOutlet weak var singleWordLabel: UILabel!
+    @IBOutlet weak var noteLabel: UILabel!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var tableView: UITableView!
     
     private var tableViewSelecteIndexpath: IndexPath!
     private var photoImage: UIImage?
@@ -83,17 +86,16 @@ class ProfileRegisterViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
-        tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
-        tableView.rowHeight = 50
-        
         avaterImageView.isUserInteractionEnabled = true
         avaterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avaterImageTapAction(_:))))
         
         singleWordLabel.isUserInteractionEnabled = true
         singleWordLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleWordLabelTapAction(_:))))
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
+        tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
     }
     
     @objc func backViewAction(){
@@ -167,47 +169,54 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
-        let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
-        
+        print(indexPath.row)
         switch (indexPath.row) {
         case 0:
+            let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[0]
             textCell.leftLabel.text = leftText
             return textCell
         case 1:
+            let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[1]
             pickerCell.textLabel?.text = leftText
             return pickerCell
         case 2:
+            let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[2]
             pickerCell.textLabel?.text = leftText
             return pickerCell
         case 3:
+            let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[3]
             pickerCell.textLabel?.text = leftText
             return pickerCell
         case 4:
+            let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[4]
             pickerCell.textLabel?.text = leftText
             return pickerCell
         case 5:
+            let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[5]
             textCell.leftLabel.text = leftText
             return textCell
         case 6:
+            let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[6]
             textCell.leftLabel.text = leftText
             return textCell
         case 7:
+            let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[7]
             textCell.leftLabel.text = leftText
             return textCell
         default:
-            print("error")
+            print("error1")
             return UITableViewCell()
         }
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         tableViewSelecteIndexpath = indexPath
@@ -249,8 +258,20 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             textInputVC.titleText = "既往歴"
             self.navigationController?.pushViewController(textInputVC, animated: true)
         default:
-            print("eroor")
+            print("eroor2")
             return
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch (indexPath.row) {
+        case 0, 5, 6, 7:
+            return 70
+        case 1, 2, 3, 4:
+            return 50
+        default:
+            print("error3")
+            return 0
         }
     }
 }

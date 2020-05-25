@@ -52,8 +52,7 @@ class UserByTappedContenerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let collectionByTappedVC = storyBoard.instantiateViewController(withIdentifier: "CollectionTapVC") as! CollectionCellTappedViewController
-        
+        let collectionByTappedVC = CollectionCellTappedViewController()
         addChild(collectionByTappedVC)
         view.addSubview(collectionByTappedVC.view)
         didMove(toParent: self)

@@ -18,8 +18,8 @@ class ResevationViewController: UIViewController {
       let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "CustomMessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
-        tableView.rowHeight = 50
+        tableView.register(UINib(nibName: "ImageNameOnlyTableViewCell", bundle: nil), forCellReuseIdentifier: "ImageNameOnlyTableViewCell")
+        tableView.rowHeight = 60
         return tableView
     }()
     
@@ -69,7 +69,8 @@ extension ResevationViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ImageNameOnlyTableViewCell", for: indexPath) as! ImageNameOnlyTableViewCell
+        cell.nameLabel.text = "Name"
         return cell
     }
     

@@ -7,25 +7,199 @@
 //
 
 import UIKit
+import SnapKit
 
 class CollectionCellTappedViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    private let tableArray: [String] = ["名前", "生年月日", "性別", "職業", "地域", "自己紹介", "趣味", "既往歴"]
+    private let tableArray: [String] = ["1", "2", "3", "4", "5"]
+    
+    let screen = UIScreen.main.bounds
+    
+    lazy var myScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.frame = self.view.bounds
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 40)
+        scrollView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        return scrollView
+    }()
+    
+    lazy var contentView: UIView = {
+        let myView = UIView()
+        myView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        myView.frame = CGRect(x: self.screen.origin.x, y: self.screen.origin.y - 45, width: self.view.frame.width, height: self.myScrollView.contentSize.height)
+        return myView
+    }()
+    private var avaterImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
+        return imageView
+    }()
+    
+    private var nameLabel: UILabel = {
+       let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.sizeToFit()
+        label.text = "Name"
+        return label
+    }()
+    
+    private var jobsLabel: UILabel = {
+       let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.sizeToFit()
+        label.text = "Jobs"
+        return label
+    }()
+    
+    private var genderImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = #imageLiteral(resourceName: "icons8-性中立ユーザー-25").withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        return imageView
+    }()
+    
+    private var bookmarkImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = #imageLiteral(resourceName: "icons8-スター-25").withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        return imageView
+    }()
+    
+    private var singleWordLabel: UILabel = {
+       let label = UILabel()
+        label.backgroundColor = #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 0.2)
+        label.numberOfLines = 0
+        label.layer.cornerRadius = 10
+        label.clipsToBounds = true
+        return label
+    }()
+    
+    private let selfIntroTitle: UILabel = {
+      let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.text = "自己紹介"
+        return label
+    }()
+    
+    private var selfIntroInputLabel: UILabel = {
+       let label = UILabel()
+        label.numberOfLines = 0
+        label.layer.cornerRadius = 10
+        label.clipsToBounds = true
+        label.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+        return label
+    }()
+    
+    lazy var myTableView: UITableView = {
+       let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return tableView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
-        tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
-        tableView.rowHeight = 50
-        tableView.allowsSelection = false
+        view.addSubview(myScrollView)
+        myScrollView.addSubview(contentView)
+        contentView.addSubview(avaterImageView)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(jobsLabel)
+        contentView.addSubview(genderImageView)
+        contentView.addSubview(bookmarkImageView)
+        contentView.addSubview(singleWordLabel)
+        contentView.addSubview(selfIntroTitle)
+        contentView.addSubview(selfIntroInputLabel)
+        contentView.addSubview(myTableView)
+        
+        self.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        avaterImageView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.contentView)
+            make.right.equalTo(contentView)
+            make.left.equalTo(contentView)
+            make.height.equalTo(400)
+        }
+        
+        nameLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(avaterImageView.snp.bottom).offset(20)
+            make.left.equalTo(self.view).offset(20)
+            make.height.equalTo(35)
+        }
+        
+        jobsLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(nameLabel)
+            make.left.equalTo(nameLabel.snp.right).offset(20)
+            make.height.equalTo(35)
+        }
+        
+        genderImageView.snp.makeConstraints { (make) in
+            make.top.equalTo(nameLabel)
+            make.right.equalTo(self.view).offset(-30)
+            make.size.equalTo(40)
+        }
+        
+        
+        
+        bookmarkImageView.snp.makeConstraints { (make) in
+            make.top.equalTo(nameLabel)
+            make.right.equalTo(genderImageView.snp.left).offset(-15)
+            make.size.equalTo(40)
+        }
+        
+        singleWordLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(nameLabel.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(350)
+            make.height.equalTo(100)
+        }
+        
+        selfIntroTitle.snp.makeConstraints { (make) in
+            make.top.equalTo(singleWordLabel.snp.bottom).offset(20)
+            make.left.equalTo(nameLabel)
+            make.height.equalTo(40)
+            make.width.equalTo(130)
+        }
+        
+        selfIntroInputLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(selfIntroTitle.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(350)
+            make.height.equalTo(100)
+        }
+        
+        myTableView.snp.makeConstraints { (make) in
+            make.top.equalTo(selfIntroInputLabel.snp.bottom).offset(20)
+            make.left.equalTo(self.view).offset(10)
+            make.right.equalTo(self.view).offset(-10)
+            // ここのtableViewの値は最高値
+            make.height.equalTo(400)
+        }
+        print("viewdid\(myTableView.contentSize.height)")
+        // Do any additional setup after loading the view.
     }
     
+    func automaticTableviewHight() {
+        self.view.layoutIfNeeded()
+        print(myTableView.contentSize.height)
+        myTableView.frame.size.height = myTableView.contentSize.height
+        automaticScrollviewHight()
+    }
+    
+    func automaticScrollviewHight() {
+        let viewBottomOrigin: CGFloat = self.view.frame.origin.y + self.view.frame.size.height
+        let tableviewBottomOrigin: CGFloat = self.myTableView.frame.origin.y + self.myTableView.frame.size.height
+        
+        if (tableviewBottomOrigin > viewBottomOrigin) {
+            print("tableがviewより大きい")
+            let tableviewRemainig = tableviewBottomOrigin - viewBottomOrigin
+            myScrollView.contentSize.height += tableviewRemainig
+        }else {
+            print("tableがviewより小さい")
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -46,45 +220,22 @@ extension CollectionCellTappedViewController: UITableViewDelegate, UITableViewDa
 }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
-    let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+    cell.textLabel?.text = tableArray[indexPath.row]
+    return cell
+ }
     
-    switch (indexPath.row) {
-    case 0:
-        let leftText = tableArray[0]
-        textCell.leftLabel.text = leftText
-        return textCell
-    case 1:
-        let leftText = tableArray[1]
-        pickerCell.textLabel?.text = leftText
-        return pickerCell
-    case 2:
-        let leftText = tableArray[2]
-        pickerCell.textLabel?.text = leftText
-        return pickerCell
-    case 3:
-        let leftText = tableArray[3]
-        pickerCell.textLabel?.text = leftText
-        return pickerCell
-    case 4:
-        let leftText = tableArray[4]
-        pickerCell.textLabel?.text = leftText
-        return pickerCell
-    case 5:
-        let leftText = tableArray[5]
-        textCell.leftLabel.text = leftText
-        return textCell
-    case 6:
-        let leftText = tableArray[6]
-        textCell.leftLabel.text = leftText
-        return textCell
-    case 7:
-        let leftText = tableArray[7]
-        textCell.leftLabel.text = leftText
-        return textCell
-    default:
-        print("error")
-        return UITableViewCell()
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
-}
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        let rowAddNum = indexPath.row + 1
+        if (self.tableArray.count == rowAddNum) {
+            print("一度のみ検知する")
+            self.automaticTableviewHight()
+        }
+    }
+    
 }

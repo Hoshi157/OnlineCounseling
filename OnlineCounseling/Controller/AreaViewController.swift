@@ -24,6 +24,7 @@ class AreaViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
+        title = "地域を選択"
         
         tableView.delegate = self
         tableView.dataSource = self

@@ -10,6 +10,10 @@ import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var avaterImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var jobsLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

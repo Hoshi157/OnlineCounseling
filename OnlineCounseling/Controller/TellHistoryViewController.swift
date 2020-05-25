@@ -20,7 +20,7 @@ class TellHistoryViewController: UIViewController, IndicatorInfoProvider {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 60
-        tableView.register(UINib(nibName: "CustomMessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
+        tableView.register(UINib(nibName: "ImageNameOnlyTableViewCell", bundle: nil), forCellReuseIdentifier: "ImageNameOnlyTableViewCell")
 
         // Do any additional setup after loading the view.
     }
@@ -48,7 +48,7 @@ extension TellHistoryViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ImageNameOnlyTableViewCell", for: indexPath) as! ImageNameOnlyTableViewCell
         return cell
     }
     
