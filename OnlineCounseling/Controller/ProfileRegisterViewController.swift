@@ -212,7 +212,6 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             textCell.leftLabel.text = leftText
             return textCell
         default:
-            print("error1")
             return UITableViewCell()
         }
     }
@@ -258,7 +257,6 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             textInputVC.titleText = "既往歴"
             self.navigationController?.pushViewController(textInputVC, animated: true)
         default:
-            print("eroor2")
             return
         }
     }
@@ -270,7 +268,6 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
         case 1, 2, 3, 4:
             return 50
         default:
-            print("error3")
             return 0
         }
     }

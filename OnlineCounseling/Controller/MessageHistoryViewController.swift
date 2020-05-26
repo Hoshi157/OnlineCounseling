@@ -28,7 +28,7 @@ class MessageHistoryViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "CustomMessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
-        tableView.rowHeight = 60
+        tableView.rowHeight = 70
         
     }
     

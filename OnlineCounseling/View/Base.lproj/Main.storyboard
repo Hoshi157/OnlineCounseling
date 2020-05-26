@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PEd-Ip-7Mq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vqv-IV-bkL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -516,7 +516,11 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                         <viewLayoutGuide key="safeArea" id="pwq-Mn-uEx"/>
                     </view>
                     <navigationItem key="navigationItem" title="アカウントデータ引き継ぎ" id="hgV-BZ-NYM">
-                        <barButtonItem key="rightBarButtonItem" title="完了" id="DJL-PM-uUC"/>
+                        <barButtonItem key="rightBarButtonItem" title="完了" id="DJL-PM-uUC">
+                            <connections>
+                                <action selector="dataCompleteButtonAction:" destination="Fgz-yb-e8V" id="lYU-9g-aLO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="qX0-7s-wPH" id="Jaa-Gn-li6"/>

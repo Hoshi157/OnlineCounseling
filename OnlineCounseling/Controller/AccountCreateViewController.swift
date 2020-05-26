@@ -73,7 +73,7 @@ class AccountCreateViewController: UIViewController {
             make.top.equalTo(self.accountLabel.snp.bottom).offset(20)
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
-            make.height.equalTo(1)
+            make.height.equalTo(120)
         }
         
 
@@ -98,12 +98,6 @@ class AccountCreateViewController: UIViewController {
                    self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
                    self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
                }, completion: nil)
-    }
-    
-    func automaticTableviewHeight() {
-        self.view.layoutIfNeeded()
-        print(myTableView.contentSize.height)
-        self.myTableView.frame.size.height = myTableView.contentSize.height
     }
 
     /*
@@ -160,6 +154,7 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // 内容が決まっているからIndexPathで判定する
         switch (indexPath.row) {
         case 0:
             return 70
@@ -169,9 +164,5 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
             print("error")
             return 0
         }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.automaticTableviewHeight()
     }
 }

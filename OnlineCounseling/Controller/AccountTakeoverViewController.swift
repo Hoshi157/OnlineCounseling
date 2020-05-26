@@ -37,6 +37,15 @@ class AccountTakeoverViewController: UIViewController {
         self.present(tabbarController, animated: true)
     }
     
+    @IBAction func dataCompleteButtonAction(_ sender: Any) {
+        let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
+        tabbarController.modalPresentationStyle = .fullScreen
+        self.present(tabbarController, animated: true)
+    }
+    
+    
+    
+    
     @objc func backViewButtonAction() {
         self.navigationController?.popViewController(animated: true)
     }

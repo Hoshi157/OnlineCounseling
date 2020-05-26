@@ -58,10 +58,12 @@ class CollectionCellTappedViewController: UIViewController {
         return imageView
     }()
     
-    private var bookmarkImageView: UIImageView = {
+    lazy var bookmarkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "icons8-スター-25").withRenderingMode(.alwaysTemplate)
         imageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bookmarkImageTapped(_:))))
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -95,7 +97,9 @@ class CollectionCellTappedViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
+        tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
+        tableView.allowsSelection = false
         return tableView
     }()
 
@@ -177,28 +181,28 @@ class CollectionCellTappedViewController: UIViewController {
             // ここのtableViewの値は最高値
             make.height.equalTo(400)
         }
-        print("viewdid\(myTableView.contentSize.height)")
         // Do any additional setup after loading the view.
     }
     
     func automaticTableviewHight() {
         self.view.layoutIfNeeded()
-        print(myTableView.contentSize.height)
         myTableView.frame.size.height = myTableView.contentSize.height
         automaticScrollviewHight()
     }
     
     func automaticScrollviewHight() {
+        // tableViewがViewより大きい場合,
         let viewBottomOrigin: CGFloat = self.view.frame.origin.y + self.view.frame.size.height
         let tableviewBottomOrigin: CGFloat = self.myTableView.frame.origin.y + self.myTableView.frame.size.height
         
         if (tableviewBottomOrigin > viewBottomOrigin) {
-            print("tableがviewより大きい")
             let tableviewRemainig = tableviewBottomOrigin - viewBottomOrigin
             myScrollView.contentSize.height += tableviewRemainig
-        }else {
-            print("tableがviewより小さい")
         }
+    }
+    
+    @objc func bookmarkImageTapped(_ sender: UITapGestureRecognizer) {
+        print("tap")
     }
 
     /*
@@ -220,20 +224,36 @@ extension CollectionCellTappedViewController: UITableViewDelegate, UITableViewDa
 }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-    cell.textLabel?.text = tableArray[indexPath.row]
-    return cell
+    let arrayText = tableArray[indexPath.row]
+    // 内容に応じてCell変更
+    if (arrayText == "1" || arrayText == "3") {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
+        cell.textLabel?.text = tableArray[indexPath.row]
+        return cell
+    }else if (arrayText == "2" || arrayText == "4" || arrayText == "5") {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
+        cell.leftLabel.text = tableArray[indexPath.row]
+        return cell
+    }else {
+        print("error")
+        return UITableViewCell()
+    }
  }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        // 内容に応じて高さ変更
+        let arrayText = self.tableArray[indexPath.row]
+        if (arrayText  == "1" || arrayText == "3") {
+            return 50
+        }else {
+            return 70
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        // 一度のみ検知する
         let rowAddNum = indexPath.row + 1
         if (self.tableArray.count == rowAddNum) {
-            print("一度のみ検知する")
             self.automaticTableviewHight()
         }
     }
