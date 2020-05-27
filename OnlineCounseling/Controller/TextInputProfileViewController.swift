@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TextInputProfileViewController: UIViewController {
     
+    @IBOutlet weak var textView: UITextView!
     var titleText: String?
+    
+    private var realm: Realm!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +30,56 @@ class TextInputProfileViewController: UIViewController {
         if (titleText != nil) {
             self.title = titleText
         }
+        
+        // TextviewへのData取り出し
+        do {
+        self.realm = try Realm()
+        let user = self.realm.objects(User.self).last!
+        print(user, "inputVC")
+            switch (self.titleText) {
+            case "名前":
+                textView.text = user.name
+            case "自己紹介":
+                textView.text = user.selfinfoText
+            case "趣味":
+                textView.text = user.hobby
+            case "カウンセラーに伝えておきたい事":
+                textView.text = user.singlewordText
+            case "既往歴":
+                textView.text = user.medicalhistoryText
+            default:
+                textView.text = ""
+            }
+        }catch {
+            print("error")
+        }
+    }
+    
+    // Realmへの書き込み
+    func addUser(text: String) {
+        do {
+            self.realm = try Realm()
+            let user = realm.objects(User.self).last!
+            print(user, "inputVC")
+        try realm.write {
+            switch (self.titleText) {
+            case "名前":
+                user.name = text
+            case "自己紹介":
+                user.selfinfoText = text
+            case "趣味":
+                user.hobby = text
+            case "カウンセラーに伝えておきたい事":
+                user.singlewordText = text
+            case "既往歴":
+                user.medicalhistoryText = text
+            default:
+                print("eroor")
+            }
+        }
+        }catch {
+            print("error")
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -33,6 +87,7 @@ class TextInputProfileViewController: UIViewController {
     }
     
     @objc func backViewAction() {
+        self.addUser(text: textView.text)
         navigationController?.popViewController(animated: true)
     }
     

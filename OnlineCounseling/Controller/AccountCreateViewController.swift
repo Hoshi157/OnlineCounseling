@@ -9,6 +9,7 @@
 import UIKit
 import MaterialComponents
 import SnapKit
+import RealmSwift
 
 class AccountCreateViewController: UIViewController {
     
@@ -17,6 +18,12 @@ class AccountCreateViewController: UIViewController {
     
     private var tableViewSelecteIndexpath: IndexPath!
     private let tableArray = ["名前", "生年月日"]
+    
+    private var realm: Realm!
+    private var name: String?
+    private var date: Date?
+    // もとから書いてあるテキスト(underLabelに)
+    private let originalText = "自由に記入してください"
     
     lazy var myTableView: UITableView = {
         let tableView = UITableView()
@@ -58,6 +65,12 @@ class AccountCreateViewController: UIViewController {
         spece.width = self.view.frame.width * 0.6
         return spece
     }()
+    
+    private var formatter: DateFormatter = {
+       let format = DateFormatter()
+        format.dateFormat = "yyyy年MM月dd日"
+        return format
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,10 +88,41 @@ class AccountCreateViewController: UIViewController {
             make.right.equalTo(self.view)
             make.height.equalTo(120)
         }
-        
+        // まずはUser情報をrealmへ保存(開始時一度のみ)
+        do {
+            realm = try Realm()
+            if (realm.objects(User.self).last == nil) {
+                let myUser = User()
+                try realm.write {
+                    realm.add(myUser)
+                    print(realm.objects(User.self))
+                }
+            }
+        }catch {
+            print("error")
+        }
 
         // Do any additional setup after loading the view.
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // データの取り出し
+        do {
+            realm = try Realm()
+            // lastを忘れない!!
+            let user = realm.objects(User.self).last!
+            print(user)
+            self.name = user.name
+            self.date = user.birthdayDate
+        }catch {
+            print("error")
+        }
+        
+        DispatchQueue.main.async {
+            self.myTableView.reloadData()
+        }
     }
     
     @objc func backViewAction() {
@@ -90,7 +134,23 @@ class AccountCreateViewController: UIViewController {
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
             self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
             self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
-        }, completion: nil)
+        }, completion:{ (_) in
+            self.date = self.datePickerView.date
+            DispatchQueue.main.async {
+                self.myTableView.reloadData()
+            }
+            // 生年月日をRealmに書き込み
+            do {
+                self.realm = try Realm()
+                let user = self.realm.objects(User.self).last!
+                print(user, "dateのcompletion")
+                try self.realm.write {
+                    user.birthdayDate = self.date!
+                }
+                }catch {
+                    print("error")
+            }
+        })
     }
     
     @objc func canselPickerAction() {
@@ -123,10 +183,17 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
         case 0:
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             textCell.leftLabel.text = tableArray[indexPath.row]
+            if (name != nil) {
+            textCell.underLabel.text = name
+            }
             return textCell
         case 1:
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             pickerCell.textLabel?.text = tableArray[indexPath.row]
+            if (self.date != nil) {
+                pickerCell.rightLabel.text = "\(self.formatter.string(from: date!))"
+                pickerCell.rightImage.image = UIImage()
+            }
             return pickerCell
         default:
             print("error")

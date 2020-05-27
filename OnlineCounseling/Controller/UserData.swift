@@ -18,6 +18,7 @@ class User: Object {
     @objc dynamic var hobby = ""
     @objc dynamic var selfinfoText = ""
     @objc dynamic var singlewordText = ""
+    @objc dynamic var medicalhistoryText = ""
     @objc dynamic var avaterimage: UIImage? {
         set{
            let maxImageSize = 15*1024*1024

@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class ProfileRegisterViewController: UIViewController {
 
@@ -18,7 +19,18 @@ class ProfileRegisterViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var tableViewSelecteIndexpath: IndexPath!
+    // Realmのデータ
+    private var name: String?
+    private var birthdayDate: Date?
+    private var jobs: String?
+    private var area: String?
+    private var hobby: String?
+    private var selfinfoText: String?
+    private var singlewordText: String?
+    private var medicalhistoryText: String?
     private var photoImage: UIImage?
+    
+    private var realm: Realm!
     
     lazy var datePickerView: UIDatePicker = {
        let picker = UIDatePicker()
@@ -96,6 +108,16 @@ class ProfileRegisterViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
         tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // データの取り出し
+        realm = try! Realm()
+        let user = realm.objects(User.self)
+        for data in user {
+            print(data)
+        }
     }
     
     @objc func backViewAction(){

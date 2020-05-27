@@ -11,7 +11,7 @@ import UIKit
 class CustomTextTableViewCell: UITableViewCell {
 
     @IBOutlet weak var leftLabel: UILabel!
-    @IBOutlet weak var textDisplayLabel: UILabel!
+    @IBOutlet weak var underLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

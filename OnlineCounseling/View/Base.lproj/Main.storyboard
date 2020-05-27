@@ -423,6 +423,9 @@ gb7jgZvjgpPjgII
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ub2-6b-cNN"/>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="MUh-Nb-i6X" id="SWC-eu-ZGB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ex3-hZ-Kz5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
