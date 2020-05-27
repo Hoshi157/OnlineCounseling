@@ -18,4 +18,5 @@ pod 'SkyWay'
 pod 'FirebaseUI/Phone'
 pod 'XLPagerTabStrip'
 pod 'SnapKit'
+pod 'RealmSwift'
 end

@@ -37,6 +37,7 @@
 		8D750680246D9EA00054497A /* AreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75067F246D9EA00054497A /* AreaViewController.swift */; };
 		8D750686246DA4CD0054497A /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750685246DA4CD0054497A /* TabbarController.swift */; };
 		8D750688246DA88B0054497A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750687246DA88B0054497A /* LoginViewController.swift */; };
+		8D852301247E2B4E00654314 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D852300247E2B4E00654314 /* UserData.swift */; };
 		8D88C74B246D74F600145BD2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C74A246D74F600145BD2 /* Model.swift */; };
 		8D88C74D246D760300145BD2 /* AccountCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C74C246D760300145BD2 /* AccountCreateViewController.swift */; };
 		8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C74E246D76A600145BD2 /* ProfileRegisterViewController.swift */; };
@@ -98,6 +99,7 @@
 		8D75067F246D9EA00054497A /* AreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewController.swift; sourceTree = "<group>"; };
 		8D750685246DA4CD0054497A /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		8D750687246DA88B0054497A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8D852300247E2B4E00654314 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8D88C74A246D74F600145BD2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8D88C74C246D760300145BD2 /* AccountCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreateViewController.swift; sourceTree = "<group>"; };
 		8D88C74E246D76A600145BD2 /* ProfileRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */,
 				8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */,
 				8D13206B24795C3100EB4BEC /* AlertController.swift */,
+				8D852300247E2B4E00654314 /* UserData.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D852301247E2B4E00654314 /* UserData.swift in Sources */,
 				8D421AAF246E706A00758F4B /* CustomTableViewCell.swift in Sources */,
 				8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */,
 				8DCD2FCD247058A700D2C9ED /* SidemenuViewController.swift in Sources */,

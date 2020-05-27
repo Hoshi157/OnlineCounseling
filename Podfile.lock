@@ -895,6 +895,11 @@ PODS:
   - nanopb/encode (0.3.9011)
   - PKHUD (5.3.0)
   - PromisesObjC (1.2.8)
+  - Realm (4.4.0):
+    - Realm/Headers (= 4.4.0)
+  - Realm/Headers (4.4.0)
+  - RealmSwift (4.4.0):
+    - Realm (= 4.4.0)
   - SkyWay (1.3.0)
   - SnapKit (5.0.1)
   - XLPagerTabStrip (9.0.0)
@@ -909,6 +914,7 @@ DEPENDENCIES:
   - FSCalendar
   - MaterialComponents
   - PKHUD
+  - RealmSwift
   - SkyWay
   - SnapKit
   - XLPagerTabStrip
@@ -945,6 +951,8 @@ SPEC REPOS:
     - nanopb
     - PKHUD
     - PromisesObjC
+    - Realm
+    - RealmSwift
     - SkyWay
     - SnapKit
     - XLPagerTabStrip
@@ -980,10 +988,12 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  Realm: e125f464884cda953ebefe70c671b75b03b81b9b
+  RealmSwift: 33656a42bd300959a081fc13347376bc478071af
   SkyWay: de83cdc35cd070dbdce7cf7b8a003a91b2ac675b
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 0a1e8512c78a92c3cf24a96cb9d012722c1be6c9
+PODFILE CHECKSUM: b45854972d4298c5397c3163c556390f1af36537
 
 COCOAPODS: 1.8.4
