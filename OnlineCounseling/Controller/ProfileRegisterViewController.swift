@@ -85,6 +85,12 @@ class ProfileRegisterViewController: UIViewController {
            "管理・事務", "美容・ブライダル・ホテル", "保育・教育", "WEB・インターネット"
        ]
     
+    private var formatter: DateFormatter = {
+       let format = DateFormatter()
+        format.dateFormat = "yyyy年MM月dd日"
+        return format
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -112,11 +118,24 @@ class ProfileRegisterViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // データの取り出し
-        realm = try! Realm()
-        let user = realm.objects(User.self)
-        for data in user {
-            print(data)
+        // データの取り出し(image以外)
+        do {
+        realm = try Realm()
+        let user = realm.objects(User.self).last!
+        self.name = user.name
+        self.birthdayDate = user.birthdayDate
+        self.jobs = user.jobs
+        self.area = user.area
+        self.hobby = user.hobby
+        self.selfinfoText = user.selfinfoText
+        self.singlewordText = user.singlewordText
+        self.medicalhistoryText = user.medicalhistoryText
+        }catch {
+            print("error")
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
     
@@ -129,7 +148,9 @@ class ProfileRegisterViewController: UIViewController {
             self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
             self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
             self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
-        }, completion: nil)
+        }, completion: {(_) in
+            
+        })
     }
     
     @objc func canselPickerAction() {
@@ -194,41 +215,56 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
         print(indexPath.row)
         switch (indexPath.row) {
         case 0:
+            // 名前
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[0]
             textCell.leftLabel.text = leftText
+            if (self.name != "") {
+                textCell.underLabel.text = self.name
+            }
             return textCell
         case 1:
+            // 生年月日
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[1]
             pickerCell.textLabel?.text = leftText
+            if (self.birthdayDate != Date()) {
+                pickerCell.rightLabel.text = "\(formatter.string(from: self.birthdayDate!))"
+                pickerCell.rightImage.image = UIImage()
+            }
             return pickerCell
         case 2:
+            // 性別
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[2]
             pickerCell.textLabel?.text = leftText
             return pickerCell
         case 3:
+            // 職業
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[3]
             pickerCell.textLabel?.text = leftText
             return pickerCell
         case 4:
+            // 地域
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[4]
             pickerCell.textLabel?.text = leftText
             return pickerCell
         case 5:
+            // 自己紹介
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[5]
             textCell.leftLabel.text = leftText
             return textCell
         case 6:
+            // 趣味
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[6]
             textCell.leftLabel.text = leftText
             return textCell
         case 7:
+            // 既往歴
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[7]
             textCell.leftLabel.text = leftText
@@ -327,6 +363,21 @@ extension ProfileRegisterViewController: UIPickerViewDelegate, UIPickerViewDataS
                 print("error")
                 return ""
             }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let cell = tableView.cellForRow(at: tableViewSelecteIndexpath) as! CustomTableViewCell
+        switch (tableViewSelecteIndexpath.row) {
+        case 2:
+            cell.rightLabel.text = genderArray[row]
+            cell.rightImage.image = UIImage()
+        case 3:
+            cell.rightLabel.text = jobsArray[row]
+            cell.rightImage.image = UIImage()
+        default:
+            cell.rightLabel.text = ""
+            print("error")
+        }
     }
 }
 

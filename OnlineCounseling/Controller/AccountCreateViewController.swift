@@ -113,7 +113,7 @@ class AccountCreateViewController: UIViewController {
             realm = try Realm()
             // lastを忘れない!!
             let user = realm.objects(User.self).last!
-            print(user)
+            print(realm.objects(User.self)) //複数入ってないか確認
             self.name = user.name
             self.date = user.birthdayDate
         }catch {
@@ -183,14 +183,16 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
         case 0:
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             textCell.leftLabel.text = tableArray[indexPath.row]
-            if (name != nil) {
+            // ここはもとのデータなら何もしない
+            if (name != "") {
             textCell.underLabel.text = name
             }
             return textCell
         case 1:
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             pickerCell.textLabel?.text = tableArray[indexPath.row]
-            if (self.date != nil) {
+            //　上記Nameと同じ(が入力されてしまう)
+            if (self.date != Date()) {
                 pickerCell.rightLabel.text = "\(self.formatter.string(from: date!))"
                 pickerCell.rightImage.image = UIImage()
             }
