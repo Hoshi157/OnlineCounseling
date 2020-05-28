@@ -11,10 +11,10 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    // インスタンスを持つ
     let sidemenuVC = SidemenuViewController()
     weak var sidemenuDelegate: SidemenuViewControllerDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +34,6 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 8
         collectionView.collectionViewLayout = layout
-        
     }
     
     @objc func sidemenuButtonAction() {

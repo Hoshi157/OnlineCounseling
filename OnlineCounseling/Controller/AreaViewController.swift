@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AreaViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    private var realm: Realm!
+    private var areaData: String?
     
     private let areaArray: [String] = [
         "北海道", "青森", "岩手", "宮城", "秋田", "山形", "福島", "茨城", "栃木", "群馬",
@@ -35,6 +38,17 @@ class AreaViewController: UIViewController {
     }
     
     @objc func backViewAction() {
+        if (self.areaData != nil) {
+            do {
+                realm = try Realm()
+                let user = realm.objects(User.self).last!
+                try realm.write {
+                    user.area = self.areaData!
+                }
+            }catch {
+                print("error")
+            }
+        }
         navigationController?.popViewController(animated: true)
     }
     
@@ -62,5 +76,8 @@ extension AreaViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.areaData = areaArray[indexPath.row]
+    }
     
 }

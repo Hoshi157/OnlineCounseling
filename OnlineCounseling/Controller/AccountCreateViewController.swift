@@ -143,7 +143,6 @@ class AccountCreateViewController: UIViewController {
             do {
                 self.realm = try Realm()
                 let user = self.realm.objects(User.self).last!
-                print(user, "dateのcompletion")
                 try self.realm.write {
                     user.birthdayDate = self.date!
                 }

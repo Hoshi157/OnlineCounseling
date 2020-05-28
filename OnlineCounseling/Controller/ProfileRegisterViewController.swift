@@ -13,6 +13,7 @@ import RealmSwift
 class ProfileRegisterViewController: UIViewController {
 
     @IBOutlet weak var avaterImageView: UIImageView!
+    @IBOutlet weak var imageOnLabel: UILabel!
     @IBOutlet weak var singleWordLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
@@ -22,6 +23,7 @@ class ProfileRegisterViewController: UIViewController {
     // Realmのデータ
     private var name: String?
     private var birthdayDate: Date?
+    private var gender: String?
     private var jobs: String?
     private var area: String?
     private var hobby: String?
@@ -73,7 +75,7 @@ class ProfileRegisterViewController: UIViewController {
         return spece
     }()
     
-    private let tableArray: [String] = ["名前", "生年月日", "性別", "職業", "地域", "自己紹介", "趣味", "既往歴"]
+    private let tableArray: [String] = ["✴️ 名前", "✴️ 生年月日", "性別", "職業", "地域", "自己紹介", "趣味", "既往歴"]
     private let genderArray: [String] = [
         "未選択",
         "男", "女"]
@@ -106,6 +108,8 @@ class ProfileRegisterViewController: UIViewController {
         
         avaterImageView.isUserInteractionEnabled = true
         avaterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avaterImageTapAction(_:))))
+        avaterImageView.layer.cornerRadius = 10
+        avaterImageView.clipsToBounds = true
         
         singleWordLabel.isUserInteractionEnabled = true
         singleWordLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleWordLabelTapAction(_:))))
@@ -118,7 +122,7 @@ class ProfileRegisterViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // データの取り出し(image以外)
+        // データの取り出し
         do {
         realm = try Realm()
         let user = realm.objects(User.self).last!
@@ -130,10 +134,26 @@ class ProfileRegisterViewController: UIViewController {
         self.selfinfoText = user.selfinfoText
         self.singlewordText = user.singlewordText
         self.medicalhistoryText = user.medicalhistoryText
+        self.gender = user.gender
+        self.photoImage = user.avaterimage
         }catch {
             print("error")
         }
-        
+        // ひとことラベルに表示する
+        if (self.singlewordText != "") {
+            self.singleWordLabel.text = self.singlewordText!
+        }
+        // アバター画像を表示する
+        if (self.photoImage != nil) {
+            DispatchQueue.main.async {
+                self.avaterImageView.image = self.photoImage!
+            }
+            self.imageOnLabel.text = ""
+        }else {
+            DispatchQueue.main.async {
+                self.avaterImageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
+            }
+        }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -149,7 +169,31 @@ class ProfileRegisterViewController: UIViewController {
             self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
             self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
         }, completion: {(_) in
-            
+            // データの書き込み(tableViewのindexPathで絞り込み)
+            if (self.tableViewSelecteIndexpath != nil) {
+            do {
+                self.realm = try Realm()
+                let user = self.realm.objects(User.self).last!
+                try self.realm.write {
+                    switch (self.tableViewSelecteIndexpath.row) {
+                    case 1:
+                        // 生年月日
+                        self.birthdayDate = self.datePickerView.date
+                        user.birthdayDate = self.birthdayDate!
+                case 2:
+                    // 性別
+                    user.gender = self.gender!
+                case 3:
+                    // 職業
+                    user.jobs = self.jobs!
+                default:
+                    print("error")
+                }
+                }
+            }catch {
+                print("error")
+            }
+            }
         })
     }
     
@@ -238,36 +282,57 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[2]
             pickerCell.textLabel?.text = leftText
+            if (self.gender != "") {
+                pickerCell.rightLabel.text = self.gender!
+                pickerCell.rightImage.image = UIImage()
+            }
             return pickerCell
         case 3:
             // 職業
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[3]
             pickerCell.textLabel?.text = leftText
+            if (self.jobs != "") {
+                pickerCell.rightLabel.text = self.jobs!
+                pickerCell.rightImage.image = UIImage()
+            }
             return pickerCell
         case 4:
             // 地域
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[4]
             pickerCell.textLabel?.text = leftText
+            if (self.area != "") {
+                pickerCell.rightLabel.text = self.area!
+                pickerCell.rightImage.image = UIImage()
+            }
             return pickerCell
         case 5:
             // 自己紹介
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[5]
             textCell.leftLabel.text = leftText
+            if (self.selfinfoText != "") {
+                textCell.underLabel.text = self.selfinfoText!
+            }
             return textCell
         case 6:
             // 趣味
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[6]
             textCell.leftLabel.text = leftText
+            if (self.hobby != nil) {
+                textCell.underLabel.text = self.hobby!
+            }
             return textCell
         case 7:
             // 既往歴
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[7]
             textCell.leftLabel.text = leftText
+            if (self.medicalhistoryText != nil) {
+                textCell.underLabel.text = self.medicalhistoryText!
+            }
             return textCell
         default:
             return UITableViewCell()
@@ -367,12 +432,15 @@ extension ProfileRegisterViewController: UIPickerViewDelegate, UIPickerViewDataS
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let cell = tableView.cellForRow(at: tableViewSelecteIndexpath) as! CustomTableViewCell
+        // ここでPickerの選択された値を変数へ格納
         switch (tableViewSelecteIndexpath.row) {
         case 2:
             cell.rightLabel.text = genderArray[row]
+            self.gender = genderArray[row]
             cell.rightImage.image = UIImage()
         case 3:
             cell.rightLabel.text = jobsArray[row]
+            self.jobs = jobsArray[row]
             cell.rightImage.image = UIImage()
         default:
             cell.rightLabel.text = ""
@@ -385,6 +453,16 @@ extension ProfileRegisterViewController: UIImagePickerControllerDelegate, UINavi
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         photoImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        // 画像のRealmへの書き込み
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                user.avaterimage = photoImage!
+            }
+        }catch {
+            print("error")
+        }
         self.avaterImageView.image = photoImage
         self.dismiss(animated: true, completion: nil)
 }

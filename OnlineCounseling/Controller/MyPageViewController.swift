@@ -7,15 +7,40 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyPageViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var avaterImageView: UIImageView!
+    @IBOutlet weak var imageOnLabel: UILabel!
     @IBOutlet weak var singleWordLabel: UILabel!
     
+    
+    @IBOutlet weak var testLabel: UILabel!
+    
     private var tableViewSelecteIndexpath: IndexPath!
+    
+    // Realmのデータ
+    private var name: String?
+    private var birthdayDate: Date?
+    private var gender: String?
+    private var jobs: String?
+    private var area: String?
+    private var hobby: String?
+    private var selfinfoText: String?
+    private var singlewordText: String?
+    private var medicalhistoryText: String?
     private var photoImage: UIImage?
+    
+    private var realm: Realm!
+    private var formatter: DateFormatter = {
+       let format = DateFormatter()
+        format.dateFormat = "yyyy年MM月dd日"
+        return format
+    }()
+    
+    let sidemenuVC = SidemenuViewController()
     
     lazy var datePickerView: UIDatePicker = {
        let picker = UIDatePicker()
@@ -91,11 +116,52 @@ class MyPageViewController: UIViewController {
         
         avaterImageView.isUserInteractionEnabled = true
         avaterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avaterImageTapAction(_:))))
+        avaterImageView.layer.cornerRadius = 10
+        avaterImageView.clipsToBounds = true
         
         singleWordLabel.isUserInteractionEnabled = true
         singleWordLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleWordLabelTapAction(_:))))
-
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // データの取り出し(image以外)
+        do {
+        realm = try Realm()
+        let user = realm.objects(User.self).last!
+        self.name = user.name
+        self.birthdayDate = user.birthdayDate
+        self.jobs = user.jobs
+        self.area = user.area
+        self.hobby = user.hobby
+        self.selfinfoText = user.selfinfoText
+        self.singlewordText = user.singlewordText
+        self.medicalhistoryText = user.medicalhistoryText
+        self.gender = user.gender
+        self.photoImage = user.avaterimage
+        }catch {
+            print("error")
+        }
+        // ひとことラベルに表示する
+        if (self.singlewordText != "") {
+            self.singleWordLabel.text = self.singlewordText!
+        }
+        // アバター画像を表示する
+        if (self.photoImage != nil) {
+            DispatchQueue.main.async {
+                self.avaterImageView.image = self.photoImage!
+            }
+            self.imageOnLabel.text = ""
+        }else {
+            DispatchQueue.main.async {
+                self.avaterImageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
+            }
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     @objc func backViewAction() {
@@ -107,7 +173,33 @@ class MyPageViewController: UIViewController {
             self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
             self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
             self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
-        }, completion: nil)
+        }, completion: { (_) in
+            // データの書き込み(tableViewのindexPathで絞り込み)
+            if (self.tableViewSelecteIndexpath != nil) {
+            do {
+                self.realm = try Realm()
+                let user = self.realm.objects(User.self).last!
+                try self.realm.write {
+                    switch (self.tableViewSelecteIndexpath.row) {
+                    case 1:
+                        // 生年月日
+                        self.birthdayDate = self.datePickerView.date
+                        user.birthdayDate = self.birthdayDate!
+                case 2:
+                    // 性別
+                    user.gender = self.gender!
+                case 3:
+                    // 職業
+                    user.jobs = self.jobs!
+                default:
+                    print("error")
+                }
+                }
+            }catch {
+                print("error")
+            }
+            }
+        })
     }
     
     @objc func canselPickerAction() {
@@ -175,44 +267,72 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[0]
             textCell.leftLabel.text = leftText
+            if (self.name != "") {
+                textCell.underLabel.text = self.name
+            }
             return textCell
         case 1:
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[1]
             pickerCell.textLabel?.text = leftText
+            if (self.birthdayDate != Date()) {
+                pickerCell.rightLabel.text = "\(formatter.string(from: self.birthdayDate!))"
+                pickerCell.rightImage.image = UIImage()
+            }
             return pickerCell
         case 2:
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[2]
             pickerCell.textLabel?.text = leftText
+            if (self.gender != "") {
+                pickerCell.rightLabel.text = self.gender!
+                pickerCell.rightImage.image = UIImage()
+            }
             return pickerCell
         case 3:
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[3]
             pickerCell.textLabel?.text = leftText
+            if (self.jobs != "") {
+                pickerCell.rightLabel.text = self.jobs!
+                pickerCell.rightImage.image = UIImage()
+            }
             return pickerCell
         case 4:
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[4]
             pickerCell.textLabel?.text = leftText
+            if (self.area != "") {
+                pickerCell.rightLabel.text = self.area!
+                pickerCell.rightImage.image = UIImage()
+            }
             return pickerCell
         case 5:
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[5]
             textCell.leftLabel.text = leftText
+            if (self.selfinfoText != "") {
+                textCell.underLabel.text = self.selfinfoText!
+            }
             return textCell
         case 6:
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[6]
             textCell.leftLabel.text = leftText
+            if (self.hobby != nil) {
+                textCell.underLabel.text = self.hobby!
+            }
             return textCell
         case 7:
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[7]
             textCell.leftLabel.text = leftText
+            if (self.medicalhistoryText != nil) {
+                textCell.underLabel.text = self.medicalhistoryText!
+            }
             return textCell
         default:
-            print("error1")
+            print("error")
             return UITableViewCell()
         }
     }
@@ -270,7 +390,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         case 1, 2, 3, 4:
             return 50
         default:
-            print("error3")
+            print("error")
             return 0
         }
     }
@@ -309,6 +429,24 @@ extension MyPageViewController: UIPickerViewDelegate, UIPickerViewDataSource {
                 return ""
             }
     }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let cell = tableView.cellForRow(at: tableViewSelecteIndexpath) as! CustomTableViewCell
+        // ここでPickerの選択された値を変数へ格納
+        switch (tableViewSelecteIndexpath.row) {
+        case 2:
+            cell.rightLabel.text = genderArray[row]
+            self.gender = genderArray[row]
+            cell.rightImage.image = UIImage()
+        case 3:
+            cell.rightLabel.text = jobsArray[row]
+            self.jobs = jobsArray[row]
+            cell.rightImage.image = UIImage()
+        default:
+            cell.rightLabel.text = ""
+            print("error")
+        }
+    }
 }
 
 extension MyPageViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -316,7 +454,16 @@ extension MyPageViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         photoImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         self.avaterImageView.image = photoImage
+        // 画像のRealmへの書き込み
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                user.avaterimage = photoImage!
+            }
+        }catch {
+            print("error")
+        }
         self.dismiss(animated: true, completion: nil)
 }
 }
-

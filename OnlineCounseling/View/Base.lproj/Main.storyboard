@@ -26,7 +26,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="gn2-T6-N1k" kind="show" id="DSL-JZ-fKU"/>
+                                    <segue destination="gn2-T6-N1k" kind="show" identifier="toAccountVC" id="DSL-JZ-fKU"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2M-7X-Jzn">
@@ -138,17 +138,12 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture-973460_640-e1542530002984" translatesAutoresizingMaskIntoConstraints="NO" id="58h-Wf-TQs" userLabel="avaterImage">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="58h-Wf-TQs" userLabel="avaterImage">
                                                 <rect key="frame" x="107" y="80" width="200" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="nFp-bB-jS5"/>
                                                     <constraint firstAttribute="width" constant="200" id="rC9-IF-FNi"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="100"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1Y-vx-nDV">
                                                 <rect key="frame" x="57" y="290" width="300" height="90"/>
@@ -242,6 +237,7 @@ gb7jgZvjgpPjgII
                     <connections>
                         <outlet property="avaterImageView" destination="58h-Wf-TQs" id="rGk-Nd-8dz"/>
                         <outlet property="contentView" destination="sOR-pr-x5Z" id="6Oe-wY-cwc"/>
+                        <outlet property="imageOnLabel" destination="E3g-Rv-pZQ" id="ONb-eN-TKG"/>
                         <outlet property="noteLabel" destination="QUz-EG-P7r" id="KM7-9t-3uE"/>
                         <outlet property="singleWordLabel" destination="Z1Y-vx-nDV" id="t4A-42-ZvG"/>
                         <outlet property="tableView" destination="P0H-sj-ddb" id="DzS-ks-UUU"/>
@@ -963,17 +959,12 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Qa-RQ-egw" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="917.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture-973460_640-e1542530002984" translatesAutoresizingMaskIntoConstraints="NO" id="z9h-Lh-Vbd">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z9h-Lh-Vbd">
                                                 <rect key="frame" x="107" y="70" width="200" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="GAW-0B-f9f"/>
                                                     <constraint firstAttribute="width" constant="200" id="Y2M-p2-H15"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="100"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" ここではプロフィールを変更できます" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdt-4k-g7h">
                                                 <rect key="frame" x="10" y="10" width="394" height="50"/>
@@ -1068,8 +1059,10 @@ gb7jgZvjgpPjgII
                     <size key="freeformSize" width="414" height="980"/>
                     <connections>
                         <outlet property="avaterImageView" destination="z9h-Lh-Vbd" id="xAC-Fc-1V6"/>
+                        <outlet property="imageOnLabel" destination="Xhj-wN-SyF" id="hut-I0-H9b"/>
                         <outlet property="singleWordLabel" destination="R06-MI-vMJ" id="QNq-5r-1ol"/>
                         <outlet property="tableView" destination="GIC-9R-9Rf" id="bvG-1A-crY"/>
+                        <outlet property="testLabel" destination="fct-ub-0yT" id="vVy-bI-uJ5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJc-fK-awv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

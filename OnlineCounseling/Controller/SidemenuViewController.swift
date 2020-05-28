@@ -8,11 +8,13 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class SidemenuViewController: UIViewController {
     
     lazy var storyBoard = UIStoryboard(name: "Main", bundle: nil)
     weak var delegate: SidemenuViewControllerDelegate?
+    weak var updataDelegate: sidemenuUpdataDelegate?
     private let contentView = UIView(frame: .zero)
        private var contentMaxWidth: CGFloat {
            return view.bounds.width * 0.8
@@ -38,10 +40,13 @@ class SidemenuViewController: UIViewController {
     private var beganState: Bool = false
     private var beganLocation: CGPoint = .zero
     private var screenEdgePanGestureRecognizer: UIScreenEdgePanGestureRecognizer!
+    
+    private var realm: Realm!
+    private var photoImage: UIImage?
+    private var name: String?
 
     lazy var avaterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
         imageView.layer.cornerRadius = 30
         imageView.clipsToBounds = true
         imageView.frame = CGRect(x: 30, y: 50, width: 60, height: 60)
@@ -52,7 +57,6 @@ class SidemenuViewController: UIViewController {
     
     private var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Name"
         label.sizeToFit()
         label.font = UIFont.systemFont(ofSize: 21, weight: .medium)
         return label
@@ -127,13 +131,38 @@ class SidemenuViewController: UIViewController {
             make.width.equalTo(contentView.frame.width * 0.8)
         }
         
-        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backViewTapped(_:)))
         tapGestureRecognizer.delegate = self
         view.addGestureRecognizer(tapGestureRecognizer)
-
+        
+        self.dataDisplay()
         
         // Do any additional setup after loading the view.
+    }
+    
+    func dataDisplay() {
+        print("displayData")
+        // データの取り出し
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            print(user, "user")
+            try realm.write {
+                self.photoImage = user.avaterimage
+                self.name = user.name
+            }
+        }catch {
+            print("error")
+        }
+        // データを表示
+        if (self.name != "") {
+            nameLabel.text = self.name!
+        }
+        if (self.photoImage != nil) {
+            DispatchQueue.main.async {
+                self.avaterImageView.image = self.photoImage
+            }
+        }
     }
     
     @objc func backViewTapped(_ sender: UITapGestureRecognizer) {
@@ -291,4 +320,8 @@ extension SidemenuViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+}
+
+protocol sidemenuUpdataDelegate: class {
+    func updata()
 }
