@@ -131,6 +131,7 @@ class SidemenuViewController: UIViewController {
             make.width.equalTo(contentView.frame.width * 0.8)
         }
         
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backViewTapped(_:)))
         tapGestureRecognizer.delegate = self
         view.addGestureRecognizer(tapGestureRecognizer)
@@ -157,10 +158,16 @@ class SidemenuViewController: UIViewController {
         // データを表示
         if (self.name != "") {
             nameLabel.text = self.name!
+        }else {
+            nameLabel.text = "名称未設定"
         }
         if (self.photoImage != nil) {
             DispatchQueue.main.async {
                 self.avaterImageView.image = self.photoImage
+            }
+        }else {
+            DispatchQueue.main.async {
+                self.avaterImageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
             }
         }
     }

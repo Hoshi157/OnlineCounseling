@@ -13,7 +13,6 @@ class TextInputProfileViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
     var titleText: String?
-    
     private var realm: Realm!
 
     override func viewDidLoad() {
@@ -26,7 +25,7 @@ class TextInputProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        // 推移してきたtitleを追加
         if (titleText != nil) {
             self.title = titleText
         }
@@ -35,7 +34,6 @@ class TextInputProfileViewController: UIViewController {
         do {
         self.realm = try Realm()
         let user = self.realm.objects(User.self).last!
-        print(user, "inputVC")
             switch (self.titleText) {
             case "名前":
                 textView.text = user.name
@@ -60,7 +58,6 @@ class TextInputProfileViewController: UIViewController {
         do {
             self.realm = try Realm()
             let user = realm.objects(User.self).last!
-            print(user, "inputVC")
         try realm.write {
             switch (self.titleText) {
             case "名前":

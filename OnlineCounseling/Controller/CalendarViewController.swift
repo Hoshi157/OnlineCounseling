@@ -99,11 +99,15 @@ class CalendarViewController: UIViewController {
     }
     
     @objc func ReservationButtonAction() {
+        if (isPlayingCalendar == true && isPlayinfTimeTable == true) {
         guard let reservationDateText = selectedDateLabel.text else { return }
         self.alert.okAlert(title: "予約しました", message: "\(reservationDateText)にて\n予約致しました。", currentController: self, completionHandler: { (_) in
             print("completinHandler")
             self.dismiss(animated: true, completion: nil)
         })
+        }else {
+            self.alert.okAlert(title: "予約できません", message: "予約日時を正しく設定してください", currentController: self)
+        }
     }
     
 

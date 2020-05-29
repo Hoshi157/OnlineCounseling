@@ -62,5 +62,5 @@ class User: Object {
 }
 
 class Reservation: Object {
-    @objc dynamic var reservation = Data()
+    @objc dynamic var reservation = ""
 }
