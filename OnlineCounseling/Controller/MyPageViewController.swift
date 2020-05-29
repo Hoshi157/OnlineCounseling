@@ -21,6 +21,8 @@ class MyPageViewController: UIViewController {
     
     private var tableViewSelecteIndexpath: IndexPath!
     
+    let sideVC = SidemenuViewController()
+    
     // Realmのデータ
     private var name: String?
     private var birthdayDate: Date?
@@ -39,8 +41,6 @@ class MyPageViewController: UIViewController {
         format.dateFormat = "yyyy年MM月dd日"
         return format
     }()
-    
-    let sidemenuVC = SidemenuViewController()
     
     lazy var datePickerView: UIDatePicker = {
        let picker = UIDatePicker()

@@ -60,11 +60,10 @@ class TabbarController: UITabBarController {
     func showSidemenu(contentAvailabilty: Bool = true, animated: Bool, currentViewController: UIViewController) {
         
         if isShowSidemenu {return}
-        
-        addChild(sidemenuVC)
         sidemenuVC.view.autoresizingMask = .flexibleHeight
         sidemenuVC.view.frame = self.view.bounds
         view.insertSubview(sidemenuVC.view, aboveSubview: currentViewController.view)
+        addChild(sidemenuVC)
         sidemenuVC.didMove(toParent: self)
         
         if contentAvailabilty {
@@ -74,11 +73,11 @@ class TabbarController: UITabBarController {
     
     func hideSideMenu(animated: Bool) {
         if !isShowSidemenu {return}
-        
         sidemenuVC.hideContentView(animated: animated, completion: { (_) in
             self.sidemenuVC.willMove(toParent: nil)
             self.sidemenuVC.removeFromParent()
             self.sidemenuVC.view.removeFromSuperview()
+            print(self.children)
         })
     }
     

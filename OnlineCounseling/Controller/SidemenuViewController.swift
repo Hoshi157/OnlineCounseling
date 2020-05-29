@@ -14,7 +14,6 @@ class SidemenuViewController: UIViewController {
     
     lazy var storyBoard = UIStoryboard(name: "Main", bundle: nil)
     weak var delegate: SidemenuViewControllerDelegate?
-    weak var updataDelegate: sidemenuUpdataDelegate?
     private let contentView = UIView(frame: .zero)
        private var contentMaxWidth: CGFloat {
            return view.bounds.width * 0.8
@@ -95,6 +94,8 @@ class SidemenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("viewDid sidemenu")
+        
         var contentRect = view.bounds
         contentRect.size.width = contentMaxWidth
         contentView.frame = contentRect
@@ -139,6 +140,11 @@ class SidemenuViewController: UIViewController {
         self.dataDisplay()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewwill simemunu")
     }
     
     func dataDisplay() {
@@ -226,11 +232,14 @@ class SidemenuViewController: UIViewController {
     }
     
     @objc private func panGestureRecognizerHandled(panGestureRecognizer: UIPanGestureRecognizer) {
+        print("pangestrueHandled")
         guard  let shouldPresent = self.delegate?.shouldPresentSidemenuViewController(self), shouldPresent else {
+            print("return1")
             return
         }
         let translation = panGestureRecognizer.translation(in: view)
         if translation.x > 0 && contentRatio == 1.0 {
+            print("return2")
             return
         }
         let location = panGestureRecognizer.location(in: view)
@@ -240,6 +249,7 @@ class SidemenuViewController: UIViewController {
             beganLocation = location
             if translation.x >= 0 {
                 if let parent = self.parent {
+                    // ここのparentにて下になっているVCを取らないといけない。現在はtabbarVCになっている。
                     self.delegate?.sidemenuViewControllerDidRequestShowing(self, contentAvailability: false, animeted: false, currentViewController: parent)
                 }
             }
@@ -327,8 +337,4 @@ extension SidemenuViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-}
-
-protocol sidemenuUpdataDelegate: class {
-    func updata()
 }
