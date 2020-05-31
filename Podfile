@@ -19,4 +19,5 @@ pod 'FirebaseUI/Phone'
 pod 'XLPagerTabStrip'
 pod 'SnapKit'
 pod 'RealmSwift'
+pod 'MessageKit'
 end

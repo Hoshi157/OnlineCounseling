@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import RealmSwift
+import Firebase
 
 class ProfileRegisterViewController: UIViewController {
 
@@ -31,8 +32,13 @@ class ProfileRegisterViewController: UIViewController {
     private var singlewordText: String?
     private var medicalhistoryText: String?
     private var photoImage: UIImage?
+    private var uid: String?
+    private var type: String?
     
     private var realm: Realm!
+    private let alert = AlertController()
+    // Firebaseのインスタンス
+    private let usersDB = Firestore.firestore().collection("users")
     
     lazy var datePickerView: UIDatePicker = {
        let picker = UIDatePicker()
@@ -136,6 +142,9 @@ class ProfileRegisterViewController: UIViewController {
         self.medicalhistoryText = user.medicalhistoryText
         self.gender = user.gender
         self.photoImage = user.avaterimage
+        self.uid = user.uid
+        self.type = user.type
+        print(user, "user")
         }catch {
             print("error")
         }
@@ -157,6 +166,27 @@ class ProfileRegisterViewController: UIViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    // セグエする時にFirebaseにデータを保存する
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        // firebaseにPostするデータ(imageは後から追加)
+        let post: [String: Any] = [
+            "name": self.name, "birthday": self.birthdayDate, "gender": self.gender, "jobs":self.jobs, "area": self.area,
+            "hobby": self.hobby, "selfinfoText": self.selfinfoText, "singlewordText": self.singlewordText, "medicalhistoryText": self.medicalhistoryText, "type": self.type
+        ]
+        // 匿名ログインしているuidと変数に保存されているuidが同じか確認
+        let anonymousUser = Auth.auth().currentUser
+        if let uid = self.uid {
+            if (uid == anonymousUser?.uid) {
+                self.usersDB.document(uid).setData(post)
+                print("Dataをfirebaseに保存")
+                return true
+            }
+        }
+        print(anonymousUser?.uid, self.uid, "一致しない")
+        alert.okAlert(title: "エラーが発生しました", message: "通信状態を確認して最初からやり直してください", currentController: self)
+        return false
     }
     
     @objc func backViewAction(){

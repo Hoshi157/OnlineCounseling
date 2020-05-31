@@ -16,7 +16,5 @@ class RootViewController: UIViewController {
         
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
     }
-
-
 }
 

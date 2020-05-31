@@ -36,6 +36,12 @@ class HomeViewController: UIViewController {
         collectionView.collectionViewLayout = layout
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("wellApper")
+    }
+    
     @objc func sidemenuButtonAction() {
         self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
     }

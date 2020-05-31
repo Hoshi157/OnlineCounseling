@@ -280,6 +280,9 @@ PODS:
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.21.0)
   - GTMSessionFetcher/Core (1.3.1)
+  - InputBarAccessoryView (4.3.2):
+    - InputBarAccessoryView/Core (= 4.3.2)
+  - InputBarAccessoryView/Core (4.3.2)
   - leveldb-library (1.22)
   - MaterialComponents (108.1.0):
     - MaterialComponents/ActionSheet (= 108.1.0)
@@ -885,6 +888,8 @@ PODS:
     - MaterialComponents/private/Math
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.0)
+  - MessageKit (3.1.0):
+    - InputBarAccessoryView (~> 4.3.0)
   - MotionAnimator (2.8.1):
     - MotionInterchange (~> 1.6)
   - MotionInterchange (1.6.0)
@@ -913,6 +918,7 @@ DEPENDENCIES:
   - FirebaseUI/Phone
   - FSCalendar
   - MaterialComponents
+  - MessageKit
   - PKHUD
   - RealmSwift
   - SkyWay
@@ -942,10 +948,12 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - InputBarAccessoryView
     - leveldb-library
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
+    - MessageKit
     - MotionAnimator
     - MotionInterchange
     - nanopb
@@ -979,10 +987,12 @@ SPEC CHECKSUMS:
   "gRPC-C++": 9dfe7b44821e7b3e44aacad2af29d2c21f7cde83
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  InputBarAccessoryView: 7985d418040a05fe894bd4b8328dd43ab35517c3
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MaterialComponents: d1c85bdf01caed6b6e11e78731e71e2d55d331da
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
+  MessageKit: 3beb578737a5aa2bba25cc27c7b6d6faa09af5a7
   MotionAnimator: ee16aa30567c5bae0fb2750c132915829cfaaf8a
   MotionInterchange: ead0e3ae1f3a5fb539e289debbc7ae036160a10d
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
@@ -994,6 +1004,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: b45854972d4298c5397c3163c556390f1af36537
+PODFILE CHECKSUM: 8a3b7ad2c14409bf2bd1d0946bb0693f2ff2304f
 
 COCOAPODS: 1.8.4

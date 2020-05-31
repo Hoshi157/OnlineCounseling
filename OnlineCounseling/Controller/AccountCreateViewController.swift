@@ -10,9 +10,9 @@ import UIKit
 import MaterialComponents
 import SnapKit
 import RealmSwift
+import Firebase
 
 class AccountCreateViewController: UIViewController {
-    
     @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var consentButton: MDCRaisedButton!
     
@@ -21,9 +21,13 @@ class AccountCreateViewController: UIViewController {
     
     private var realm: Realm!
     private var name: String?
-    private var date: Date?
+    private var birthdayDate: Date?
+    // firebaeからuidは取得
+    private var uid: String?
+    private let type = "user"
     // もとから書いてあるテキスト(underLabelに)
     private let originalText = "自由に記入してください"
+    private let alert = AlertController()
     
     lazy var myTableView: UITableView = {
         let tableView = UITableView()
@@ -88,11 +92,30 @@ class AccountCreateViewController: UIViewController {
             make.right.equalTo(self.view)
             make.height.equalTo(120)
         }
+        
+        // 匿名認証
+        Auth.auth().signInAnonymously() { (authResult, error) in
+            if (error != nil) {
+                print(error!.localizedDescription, "error")
+                self.alert.okAlert(title: "エラーが発生しました", message: "ネットワークに繋ぎ,最初からやり直してください", currentController: self)
+            }
+            guard let user = authResult?.user else {
+                return
+            }
+            // uidを取得
+            self.uid = user.uid
+            print(user.uid, "user.uid")
+        }
+        
         // まずはUser情報をrealmへ保存(開始時一度のみ)
         do {
             realm = try Realm()
             if (realm.objects(User.self).last == nil) {
                 let myUser = User()
+                // ユーザー固有のIDを生成しRealmへ保存、後ユーザータイプも保存
+                myUser.type = self.type
+                // firebaseの認証が遅ければ空
+                myUser.uid = self.uid ?? ""
                 try realm.write {
                     realm.add(myUser)
                     print(realm.objects(User.self))
@@ -115,7 +138,14 @@ class AccountCreateViewController: UIViewController {
             let user = realm.objects(User.self).last!
             print(realm.objects(User.self)) //複数入ってないか確認
             self.name = user.name
-            self.date = user.birthdayDate
+            self.birthdayDate = user.birthdayDate
+            // uidが入っているか確認
+            if (user.uid == "") {
+                try realm.write {
+                    user.uid = self.uid ?? ""
+                    print(user, "user.uidが入っているか？")
+                }
+            }
         }catch {
             print("error")
         }
@@ -123,6 +153,22 @@ class AccountCreateViewController: UIViewController {
         DispatchQueue.main.async {
             self.myTableView.reloadData()
         }
+    }
+    
+    // 名前、生年月日を入力しなければセグエキャンセル
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
+        if (self.name == "" || self.birthdayDate == Date()) {
+            alert.okAlert(title: "必要項目を入力してください", message: "名前、生年月日を入力してください", currentController: self)
+            return false
+        }
+        // uidがあるか確認
+        if (self.uid == nil) {
+            alert.okAlert(title: "エラーが発生しました", message: "通信状態を確認してやり直してください", currentController: self)
+            return false
+        }
+        
+        return true
     }
     
     @objc func backViewAction() {
@@ -135,7 +181,7 @@ class AccountCreateViewController: UIViewController {
             self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
             self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
         }, completion:{ (_) in
-            self.date = self.datePickerView.date
+            self.birthdayDate = self.datePickerView.date
             DispatchQueue.main.async {
                 self.myTableView.reloadData()
             }
@@ -144,7 +190,7 @@ class AccountCreateViewController: UIViewController {
                 self.realm = try Realm()
                 let user = self.realm.objects(User.self).last!
                 try self.realm.write {
-                    user.birthdayDate = self.date!
+                    user.birthdayDate = self.birthdayDate!
                 }
                 }catch {
                     print("error")
@@ -191,8 +237,8 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             pickerCell.textLabel?.text = tableArray[indexPath.row]
             //　上記Nameと同じ(が入力されてしまう)
-            if (self.date != Date()) {
-                pickerCell.rightLabel.text = "\(self.formatter.string(from: date!))"
+            if (self.birthdayDate != Date()) {
+                pickerCell.rightLabel.text = "\(self.formatter.string(from: self.birthdayDate!))"
                 pickerCell.rightImage.image = UIImage()
             }
             return pickerCell

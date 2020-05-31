@@ -10,6 +10,7 @@ import RealmSwift
 import UIKit
 
 class User: Object {
+    @objc dynamic var uid = ""
     @objc dynamic var name = ""
     @objc dynamic var birthdayDate = Date()
     @objc dynamic var gender = ""
@@ -19,6 +20,7 @@ class User: Object {
     @objc dynamic var selfinfoText = ""
     @objc dynamic var singlewordText = ""
     @objc dynamic var medicalhistoryText = ""
+    @objc dynamic var type = ""
     @objc dynamic var avaterimage: UIImage? {
         set{
            let maxImageSize = 15*1024*1024

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PEd-Ip-7Mq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vqv-IV-bkL">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -89,7 +89,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ebq-nS-PUK" kind="show" id="GHG-Fw-AzN"/>
+                                    <segue destination="ebq-nS-PUK" kind="show" identifier="toProfile" id="GHG-Fw-AzN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -229,7 +229,7 @@ gb7jgZvjgpPjgII
                     <navigationItem key="navigationItem" id="9l9-qo-xEd">
                         <barButtonItem key="rightBarButtonItem" title="完了" id="X0R-AC-ij6">
                             <connections>
-                                <segue destination="Fgz-yb-e8V" kind="show" id="de1-dd-C4M"/>
+                                <segue destination="Fgz-yb-e8V" kind="show" identifier="toTakeover" id="de1-dd-C4M"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1062,7 +1062,6 @@ gb7jgZvjgpPjgII
                         <outlet property="imageOnLabel" destination="Xhj-wN-SyF" id="hut-I0-H9b"/>
                         <outlet property="singleWordLabel" destination="R06-MI-vMJ" id="QNq-5r-1ol"/>
                         <outlet property="tableView" destination="GIC-9R-9Rf" id="bvG-1A-crY"/>
-                        <outlet property="testLabel" destination="fct-ub-0yT" id="vVy-bI-uJ5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJc-fK-awv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

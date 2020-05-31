@@ -16,9 +16,6 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var imageOnLabel: UILabel!
     @IBOutlet weak var singleWordLabel: UILabel!
     
-    
-    @IBOutlet weak var testLabel: UILabel!
-    
     private var tableViewSelecteIndexpath: IndexPath!
     
     let sideVC = SidemenuViewController()
