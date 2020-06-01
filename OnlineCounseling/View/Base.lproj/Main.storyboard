@@ -427,21 +427,6 @@ gb7jgZvjgpPjgII
             </objects>
             <point key="canvasLocation" x="3140.579710144928" y="880.58035714285711"/>
         </scene>
-        <!--チュートリアルスライド-->
-        <scene sceneID="7KY-oe-oZ0">
-            <objects>
-                <viewController storyboardIdentifier="tutorilaVC" id="z4h-jQ-LtP" userLabel="チュートリアルスライド" customClass="TutorialViewController" customModule="OnlineCounseling" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cb9-OM-Cyx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="uN2-f7-Omc"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kkb-hE-Qa5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4182.608695652174" y="888.61607142857144"/>
-        </scene>
         <!--アカウントデータ引き継ぎ-->
         <scene sceneID="LpK-4d-pXU">
             <objects>

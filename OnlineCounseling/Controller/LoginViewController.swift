@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
         
         if let adress = mailCell.textField.text, let password = passwordCell.textField.text, let confimationPass = confirmationPassCell.textField.text {
         // パスワード欄と確認用パスワードの一致確認
-        if (password == confimationPass) {
+        if (password != confimationPass) {
             alert.okAlert(title: "パスワードが正しくありません", message: "パスワードと確認用パスワードが一致しませんでした", currentController: self)
             return
         }

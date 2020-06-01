@@ -118,7 +118,7 @@ class AccountCreateViewController: UIViewController {
                 myUser.uid = self.uid ?? ""
                 try realm.write {
                     realm.add(myUser)
-                    print(realm.objects(User.self))
+                    print(realm.objects(User.self), "realmの個数確認")
                 }
             }
         }catch {
@@ -136,7 +136,7 @@ class AccountCreateViewController: UIViewController {
             realm = try Realm()
             // lastを忘れない!!
             let user = realm.objects(User.self).last!
-            print(realm.objects(User.self)) //複数入ってないか確認
+            print(realm.objects(User.self).count, "realmData,個数") //複数入ってないか確認
             self.name = user.name
             self.birthdayDate = user.birthdayDate
             // uidが入っているか確認
