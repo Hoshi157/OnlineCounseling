@@ -1,5 +1,5 @@
 //
-//  SortCollections.swift
+//  GetCollections.swift
 //  OnlineCounseling
 //
 //  Created by 福山帆士 on 2020/06/01.
@@ -8,7 +8,7 @@
 
 import Foundation
 // コレクションに表示するデータ
-class SortCollections {
+class GetCollections {
     var name: String?
     var jobs: String?
     

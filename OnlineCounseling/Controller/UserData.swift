@@ -8,7 +8,7 @@
 
 import RealmSwift
 import UIKit
-
+// Realmに保存するデータ
 class User: Object {
     @objc dynamic var uid = ""
     @objc dynamic var name = ""

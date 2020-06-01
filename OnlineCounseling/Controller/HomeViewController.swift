@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     let sidemenuVC = SidemenuViewController()
     weak var sidemenuDelegate: SidemenuViewControllerDelegate?
     // コレクションセルに表示するデータ配列
-    private var collectionArray = [SortCollections]()
+    private var collectionArray = [GetCollections]()
     private let userDB = Firestore.firestore().collection("users")
     
     override func viewDidLoad() {
@@ -38,7 +38,16 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 8
         collectionView.collectionViewLayout = layout
-        // Cellのデータを取得、リスナーにする事で変化に対応(現在はカウンセラーがいないためUser情報)
+       
+        self.getData()
+    }
+    // 左上部のボタンが押されたらスライドメニューが開く
+    @objc func sidemenuButtonAction() {
+        self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
+    }
+    // Cellのデータを取得
+    func getData() {
+        // リスナーにする事で変化に対応(現在はカウンセラーがいないためUser情報)
         userDB.addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 print(error, "HomeVC error")
@@ -47,19 +56,14 @@ class HomeViewController: UIViewController {
                 for document in querySnapshot!.documents {
                     let name = document.data()["name"] as! String
                     let jobs = document.data()["jobs"] as! String
-                    let sortCollection = SortCollections(name: name, jobs: jobs)
-                    self.collectionArray.append(sortCollection)
+                    let getCollection = GetCollections(name: name, jobs: jobs)
+                    self.collectionArray.append(getCollection)
                 }
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
             }
         }
-        
-    }
-    // 左上部のボタンが押されたらスライドメニューが開く
-    @objc func sidemenuButtonAction() {
-        self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
     }
     
     /*

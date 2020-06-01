@@ -9,10 +9,13 @@
 import UIKit
 import MaterialComponents
 import SnapKit
+import Firebase
 
 class UserByTappedContenerViewController: UIViewController {
     
     lazy var storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    let collectionByTappedVC = CollectionCellTappedViewController()
+    private let userDB = Firestore.firestore().collection("users")
     
     lazy var messageButton: MDCFloatingButton = {
        let button = MDCFloatingButton()
@@ -51,12 +54,12 @@ class UserByTappedContenerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let collectionByTappedVC = CollectionCellTappedViewController()
+        print("did")
+        // 子Viewにした後でウィジット類をaddSubviewにているためボタンの方が上にくる
         addChild(collectionByTappedVC)
         view.addSubview(collectionByTappedVC.view)
         didMove(toParent: self)
-        
+        // ウィジット類
         view.addSubview(messageButton)
         view.addSubview(calendarButton)
         view.addSubview(dismissButton)
@@ -91,6 +94,10 @@ class UserByTappedContenerViewController: UIViewController {
         let naviController = UINavigationController(rootViewController: calendarVC)
         naviController.modalPresentationStyle = .fullScreen
         present(naviController, animated: true)
+    }
+    // user情報を取得
+    func getData() {
+        
     }
     
 
