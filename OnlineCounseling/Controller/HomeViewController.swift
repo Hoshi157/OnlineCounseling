@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController {
     
@@ -14,6 +15,9 @@ class HomeViewController: UIViewController {
     // インスタンスを持つ
     let sidemenuVC = SidemenuViewController()
     weak var sidemenuDelegate: SidemenuViewControllerDelegate?
+    // コレクションセルに表示するデータ配列
+    private var collectionArray = [SortCollections]()
+    private let userDB = Firestore.firestore().collection("users")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,19 +38,30 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 8
         collectionView.collectionViewLayout = layout
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        // Cellのデータを取得、リスナーにする事で変化に対応(現在はカウンセラーがいないためUser情報)
+        userDB.addSnapshotListener { (querySnapshot, error) in
+            if let error = error {
+                print(error, "HomeVC error")
+            }else {
+                self.collectionArray = []
+                for document in querySnapshot!.documents {
+                    let name = document.data()["name"] as! String
+                    let jobs = document.data()["jobs"] as! String
+                    let sortCollection = SortCollections(name: name, jobs: jobs)
+                    self.collectionArray.append(sortCollection)
+                }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
         
-        print("wellApper")
     }
-    
+    // 左上部のボタンが押されたらスライドメニューが開く
     @objc func sidemenuButtonAction() {
         self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -61,13 +76,15 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 16
+        return collectionArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCell", for: indexPath) as! CustomCollectionViewCell
         cell.layer.cornerRadius = 10
         cell.clipsToBounds = true
+        cell.nameLabel.text = collectionArray[indexPath.row].name
+        cell.jobsLabel.text = collectionArray[indexPath.row].jobs
         return cell
     }
     

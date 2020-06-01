@@ -32,6 +32,7 @@
 		8D421AB2246F150700758F4B /* TextInputProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D421AB1246F150700758F4B /* TextInputProfileViewController.swift */; };
 		8D421AB5246F1BAF00758F4B /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D421AB3246F1BAF00758F4B /* CustomCollectionViewCell.swift */; };
 		8D421AB6246F1BAF00758F4B /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D421AB4246F1BAF00758F4B /* CustomCollectionViewCell.xib */; };
+		8D4AD12924850CBD00687447 /* SortCollections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4AD12824850CBD00687447 /* SortCollections.swift */; };
 		8D73A14D247BB6E500F27238 /* ImageNameOnlyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73A14B247BB6E500F27238 /* ImageNameOnlyTableViewCell.swift */; };
 		8D73A14E247BB6E500F27238 /* ImageNameOnlyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D73A14C247BB6E500F27238 /* ImageNameOnlyTableViewCell.xib */; };
 		8D750680246D9EA00054497A /* AreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75067F246D9EA00054497A /* AreaViewController.swift */; };
@@ -94,6 +95,7 @@
 		8D421AB1246F150700758F4B /* TextInputProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputProfileViewController.swift; sourceTree = "<group>"; };
 		8D421AB3246F1BAF00758F4B /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D421AB4246F1BAF00758F4B /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
+		8D4AD12824850CBD00687447 /* SortCollections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCollections.swift; sourceTree = "<group>"; };
 		8D73A14B247BB6E500F27238 /* ImageNameOnlyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNameOnlyTableViewCell.swift; sourceTree = "<group>"; };
 		8D73A14C247BB6E500F27238 /* ImageNameOnlyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageNameOnlyTableViewCell.xib; sourceTree = "<group>"; };
 		8D75067F246D9EA00054497A /* AreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				8D997F1324713BCA008EBA39 /* TutorialViewController.swift */,
 				8D750685246DA4CD0054497A /* TabbarController.swift */,
 				8D88C754246D7A0A00145BD2 /* HomeViewController.swift */,
+				8D4AD12824850CBD00687447 /* SortCollections.swift */,
 				8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */,
 				8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */,
 				8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */,
@@ -435,6 +438,7 @@
 				8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */,
 				8D88C74B246D74F600145BD2 /* Model.swift in Sources */,
 				8DB5CEAB24727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift in Sources */,
+				8D4AD12924850CBD00687447 /* SortCollections.swift in Sources */,
 				8D73A14D247BB6E500F27238 /* ImageNameOnlyTableViewCell.swift in Sources */,
 				8D997F16247163AE008EBA39 /* MessageViewController.swift in Sources */,
 				8D13206C24795C3100EB4BEC /* AlertController.swift in Sources */,
