@@ -16,6 +16,8 @@ class UserByTappedContenerViewController: UIViewController {
     lazy var storyBoard = UIStoryboard(name: "Main", bundle: nil)
     let collectionByTappedVC = CollectionCellTappedViewController()
     private let userDB = Firestore.firestore().collection("users")
+    // タップしたUserデータのUid(presentした時に格納される)
+    var userTapUid: String?
     
     lazy var messageButton: MDCFloatingButton = {
        let button = MDCFloatingButton()
@@ -54,7 +56,6 @@ class UserByTappedContenerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("did")
         // 子Viewにした後でウィジット類をaddSubviewにているためボタンの方が上にくる
         addChild(collectionByTappedVC)
         view.addSubview(collectionByTappedVC.view)
@@ -97,7 +98,25 @@ class UserByTappedContenerViewController: UIViewController {
     }
     // user情報を取得
     func getData() {
-        
+        // childViewcontrollerを取得
+        let childVC = self.children[0] as! CollectionCellTappedViewController
+        if let cellUid = self.userTapUid {
+            userDB.document(cellUid).getDocument { document, error in
+                guard let data = document?.data() else {
+                    return
+                }
+                let name = data["name"] as! String
+                let jobs = data["jobs"] as! String
+                let gender = data["gender"] as! String
+                let singleword = data["singlewordText"] as! String
+                let selfintro = data["selfintroText"] as! String
+                // ここからはtableviewのデータ
+                let birthday = data["birthdayDate"] as! Date
+                let area = data["area"] as! String
+                let hobby = data["hobby"] as! String
+                let medecalhistory = data["medecalhistoryText"] as! String
+            }
+        }
     }
     
 

@@ -29,13 +29,13 @@ class CollectionCellTappedViewController: UIViewController {
         myView.frame = CGRect(x: self.screen.origin.x, y: self.screen.origin.y - 45, width: self.view.frame.width, height: self.myScrollView.contentSize.height)
         return myView
     }()
-    private var avaterImageView: UIImageView = {
+    var avaterImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
         return imageView
     }()
     
-    private var nameLabel: UILabel = {
+    var nameLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         label.sizeToFit()
@@ -43,7 +43,7 @@ class CollectionCellTappedViewController: UIViewController {
         return label
     }()
     
-    private var jobsLabel: UILabel = {
+    var jobsLabel: UILabel = {
        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         label.sizeToFit()
@@ -51,7 +51,7 @@ class CollectionCellTappedViewController: UIViewController {
         return label
     }()
     
-    private var genderImageView: UIImageView = {
+    var genderImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "icons8-性中立ユーザー-25").withRenderingMode(.alwaysTemplate)
         imageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
@@ -67,7 +67,7 @@ class CollectionCellTappedViewController: UIViewController {
         return imageView
     }()
     
-    private var singleWordLabel: UILabel = {
+    var singleWordLabel: UILabel = {
        let label = UILabel()
         label.backgroundColor = #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 0.2)
         label.numberOfLines = 0
@@ -83,7 +83,7 @@ class CollectionCellTappedViewController: UIViewController {
         return label
     }()
     
-    private var selfIntroInputLabel: UILabel = {
+    var selfIntroInputLabel: UILabel = {
        let label = UILabel()
         label.numberOfLines = 0
         label.layer.cornerRadius = 10

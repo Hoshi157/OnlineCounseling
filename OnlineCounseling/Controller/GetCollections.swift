@@ -11,9 +11,12 @@ import Foundation
 class GetCollections {
     var name: String?
     var jobs: String?
+    // uidはタップした時の処理に使用
+    var uid: String?
     
-    init(name: String, jobs: String) {
+    init(name: String, jobs: String, uid: String) {
         self.name = name
         self.jobs = jobs
+        self.uid = uid
     }
 }

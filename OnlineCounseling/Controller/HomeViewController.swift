@@ -56,7 +56,8 @@ class HomeViewController: UIViewController {
                 for document in querySnapshot!.documents {
                     let name = document.data()["name"] as! String
                     let jobs = document.data()["jobs"] as! String
-                    let getCollection = GetCollections(name: name, jobs: jobs)
+                    let uid = document.documentID
+                    let getCollection = GetCollections(name: name, jobs: jobs, uid: uid)
                     self.collectionArray.append(getCollection)
                 }
                 DispatchQueue.main.async {
@@ -94,6 +95,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let userByTappedVC = UserByTappedContenerViewController()
+        // uidを渡す
+        userByTappedVC.userTapUid = self.collectionArray[indexPath.row].uid
         userByTappedVC.modalPresentationStyle = .fullScreen
         self.present(userByTappedVC, animated: true)
     }
