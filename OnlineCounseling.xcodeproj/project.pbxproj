@@ -19,7 +19,6 @@
 		8D289401246FBE8900855CCD /* CustomMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2893FF246FBE8900855CCD /* CustomMessageTableViewCell.xib */; };
 		8D289404246FC0CB00855CCD /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D289402246FC0CB00855CCD /* TimelineTableViewCell.swift */; };
 		8D289405246FC0CB00855CCD /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */; };
-		8D2F4D3924851C8C000D1C8E /* getProfileDatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2F4D3824851C8C000D1C8E /* getProfileDatas.swift */; };
 		8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436A246D6ECF0036F42F /* AppDelegate.swift */; };
 		8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436C246D6ECF0036F42F /* SceneDelegate.swift */; };
 		8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436E246D6ECF0036F42F /* RootViewController.swift */; };
@@ -81,7 +80,6 @@
 		8D2893FF246FBE8900855CCD /* CustomMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageTableViewCell.xib; sourceTree = "<group>"; };
 		8D289402246FC0CB00855CCD /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
 		8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
-		8D2F4D3824851C8C000D1C8E /* getProfileDatas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getProfileDatas.swift; sourceTree = "<group>"; };
 		8D384367246D6ECF0036F42F /* OnlineCounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineCounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D38436A246D6ECF0036F42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D38436C246D6ECF0036F42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -208,7 +206,6 @@
 				8D4AD12824850CBD00687447 /* GetCollections.swift */,
 				8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */,
 				8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */,
-				8D2F4D3824851C8C000D1C8E /* getProfileDatas.swift */,
 				8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */,
 				8D3CCCA72477608500590735 /* CalendarViewController.swift */,
 				8D88C75A246D7BAB00145BD2 /* ResevationViewController.swift */,
@@ -427,7 +424,6 @@
 				8DA9DEFC247127D20078524B /* ReservationExplanationView.swift in Sources */,
 				8D88C759246D7B7300145BD2 /* HistoryViewController.swift in Sources */,
 				8D289400246FBE8900855CCD /* CustomMessageTableViewCell.swift in Sources */,
-				8D2F4D3924851C8C000D1C8E /* getProfileDatas.swift in Sources */,
 				8D88C757246D7A8000145BD2 /* MessageHistoryViewController.swift in Sources */,
 				8D88C74D246D760300145BD2 /* AccountCreateViewController.swift in Sources */,
 				8D289404246FC0CB00855CCD /* TimelineTableViewCell.swift in Sources */,

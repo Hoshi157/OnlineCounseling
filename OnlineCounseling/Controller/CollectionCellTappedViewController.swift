@@ -107,7 +107,6 @@ class CollectionCellTappedViewController: UIViewController {
        let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
         tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
         tableView.allowsSelection = false
@@ -189,16 +188,25 @@ class CollectionCellTappedViewController: UIViewController {
             make.top.equalTo(selfIntroInputLabel.snp.bottom).offset(20)
             make.left.equalTo(self.view).offset(10)
             make.right.equalTo(self.view).offset(-10)
-            // ここのtableViewの値は最高値
             make.height.equalTo(240)
         }
         // Do any additional setup after loading the view.
     }
+    // なぜかここの処理がないとオートリサイズできない
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DispatchQueue.main.async {
+            self.myTableView.frame.size.height = self.myTableView.contentSize.height
+            self.myTableView.reloadData()
+        }
+    }
+    
     // セルの高さの合計に合わせてtableviewの高さを決める
     func automaticTableviewHight() {
         self.view.layoutIfNeeded()
         print(myTableView.contentSize.height, "tableviewの高さ")
-        myTableView.frame.size.height = myTableView.contentSize.height
+        self.myTableView.frame.size.height = self.myTableView.contentSize.height
         automaticScrollviewHight()
     }
     // tableviewの可変に合わせてscrollviewを可変にする
@@ -283,10 +291,10 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // heightForRowの後に一度のみ検知する
         let rowAddNum = indexPath.row + 1
+        print(rowAddNum)
         if (self.profileDataDic.count == rowAddNum) {
             print("検知1")
             self.automaticTableviewHight()
         }
     }
-    
 }
