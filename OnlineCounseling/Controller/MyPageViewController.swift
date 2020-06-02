@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Firebase
 
 class MyPageViewController: UIViewController {
     
@@ -15,10 +16,10 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var avaterImageView: UIImageView!
     @IBOutlet weak var imageOnLabel: UILabel!
     @IBOutlet weak var singleWordLabel: UILabel!
-    
+    // tableviewを選択した時のIndexPath
     private var tableViewSelecteIndexpath: IndexPath!
-    
     let sideVC = SidemenuViewController()
+    let usersDB = Firestore.firestore().collection("users")
     
     // Realmのデータ
     private var name: String?
@@ -31,6 +32,7 @@ class MyPageViewController: UIViewController {
     private var singlewordText: String?
     private var medicalhistoryText: String?
     private var photoImage: UIImage?
+    private var uid: String?
     
     private var realm: Realm!
     private var formatter: DateFormatter = {
@@ -106,16 +108,17 @@ class MyPageViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemBlue.withAlphaComponent(0.7)]
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         title = "マイページを編集"
+        // tableviewの設定
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
         tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
-        
+        // avaterImageの設定
         avaterImageView.isUserInteractionEnabled = true
         avaterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avaterImageTapAction(_:))))
         avaterImageView.layer.cornerRadius = 10
         avaterImageView.clipsToBounds = true
-        
+        // ひとことラベルの設定
         singleWordLabel.isUserInteractionEnabled = true
         singleWordLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(singleWordLabelTapAction(_:))))
         
@@ -138,6 +141,7 @@ class MyPageViewController: UIViewController {
         self.medicalhistoryText = user.medicalhistoryText
         self.gender = user.gender
         self.photoImage = user.avaterimage
+        self.uid = user.uid
         }catch {
             print("error")
         }
@@ -160,11 +164,18 @@ class MyPageViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
-    
+    // 戻る際にFirebaseへPostする
     @objc func backViewAction() {
+        let post: [String: Any] = [
+            "name": self.name!, "jobs": self.jobs!, "birthday": Timestamp(date: self.birthdayDate!),
+            "area": self.area!, "hobby": self.hobby!, "gender": self.gender!, "medicalhistoryText": self.medicalhistoryText!,
+            "singlewordText": self.singlewordText!, "selfintroText": self.selfintroText!
+        ]
+        // updataする
+        usersDB.document(self.uid!).updateData(post)
         self.dismiss(animated: true, completion: nil)
     }
-    
+    // pickerのokボタン
     @objc func donePickerAction() {
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
             self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
@@ -198,7 +209,7 @@ class MyPageViewController: UIViewController {
             }
         })
     }
-    
+    // pickerのキャンセルボタン
     @objc func canselPickerAction() {
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
             self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
@@ -206,7 +217,7 @@ class MyPageViewController: UIViewController {
             self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
         }, completion: nil)
     }
-
+    // 画像をタップしたらカメラ、アルバム起動しRealmへ保存する
     @objc func avaterImageTapAction(_ sender: UITapGestureRecognizer) {
         let aleatController = UIAlertController(title: "自分のアバターを設定する", message: "選択してください", preferredStyle: .alert)
             let cameraAction = UIAlertAction(title: "カメラ", style: .default) { (action:UIAlertAction) in
@@ -232,7 +243,7 @@ class MyPageViewController: UIViewController {
             aleatController.addAction(canselAction)
             self.present(aleatController,animated: true)
     }
-    
+    // ひとことラベルタップ処理
     @objc func singleWordLabelTapAction(_ sender: UITapGestureRecognizer) {
         let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
         textInputVC.titleText = "カウンセラーに伝えておきたい事"
