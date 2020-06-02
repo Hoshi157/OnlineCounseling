@@ -48,7 +48,7 @@ class HomeViewController: UIViewController {
     // Cellのデータを取得
     func getData() {
         // リスナーにする事で変化に対応(現在はカウンセラーがいないためUser情報)
-        userDB.addSnapshotListener { (querySnapshot, error) in
+        userDB.whereField("type", isEqualTo: "user").addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 print(error, "HomeVC error")
             }else {

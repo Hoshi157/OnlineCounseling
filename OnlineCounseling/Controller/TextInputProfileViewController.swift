@@ -38,7 +38,7 @@ class TextInputProfileViewController: UIViewController {
             case "名前":
                 textView.text = user.name
             case "自己紹介":
-                textView.text = user.selfinfoText
+                textView.text = user.selfintroText
             case "趣味":
                 textView.text = user.hobby
             case "カウンセラーに伝えておきたい事":
@@ -63,7 +63,7 @@ class TextInputProfileViewController: UIViewController {
             case "名前":
                 user.name = text
             case "自己紹介":
-                user.selfinfoText = text
+                user.selfintroText = text
             case "趣味":
                 user.hobby = text
             case "カウンセラーに伝えておきたい事":

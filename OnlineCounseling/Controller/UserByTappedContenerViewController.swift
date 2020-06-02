@@ -82,6 +82,8 @@ class UserByTappedContenerViewController: UIViewController {
             make.top.equalTo(self.view).offset(50)
             make.left.equalTo(self.view).offset(20)
         }
+        
+        getData()
 
         // Do any additional setup after loading the view.
     }
@@ -105,16 +107,33 @@ class UserByTappedContenerViewController: UIViewController {
                 guard let data = document?.data() else {
                     return
                 }
+                // データの参照
                 let name = data["name"] as! String
                 let jobs = data["jobs"] as! String
                 let gender = data["gender"] as! String
                 let singleword = data["singlewordText"] as! String
-                let selfintro = data["selfintroText"] as! String
+                let selfinfo = data["selfintroText"] as! String
                 // ここからはtableviewのデータ
-                let birthday = data["birthdayDate"] as! Date
+                let birthday = data["birthday"] as! Timestamp
+                let birthdayDate = birthday.dateValue()  // Date型にキャストしてから表示
                 let area = data["area"] as! String
                 let hobby = data["hobby"] as! String
-                let medecalhistory = data["medecalhistoryText"] as! String
+                let medecalhistory = data["medicalhistoryText"] as! String
+                // データをchildVCへ
+                childVC.nameLabel.text = name
+                childVC.jobsLabel.text = jobs
+                if (gender == "男性") {
+                    childVC.genderImageView.image = #imageLiteral(resourceName: "icons8-ユーザ男性-25-2").withRenderingMode(.alwaysTemplate)
+                    childVC.genderImageView.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+                }else if (gender == "女性") {
+                    childVC.genderImageView.image = #imageLiteral(resourceName: "icons8-ユーザー女性-25").withRenderingMode(.alwaysTemplate)
+                    childVC.genderImageView.tintColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+                }
+                childVC.singleWordLabel.text = singleword
+                childVC.selfIntroInputLabel.text = selfinfo
+                // ここからはtableviewのデータ(dictionary型にて渡す)
+                let profileDataDic: [String: Any] = ["生年月日": birthdayDate, "地域": area, "趣味": hobby, "既往歴": medecalhistory]
+                childVC.profileDataDic = profileDataDic
             }
         }
     }

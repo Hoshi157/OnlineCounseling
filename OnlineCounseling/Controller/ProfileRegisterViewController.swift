@@ -28,7 +28,7 @@ class ProfileRegisterViewController: UIViewController {
     private var jobs: String?
     private var area: String?
     private var hobby: String?
-    private var selfinfoText: String?
+    private var selfintroText: String?
     private var singlewordText: String?
     private var medicalhistoryText: String?
     private var photoImage: UIImage?
@@ -137,7 +137,7 @@ class ProfileRegisterViewController: UIViewController {
         self.jobs = user.jobs
         self.area = user.area
         self.hobby = user.hobby
-        self.selfinfoText = user.selfinfoText
+        self.selfintroText = user.selfintroText
         self.singlewordText = user.singlewordText
         self.medicalhistoryText = user.medicalhistoryText
         self.gender = user.gender
@@ -168,12 +168,12 @@ class ProfileRegisterViewController: UIViewController {
         }
     }
     
-    // セグエする時にFirebaseにデータを保存する
+    // セグエする時にFirebaseにデータを保存する(Realmに必ずデータが入っているためアンラップできる)
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         // firebaseにPostするデータ(imageは後から追加)
         let post: [String: Any] = [
-            "name": self.name, "birthday": self.birthdayDate, "gender": self.gender, "jobs":self.jobs, "area": self.area,
-            "hobby": self.hobby, "selfinfoText": self.selfinfoText, "singlewordText": self.singlewordText, "medicalhistoryText": self.medicalhistoryText, "type": self.type
+            "name": self.name!, "birthday": Timestamp(date: self.birthdayDate!), "gender": self.gender!, "jobs":self.jobs!, "area": self.area!,
+            "hobby": self.hobby!, "selfintroText": self.selfintroText!, "singlewordText": self.singlewordText!, "medicalhistoryText": self.medicalhistoryText!, "type": self.type!
         ]
         // 匿名ログインしているuidと変数に保存されているuidが同じか確認
         let anonymousUser = Auth.auth().currentUser
@@ -342,8 +342,8 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[5]
             textCell.leftLabel.text = leftText
-            if (self.selfinfoText != "") {
-                textCell.underLabel.text = self.selfinfoText!
+            if (self.selfintroText != "") {
+                textCell.underLabel.text = self.selfintroText!
             }
             return textCell
         case 6:

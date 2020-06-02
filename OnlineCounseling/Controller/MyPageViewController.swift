@@ -27,7 +27,7 @@ class MyPageViewController: UIViewController {
     private var jobs: String?
     private var area: String?
     private var hobby: String?
-    private var selfinfoText: String?
+    private var selfintroText: String?
     private var singlewordText: String?
     private var medicalhistoryText: String?
     private var photoImage: UIImage?
@@ -133,7 +133,7 @@ class MyPageViewController: UIViewController {
         self.jobs = user.jobs
         self.area = user.area
         self.hobby = user.hobby
-        self.selfinfoText = user.selfinfoText
+        self.selfintroText = user.selfintroText
         self.singlewordText = user.singlewordText
         self.medicalhistoryText = user.medicalhistoryText
         self.gender = user.gender
@@ -308,8 +308,8 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[5]
             textCell.leftLabel.text = leftText
-            if (self.selfinfoText != "") {
-                textCell.underLabel.text = self.selfinfoText!
+            if (self.selfintroText != "") {
+                textCell.underLabel.text = self.selfintroText!
             }
             return textCell
         case 6:

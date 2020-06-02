@@ -17,7 +17,7 @@ class User: Object {
     @objc dynamic var jobs = ""
     @objc dynamic var area = ""
     @objc dynamic var hobby = ""
-    @objc dynamic var selfinfoText = ""
+    @objc dynamic var selfintroText = ""
     @objc dynamic var singlewordText = ""
     @objc dynamic var medicalhistoryText = ""
     @objc dynamic var type = ""

@@ -7,29 +7,17 @@
 //
 
 import Foundation
-// セルタップした画面のプロフィールデータ
+// セルタップした画面のtableviewのプロフィールデータ
 class getProfileDatas {
-    var name: String?
-    var jobs: String?
-    var gender: String?
-    var singlewordText: String?
-    var selfintroText: String?
     var area: String?
     var hobby: String?
-    var medicalhistoryText: String?
-    var uid: String?
     var birthdayDate: Date?
+    var medicalhistoryText: String?
     
-    init(name: String, jobs: String, gender: String, singlewordText: String, selfintroText: String, area: String, hobby: String, medicalhistoryText: String, uid: String, birthdayDate: Date) {
-        self.name = name
-        self.jobs = jobs
-        self.gender = gender
-        self.singlewordText = singlewordText
-        self.selfintroText = selfintroText
+    init(area: String, hobby: String, birthdayDate: Date, medicalhistoryText: String) {
         self.area = area
         self.hobby = hobby
-        self.medicalhistoryText = medicalhistoryText
-        self.uid = uid
         self.birthdayDate = birthdayDate
+        self.medicalhistoryText = medicalhistoryText
     }
 }

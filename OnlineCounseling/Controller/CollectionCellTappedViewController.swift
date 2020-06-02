@@ -10,15 +10,26 @@ import UIKit
 import SnapKit
 
 class CollectionCellTappedViewController: UIViewController {
-    
-    private let tableArray: [String] = ["1", "2", "3", "4", "5"]
-    
+    // tableviewに表示するユーザー情報を格納
+    var profileDataDic: [String: Any] = [:] {
+        didSet {
+            print(profileDataDic, "profileDataDic")
+            DispatchQueue.main.async {
+                self.myTableView.reloadData()
+            }
+        }
+    }
     let screen = UIScreen.main.bounds
+    private var formatter: DateFormatter = {
+       let format = DateFormatter()
+        format.dateFormat = "yyyy年MM月dd日"
+        return format
+    }()
     
     lazy var myScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.frame = self.view.bounds
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 40)
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 10) // ボタンがあるから余分に足す
         scrollView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return scrollView
     }()
@@ -179,24 +190,26 @@ class CollectionCellTappedViewController: UIViewController {
             make.left.equalTo(self.view).offset(10)
             make.right.equalTo(self.view).offset(-10)
             // ここのtableViewの値は最高値
-            make.height.equalTo(400)
+            make.height.equalTo(240)
         }
         // Do any additional setup after loading the view.
     }
-    
+    // セルの高さの合計に合わせてtableviewの高さを決める
     func automaticTableviewHight() {
         self.view.layoutIfNeeded()
+        print(myTableView.contentSize.height, "tableviewの高さ")
         myTableView.frame.size.height = myTableView.contentSize.height
         automaticScrollviewHight()
     }
-    
+    // tableviewの可変に合わせてscrollviewを可変にする
     func automaticScrollviewHight() {
-        // tableViewがViewより大きい場合,
         let viewBottomOrigin: CGFloat = self.view.frame.origin.y + self.view.frame.size.height
         let tableviewBottomOrigin: CGFloat = self.myTableView.frame.origin.y + self.myTableView.frame.size.height
-        
+        // tableViewがViewより大きい場合,
         if (tableviewBottomOrigin > viewBottomOrigin) {
+            // 大きい分だけ引き伸ばす
             let tableviewRemainig = tableviewBottomOrigin - viewBottomOrigin
+            print(tableviewRemainig, "はみ出した分")
             myScrollView.contentSize.height += tableviewRemainig
         }
     }
@@ -220,19 +233,30 @@ class CollectionCellTappedViewController: UIViewController {
 extension CollectionCellTappedViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return tableArray.count
+        return profileDataDic.count
 }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let arrayText = tableArray[indexPath.row]
+    // dataのkeyの配列を作成
+    let dataKeys: [String] = [String](profileDataDic.keys)
+    let dataKey: String = dataKeys[indexPath.row]
     // 内容に応じてCell変更
-    if (arrayText == "1" || arrayText == "3") {
+    if (dataKey == "地域" ) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
-        cell.textLabel?.text = tableArray[indexPath.row]
+        cell.textLabel?.text = dataKey
+        cell.rightLabel.text = profileDataDic[dataKey] as? String
+        cell.rightImage.image = UIImage()
         return cell
-    }else if (arrayText == "2" || arrayText == "4" || arrayText == "5") {
+    }else if (dataKey == "趣味" || dataKey == "既往歴" ) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
-        cell.leftLabel.text = tableArray[indexPath.row]
+        cell.leftLabel.text = dataKey
+        cell.underLabel.text = profileDataDic[dataKey] as? String
+        return cell
+    }else if (dataKey == "生年月日") {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
+        cell.textLabel?.text = dataKey
+        cell.rightLabel.text = "\(formatter.string(from: profileDataDic[dataKey] as! Date))"
+        cell.rightImage.image = UIImage()
         return cell
     }else {
         print("error")
@@ -242,18 +266,25 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // 内容に応じて高さ変更
-        let arrayText = self.tableArray[indexPath.row]
-        if (arrayText  == "1" || arrayText == "3") {
-            return 50
-        }else {
+        let dataKeys: [String] = [String](profileDataDic.keys)
+        let dataKey: String = dataKeys[indexPath.row]
+        // valueを判定するために取得(Date型もあるためオプショナル)
+        let datavalue: String? = profileDataDic[dataKey] as? String
+        if (datavalue == "") { // 空の場合は0
+            return 0
+        }
+        if (dataKey  == "既往歴" || dataKey == "趣味") {
             return 70
+        }else {
+            return 50
         }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // 一度のみ検知する
+        // heightForRowの後に一度のみ検知する
         let rowAddNum = indexPath.row + 1
-        if (self.tableArray.count == rowAddNum) {
+        if (self.profileDataDic.count == rowAddNum) {
+            print("検知1")
             self.automaticTableviewHight()
         }
     }
