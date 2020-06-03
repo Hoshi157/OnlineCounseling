@@ -7,7 +7,27 @@
 //
 
 import Foundation
+import MessageKit
 
-class MockMessage {
+struct MockMessage: MessageType {
+    var messageId: String
+    var sender: SenderType
+    var sentDate: Date
+    var kind: MessageKind
     
+    init(messageId:String,sender:SenderType,sentDate:Date,kind:MessageKind){
+        self.messageId = messageId
+        self.sender = sender
+        self.sentDate = sentDate
+        self.kind = kind
+    }
+    
+    init(messageId:String,sender:SenderType,sentDate:Date,text:String) {
+        self.init(messageId: messageId, sender: sender, sentDate: sentDate, kind: .text(text))
+    }
+}
+
+struct senderUser: SenderType {
+    var senderId: String
+    var displayName: String
 }

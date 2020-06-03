@@ -10,6 +10,7 @@ import UIKit
 import MaterialComponents
 import SnapKit
 import Firebase
+import RealmSwift
 
 class UserByTappedContenerViewController: UIViewController {
     
@@ -18,6 +19,9 @@ class UserByTappedContenerViewController: UIViewController {
     private let userDB = Firestore.firestore().collection("users")
     // タップしたUserデータのUid(presentした時に格納される)
     var userTapUid: String?
+    private var uid: String?
+    private var realm: Realm!
+    private let alert = AlertController()
     
     lazy var messageButton: MDCFloatingButton = {
        let button = MDCFloatingButton()
@@ -27,6 +31,7 @@ class UserByTappedContenerViewController: UIViewController {
         let image = #imageLiteral(resourceName: "icons8-chat-bubble-25").withRenderingMode(.alwaysTemplate)
         button.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(messageTransitionAction), for: .touchUpInside)
         return button
     }()
     
@@ -82,6 +87,14 @@ class UserByTappedContenerViewController: UIViewController {
             make.top.equalTo(self.view).offset(50)
             make.left.equalTo(self.view).offset(20)
         }
+        // Realmからuidを取得
+        do {
+            self.realm = try Realm()
+            let user = realm.objects(User.self).last!
+            self.uid = user.uid
+        }catch {
+            print("Realm error")
+        }
         
         getData()
 
@@ -91,12 +104,38 @@ class UserByTappedContenerViewController: UIViewController {
     @objc func backViewAction() {
         dismiss(animated: true, completion: nil)
     }
-    
+    // カレンダーボタンをタップした時
     @objc func calendarTransitionAction() {
         let calendarVC = CalendarViewController()
         let naviController = UINavigationController(rootViewController: calendarVC)
         naviController.modalPresentationStyle = .fullScreen
         present(naviController, animated: true)
+    }
+    // メッセージボタンをタップした時
+    @objc func messageTransitionAction() {
+        // 自分と相手のuidのnilチェック
+        if (self.uid == nil && self.userTapUid == nil) {
+            self.alert.okAlert(title: "エラーが発生しました", message: "やり直してください", currentController: self)
+            return
+        }
+        let messageVC = MessageViewController()
+        messageVC.modalPresentationStyle = .fullScreen
+        messageVC.otherUid = userTapUid // 相手のuidを渡す
+        // チャット歴があればルームナンバーを取得
+        userDB.document(self.uid!).collection("alreadyMessage").whereField("roomId", isEqualTo: self.userTapUid!).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print(error, "messageButton error")
+            }else {
+                for document in querySnapshot!.documents {
+                    // 相手のuidがあればメッセージVCにRoomNumberを渡しbreak
+                    let targetRoomNumber = document.data()["roomId"]
+                    messageVC.alreadyRoomNumber = targetRoomNumber as? String
+                    break
+                }
+            }
+        }
+        self.present(messageVC, animated: true)
+        
     }
     // user情報を取得
     func getData() {
