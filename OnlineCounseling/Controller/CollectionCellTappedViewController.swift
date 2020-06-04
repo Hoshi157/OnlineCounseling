@@ -69,12 +69,10 @@ class CollectionCellTappedViewController: UIViewController {
         return imageView
     }()
     
-    lazy var bookmarkImageView: UIImageView = {
+    var bookmarkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "icons8-スター-25").withRenderingMode(.alwaysTemplate)
         imageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bookmarkImageTapped(_:))))
-        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -221,11 +219,6 @@ class CollectionCellTappedViewController: UIViewController {
             myScrollView.contentSize.height += tableviewRemainig
         }
     }
-    
-    @objc func bookmarkImageTapped(_ sender: UITapGestureRecognizer) {
-        print("tap")
-    }
-
     /*
     // MARK: - Navigation
 

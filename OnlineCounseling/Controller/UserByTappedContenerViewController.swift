@@ -23,6 +23,11 @@ class UserByTappedContenerViewController: UIViewController {
     private var realm: Realm!
     private let alert = AlertController()
     
+    private var childVC: CollectionCellTappedViewController {
+        let child = self.children[0] as! CollectionCellTappedViewController
+        return child
+    }
+    
     lazy var messageButton: MDCFloatingButton = {
        let button = MDCFloatingButton()
         button.layer.cornerRadius = 30
@@ -95,6 +100,9 @@ class UserByTappedContenerViewController: UIViewController {
         }catch {
             print("Realm error")
         }
+        // お気に入りボタンをタップ可能にする
+        childVC.bookmarkImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bookmarkImageTapped(_:))))
+        childVC.bookmarkImageView.isUserInteractionEnabled = true
         
         getData()
 
@@ -139,8 +147,6 @@ class UserByTappedContenerViewController: UIViewController {
     }
     // user情報を取得
     func getData() {
-        // childViewcontrollerを取得
-        let childVC = self.children[0] as! CollectionCellTappedViewController
         if let cellUid = self.userTapUid {
             userDB.document(cellUid).getDocument { document, error in
                 guard let data = document?.data() else {
@@ -159,21 +165,61 @@ class UserByTappedContenerViewController: UIViewController {
                 let hobby = data["hobby"] as! String
                 let medecalhistory = data["medicalhistoryText"] as! String
                 // データをchildVCへ
-                childVC.nameLabel.text = name
-                childVC.jobsLabel.text = jobs
+                self.childVC.nameLabel.text = name
+                self.childVC.jobsLabel.text = jobs
                 if (gender == "男性") {
-                    childVC.genderImageView.image = #imageLiteral(resourceName: "icons8-ユーザ男性-25-2").withRenderingMode(.alwaysTemplate)
-                    childVC.genderImageView.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+                    self.childVC.genderImageView.image = #imageLiteral(resourceName: "icons8-ユーザ男性-25-2").withRenderingMode(.alwaysTemplate)
+                    self.childVC.genderImageView.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
                 }else if (gender == "女性") {
-                    childVC.genderImageView.image = #imageLiteral(resourceName: "icons8-ユーザー女性-25").withRenderingMode(.alwaysTemplate)
-                    childVC.genderImageView.tintColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+                    self.childVC.genderImageView.image = #imageLiteral(resourceName: "icons8-ユーザー女性-25").withRenderingMode(.alwaysTemplate)
+                    self.childVC.genderImageView.tintColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
                 }
-                childVC.singleWordLabel.text = singleword
-                childVC.selfIntroInputLabel.text = selfinfo
+                self.childVC.singleWordLabel.text = singleword
+                self.childVC.selfIntroInputLabel.text = selfinfo
                 // ここからはtableviewのデータ(dictionary型にて渡す)
                 let profileDataDic: [String: Any] = ["生年月日": birthdayDate, "地域": area, "趣味": hobby, "既往歴": medecalhistory]
-                childVC.profileDataDic = profileDataDic
+                self.childVC.profileDataDic = profileDataDic
             }
+        }
+    }
+    
+    // お気に入りボタンタップ時
+       @objc func bookmarkImageTapped(_ sender: UITapGestureRecognizer) {
+        if (self.uid != nil) {
+            return
+        }
+        if (self.userTapUid != nil) {
+            bookmarkDataPost()
+        }
+       }
+    
+    // お気に入りのデータをFirebaseにPostする処理
+    func bookmarkDataPost() {
+        self.userDB.document(self.userTapUid!).collection("bookmark").getDocuments { (querySnapshot, error) in
+            if (error != nil) {
+                print(error!.localizedDescription, "error")
+                return
+            }
+            // 空だったらbookmarkに追加(この処理がないとbookmarkコレクションが作成されない)
+            if (querySnapshot!.documents.isEmpty) {
+                self.userDB.document(self.userTapUid!).collection("bookmark").addDocument(data: [self.uid!: self.uid!])
+                self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+            }
+            for document in querySnapshot!.documents {
+                // 自分のuidがあれば削除
+                if (document.data()[self.uid!] != nil) {
+                    let userDocumentid = document.documentID
+                    self.userDB.document(self.userTapUid!).collection("bookmark").document(userDocumentid).delete()
+                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                    break
+                }else {
+                    // なければ追加
+                    self.userDB.document(self.userTapUid!).collection("bookmark").addDocument(data: [self.uid!: self.uid!])
+                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+                    break
+                }
+            }
+                
         }
     }
     
