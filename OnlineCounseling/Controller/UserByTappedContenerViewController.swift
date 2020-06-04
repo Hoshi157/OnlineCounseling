@@ -104,7 +104,10 @@ class UserByTappedContenerViewController: UIViewController {
         // お気に入りボタンをタップ可能にする
         childVC.bookmarkImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bookmarkImageTapped(_:))))
         childVC.bookmarkImageView.isUserInteractionEnabled = true
-        
+        // 相手のuidをアンラップ
+        if let otherUid = userTapUid {
+            self.bookmarkStateRetention(targetId: otherUid)
+        }
         getData()
 
         // Do any additional setup after loading the view.
@@ -188,73 +191,77 @@ class UserByTappedContenerViewController: UIViewController {
         }
     }
     
-    // お気に入りボタンタップ時
+    // お気に入りボタンタップ時(Realmで判断する事でレスポンスが早くなる)
        @objc func bookmarkImageTapped(_ sender: UITapGestureRecognizer) {
         print("tap bookmark")
-        if (self.uid != nil) {
+        if (self.uid == nil) {
+            self.alert.okAlert(title: "エラーが発生しました", message: "もう一度やり直すか、アカウントを最初から作成してください", currentController: self)
             return
         }
         if (self.userTapUid != nil) {
-            bookmarkDataPost()
+            existenceLocaldataBookmark(targetId: self.userTapUid!, targetName: self.otherName!)
+            existenceCloudataBookmark(targetId: self.userTapUid!, myId: self.uid!)
         }
        }
     
-    // お気に入りのデータをFirebaseにPostする処理
-    func bookmarkDataPost() {
-        self.userDB.document(self.userTapUid!).collection("bookmark").getDocuments { (querySnapshot, error) in
+    // Firebaseのお気に入り履歴のデータを判別して追加か削除
+    func existenceCloudataBookmark(targetId: String, myId: String) {
+        self.userDB.document(myId).collection("bookmark").getDocuments { (querySnapshot, error) in
             if (error != nil) {
                 print(error!.localizedDescription, "error")
                 return
             }
-            // 空だったらbookmarkに追加(この処理がないとbookmarkコレクションが作成されない)
-            if (querySnapshot!.documents.isEmpty) {
-                self.userDB.document(self.userTapUid!).collection("bookmark").addDocument(data: [self.uid!: self.uid!])
-                self.bookmarkLocaldataAdd()
-                self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-            }
-            for document in querySnapshot!.documents {
-                // 自分のuidがあれば削除
-                if (document.data()[self.uid!] != nil) {
-                    let userDocumentid = document.documentID
-                    self.userDB.document(self.userTapUid!).collection("bookmark").document(userDocumentid).delete()
-                    self.bookmarkLocaldataDelete()
-                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-                    break
-                }else {
-                    // なければ追加
-                    self.userDB.document(self.userTapUid!).collection("bookmark").addDocument(data: [self.uid!: self.uid!])
-                    self.bookmarkLocaldataAdd()
-                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-                    break
+            let snapshot: QueryDocumentSnapshot? = querySnapshot!.documents.lazy.filter { $0.data()[targetId] as! String == targetId }.first
+            print(snapshot ?? "nil", "snapshot bookmark")
+                // お気に入り履歴あり(削除)
+                if (snapshot != nil) {
+                    let userDocumentId: String = snapshot!.documentID
+                    self.userDB.document(myId).collection("bookmark").document(userDocumentId).delete()
+                }else { // お気に入り履歴なし(追加)
+                    self.userDB.document(myId).collection("bookmark").addDocument(data: [targetId: targetId])
                 }
-            }
                 
         }
     }
-    // Realmにお気に入りデータを追加
-    func bookmarkLocaldataAdd() {
+    // Realmにお気に入り履歴があるか判別
+    func existenceLocaldataBookmark(targetId: String, targetName: String) {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
-            let bookmarkHistory = BookmarkHistory(value: ["otherUid": userTapUid!, "otherName": otherName!])
             try realm.write {
-                user.bookmarks.append(bookmarkHistory)
+                // lazy.filterはtargetIdを見つけた時点で処理を抜ける
+                let targetBookmark: BookmarkHistory? = user.bookmarks.lazy.filter { $0.otherUid == targetId}.first
+                if (targetBookmark != nil) { // お気に入り履歴あり(削除)
+                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                    // 削除処理(enumeratedは配列の番号を付属させる)
+                    for (index, bookmark) in user.bookmarks.enumerated() {
+                        if (bookmark.otherUid == targetId) {
+                            user.bookmarks.remove(at: index)
+                        }
+                    }
+                }else { // お気に入り履歴なし(追加)
+                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+                    // 追加処理
+                    let bookmarkHistory = BookmarkHistory(value: ["otherUid": targetId, "otherName": targetName])
+                    user.bookmarks.append(bookmarkHistory)
+                }
             }
         }catch {
             print("error Realm")
         }
     }
-    // Realmのお気に入りを削除
-    func bookmarkLocaldataDelete() {
+    // 起動時にbookmarkしていたら色を変えとく
+    func bookmarkStateRetention(targetId: String) {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
             try realm.write {
-                // enumeratedは配列の番号を付属させる
-                for (index, bookmark) in user.bookmarks.enumerated() {
-                    if (bookmark.otherUid == self.userTapUid) {
-                        user.bookmarks.remove(at: index)
-                    }
+                let targetBookmark: BookmarkHistory? = user.bookmarks.lazy.filter { $0.otherUid == targetId}.first
+                // お気に入り履歴にあったら色表示
+                if (targetBookmark != nil) {
+                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+                }else {
+                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                 }
             }
         }catch {
