@@ -64,6 +64,12 @@ class MessageHistoryViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        myTableview.reloadData()
+    }
+    
     @objc func sidemenuButtonAction() {
         self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
     }
@@ -157,8 +163,8 @@ extension MessageHistoryViewController: UITableViewDelegate, UITableViewDataSour
         let roomNumber = talkrooms[indexPath.row].roomNumber
         let messageVC = MessageViewController()
         messageVC.alreadyRoomNumber = roomNumber
-        messageVC.modalPresentationStyle = .fullScreen
         let navi = UINavigationController(rootViewController: messageVC)
+        navi.modalPresentationStyle = .fullScreen
         present(navi, animated: true)
     }
     

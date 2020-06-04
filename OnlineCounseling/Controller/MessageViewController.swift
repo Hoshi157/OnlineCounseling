@@ -34,6 +34,15 @@ class MessageViewController: MessagesViewController {
         // Do any additional setup after loading the view.
         
         self.view.addSubview(messagesCollectionView)
+        // navigationBar
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25").withRenderingMode(.alwaysTemplate), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(backviewAction))
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        // タイトルの相手の名前を表示
+        if (otherName != nil) {
+            title = otherName
+        }else {
+            title = "チャット画面"
+        }
         // MessageKitの設定
         let edgeInsets = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
         messagesCollectionView.contentInset = edgeInsets
@@ -75,6 +84,10 @@ class MessageViewController: MessagesViewController {
             print("チャット履歴なし")
         }
     }
+    
+    @objc func backviewAction() {
+        dismiss(animated: true, completion: nil)
+    }
     // 相手のuidのnilチエックと自分のuidと違うかどうか(チャット履歴なし①)
     func getroom() {
         if self.otherUid != nil && self.uid != self.otherUid {
@@ -83,7 +96,7 @@ class MessageViewController: MessagesViewController {
     }
     // 新しいルームナンバーを取得(チャット履歴なし②)
     var count = 1
-    func getNewRoomKey(){
+    func getNewRoomKey() {
         // firebaseのルームナンバーを更新
         Firestore.firestore().collection("roomKey").document("roomKeyNumber").getDocument {  (document, error) in
             if let document = document {
@@ -103,7 +116,7 @@ class MessageViewController: MessagesViewController {
         usersDB.document(self.otherUid!).updateData(["inRoom":self.roomId!])
         usersDB.document(self.uid!).updateData(["inRoom":self.roomId!])
         // お互いのチャット履歴を追加(Firestore)
-        usersDB.document(self.uid!).collection("alreadyMessasge").addDocument(data: [self.otherUid!: self.roomId!])
+        usersDB.document(self.uid!).collection("alreadyMessage").addDocument(data: [self.otherUid!: self.roomId!])
         usersDB.document(self.otherUid!).collection("alreadyMessage").addDocument(data: [self.uid!:self.roomId!])
         //　お互いのチャット履歴を追加(Realm)
         do {

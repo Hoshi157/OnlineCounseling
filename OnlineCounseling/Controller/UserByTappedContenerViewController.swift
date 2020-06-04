@@ -128,24 +128,26 @@ class UserByTappedContenerViewController: UIViewController {
             return
         }
         let messageVC = MessageViewController()
-        messageVC.modalPresentationStyle = .fullScreen
         messageVC.otherUid = userTapUid // 相手のuidを渡す
         messageVC.otherName = otherName // 相手のNameを渡す
-        // チャット歴があればルームナンバーを取得
-        userDB.document(self.uid!).collection("alreadyMessage").whereField("roomId", isEqualTo: self.userTapUid!).getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print(error, "messageButton error")
-            }else {
-                for document in querySnapshot!.documents {
-                    // 相手のuidがあればメッセージVCにRoomNumberを渡しbreak
-                    let targetRoomNumber = document.data()["roomId"]
-                    messageVC.alreadyRoomNumber = targetRoomNumber as? String
-                    break
+        // チャット歴があればルームナンバーを取得(Realmから)
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                for message in user.messages {
+                    if (message.otherUid == self.userTapUid) {
+                        messageVC.alreadyRoomNumber = message.otherRoomNumber
+                    }
                 }
             }
+        }catch {
+            print("errorMessageTap Realm")
         }
+        
         let navi = UINavigationController(rootViewController: messageVC)
-        self.present(messageVC, animated: true)
+        navi.modalPresentationStyle = .fullScreen
+        self.present(navi, animated: true)
         
     }
     // user情報を取得
@@ -188,6 +190,7 @@ class UserByTappedContenerViewController: UIViewController {
     
     // お気に入りボタンタップ時
        @objc func bookmarkImageTapped(_ sender: UITapGestureRecognizer) {
+        print("tap bookmark")
         if (self.uid != nil) {
             return
         }
