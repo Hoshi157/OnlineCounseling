@@ -13,6 +13,7 @@
 		8D1566DB246E4AE4009E73D0 /* CollectionCellTappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */; };
 		8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */; };
 		8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */; };
+		8D1767842488CF9D0056AA99 /* Talkroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1767832488CF9D0056AA99 /* Talkroom.swift */; };
 		8D2893FB246FB89B00855CCD /* BookmarkHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */; };
 		8D2893FD246FB8CF00855CCD /* TellHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */; };
 		8D289400246FBE8900855CCD /* CustomMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FE246FBE8900855CCD /* CustomMessageTableViewCell.swift */; };
@@ -74,6 +75,7 @@
 		8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellTappedViewController.swift; sourceTree = "<group>"; };
 		8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByTappedContenerViewController.swift; sourceTree = "<group>"; };
 		8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedContenerViewController.swift; sourceTree = "<group>"; };
+		8D1767832488CF9D0056AA99 /* Talkroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Talkroom.swift; sourceTree = "<group>"; };
 		8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkHistoryViewController.swift; sourceTree = "<group>"; };
 		8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TellHistoryViewController.swift; sourceTree = "<group>"; };
 		8D2893FE246FBE8900855CCD /* CustomMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */,
 				8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */,
 				8D88C756246D7A8000145BD2 /* MessageHistoryViewController.swift */,
+				8D1767832488CF9D0056AA99 /* Talkroom.swift */,
 				8D997F15247163AE008EBA39 /* MessageViewController.swift */,
 				8D997F17247163D8008EBA39 /* MockMessage.swift */,
 				8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */,
@@ -437,6 +440,7 @@
 				8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */,
 				8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */,
 				8D88C74B246D74F600145BD2 /* Model.swift in Sources */,
+				8D1767842488CF9D0056AA99 /* Talkroom.swift in Sources */,
 				8DB5CEAB24727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift in Sources */,
 				8D4AD12924850CBD00687447 /* GetCollections.swift in Sources */,
 				8D73A14D247BB6E500F27238 /* ImageNameOnlyTableViewCell.swift in Sources */,

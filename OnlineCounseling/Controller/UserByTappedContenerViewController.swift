@@ -144,6 +144,7 @@ class UserByTappedContenerViewController: UIViewController {
                 }
             }
         }
+        let navi = UINavigationController(rootViewController: messageVC)
         self.present(messageVC, animated: true)
         
     }
@@ -246,6 +247,7 @@ class UserByTappedContenerViewController: UIViewController {
             realm = try Realm()
             let user = realm.objects(User.self).last!
             try realm.write {
+                // enumeratedは配列の番号を付属させる
                 for (index, bookmark) in user.bookmarks.enumerated() {
                     if (bookmark.otherUid == self.userTapUid) {
                         user.bookmarks.remove(at: index)
