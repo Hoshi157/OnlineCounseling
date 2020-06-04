@@ -44,7 +44,7 @@ class MessageHistoryViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 15)
         label.sizeToFit()
         label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        label.text = "カウンセラーの利用者に直接メッセージを送れます。\nホーム画面のプロフィール画面からメッセージを\n送ってみましょう。"
+        label.text = "カウンセラーに直接メッセージを送れます。\nホーム画面のプロフィール画面からメッセージを\n送ってみましょう。"
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
