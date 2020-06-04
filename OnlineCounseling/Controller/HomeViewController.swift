@@ -95,8 +95,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let userByTappedVC = UserByTappedContenerViewController()
-        // uidを渡す
+        // uidとNameを渡す
         userByTappedVC.userTapUid = self.collectionArray[indexPath.row].uid
+        userByTappedVC.otherName = self.collectionArray[indexPath.row].name
         userByTappedVC.modalPresentationStyle = .fullScreen
         self.present(userByTappedVC, animated: true)
     }

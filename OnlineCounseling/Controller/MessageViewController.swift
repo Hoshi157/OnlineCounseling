@@ -18,6 +18,7 @@ class MessageViewController: MessagesViewController {
     private var roomId: String?
     private var chatFlg: Bool? // 相手がいる場合、ture
     var otherUid: String? // 相手のuid
+    var otherName: String? // 相手のName(チャット履歴としてRealmに保存する)
     var alreadyRoomNumber: String? // チャット歴がある場合のみ相手のroomNumber
     // Firestore
     private let DB = Firestore.firestore()
@@ -75,8 +76,8 @@ class MessageViewController: MessagesViewController {
         }
     }
     // 相手のuidのnilチエックと自分のuidと違うかどうか(チャット履歴なし①)
-    func getroom(){
-        if self.otherUid != nil && self.uid != self.otherUid{
+    func getroom() {
+        if self.otherUid != nil && self.uid != self.otherUid {
             self.getNewRoomKey()
         }
     }
@@ -101,10 +102,20 @@ class MessageViewController: MessagesViewController {
         // お互いのroomIdを合わせる
         usersDB.document(self.otherUid!).updateData(["inRoom":self.roomId!])
         usersDB.document(self.uid!).updateData(["inRoom":self.roomId!])
-        // お互いのチャット履歴を追加
+        // お互いのチャット履歴を追加(Firestore)
         usersDB.document(self.uid!).collection("alreadyMessasge").addDocument(data: [self.otherUid!: self.roomId!])
         usersDB.document(self.otherUid!).collection("alreadyMessage").addDocument(data: [self.uid!:self.roomId!])
-        
+        //　お互いのチャット履歴を追加(Realm)
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            let chateHistory = MessageHistory(value: ["otherUid": otherUid!, "otherName": otherName!, "otherRoomNumber": self.roomId!])
+            try realm.write {
+                user.messages.append(chateHistory)
+            }
+        }catch {
+            print("error Realm")
+        }
         self.getMessage()
     }
     // チャット開始(チャット履歴なし④)
@@ -186,7 +197,7 @@ class MessageViewController: MessagesViewController {
 }
 
 extension MessageViewController: MessagesDataSource {
-    // user情報
+    // 自分の情報
     func currentSender() -> SenderType {
         return senderUser(senderId: self.uid!, displayName: self.name!)
     }
@@ -214,7 +225,7 @@ extension MessageViewController: InputBarAccessoryViewDelegate {
     }
     // データをfirebaseにPostする
     func postData(text:String){
-        let post = ["from": currentSender().senderId,"name": currentSender().displayName,"text": text]
+        let post = ["from": currentSender().senderId, "name": currentSender().displayName,"text": text]
         if self.roomId != nil { // チャット履歴がない場合,
             let chateDb = Firestore.firestore().collection("rooms").document(self.roomId!).collection("chate")
             chateDb.addDocument(data: post)
@@ -257,5 +268,5 @@ extension MessageViewController:MessagesDisplayDelegate {
     
 }
 // これもdelegateしないと表示されない
-extension MessageViewController:MessageCellDelegate {
+extension MessageViewController: MessageCellDelegate {
 }

@@ -19,6 +19,7 @@ class UserByTappedContenerViewController: UIViewController {
     private let userDB = Firestore.firestore().collection("users")
     // タップしたUserデータのUid(presentした時に格納される)
     var userTapUid: String?
+    var otherName: String? //プロフィール画面の名前
     private var uid: String?
     private var realm: Realm!
     private let alert = AlertController()
@@ -121,14 +122,15 @@ class UserByTappedContenerViewController: UIViewController {
     }
     // メッセージボタンをタップした時
     @objc func messageTransitionAction() {
-        // 自分と相手のuidのnilチェック
-        if (self.uid == nil && self.userTapUid == nil) {
+        // 自分と相手のuidと名前のnilチェック
+        if (self.uid == nil && self.userTapUid == nil && self.otherName == nil) {
             self.alert.okAlert(title: "エラーが発生しました", message: "やり直してください", currentController: self)
             return
         }
         let messageVC = MessageViewController()
         messageVC.modalPresentationStyle = .fullScreen
         messageVC.otherUid = userTapUid // 相手のuidを渡す
+        messageVC.otherName = otherName // 相手のNameを渡す
         // チャット歴があればルームナンバーを取得
         userDB.document(self.uid!).collection("alreadyMessage").whereField("roomId", isEqualTo: self.userTapUid!).getDocuments { (querySnapshot, error) in
             if let error = error {
@@ -203,6 +205,7 @@ class UserByTappedContenerViewController: UIViewController {
             // 空だったらbookmarkに追加(この処理がないとbookmarkコレクションが作成されない)
             if (querySnapshot!.documents.isEmpty) {
                 self.userDB.document(self.userTapUid!).collection("bookmark").addDocument(data: [self.uid!: self.uid!])
+                self.bookmarkLocaldataAdd()
                 self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
             }
             for document in querySnapshot!.documents {
@@ -210,16 +213,47 @@ class UserByTappedContenerViewController: UIViewController {
                 if (document.data()[self.uid!] != nil) {
                     let userDocumentid = document.documentID
                     self.userDB.document(self.userTapUid!).collection("bookmark").document(userDocumentid).delete()
+                    self.bookmarkLocaldataDelete()
                     self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
                     break
                 }else {
                     // なければ追加
                     self.userDB.document(self.userTapUid!).collection("bookmark").addDocument(data: [self.uid!: self.uid!])
+                    self.bookmarkLocaldataAdd()
                     self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
                     break
                 }
             }
                 
+        }
+    }
+    // Realmにお気に入りデータを追加
+    func bookmarkLocaldataAdd() {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            let bookmarkHistory = BookmarkHistory(value: ["otherUid": userTapUid!, "otherName": otherName!])
+            try realm.write {
+                user.bookmarks.append(bookmarkHistory)
+            }
+        }catch {
+            print("error Realm")
+        }
+    }
+    // Realmのお気に入りを削除
+    func bookmarkLocaldataDelete() {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                for (index, bookmark) in user.bookmarks.enumerated() {
+                    if (bookmark.otherUid == self.userTapUid) {
+                        user.bookmarks.remove(at: index)
+                    }
+                }
+            }
+        }catch {
+            print("error Realm")
         }
     }
     

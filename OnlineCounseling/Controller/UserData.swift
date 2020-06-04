@@ -61,8 +61,21 @@ class User: Object {
     }
     
     let reservations = List<Reservation>()
+    let bookmarks = List<BookmarkHistory>()
+    let messages = List<MessageHistory>()
 }
-
+// 予約データ
 class Reservation: Object {
     @objc dynamic var reservation = ""
+}
+// お気に入りした人の履歴
+class BookmarkHistory: Object {
+    @objc dynamic var otherUid = ""
+    @objc dynamic var otherName = ""
+}
+// チャット履歴
+class MessageHistory: Object {
+    @objc dynamic var otherUid = ""
+    @objc dynamic var otherName = ""
+    @objc dynamic var otherRoomNumber = ""
 }
