@@ -16,6 +16,8 @@ class TabbarController: UITabBarController {
     private var isShowSidemenu: Bool {
         return sidemenuVC.parent == self
     }
+    // チュートリアルを表示するか
+    var isTutorialShow: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +57,10 @@ class TabbarController: UITabBarController {
         
         sidemenuVC.delegate = self
         sidemenuVC.startPanGestureRecognizing()
+        // チュートリアルを表示するか判定
+        if (isTutorialShow) {
+            turtorialDisplay()
+        }
     }
     
     func showSidemenu(contentAvailabilty: Bool = true, animated: Bool, currentViewController: UIViewController) {
@@ -79,6 +85,13 @@ class TabbarController: UITabBarController {
             self.sidemenuVC.view.removeFromSuperview()
             print(self.children)
         })
+    }
+    // チュートリアル画面を表示する
+    func turtorialDisplay() {
+        let turtorialVC = TutorialViewController()
+        addChild(turtorialVC)
+        view.addSubview(turtorialVC.view)
+        turtorialVC.didMove(toParent: self)
     }
     
 

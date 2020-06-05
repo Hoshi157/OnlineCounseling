@@ -27,12 +27,12 @@
                     </constraints>
                     <string key="text">ホーム画面からカウンセラーを選んで
 プロフィールを見てみましょう！
-気になるカウンセラーが見つかるかも！</string>
+気になるカウンセラーが見つかるかもしれません！</string>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ExplenationView" image="blank-profile-picture-973460_640-e1542530002984" translatesAutoresizingMaskIntoConstraints="NO" id="LHa-Xd-wcP">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="ExplenationView" image="2155399_s" translatesAutoresizingMaskIntoConstraints="NO" id="LHa-Xd-wcP">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="300" id="G5t-Mf-50I"/>
@@ -55,6 +55,6 @@
         </view>
     </objects>
     <resources>
-        <image name="blank-profile-picture-973460_640-e1542530002984" width="400" height="400"/>
+        <image name="2155399_s" width="640" height="427"/>
     </resources>
 </document>

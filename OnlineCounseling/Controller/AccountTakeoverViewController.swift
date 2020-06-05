@@ -20,9 +20,9 @@ class AccountTakeoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // navigationbar
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewButtonAction))
-        
+        // tableview
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CustomAccountTakeOverTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountTakeoverCell")
@@ -30,7 +30,7 @@ class AccountTakeoverViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
+    // viewタップでキーボード閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
@@ -38,6 +38,7 @@ class AccountTakeoverViewController: UIViewController {
     @IBAction func skipButtonAction(_ sender: Any) {
         let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
         tabbarController.modalPresentationStyle = .fullScreen
+        tabbarController.isTutorialShow = true // チュートリアルを表示する
         self.present(tabbarController, animated: true)
     }
     
@@ -76,6 +77,7 @@ class AccountTakeoverViewController: UIViewController {
                 if !(user.isAnonymous) {
                     let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
                     tabbarController.modalPresentationStyle = .fullScreen
+                    tabbarController.isTutorialShow = true // チュートリアルを表示する
                     self.present(tabbarController, animated: true)
                 }else {
                     self.alert.okAlert(title: "エラー", message: "メール認証によるアカウント認証はできませんでした", currentController: self)
@@ -85,10 +87,7 @@ class AccountTakeoverViewController: UIViewController {
             
         }
     }
-    
-    
-    
-    
+    // 戻るボタン
     @objc func backViewButtonAction() {
         self.navigationController?.popViewController(animated: true)
     }

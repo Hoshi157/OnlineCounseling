@@ -9,30 +9,30 @@
 import UIKit
 import SnapKit
 import MaterialComponents
-
+// チュートリアル画面
 class TutorialViewController: UIViewController {
     
     let screenSize = UIScreen.main.bounds
     var screenSizeWidth: CGFloat?
-    
+    //スクロールビューは横3ページ分で設定
     lazy var myScrollView: UIScrollView = {
        let scrolleView = UIScrollView()
         scrolleView.frame = self.view.bounds
         scrolleView.contentSize = CGSize(width: self.view.bounds.width * 3, height: self.view.bounds.height)
-        scrolleView.isPagingEnabled = true
-        scrolleView.showsHorizontalScrollIndicator = false
+        scrolleView.isPagingEnabled = true // これでページング可能
+        scrolleView.showsHorizontalScrollIndicator = false // 垂直スクロールバー表示しない
         scrolleView.delegate = self
         return scrolleView
     }()
-    
+    // ページコントロール
     private let myPageControl: UIPageControl = {
        let pagecontrol = UIPageControl()
         pagecontrol.numberOfPages = 3
-        pagecontrol.pageIndicatorTintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        pagecontrol.currentPageIndicatorTintColor = #colorLiteral(red: 0.09708004216, green: 0.7204460874, blue: 1, alpha: 1)
+        pagecontrol.pageIndicatorTintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) // 非選択時
+        pagecontrol.currentPageIndicatorTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // 選択時
         return pagecontrol
     }()
-    
+    // チュートリアルNibを3つ用意
     private let welcomeView: WelcomeView = {
         let view = WelcomeView()
         view.layer.cornerRadius = 20
@@ -60,6 +60,7 @@ class TutorialViewController: UIViewController {
         button.backgroundColor = #colorLiteral(red: 0.09708004216, green: 0.7204460874, blue: 1, alpha: 1)
         button.layer.cornerRadius = 15
         button.clipsToBounds = true
+        button.addTarget(self, action: #selector(startButtonAction), for: .touchUpInside)
         return button
     }()
 
@@ -67,7 +68,7 @@ class TutorialViewController: UIViewController {
         super.viewDidLoad()
         
         screenSizeWidth = screenSize.width
-        view.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 0.85)
         
         view.addSubview(myScrollView)
         view.addSubview(myPageControl)
@@ -114,6 +115,12 @@ class TutorialViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    // スタートボタンを押したらTabbarVCのchildを解消
+    @objc func startButtonAction() {
+        willMove(toParent: self)
+        removeFromParent()
+        view.removeFromSuperview()
+    }
     
 
     /*
@@ -129,7 +136,9 @@ class TutorialViewController: UIViewController {
 }
 
 extension TutorialViewController: UIScrollViewDelegate {
+    //　スクロールした後
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // スクロールビューをx方向に移動した分 / フレームワイド = ページコントロールの表示数
         myPageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
     }
 }

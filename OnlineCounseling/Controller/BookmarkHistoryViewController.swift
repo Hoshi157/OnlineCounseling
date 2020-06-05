@@ -26,6 +26,7 @@ class BookmarkHistoryViewController: UIViewController {
         tableView.dataSource = self
         tableView.rowHeight = 60
         tableView.register(UINib(nibName: "ImageNameOnlyTableViewCell", bundle: nil), forCellReuseIdentifier: "ImageNameOnlyTableViewCell")
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -43,7 +44,7 @@ class BookmarkHistoryViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 15)
         label.sizeToFit()
         label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        label.text = "お気に入りリストとして保存できます。\nプロフィール欄から☆マークをタップしてリストに保存しましょう。"
+        label.text = "お気に入りリストとして保存できます。\nプロフィール欄から☆マークをタップして\nリストに保存しましょう。"
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
