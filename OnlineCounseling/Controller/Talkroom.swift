@@ -13,10 +13,12 @@ class Talkroom {
     var name: String?
     var uid: String?
     var roomNumber: String?
+    var lastText: String?
     
-    init(name: String, uid: String, roomNumber: String) {
+    init(name: String, uid: String, roomNumber: String, lastText: String?) {
         self.name = name
         self.uid = uid
         self.roomNumber = roomNumber
+        self.lastText = lastText
     }
 }

@@ -10,6 +10,7 @@
 		8D02597C2475ABB300D4EA10 /* SidemenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D02597A2475ABB300D4EA10 /* SidemenuTableViewCell.swift */; };
 		8D02597D2475ABB300D4EA10 /* SidemenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D02597B2475ABB300D4EA10 /* SidemenuTableViewCell.xib */; };
 		8D13206C24795C3100EB4BEC /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D13206B24795C3100EB4BEC /* AlertController.swift */; };
+		8D14FAA62489E94D00D1C6FA /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D14FAA52489E94D00D1C6FA /* Bookmark.swift */; };
 		8D1566DB246E4AE4009E73D0 /* CollectionCellTappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */; };
 		8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */; };
 		8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */; };
@@ -72,6 +73,7 @@
 		8D02597A2475ABB300D4EA10 /* SidemenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidemenuTableViewCell.swift; sourceTree = "<group>"; };
 		8D02597B2475ABB300D4EA10 /* SidemenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SidemenuTableViewCell.xib; sourceTree = "<group>"; };
 		8D13206B24795C3100EB4BEC /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		8D14FAA52489E94D00D1C6FA /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellTappedViewController.swift; sourceTree = "<group>"; };
 		8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByTappedContenerViewController.swift; sourceTree = "<group>"; };
 		8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedContenerViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				8D88C75A246D7BAB00145BD2 /* ResevationViewController.swift */,
 				8D88C758246D7B7300145BD2 /* HistoryViewController.swift */,
 				8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */,
+				8D14FAA52489E94D00D1C6FA /* Bookmark.swift */,
 				8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */,
 				8D88C756246D7A8000145BD2 /* MessageHistoryViewController.swift */,
 				8D1767832488CF9D0056AA99 /* Talkroom.swift */,
@@ -415,6 +418,7 @@
 				8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */,
 				8DCD2FCD247058A700D2C9ED /* SidemenuViewController.swift in Sources */,
 				8D2893FB246FB89B00855CCD /* BookmarkHistoryViewController.swift in Sources */,
+				8D14FAA62489E94D00D1C6FA /* Bookmark.swift in Sources */,
 				8D750686246DA4CD0054497A /* TabbarController.swift in Sources */,
 				8D2893FD246FB8CF00855CCD /* TellHistoryViewController.swift in Sources */,
 				8D421AB2246F150700758F4B /* TextInputProfileViewController.swift in Sources */,

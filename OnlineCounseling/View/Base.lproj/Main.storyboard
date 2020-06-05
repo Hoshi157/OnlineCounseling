@@ -733,28 +733,17 @@ vuOBmeOAghHigKjigKjmmK/pnZ7jgIHjgZTnmbvpjLLjgY/jgaDjgZXjgYTjgb7jgZvjgII
                                 <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VhH-Rs-Cc2">
-                                <rect key="frame" x="0.0" y="94" width="414" height="802"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="VhH-Rs-Cc2" firstAttribute="top" secondItem="jgL-gw-XMl" secondAttribute="bottom" id="4Rk-IF-gKq"/>
-                            <constraint firstItem="VhH-Rs-Cc2" firstAttribute="trailing" secondItem="gDV-PJ-hHZ" secondAttribute="trailing" id="C0K-YI-zIA"/>
-                            <constraint firstAttribute="bottom" secondItem="VhH-Rs-Cc2" secondAttribute="bottom" id="Eq6-TW-I3D"/>
                             <constraint firstItem="jgL-gw-XMl" firstAttribute="trailing" secondItem="gDV-PJ-hHZ" secondAttribute="trailing" id="IlA-Yo-Wb6"/>
                             <constraint firstItem="jgL-gw-XMl" firstAttribute="trailing" secondItem="gDV-PJ-hHZ" secondAttribute="trailing" id="NHU-A5-EOG"/>
                             <constraint firstItem="jgL-gw-XMl" firstAttribute="top" secondItem="gDV-PJ-hHZ" secondAttribute="top" id="Rat-cM-mij"/>
-                            <constraint firstItem="VhH-Rs-Cc2" firstAttribute="leading" secondItem="gDV-PJ-hHZ" secondAttribute="leading" id="VNL-j1-OEm"/>
                             <constraint firstItem="jgL-gw-XMl" firstAttribute="top" secondItem="gDV-PJ-hHZ" secondAttribute="top" id="ah9-Ni-RWN"/>
                             <constraint firstItem="jgL-gw-XMl" firstAttribute="leading" secondItem="gDV-PJ-hHZ" secondAttribute="leading" id="f8G-qj-iPk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gDV-PJ-hHZ"/>
                     </view>
-                    <connections>
-                        <outlet property="tableView" destination="VhH-Rs-Cc2" id="izP-io-Shg"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ro7-EY-uzV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -193,10 +193,6 @@ class MessageViewController: MessagesViewController {
             }
         }
     }
-    
-    
-    
-
     /*
     // MARK: - Navigation
 
@@ -231,6 +227,7 @@ extension MessageViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         if chatFlg == true {
             postData(text: text)
+            localTextUpdata(targetId: self.otherUid!, text: text)
         }else{
             print("error")
         }
@@ -245,6 +242,23 @@ extension MessageViewController: InputBarAccessoryViewDelegate {
         }else{ // チャット履歴がある場合,
             let chateTargetDb = Firestore.firestore().collection("rooms").document(self.alreadyRoomNumber!).collection("chate")
             chateTargetDb.addDocument(data: post)
+        }
+    }
+    // チャットの最後の文のみを保存(トークルームに表示する)
+    func localTextUpdata(targetId: String, text: String) {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                // 相手のuidがあるか判別
+                let targetMessage: MessageHistory? = user.messages.lazy.filter { $0.otherUid == targetId}.first
+                if (targetMessage != nil) {
+                    // いたら文を更新
+                    targetMessage!.lastText = text
+                }
+            }
+        }catch {
+            print("error Realm")
         }
     }
 }

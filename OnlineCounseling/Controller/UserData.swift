@@ -78,4 +78,6 @@ class MessageHistory: Object {
     @objc dynamic var otherUid = ""
     @objc dynamic var otherName = ""
     @objc dynamic var otherRoomNumber = ""
+    // チャットの最後の文のみ格納
+    @objc dynamic var lastText = ""
 }

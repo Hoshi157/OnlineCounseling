@@ -73,7 +73,7 @@ class MessageHistoryViewController: UIViewController {
     @objc func sidemenuButtonAction() {
         self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
     }
-    // Realmからお気に入りデータを取得する
+    // Realmからメッセージ履歴データを取得する
     func localDataGet() {
         talkrooms = []
         do {
@@ -88,7 +88,8 @@ class MessageHistoryViewController: UIViewController {
                     let name = message.otherName
                     let uid = message.otherUid
                     let roomKey = message.otherRoomNumber
-                    let talkroom = Talkroom(name: name, uid: uid, roomNumber: roomKey)
+                    let text = message.lastText
+                    let talkroom = Talkroom(name: name, uid: uid, roomNumber: roomKey, lastText: text)
                     self.talkrooms.append(talkroom)
                 }
             }
@@ -155,6 +156,7 @@ extension MessageHistoryViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageTableViewCell
         cell.nameLabel.text = talkrooms[indexPath.row].name
+        cell.underLabel.text = talkrooms[indexPath.row].lastText
         return cell
     }
     // Cellをタップしたらメッセージ画面へ
