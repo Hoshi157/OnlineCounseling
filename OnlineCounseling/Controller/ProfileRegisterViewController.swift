@@ -141,7 +141,7 @@ class ProfileRegisterViewController: UIViewController {
         self.singlewordText = user.singlewordText
         self.medicalhistoryText = user.medicalhistoryText
         self.gender = user.gender
-        self.photoImage = user.avaterimage
+        
         self.uid = user.uid
         self.type = user.type
         print(user, "user")
@@ -184,7 +184,6 @@ class ProfileRegisterViewController: UIViewController {
                 return true
             }
         }
-        print(anonymousUser?.uid, self.uid, "一致しない")
         alert.okAlert(title: "エラーが発生しました", message: "通信状態を確認して最初からやり直してください", currentController: self)
         return false
     }
@@ -483,17 +482,14 @@ extension ProfileRegisterViewController: UIImagePickerControllerDelegate, UINavi
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         photoImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        // 画像のRealmへの書き込み
-        do {
-            realm = try Realm()
-            let user = realm.objects(User.self).last!
-            try realm.write {
-                user.avaterimage = photoImage!
-            }
-        }catch {
-            print("error")
-        }
         self.avaterImageView.image = photoImage
+        let imagePath = fileInDocumentsDirectory(filename: self.uid!)
+        print(imagePath, "画像のPath")
+        let t = saveImage(image: photoImage!, path: imagePath)
+        print(t, "保存できた")
         self.dismiss(animated: true, completion: nil)
 }
+}
+
+extension ProfileRegisterViewController: imageSaveProtocol {
 }

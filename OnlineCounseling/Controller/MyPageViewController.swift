@@ -140,7 +140,7 @@ class MyPageViewController: UIViewController {
         self.singlewordText = user.singlewordText
         self.medicalhistoryText = user.medicalhistoryText
         self.gender = user.gender
-        self.photoImage = user.avaterimage
+        
         self.uid = user.uid
         }catch {
             print("error")
@@ -467,7 +467,7 @@ extension MyPageViewController: UIImagePickerControllerDelegate, UINavigationCon
             realm = try Realm()
             let user = realm.objects(User.self).last!
             try realm.write {
-                user.avaterimage = photoImage!
+                
             }
         }catch {
             print("error")

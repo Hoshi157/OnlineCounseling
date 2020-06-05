@@ -21,38 +21,7 @@ class User: Object {
     @objc dynamic var singlewordText = ""
     @objc dynamic var medicalhistoryText = ""
     @objc dynamic var type = ""
-    @objc dynamic var avaterimage: UIImage? {
-        set{
-           let maxImageSize = 15*1024*1024
-            var quarity: CGFloat = 0.9
-            var jpegSize = 0
-            
-            if let value = newValue {
-                self.imageData = value.jpegData(compressionQuality: quarity)! as NSData
-                if let data = self.imageData {
-                    jpegSize = data.length
-                    print("imageData.size", jpegSize)
-                    
-                    while (quarity > 0 && jpegSize > maxImageSize) {
-                        quarity = quarity - 0.15
-                        self.imageData = value.jpegData(compressionQuality: quarity)! as NSData
-                        jpegSize = self.imageData!.length
-                    }
-                }
-                print("imageData.size", jpegSize)
-            }
-        }
-        get{
-            if let image = imagePhoto {
-                return image
-            }
-            if let data = self.imageData {
-                self.imagePhoto = UIImage(data: data as Data)
-                return self.imagePhoto
-            }
-            return nil
-        }
-    }
+    @objc dynamic var imagePath: String = "" // imageはファイルのパスを保存
     @objc dynamic private var imageData: NSData? = nil
     @objc dynamic private var imagePhoto: UIImage? = nil
     
@@ -80,4 +49,48 @@ class MessageHistory: Object {
     @objc dynamic var otherRoomNumber = ""
     // チャットの最後の文のみ格納
     @objc dynamic var lastText = ""
+}
+
+protocol imageSaveProtocol {
+    // DocumentディレクトリのfileURLを取得
+    func getDoumentsURL() -> NSURL
+    // DocumentのpathにFilenameを繋げてファイルのフルパスを作成
+    func fileInDocumentsDirectory(filename: String) -> String
+    // ファイルに書き込み(pathは画像のpathを入れる)
+    func saveImage (image: UIImage, path: String ) -> Bool
+    // pathから画像をロード
+    func loadImageFromPath(path: String) -> UIImage?
+}
+
+// 画像のFileフルパスを作成し書き込む
+extension imageSaveProtocol {
+    // DocumentディレクトリのfileURLを取得
+    func getDoumentsURL() -> NSURL {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
+        return documentsURL
+    }
+    // DocumentのpathにFilenameを繋げてファイルのフルパスを作成(filenameは自分のuidにする)
+    func fileInDocumentsDirectory(filename: String) -> String {
+        let fileURL = getDoumentsURL().appendingPathComponent(filename)
+        return fileURL!.path
+    }
+    // ファイルに書き込み(判定処理あり) tureならRealmに保存する
+    func saveImage(image: UIImage, path: String) -> Bool {
+        let pngImageData: Data? = image.pngData() // imageをpngDataに変換
+        do {
+            try pngImageData!.write(to: URL(fileURLWithPath: path), options: .atomic) // imageDataをpathに書き込む
+        }catch {
+            print(error, "saveImage error")
+            return false
+        }
+        return true
+    }
+    // pathからUIImageを取得
+    func loadImageFromPath(path: String) -> UIImage? {
+        let image = UIImage(contentsOfFile: path)
+        if (image == nil) {
+            print(path, "image nil")
+        }
+        return image
+    }
 }

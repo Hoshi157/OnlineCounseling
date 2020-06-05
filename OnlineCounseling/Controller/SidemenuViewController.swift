@@ -155,7 +155,7 @@ class SidemenuViewController: UIViewController {
             let user = realm.objects(User.self).last!
             print(user, "user")
             try realm.write {
-                self.photoImage = user.avaterimage
+                
                 self.name = user.name
             }
         }catch {
