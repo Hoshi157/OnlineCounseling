@@ -109,8 +109,7 @@ class UserByTappedContenerViewController: UIViewController {
             self.bookmarkStateRetention(targetId: otherUid)
             // Firebaseから情報を取得する
             getData()
-            let image = loadImage(childId: otherUid)
-            childVC.avaterImageView.image = image
+            
         }
 
         // Do any additional setup after loading the view.

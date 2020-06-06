@@ -41,6 +41,7 @@ class HomeViewController: UIViewController {
        
         self.getData()
     }
+    
     // 左上部のボタンが押されたらスライドメニューが開く
     @objc func sidemenuButtonAction() {
         self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
@@ -57,9 +58,7 @@ class HomeViewController: UIViewController {
                     let name = document.data()["name"] as! String
                     let jobs = document.data()["jobs"] as! String
                     let uid = document.documentID
-                    let image = self.loadImage(childId: uid) // Storageから画像を取得
-                    print(uid, image, "画像とuid")
-                    let getCollection = GetCollections(name: name, jobs: jobs, uid: uid, image: image)
+                    let getCollection = GetCollections(name: name, jobs: jobs, uid: uid)
                     self.collectionArray.append(getCollection)
                 }
                 DispatchQueue.main.async {
@@ -92,8 +91,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.clipsToBounds = true
         cell.nameLabel.text = collectionArray[indexPath.row].name
         cell.jobsLabel.text = collectionArray[indexPath.row].jobs
-        // 画像を表示
-        let image = collectionArray[indexPath.row].image
+        let uid = collectionArray[indexPath.row].uid
+        // storageからimageを取得(めっちゃ時間かかる)
+        self.loadImage(targetUid: uid!, completionClosure: { (image) -> Void in
             DispatchQueue.main.async {
                 if (image != nil) {
                     cell.avaterImageView.image = image
@@ -101,6 +101,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     cell.avaterImageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
                 }
             }
+        })
         return cell
     }
     

@@ -12,7 +12,7 @@ import UIKit
 
 protocol storageProtocol {
     func storagetToUploadImage(image: UIImage?, childId: String)
-    func loadImage(childId: String) -> UIImage?
+    func loadImage(targetUid: String, completionClosure: @escaping CompletionClosure)
 }
 
 extension storageProtocol {
@@ -31,18 +31,20 @@ extension storageProtocol {
             print("image nil")
         }
     }
-    // 画像を取得する(uidから)
-    func loadImage(childId: String) -> UIImage? {
-        print("呼び出された")
-        var image: UIImage?
-        let postRef = Storage.storage().reference(forURL: "gs://onlinecounseling-3c1ac.appspot.com").child(childId)
+    // クロージャの型定義
+    typealias CompletionClosure = ((_ result: UIImage?) -> Void)
+    
+    // Storageから画像取得
+    func loadImage(targetUid: String, completionClosure: @escaping CompletionClosure) { // @escapingにimageの結果が入る
+        let postRef = Storage.storage().reference(forURL: "gs://onlinecounseling-3c1ac.appspot.com").child(targetUid)
         postRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
             if let error = error {
                 print(error.localizedDescription, "error storage")
+                completionClosure(nil)
             }else {
-                image = UIImage(data: data!)
+                let image = UIImage(data: data!)
+                completionClosure(image)
             }
         }
-        return image
     }
 }
