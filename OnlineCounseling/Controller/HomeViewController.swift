@@ -58,6 +58,7 @@ class HomeViewController: UIViewController {
                     let jobs = document.data()["jobs"] as! String
                     let uid = document.documentID
                     let image = self.loadImage(childId: uid) // Storageから画像を取得
+                    print(uid, image, "画像とuid")
                     let getCollection = GetCollections(name: name, jobs: jobs, uid: uid, image: image)
                     self.collectionArray.append(getCollection)
                 }
@@ -93,11 +94,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.jobsLabel.text = collectionArray[indexPath.row].jobs
         // 画像を表示
         let image = collectionArray[indexPath.row].image
-        if (image != nil) {
             DispatchQueue.main.async {
-                cell.avaterImageView.image = image
+                if (image != nil) {
+                    cell.avaterImageView.image = image
+                }else {
+                    cell.avaterImageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
+                }
             }
-        }
         return cell
     }
     

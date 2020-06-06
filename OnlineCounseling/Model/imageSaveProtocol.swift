@@ -7,13 +7,14 @@
 //
 
 import Foundation
-
+import UIKit
+// Documentディレクトリに画像を保存する処理
 protocol imageSaveProtocol {
     // DocumentディレクトリのfileURLを取得
     func getDoumentsURL() -> NSURL
     // DocumentのpathにFilenameを繋げてファイルのフルパスを作成
     func fileInDocumentsDirectory(filename: String) -> String
-    // ファイルに書き込み(pathは画像のpathを入れる)
+    // ファイルに書き込み(pathはfileInDocumentsDirectoryを入れる)
     func saveImage (image: UIImage, path: String ) -> Bool
     // pathから画像をロード
     func loadImageFromPath(path: String) -> UIImage?

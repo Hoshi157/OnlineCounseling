@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import UIKit
 
 protocol storageProtocol {
     func storagetToUploadImage(image: UIImage?, childId: String)
@@ -18,7 +19,7 @@ extension storageProtocol {
     // Storageに画像を保存する
     func storagetToUploadImage(image: UIImage?, childId: String) {
         let postRef = Storage.storage().reference(forURL: "gs://onlinecounseling-3c1ac.appspot.com").child(childId)
-        let data: Data? = image?.pngData() // PNGに変換
+        let data: Data? = image?.jpegData(compressionQuality: 0.3) // jpegに変換(データ圧縮しないとダウンロードできない)
         if (data != nil) {
             postRef.putData(data!, metadata: nil) { (data, error) in
                 if (error != nil) {
@@ -32,11 +33,12 @@ extension storageProtocol {
     }
     // 画像を取得する(uidから)
     func loadImage(childId: String) -> UIImage? {
-        var image: UIImage? = nil
+        print("呼び出された")
+        var image: UIImage?
         let postRef = Storage.storage().reference(forURL: "gs://onlinecounseling-3c1ac.appspot.com").child(childId)
         postRef.getData(maxSize: 1 * 1024 * 1024) { (data, error) in
             if let error = error {
-                print(error, "error storage")
+                print(error.localizedDescription, "error storage")
             }else {
                 image = UIImage(data: data!)
             }
