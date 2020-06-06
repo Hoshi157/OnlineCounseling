@@ -174,6 +174,7 @@ class MyPageViewController: UIViewController {
         ]
         // updataする
         usersDB.document(self.uid!).updateData(post)
+        storagetToUploadImage(image: self.photoImage, childId: self.uid!)
         self.dismiss(animated: true, completion: nil)
     }
     // pickerのokボタン
@@ -482,3 +483,4 @@ extension MyPageViewController: UIImagePickerControllerDelegate, UINavigationCon
 }
 
 extension MyPageViewController: imageSaveProtocol{}
+extension MyPageViewController: storageProtocol {}

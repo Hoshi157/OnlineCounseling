@@ -107,8 +107,11 @@ class UserByTappedContenerViewController: UIViewController {
         // 相手のuidをアンラップ
         if let otherUid = userTapUid {
             self.bookmarkStateRetention(targetId: otherUid)
+            // Firebaseから情報を取得する
+            getData()
+            let image = loadImage(childId: otherUid)
+            childVC.avaterImageView.image = image
         }
-        getData()
 
         // Do any additional setup after loading the view.
     }
@@ -281,3 +284,5 @@ class UserByTappedContenerViewController: UIViewController {
     */
 
 }
+
+extension UserByTappedContenerViewController: storageProtocol {}

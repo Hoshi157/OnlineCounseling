@@ -181,7 +181,8 @@ class ProfileRegisterViewController: UIViewController {
         let anonymousUser = Auth.auth().currentUser
         if let uid = self.uid {
             if (uid == anonymousUser?.uid) {
-                self.usersDB.document(uid).setData(post)
+                self.usersDB.document(uid).setData(post) // userデータをFirebaseに保存
+                storagetToUploadImage(image: self.photoImage, childId: uid) // 画像をStorageに保存
                 print("Dataをfirebaseに保存")
                 return true
             }
@@ -504,3 +505,4 @@ extension ProfileRegisterViewController: UIImagePickerControllerDelegate, UINavi
 }
 
 extension ProfileRegisterViewController: imageSaveProtocol {}
+extension ProfileRegisterViewController: storageProtocol {}

@@ -1,0 +1,54 @@
+//
+//  imageSaveProtocol.swift
+//  OnlineCounseling
+//
+//  Created by 福山帆士 on 2020/06/06.
+//  Copyright © 2020 福山帆士. All rights reserved.
+//
+
+import Foundation
+
+protocol imageSaveProtocol {
+    // DocumentディレクトリのfileURLを取得
+    func getDoumentsURL() -> NSURL
+    // DocumentのpathにFilenameを繋げてファイルのフルパスを作成
+    func fileInDocumentsDirectory(filename: String) -> String
+    // ファイルに書き込み(pathは画像のpathを入れる)
+    func saveImage (image: UIImage, path: String ) -> Bool
+    // pathから画像をロード
+    func loadImageFromPath(path: String) -> UIImage?
+}
+
+// 画像のFileフルパスを作成し書き込む
+extension imageSaveProtocol {
+    // DocumentディレクトリのfileURLを取得
+    func getDoumentsURL() -> NSURL {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
+        return documentsURL
+    }
+    // DocumentのpathにFilenameを繋げてファイルのフルパスを作成(filenameは自分のuidにする)
+    func fileInDocumentsDirectory(filename: String) -> String {
+        let fileURL = getDoumentsURL().appendingPathComponent(filename)
+        return fileURL!.path
+    }
+    // ファイルに書き込み(判定処理あり) tureならRealmに保存する
+    func saveImage(image: UIImage, path: String) -> Bool {
+        let pngImageData: Data? = image.pngData() // imageをpngDataに変換
+        do {
+            try pngImageData!.write(to: URL(fileURLWithPath: path), options: .atomic) // imageDataをpathに書き込む
+        }catch {
+            print(error, "saveImage error")
+            return false
+        }
+        return true
+    }
+    // pathからUIImageを取得
+    func loadImageFromPath(path: String) -> UIImage? {
+        let image = UIImage(contentsOfFile: path)
+        if (image == nil) {
+            print(path, "image nil")
+            return nil
+        }
+        return image
+    }
+}

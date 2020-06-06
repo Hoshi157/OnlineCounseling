@@ -57,7 +57,8 @@ class HomeViewController: UIViewController {
                     let name = document.data()["name"] as! String
                     let jobs = document.data()["jobs"] as! String
                     let uid = document.documentID
-                    let getCollection = GetCollections(name: name, jobs: jobs, uid: uid)
+                    let image = self.loadImage(childId: uid) // Storageから画像を取得
+                    let getCollection = GetCollections(name: name, jobs: jobs, uid: uid, image: image)
                     self.collectionArray.append(getCollection)
                 }
                 DispatchQueue.main.async {
@@ -90,6 +91,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.clipsToBounds = true
         cell.nameLabel.text = collectionArray[indexPath.row].name
         cell.jobsLabel.text = collectionArray[indexPath.row].jobs
+        // 画像を表示
+        let image = collectionArray[indexPath.row].image
+        if (image != nil) {
+            DispatchQueue.main.async {
+                cell.avaterImageView.image = image
+            }
+        }
         return cell
     }
     
@@ -112,3 +120,4 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }
+extension HomeViewController: storageProtocol {}
