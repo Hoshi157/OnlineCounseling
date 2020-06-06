@@ -238,7 +238,6 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
             pickerCell.textLabel?.text = tableArray[indexPath.row]
             //　上記Nameと同じ(が入力されてしまう)
             if (self.birthdayDate != Date()) {
-                print(birthdayDate, "生年月日")
                 pickerCell.rightLabel.text = "\(self.formatter.string(from: self.birthdayDate!))"
                 pickerCell.rightImage.image = UIImage()
             }

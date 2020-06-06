@@ -140,7 +140,8 @@ class MyPageViewController: UIViewController {
         self.singlewordText = user.singlewordText
         self.medicalhistoryText = user.medicalhistoryText
         self.gender = user.gender
-        
+        let image = loadImageFromPath(path: user.imagePath)
+        self.photoImage = image
         self.uid = user.uid
         }catch {
             print("error")
@@ -462,16 +463,22 @@ extension MyPageViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         photoImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         self.avaterImageView.image = photoImage
-        // 画像のRealmへの書き込み
-        do {
-            realm = try Realm()
-            let user = realm.objects(User.self).last!
-            try realm.write {
-                
+        let imagePath = fileInDocumentsDirectory(filename: self.uid!) // imageをfilePathを作成
+        if (saveImage(image: photoImage!, path: imagePath)) { // ファイルに保存できたらture
+            do {
+                realm = try Realm()
+                let user = realm.objects(User.self).last!
+                try realm.write {
+                    user.imagePath = imagePath // Realmに画像のPathを保存
+                }
+            }catch {
+                print("error Realm")
             }
-        }catch {
-            print("error")
+        }else {
+            print("ファイルに画像保存できず")
         }
         self.dismiss(animated: true, completion: nil)
 }
 }
+
+extension MyPageViewController: imageSaveProtocol{}

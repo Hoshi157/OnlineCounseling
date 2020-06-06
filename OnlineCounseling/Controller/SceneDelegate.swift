@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last
-            print(user?.uid, "user.uid")
+            print(user?.uid ?? "nil", "user.uid")
             // RealmのuidがあればTabbarVC(ログインしている)
             if (user?.uid != nil) {
                 let tabbarVC = storyboard.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController

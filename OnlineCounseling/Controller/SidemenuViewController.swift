@@ -39,10 +39,11 @@ class SidemenuViewController: UIViewController {
     private var beganState: Bool = false
     private var beganLocation: CGPoint = .zero
     private var screenEdgePanGestureRecognizer: UIScreenEdgePanGestureRecognizer!
-    
+    // Realm
     private var realm: Realm!
     private var photoImage: UIImage?
     private var name: String?
+    private var bookmarkCount: String?
 
     lazy var avaterImageView: UIImageView = {
         let imageView = UIImageView()
@@ -155,8 +156,10 @@ class SidemenuViewController: UIViewController {
             let user = realm.objects(User.self).last!
             print(user, "user")
             try realm.write {
-                
                 self.name = user.name
+                self.bookmarkCount = "\(user.bookmarks.count)"
+                let image = loadImageFromPath(path: user.imagePath)
+                self.photoImage = image
             }
         }catch {
             print("error")
@@ -176,6 +179,7 @@ class SidemenuViewController: UIViewController {
                 self.avaterImageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
             }
         }
+        bookmarkIntLabel.text = self.bookmarkCount
     }
     
     @objc func backViewTapped(_ sender: UITapGestureRecognizer) {
@@ -336,5 +340,6 @@ extension SidemenuViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
     }
-    
 }
+
+extension SidemenuViewController: imageSaveProtocol {}

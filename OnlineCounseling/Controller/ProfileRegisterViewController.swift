@@ -141,9 +141,11 @@ class ProfileRegisterViewController: UIViewController {
         self.singlewordText = user.singlewordText
         self.medicalhistoryText = user.medicalhistoryText
         self.gender = user.gender
-        
         self.uid = user.uid
         self.type = user.type
+        // imagePathからUIImageを生成
+        let image = self.loadImageFromPath(path: user.imagePath)
+        self.photoImage = image
         print(user, "user")
         }catch {
             print("error")
@@ -483,13 +485,22 @@ extension ProfileRegisterViewController: UIImagePickerControllerDelegate, UINavi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         photoImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         self.avaterImageView.image = photoImage
-        let imagePath = fileInDocumentsDirectory(filename: self.uid!)
-        print(imagePath, "画像のPath")
-        let t = saveImage(image: photoImage!, path: imagePath)
-        print(t, "保存できた")
+        let imagePath = fileInDocumentsDirectory(filename: self.uid!) //　画像のPath
+        if (saveImage(image: photoImage!, path: imagePath)) { // ファイルに保存できたらture
+            do {
+                realm = try Realm()
+                let user = realm.objects(User.self).last!
+                try realm.write {
+                    user.imagePath = imagePath // Realmに画像のPathを保存
+                }
+            }catch {
+                print("error Realm")
+            }
+        }else {
+            print("ファイルに画像保存できず")
+        }
         self.dismiss(animated: true, completion: nil)
 }
 }
 
-extension ProfileRegisterViewController: imageSaveProtocol {
-}
+extension ProfileRegisterViewController: imageSaveProtocol {}

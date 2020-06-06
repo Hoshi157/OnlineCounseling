@@ -22,12 +22,6 @@ class User: Object {
     @objc dynamic var medicalhistoryText = ""
     @objc dynamic var type = ""
     @objc dynamic var imagePath: String = "" // imageはファイルのパスを保存
-    @objc dynamic private var imageData: NSData? = nil
-    @objc dynamic private var imagePhoto: UIImage? = nil
-    
-    override static func ignoredProperties() -> [String] {
-        return ["avaterimage", "imagePhoto"]
-    }
     
     let reservations = List<Reservation>()
     let bookmarks = List<BookmarkHistory>()
@@ -47,8 +41,7 @@ class MessageHistory: Object {
     @objc dynamic var otherUid = ""
     @objc dynamic var otherName = ""
     @objc dynamic var otherRoomNumber = ""
-    // チャットの最後の文のみ格納
-    @objc dynamic var lastText = ""
+    @objc dynamic var lastText = "" // チャットの最後の文のみ格納
 }
 
 protocol imageSaveProtocol {
