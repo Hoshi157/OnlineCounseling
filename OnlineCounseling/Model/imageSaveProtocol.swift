@@ -27,12 +27,12 @@ extension imageSaveProtocol {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
         return documentsURL
     }
-    // DocumentのpathにFilenameを繋げてファイルのフルパスを作成(filenameは自分のuidにする)
+    // DocumentのpathにFilenameを繋げてファイルのフルパスを作成(filenameはuidにする)
     func fileInDocumentsDirectory(filename: String) -> String {
         let fileURL = getDoumentsURL().appendingPathComponent(filename)
         return fileURL!.path
     }
-    // ファイルに書き込み(判定処理あり) tureならRealmに保存する
+    // ファイルに書き込み(判定処理あり)
     func saveImage(image: UIImage, path: String) -> Bool {
         let pngImageData: Data? = image.jpegData(compressionQuality: 0.3)// imageをjpegDataに変換
         do {

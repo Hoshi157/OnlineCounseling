@@ -24,7 +24,6 @@ class AccountCreateViewController: UIViewController {
     private var birthdayDate: Date?
     // firebaeからuidは取得
     private var uid: String?
-    private let type = "user"
     // もとから書いてあるテキスト(underLabelに)
     private let originalText = "自由に記入してください"
     private let alert = AlertController()
@@ -106,27 +105,6 @@ class AccountCreateViewController: UIViewController {
             self.uid = user.uid
             print(user.uid, "user.uid")
         }
-        
-        // まずはUser情報をrealmへ保存(開始時一度のみ)
-        do {
-            realm = try Realm()
-            if (realm.objects(User.self).last == nil) {
-                let myUser = User()
-                // ユーザー固有のIDを生成しRealmへ保存、後ユーザータイプも保存
-                myUser.type = self.type
-                // firebaseの認証が遅ければ空
-                myUser.uid = self.uid ?? ""
-                try realm.write {
-                    realm.add(myUser)
-                    print(realm.objects(User.self), "realmの個数確認")
-                }
-            }
-        }catch {
-            print("error")
-        }
-
-        // Do any additional setup after loading the view.
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,6 +117,7 @@ class AccountCreateViewController: UIViewController {
             print(realm.objects(User.self).count, "realmData,個数") //複数入ってないか確認
             self.name = user.name
             self.birthdayDate = user.birthdayDate
+            print("Realm　処理終わった")
             // uidが入っているか確認
             if (user.uid == "") {
                 try realm.write {
@@ -237,7 +216,7 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             pickerCell.textLabel?.text = tableArray[indexPath.row]
             //　上記Nameと同じ(が入力されてしまう)
-            if (self.birthdayDate != Date()) {
+            if (self.birthdayDate != nil) {
                 pickerCell.rightLabel.text = "\(self.formatter.string(from: self.birthdayDate!))"
                 pickerCell.rightImage.image = UIImage()
             }

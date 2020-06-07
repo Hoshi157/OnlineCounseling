@@ -92,16 +92,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.nameLabel.text = collectionArray[indexPath.row].name
         cell.jobsLabel.text = collectionArray[indexPath.row].jobs
         let uid = collectionArray[indexPath.row].uid
-        // storageからimageを取得(めっちゃ時間かかる)
-        self.loadImage(targetUid: uid!, completionClosure: { (image) -> Void in
-            DispatchQueue.main.async {
-                if (image != nil) {
-                    cell.avaterImageView.image = image
-                }else {
-                    cell.avaterImageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
-                }
+        let filePath = self.fileInDocumentsDirectory(filename: uid!)
+        let image = self.loadImageFromPath(path: filePath)
+        DispatchQueue.main.async {
+            if (image != nil) {
+                cell.avaterImageView.image = image
+            }else {
+                cell.avaterImageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
             }
-        })
+        }
+        
         return cell
     }
     
@@ -124,4 +124,4 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }
-extension HomeViewController: storageProtocol {}
+extension HomeViewController: imageSaveProtocol {}

@@ -12,7 +12,7 @@ import UIKit
 class User: Object {
     @objc dynamic var uid = ""
     @objc dynamic var name = ""
-    @objc dynamic var birthdayDate = Date()
+    @objc dynamic var birthdayDate: Date? = nil
     @objc dynamic var gender = ""
     @objc dynamic var jobs = ""
     @objc dynamic var area = ""
@@ -26,6 +26,7 @@ class User: Object {
     let reservations = List<Reservation>()
     let bookmarks = List<BookmarkHistory>()
     let messages = List<MessageHistory>()
+    let otherUsers = List<OtherUser>()
 }
 // 予約データ
 class Reservation: Object {
@@ -42,4 +43,9 @@ class MessageHistory: Object {
     @objc dynamic var otherName = ""
     @objc dynamic var otherRoomNumber = ""
     @objc dynamic var lastText = "" // チャットの最後の文のみ格納
+}
+// 他のユーザーの情報
+class OtherUser: Object {
+    @objc dynamic var uid = ""
+    @objc dynamic var imagePath = ""
 }
