@@ -58,13 +58,6 @@ class BookmarkHistoryViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        myTableview.reloadData()
-    }
-    
     // tableviewのオートレイアウト
     func tableviewLayout() {
         view.addSubview(myTableview)
@@ -115,7 +108,31 @@ class BookmarkHistoryViewController: UIViewController {
     }
     
     func reload() {
-        myTableview.reloadData()
+        print("ブックマーク船長であります!!!")
+        DispatchQueue.global().async {
+            self.getdataAtReload()
+        DispatchQueue.main.async {
+            self.myTableview.reloadData()
+        }
+        }
+    }
+    
+    func getdataAtReload() {
+        bookmarks = []
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                for bookmark in user.bookmarks {
+                    let name = bookmark.otherName
+                    let uid = bookmark.otherUid
+                    let bookmarkData = Bookmark(name: name, uid: uid)
+                    self.bookmarks.append(bookmarkData)
+                }
+            }
+        }catch {
+            print(error.localizedDescription, "error Realm")
+        }
     }
     
 
@@ -134,6 +151,7 @@ class BookmarkHistoryViewController: UIViewController {
 extension BookmarkHistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 履歴があったらtableviewを表示
+        print(bookmarks.count, "bookmarks.count!!!!")
         if (bookmarks.count >= 1) {
             tableviewLayout()
             return bookmarks.count
@@ -147,6 +165,14 @@ extension BookmarkHistoryViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ImageNameOnlyTableViewCell", for: indexPath) as! ImageNameOnlyTableViewCell
         cell.nameLabel.text = bookmarks[indexPath.row].name
+        let uid = bookmarks[indexPath.row].uid
+        let filePath = self.fileInDocumentsDirectory(filename: uid!)
+        let image = self.loadImageFromPath(path: filePath)
+        DispatchQueue.main.async {
+            if (image != nil) {
+                cell.avaterImageView.image = image
+            }
+        }
         return cell
     }
     // Cellをタップしたらプロフィール画面へ
@@ -166,3 +192,4 @@ extension BookmarkHistoryViewController: IndicatorInfoProvider {
         return itemInfo
     }
 }
+extension BookmarkHistoryViewController: imageSaveProtocol {}

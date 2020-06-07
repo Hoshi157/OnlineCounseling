@@ -109,7 +109,14 @@ class UserByTappedContenerViewController: UIViewController {
             self.bookmarkStateRetention(targetId: otherUid)
             // Firebaseから情報を取得する
             getData()
-            
+            // 画像を表示する
+            let filePath = fileInDocumentsDirectory(filename: otherUid)
+            let image = loadImageFromPath(path: filePath)
+            DispatchQueue.main.async {
+                if (image != nil) {
+                    self.childVC.avaterImageView.image = image
+                }
+            }
         }
 
         // Do any additional setup after loading the view.
@@ -209,10 +216,9 @@ class UserByTappedContenerViewController: UIViewController {
     // Firebaseのお気に入り履歴のデータを判別して追加か削除
     func existenceCloudataBookmark(targetId: String, myId: String) {
         self.userDB.document(myId).collection("bookmark").getDocuments { (querySnapshot, error) in
-            if (error != nil) {
-                print(error!.localizedDescription, "error")
-                return
-            }
+            if let error = error {
+                print(error.localizedDescription, "error")
+            }else {
             let snapshot: QueryDocumentSnapshot? = querySnapshot!.documents.lazy.filter { $0.data()[targetId] as! String == targetId }.first
             print(snapshot ?? "nil", "snapshot bookmark")
                 // お気に入り履歴あり(削除)
@@ -222,7 +228,7 @@ class UserByTappedContenerViewController: UIViewController {
                 }else { // お気に入り履歴なし(追加)
                     self.userDB.document(myId).collection("bookmark").addDocument(data: [targetId: targetId])
                 }
-                
+            }
         }
     }
     // Realmにお気に入り履歴があるか判別
@@ -246,6 +252,7 @@ class UserByTappedContenerViewController: UIViewController {
                     // 追加処理
                     let bookmarkHistory = BookmarkHistory(value: ["otherUid": targetId, "otherName": targetName])
                     user.bookmarks.append(bookmarkHistory)
+                    print("追加!")
                 }
             }
         }catch {
@@ -284,4 +291,4 @@ class UserByTappedContenerViewController: UIViewController {
 
 }
 
-extension UserByTappedContenerViewController: storageProtocol {}
+extension UserByTappedContenerViewController: imageSaveProtocol {}

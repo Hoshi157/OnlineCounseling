@@ -261,6 +261,15 @@ extension MessageViewController: InputBarAccessoryViewDelegate {
             print("error Realm")
         }
     }
+    // アバターを設定
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        let filePath = self.fileInDocumentsDirectory(filename: self.uid!)
+        let image = self.loadImageFromPath(path: filePath)
+        if (image != nil) {
+            let avater = Avatar(image: image, initials: currentSender().displayName)
+            avatarView.set(avatar: avater)
+        }
+    }
 }
 
 extension MessageViewController:MessagesLayoutDelegate {
@@ -295,5 +304,6 @@ extension MessageViewController:MessagesDisplayDelegate {
     
 }
 // これもdelegateしないと表示されない
-extension MessageViewController: MessageCellDelegate {
-}
+extension MessageViewController: MessageCellDelegate {}
+
+extension MessageViewController: imageSaveProtocol {}

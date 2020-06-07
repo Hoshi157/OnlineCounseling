@@ -11,7 +11,7 @@ import UIKit
 class ImageNameOnlyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
-    
+    @IBOutlet weak var avaterImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

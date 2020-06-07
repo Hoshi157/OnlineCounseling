@@ -64,12 +64,6 @@ class MessageHistoryViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        myTableview.reloadData()
-    }
-    
     @objc func sidemenuButtonAction() {
         self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
     }
@@ -99,7 +93,32 @@ class MessageHistoryViewController: UIViewController {
     }
     
     func reload() {
-        myTableview.reloadData()
+        DispatchQueue.global().async {
+            self.getdataAtReload()
+            DispatchQueue.main.async {
+                self.myTableview.reloadData()
+            }
+        }
+    }
+    
+    func getdataAtReload() {
+        talkrooms = []
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                for message in user.messages {
+                    let name = message.otherName
+                    let uid = message.otherUid
+                    let roomKey = message.otherRoomNumber
+                    let text = message.lastText
+                    let talkroom = Talkroom(name: name, uid: uid, roomNumber: roomKey, lastText: text)
+                    self.talkrooms.append(talkroom)
+                }
+            }
+        }catch {
+            print("error Realm")
+        }
     }
     // tableviewのオートレイアウト
     func tableviewLayout() {
@@ -157,6 +176,14 @@ extension MessageHistoryViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageTableViewCell
         cell.nameLabel.text = talkrooms[indexPath.row].name
         cell.underLabel.text = talkrooms[indexPath.row].lastText
+        let uid = talkrooms[indexPath.row].uid
+        let filePath = self.fileInDocumentsDirectory(filename: uid!)
+        let image = self.loadImageFromPath(path: filePath)
+        DispatchQueue.main.async {
+            if (image != nil) {
+                cell.avaterImageView.image = image
+            }
+        }
         return cell
     }
     // Cellをタップしたらメッセージ画面へ
@@ -171,3 +198,5 @@ extension MessageHistoryViewController: UITableViewDelegate, UITableViewDataSour
     }
     
 }
+
+extension MessageHistoryViewController: imageSaveProtocol {}
