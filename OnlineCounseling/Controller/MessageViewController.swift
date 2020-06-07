@@ -166,7 +166,7 @@ class MessageViewController: MessagesViewController {
             self.alreadyRoomNumberGetMessage()
         }
     }
-    // チャット開始(チャット履歴あり③)
+    // チャット開始(チャット履歴あり②)
     func alreadyRoomNumberGetMessage(){
         self.chatFlg = true
         // 追加されるたびイベント発火
@@ -178,7 +178,7 @@ class MessageViewController: MessagesViewController {
                 querySnaoshot!.documentChanges.forEach { diff in
                     if diff.type == .added {
                         let chateDataOp = diff.document.data() as? Dictionary<String,String>
-                        guard let chateData = chateDataOp else{return}
+                        guard let chateData = chateDataOp else{ return }
                         // 変更されるたびにデータを取得する
                         let text = chateData["text"]
                         let from = chateData["from"]

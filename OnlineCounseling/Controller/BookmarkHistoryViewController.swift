@@ -108,7 +108,6 @@ class BookmarkHistoryViewController: UIViewController {
     }
     
     func reload() {
-        print("ブックマーク船長であります!!!")
         DispatchQueue.global().async {
             self.getdataAtReload()
         DispatchQueue.main.async {

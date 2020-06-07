@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RealmSwift
 
 class HomeViewController: UIViewController {
     
@@ -18,6 +19,8 @@ class HomeViewController: UIViewController {
     // コレクションセルに表示するデータ配列
     private var collectionArray = [GetCollections]()
     private let userDB = Firestore.firestore().collection("users")
+    // Realm
+    private var realm: Realm!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +41,20 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 8
         collectionView.collectionViewLayout = layout
-       
-        self.getData()
+        
+        // 取得したtypeを元にFirebaseからデータ取得
+        self.gettypeToLocaldata(completion: { (type) in
+            if (type != nil) {
+                switch (type) { // 自分とtypeと逆のデータを取得
+                case "user":
+                    getData(type: "counselor")
+                case "counselor":
+                    getData(type: "user")
+                default:
+                    print("typeを取得できません")
+                }
+            }
+        })
     }
     
     // 左上部のボタンが押されたらスライドメニューが開く
@@ -47,9 +62,9 @@ class HomeViewController: UIViewController {
         self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
     }
     // Cellのデータを取得
-    func getData() {
+    func getData(type: String) {
         // リスナーにする事で変化に対応(現在はカウンセラーがいないためUser情報)
-        userDB.whereField("type", isEqualTo: "user").addSnapshotListener { (querySnapshot, error) in
+        userDB.whereField("type", isEqualTo: type).addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 print(error, "HomeVC error")
             }else {
@@ -65,6 +80,18 @@ class HomeViewController: UIViewController {
                     self.collectionView.reloadData()
                 }
             }
+        }
+    }
+    // Realmから自分のtypeを取得
+    func gettypeToLocaldata(completion: (_ type: String?) -> Void) {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            let type = user.type
+            completion(type)
+        }catch {
+            print(error.localizedDescription, "error Realm")
+            completion(nil)
         }
     }
     
