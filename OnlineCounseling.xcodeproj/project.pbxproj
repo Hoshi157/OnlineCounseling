@@ -37,6 +37,7 @@
 		8D4AD12924850CBD00687447 /* GetCollections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4AD12824850CBD00687447 /* GetCollections.swift */; };
 		8D692AD0248B725300634880 /* storageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D692ACF248B725300634880 /* storageProtocol.swift */; };
 		8D692AD2248B8B0C00634880 /* imageSaveProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D692AD1248B8B0C00634880 /* imageSaveProtocol.swift */; };
+		8D69B4F9248CD1D30092BBB2 /* CounselorRoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D69B4F8248CD1D30092BBB2 /* CounselorRoginViewController.swift */; };
 		8D73A14D247BB6E500F27238 /* ImageNameOnlyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73A14B247BB6E500F27238 /* ImageNameOnlyTableViewCell.swift */; };
 		8D73A14E247BB6E500F27238 /* ImageNameOnlyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D73A14C247BB6E500F27238 /* ImageNameOnlyTableViewCell.xib */; };
 		8D750680246D9EA00054497A /* AreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75067F246D9EA00054497A /* AreaViewController.swift */; };
@@ -104,6 +105,7 @@
 		8D4AD12824850CBD00687447 /* GetCollections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCollections.swift; sourceTree = "<group>"; };
 		8D692ACF248B725300634880 /* storageProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storageProtocol.swift; sourceTree = "<group>"; };
 		8D692AD1248B8B0C00634880 /* imageSaveProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageSaveProtocol.swift; sourceTree = "<group>"; };
+		8D69B4F8248CD1D30092BBB2 /* CounselorRoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorRoginViewController.swift; sourceTree = "<group>"; };
 		8D73A14B247BB6E500F27238 /* ImageNameOnlyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNameOnlyTableViewCell.swift; sourceTree = "<group>"; };
 		8D73A14C247BB6E500F27238 /* ImageNameOnlyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageNameOnlyTableViewCell.xib; sourceTree = "<group>"; };
 		8D75067F246D9EA00054497A /* AreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */,
 				8D13206B24795C3100EB4BEC /* AlertController.swift */,
 				8D852300247E2B4E00654314 /* UserData.swift */,
+				8D69B4F8248CD1D30092BBB2 /* CounselorRoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				8D1566DB246E4AE4009E73D0 /* CollectionCellTappedViewController.swift in Sources */,
 				8D750680246D9EA00054497A /* AreaViewController.swift in Sources */,
 				8DA9DEFC247127D20078524B /* ReservationExplanationView.swift in Sources */,
+				8D69B4F9248CD1D30092BBB2 /* CounselorRoginViewController.swift in Sources */,
 				8D88C759246D7B7300145BD2 /* HistoryViewController.swift in Sources */,
 				8D289400246FBE8900855CCD /* CustomMessageTableViewCell.swift in Sources */,
 				8D88C757246D7A8000145BD2 /* MessageHistoryViewController.swift in Sources */,

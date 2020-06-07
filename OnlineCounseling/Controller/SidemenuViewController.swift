@@ -238,12 +238,10 @@ class SidemenuViewController: UIViewController {
     @objc private func panGestureRecognizerHandled(panGestureRecognizer: UIPanGestureRecognizer) {
         print("pangestrueHandled")
         guard  let shouldPresent = self.delegate?.shouldPresentSidemenuViewController(self), shouldPresent else {
-            print("return1")
             return
         }
         let translation = panGestureRecognizer.translation(in: view)
         if translation.x > 0 && contentRatio == 1.0 {
-            print("return2")
             return
         }
         let location = panGestureRecognizer.location(in: view)
@@ -335,6 +333,10 @@ extension SidemenuViewController: UITableViewDelegate, UITableViewDataSource {
             self.present(naviController, animated: true)
         case 1:
             print("カウンセラーページへ")
+            let counselorRoginVC: UIViewController = CounselorRoginViewController()
+            let navi = UINavigationController(rootViewController: counselorRoginVC)
+            navi.modalPresentationStyle = .fullScreen
+            self.present(navi, animated: true)
         default:
             print("error")
             return
