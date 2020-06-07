@@ -85,6 +85,10 @@ class MessageViewController: MessagesViewController {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        messagesCollectionView.endEditing(true)
+    }
+    
     @objc func backviewAction() {
         dismiss(animated: true, completion: nil)
     }
@@ -159,7 +163,10 @@ class MessageViewController: MessagesViewController {
     }
     // nilチェックしルームナンバーを揃える(チャット履歴あり①)
     func historyGetroom() {
-        if self.otherUid != nil && self.uid != self.otherUid {
+        print("historyGetroom")
+        print(self.otherUid, "otheruid", self.uid, "self.uid")
+        if (self.otherUid != nil && self.uid != self.otherUid) {
+            print("wwwwww")
             // 自分と相手のルームナンバーを同じにする
             usersDB.document(self.otherUid!).updateData(["inRoom":self.alreadyRoomNumber!])
             usersDB.document(self.uid!).updateData(["inRoom":self.alreadyRoomNumber!])
@@ -169,10 +176,11 @@ class MessageViewController: MessagesViewController {
     // チャット開始(チャット履歴あり②)
     func alreadyRoomNumberGetMessage(){
         self.chatFlg = true
+        print(self.alreadyRoomNumber)
         // 追加されるたびイベント発火
         DB.collection("rooms").document(self.alreadyRoomNumber!).collection("chate").addSnapshotListener{ (querySnaoshot, eroor) in
             if let error = eroor {
-                print(error, "error")
+                print(error.localizedDescription, "error")
             }else {
                 // firebaseに追加されたデータをリッスン
                 querySnaoshot!.documentChanges.forEach { diff in

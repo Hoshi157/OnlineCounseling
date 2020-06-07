@@ -59,7 +59,7 @@ class HomeViewController: UIViewController {
     
     // 左上部のボタンが押されたらスライドメニューが開く
     @objc func sidemenuButtonAction() {
-        self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
+        self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true)
     }
     // Cellのデータを取得
     func getData(type: String) {

@@ -137,7 +137,7 @@ class AccountCreateViewController: UIViewController {
     // 名前、生年月日を入力しなければセグエキャンセル
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
-        if (self.name == "" || self.birthdayDate == Date()) {
+        if (self.name == "" || self.birthdayDate == nil) {
             alert.okAlert(title: "必要項目を入力してください", message: "名前、生年月日を入力してください", currentController: self)
             return false
         }

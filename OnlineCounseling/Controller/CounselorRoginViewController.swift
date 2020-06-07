@@ -21,7 +21,7 @@ class CounselorRoginViewController: UIViewController {
     private let explanationLabel: UILabel = {
        let label = UILabel()
         label.text = "カウンセラーとしてログインされますか？"
-        label.font = UIFont.systemFont(ofSize: 21)
+        label.font = UIFont.systemFont(ofSize: 19)
         label.sizeToFit()
         label.textAlignment = .center
         return label
@@ -56,8 +56,8 @@ class CounselorRoginViewController: UIViewController {
         loginButton.snp.makeConstraints { (make) in
             make.top.equalTo(explanationLabel.snp.bottom).offset(100)
             make.centerX.equalToSuperview()
-            make.height.equalTo(40)
-            make.width.equalTo(300)
+            make.height.equalTo(50)
+            make.width.equalTo(250)
         }
         
         getUid()
@@ -81,7 +81,7 @@ class CounselorRoginViewController: UIViewController {
     
     @objc func loginButtonAction() {
         self.dismiss(animated: true, completion: { () in
-            // updata後tableviewを更新
+            // updata後tabbarVCを更新
             self.updataClosure {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let tabbarVC = storyboard.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController

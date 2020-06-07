@@ -25,11 +25,9 @@ class SidemenuViewController: UIViewController {
         set{
             let ratio = min(max(newValue, 0), 1)
             contentView.frame.origin.x = contentMaxWidth * ratio - contentView.frame.width
-            contentView.layer.shadowColor = UIColor.black.cgColor
-            contentView.layer.shadowRadius = 3.0
-            contentView.layer.shadowOpacity = 0.8
-            
-            view.backgroundColor = UIColor(white: 0, alpha: 0.3 * ratio)
+            contentView.layer.shadowColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
+            contentView.layer.shadowRadius = 0.8
+            view.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1).withAlphaComponent(0.2 * ratio)
         }
     }
     private var panGestureRecognizer: UIPanGestureRecognizer!
@@ -95,10 +93,9 @@ class SidemenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("viewDid sidemenu")
-        
         var contentRect = view.bounds
         contentRect.size.width = contentMaxWidth
+        contentRect.origin.x = -contentRect.width
         contentView.frame = contentRect
         contentView.backgroundColor = .white
         contentView.autoresizingMask = .flexibleHeight
@@ -143,13 +140,7 @@ class SidemenuViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("viewwill simemunu")
-    }
-    
     func dataDisplay() {
-        print("displayData")
         // データの取り出し
         do {
             realm = try Realm()
@@ -199,7 +190,7 @@ class SidemenuViewController: UIViewController {
     
     func showContentView(animated: Bool) {
         if animated {
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.2) {
                 self.contentRatio = 1.0
             }
         }else {
@@ -221,7 +212,6 @@ class SidemenuViewController: UIViewController {
     }
     
     func startPanGestureRecognizing() {
-        print("startPan")
         if let parentViewController = self.delegate?.parentViewControllerForSidemenuViewController(self) {
             
             panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerHandled(panGestureRecognizer:)))
@@ -236,7 +226,6 @@ class SidemenuViewController: UIViewController {
     }
     
     @objc private func panGestureRecognizerHandled(panGestureRecognizer: UIPanGestureRecognizer) {
-        print("pangestrueHandled")
         guard  let shouldPresent = self.delegate?.shouldPresentSidemenuViewController(self), shouldPresent else {
             return
         }
@@ -250,20 +239,17 @@ class SidemenuViewController: UIViewController {
             beganState = isShow
             beganLocation = location
             if translation.x >= 0 {
-                if let parent = self.parent {
-                    // ここのparentにて下になっているVCを取らないといけない。現在はtabbarVCになっている。
-                    self.delegate?.sidemenuViewControllerDidRequestShowing(self, contentAvailability: false, animeted: false, currentViewController: parent)
-                }
+                    self.delegate?.sidemenuViewControllerDidRequestShowing(self, contentAvailability: false, animeted: false)
             }
         case .changed:
-            let distance = beganState ? beganLocation.x : location.x - beganLocation.x
+            let distance = beganState ? beganLocation.x - location.x : location.x - beganLocation.x
             if distance >= 0 {
                 let ratio = distance / (beganState ? beganLocation.x : (view.bounds.width - beganLocation.x))
                 let contentRatio = beganState ? 1 - ratio : ratio
                 self.contentRatio = contentRatio
             }
         case .ended, .cancelled, .failed:
-            if contentRatio >= 1.0, contentRatio <= 0 {
+            if contentRatio <= 1.0, contentRatio >= 0 {
                 if location.x > beganLocation.x {
                     showContentView(animated: true)
                 }else {
@@ -293,7 +279,7 @@ class SidemenuViewController: UIViewController {
 protocol SidemenuViewControllerDelegate: class {
     func parentViewControllerForSidemenuViewController(_ sidemenuViewController: SidemenuViewController) -> UIViewController
     func shouldPresentSidemenuViewController(_ sidemenuViewController: SidemenuViewController) -> Bool
-    func sidemenuViewControllerDidRequestShowing(_ sidemenuViewController: SidemenuViewController, contentAvailability: Bool, animeted: Bool,currentViewController: UIViewController)
+    func sidemenuViewControllerDidRequestShowing(_ sidemenuViewController: SidemenuViewController, contentAvailability: Bool, animeted: Bool)
     func sidemenuViewControllerDidRequestHiding(_ sidemenuViewController: SidemenuViewController, animeted: Bool)
     func sidemenuViewcontroller(_ sidemenuViewController: SidemenuViewController, didSelectItemAt indexPath: IndexPath)
 }

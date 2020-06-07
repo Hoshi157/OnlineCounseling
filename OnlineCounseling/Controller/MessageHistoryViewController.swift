@@ -65,7 +65,7 @@ class MessageHistoryViewController: UIViewController {
     }
     
     @objc func sidemenuButtonAction() {
-        self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
+        self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true)
     }
     // Realmからメッセージ履歴データを取得する
     func localDataGet() {
@@ -190,8 +190,10 @@ extension MessageHistoryViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let roomNumber = talkrooms[indexPath.row].roomNumber
+        let otherUid = talkrooms[indexPath.row].uid
         let messageVC = MessageViewController()
         messageVC.alreadyRoomNumber = roomNumber
+        messageVC.otherUid = otherUid
         let navi = UINavigationController(rootViewController: messageVC)
         navi.modalPresentationStyle = .fullScreen
         present(navi, animated: true)

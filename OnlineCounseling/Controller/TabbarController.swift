@@ -63,13 +63,13 @@ class TabbarController: UITabBarController {
         }
     }
     
-    func showSidemenu(contentAvailabilty: Bool = true, animated: Bool, currentViewController: UIViewController) {
+    func showSidemenu(contentAvailabilty: Bool = true, animated: Bool) {
         
         if isShowSidemenu {return}
         sidemenuVC.view.autoresizingMask = .flexibleHeight
         sidemenuVC.view.frame = self.view.bounds
-        view.insertSubview(sidemenuVC.view, aboveSubview: currentViewController.view)
         addChild(sidemenuVC)
+        view.addSubview(sidemenuVC.view)
         sidemenuVC.didMove(toParent: self)
         
         if contentAvailabilty {
@@ -83,7 +83,6 @@ class TabbarController: UITabBarController {
             self.sidemenuVC.willMove(toParent: nil)
             self.sidemenuVC.removeFromParent()
             self.sidemenuVC.view.removeFromSuperview()
-            print(self.children)
         })
     }
     // チュートリアル画面を表示する
@@ -114,8 +113,8 @@ extension TabbarController: SidemenuViewControllerDelegate {
     func shouldPresentSidemenuViewController(_ sidemenuViewController: SidemenuViewController) -> Bool {
         return true
     }
-    func sidemenuViewControllerDidRequestShowing(_ sidemenuViewController: SidemenuViewController, contentAvailability: Bool, animeted: Bool, currentViewController: UIViewController) {
-        showSidemenu(contentAvailabilty: contentAvailability, animated: animeted, currentViewController: currentViewController)
+    func sidemenuViewControllerDidRequestShowing(_ sidemenuViewController: SidemenuViewController, contentAvailability: Bool, animeted: Bool) {
+        showSidemenu(contentAvailabilty: contentAvailability, animated: animeted)
     }
     func sidemenuViewControllerDidRequestHiding(_ sidemenuViewController: SidemenuViewController, animeted: Bool) {
         hideSideMenu(animated: animeted)

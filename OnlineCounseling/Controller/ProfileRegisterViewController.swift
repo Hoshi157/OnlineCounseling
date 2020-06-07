@@ -156,10 +156,10 @@ class ProfileRegisterViewController: UIViewController {
         }
         // アバター画像を表示する
         if (self.photoImage != nil) {
+            self.imageOnLabel.text = ""
             DispatchQueue.main.async {
                 self.avaterImageView.image = self.photoImage!
             }
-            self.imageOnLabel.text = ""
         }else {
             DispatchQueue.main.async {
                 self.avaterImageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
@@ -486,6 +486,7 @@ extension ProfileRegisterViewController: UIImagePickerControllerDelegate, UINavi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         photoImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         self.avaterImageView.image = photoImage
+        self.imageOnLabel.text = ""
         let imagePath = fileInDocumentsDirectory(filename: self.uid!) //　画像のPath
         if (saveImage(image: photoImage!, path: imagePath)) { // ファイルに保存できたらture
             do {

@@ -46,7 +46,7 @@ class ResevationViewController: UIViewController {
     }
     
     @objc func sidemenuButtonAction() {
-        self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true, currentViewController: self)
+        self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true)
     }
     
     

@@ -213,24 +213,6 @@ class UserByTappedContenerViewController: UIViewController {
         }
        }
     
-    // Firebaseのお気に入り履歴のデータを判別して追加か削除
-    func existenceCloudataBookmark(targetId: String, myId: String) {
-        self.userDB.document(myId).collection("bookmark").getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print(error.localizedDescription, "error")
-            }else {
-            let snapshot: QueryDocumentSnapshot? = querySnapshot!.documents.lazy.filter { $0.data()[targetId] as! String == targetId }.first
-            print(snapshot ?? "nil", "snapshot bookmark")
-                // お気に入り履歴あり(削除)
-                if (snapshot != nil) {
-                    let userDocumentId: String = snapshot!.documentID
-                    self.userDB.document(myId).collection("bookmark").document(userDocumentId).delete()
-                }else { // お気に入り履歴なし(追加)
-                    self.userDB.document(myId).collection("bookmark").addDocument(data: [targetId: targetId])
-                }
-            }
-        }
-    }
     // Realmにお気に入り履歴があるか判別
     func existenceLocaldataBookmark(targetId: String, targetName: String) {
         do {
@@ -259,6 +241,24 @@ class UserByTappedContenerViewController: UIViewController {
             print("error Realm")
         }
     }
+    // Firebaseのお気に入り履歴のデータを判別して追加か削除
+    func existenceCloudataBookmark(targetId: String, myId: String) {
+        self.userDB.document(myId).collection("bookmark").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print(error.localizedDescription, "error")
+            }else {
+            let snapshot: QueryDocumentSnapshot? = querySnapshot?.documents.lazy.filter { $0.data()[targetId] as? String == targetId }.first
+                // お気に入り履歴あり(削除)
+                if (snapshot != nil) {
+                    let userDocumentId: String = snapshot!.documentID
+                    self.userDB.document(myId).collection("bookmark").document(userDocumentId).delete()
+                }else { // お気に入り履歴なし(追加)
+                    self.userDB.document(myId).collection("bookmark").addDocument(data: [targetId: targetId])
+                }
+            }
+        }
+    }
+    
     // 起動時にbookmarkしていたら色を変えとく
     func bookmarkStateRetention(targetId: String) {
         do {
