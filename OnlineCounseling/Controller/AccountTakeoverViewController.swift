@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class AccountTakeoverViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     let tableArray: [String] = ["メールアドレス", "パスワード", "パスワードの確認"]
@@ -27,7 +27,7 @@ class AccountTakeoverViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CustomAccountTakeOverTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountTakeoverCell")
         tableView.rowHeight = 50
-
+        
         // Do any additional setup after loading the view.
     }
     // viewタップでキーボード閉じる
@@ -92,17 +92,17 @@ class AccountTakeoverViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension AccountTakeoverViewController: UITableViewDelegate, UITableViewDataSource {

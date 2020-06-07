@@ -17,8 +17,8 @@ class CalendarViewController: UIViewController {
     
     private let timeArray = [
         "0時~1時", "1時~2時", "2時~3時", "3時~4時", "4時~5時", "5時~6時", "6時~7時", "7時~8時", "8時~9時", "9時~10時", "10時~11時", "11時~12時",
-    "12時~13時", "13時~14時", "14時~15時", "15時~16時", "16時~17時", "17時~18時", "18時~19時",
-    "19時~20時", "20時~21時", "21時~22時", "22時~23時", "23時=24時"
+        "12時~13時", "13時~14時", "14時~15時", "15時~16時", "16時~17時", "17時~18時", "18時~19時",
+        "19時~20時", "20時~21時", "21時~22時", "22時~23時", "23時=24時"
     ]
     
     private var timeArrayText: String?
@@ -27,7 +27,7 @@ class CalendarViewController: UIViewController {
     private var alert = AlertController()
     
     lazy var myCalendar: FSCalendar = {
-      let calendar = FSCalendar()
+        let calendar = FSCalendar()
         calendar.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         calendar.appearance.todayColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         calendar.appearance.headerTitleColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -38,17 +38,17 @@ class CalendarViewController: UIViewController {
     }()
     
     private let selectedDateLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         label.textAlignment = .center
         label.backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
         label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         label.text = "予約日、時間を選択してください"
-       return label
+        return label
     }()
     
     lazy var tableView: UITableView = {
-       let tableview = UITableView()
+        let tableview = UITableView()
         tableview.rowHeight = 50
         tableview.delegate = self
         tableview.dataSource = self
@@ -100,27 +100,27 @@ class CalendarViewController: UIViewController {
     
     @objc func ReservationButtonAction() {
         if (isPlayingCalendar == true && isPlayinfTimeTable == true) {
-        guard let reservationDateText = selectedDateLabel.text else { return }
-        self.alert.okAlert(title: "予約しました", message: "\(reservationDateText)にて\n予約致しました。", currentController: self, completionHandler: { (_) in
-            print("completinHandler")
-            self.dismiss(animated: true, completion: nil)
-        })
+            guard let reservationDateText = selectedDateLabel.text else { return }
+            self.alert.okAlert(title: "予約しました", message: "\(reservationDateText)にて\n予約致しました。", currentController: self, completionHandler: { (_) in
+                print("completinHandler")
+                self.dismiss(animated: true, completion: nil)
+            })
         }else {
             self.alert.okAlert(title: "予約できません", message: "予約日時を正しく設定してください", currentController: self)
         }
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
@@ -140,9 +140,9 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            self.isPlayinfTimeTable = true
-            timeArrayText = timeArray[indexPath.row]
-            guard let timeText = timeArrayText else {return}
+        self.isPlayinfTimeTable = true
+        timeArrayText = timeArray[indexPath.row]
+        guard let timeText = timeArrayText else {return}
         if (currentSelectedDate != nil) {
             guard let currentDate: String = currentSelectedDate else {return}
             self.selectedDateLabel.text = "\(currentDate)\(timeText)"
@@ -166,7 +166,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
             self.currentSelectedDate = "\(year)年\(month)月\(day)日"
             if (self.isPlayinfTimeTable == true) {
                 guard let timeText = timeArrayText else {return}
-            self.selectedDateLabel.text = "\(year)年\(month)月\(day)日\(timeText)"
+                self.selectedDateLabel.text = "\(year)年\(month)月\(day)日\(timeText)"
             }else {
                 self.selectedDateLabel.text = "\(year)年\(month)月\(day)日(時間を選択してください)"
             }
@@ -185,6 +185,6 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
                     self.selectedDateLabel.text = "予約日、時間を選択してください"
                 }
             }
+        }
     }
-}
 }

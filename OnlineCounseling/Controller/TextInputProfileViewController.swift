@@ -14,10 +14,10 @@ class TextInputProfileViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     var titleText: String?
     private var realm: Realm!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
@@ -32,8 +32,8 @@ class TextInputProfileViewController: UIViewController {
         
         // TextviewへのData取り出し
         do {
-        self.realm = try Realm()
-        let user = self.realm.objects(User.self).last!
+            self.realm = try Realm()
+            let user = self.realm.objects(User.self).last!
             switch (self.titleText) {
             case "名前":
                 textView.text = user.name
@@ -58,22 +58,22 @@ class TextInputProfileViewController: UIViewController {
         do {
             self.realm = try Realm()
             let user = realm.objects(User.self).last!
-        try realm.write {
-            switch (self.titleText) {
-            case "名前":
-                user.name = text
-            case "自己紹介":
-                user.selfintroText = text
-            case "趣味":
-                user.hobby = text
-            case "カウンセラーに伝えておきたい事":
-                user.singlewordText = text
-            case "既往歴":
-                user.medicalhistoryText = text
-            default:
-                print("eroor")
+            try realm.write {
+                switch (self.titleText) {
+                case "名前":
+                    user.name = text
+                case "自己紹介":
+                    user.selfintroText = text
+                case "趣味":
+                    user.hobby = text
+                case "カウンセラーに伝えておきたい事":
+                    user.singlewordText = text
+                case "既往歴":
+                    user.medicalhistoryText = text
+                default:
+                    print("eroor")
+                }
             }
-        }
         }catch {
             print("error")
         }
@@ -88,15 +88,15 @@ class TextInputProfileViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

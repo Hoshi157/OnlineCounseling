@@ -30,7 +30,7 @@ class UserByTappedContenerViewController: UIViewController {
     }
     
     lazy var messageButton: MDCFloatingButton = {
-       let button = MDCFloatingButton()
+        let button = MDCFloatingButton()
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
         button.backgroundColor = #colorLiteral(red: 0.09708004216, green: 0.7204460874, blue: 1, alpha: 1)
@@ -42,7 +42,7 @@ class UserByTappedContenerViewController: UIViewController {
     }()
     
     lazy var calendarButton: MDCFloatingButton = {
-       let button = MDCFloatingButton()
+        let button = MDCFloatingButton()
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
         button.backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
@@ -64,7 +64,7 @@ class UserByTappedContenerViewController: UIViewController {
         button.addTarget(self, action: #selector(backViewAction), for: .touchUpInside)
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // 子Viewにした後でウィジット類をaddSubviewにているためボタンの方が上にくる
@@ -118,7 +118,7 @@ class UserByTappedContenerViewController: UIViewController {
                 }
             }
         }
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -201,7 +201,7 @@ class UserByTappedContenerViewController: UIViewController {
     }
     
     // お気に入りボタンタップ時(Realmで判断する事でレスポンスが早くなる)
-       @objc func bookmarkImageTapped(_ sender: UITapGestureRecognizer) {
+    @objc func bookmarkImageTapped(_ sender: UITapGestureRecognizer) {
         print("tap bookmark")
         if (self.uid == nil) {
             self.alert.okAlert(title: "エラーが発生しました", message: "もう一度やり直すか、アカウントを最初から作成してください", currentController: self)
@@ -211,7 +211,7 @@ class UserByTappedContenerViewController: UIViewController {
             existenceLocaldataBookmark(targetId: self.userTapUid!, targetName: self.otherName!)
             existenceCloudataBookmark(targetId: self.userTapUid!, myId: self.uid!)
         }
-       }
+    }
     
     // Realmにお気に入り履歴があるか判別
     func existenceLocaldataBookmark(targetId: String, targetName: String) {
@@ -247,7 +247,7 @@ class UserByTappedContenerViewController: UIViewController {
             if let error = error {
                 print(error.localizedDescription, "error")
             }else {
-            let snapshot: QueryDocumentSnapshot? = querySnapshot?.documents.lazy.filter { $0.data()[targetId] as? String == targetId }.first
+                let snapshot: QueryDocumentSnapshot? = querySnapshot?.documents.lazy.filter { $0.data()[targetId] as? String == targetId }.first
                 // お気に入り履歴あり(削除)
                 if (snapshot != nil) {
                     let userDocumentId: String = snapshot!.documentID
@@ -278,17 +278,17 @@ class UserByTappedContenerViewController: UIViewController {
         }
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension UserByTappedContenerViewController: imageSaveProtocol {}

@@ -38,7 +38,7 @@ class AccountCreateViewController: UIViewController {
     }()
     
     lazy var datePickerView: UIDatePicker = {
-       let picker = UIDatePicker()
+        let picker = UIDatePicker()
         picker.backgroundColor = .white
         picker.locale = Locale.current
         picker.timeZone = NSTimeZone.local
@@ -48,7 +48,7 @@ class AccountCreateViewController: UIViewController {
     }()
     
     lazy var pickerToolbar: UIToolbar = {
-       let toolBar = UIToolbar()
+        let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
         return toolBar
     }()
@@ -70,11 +70,11 @@ class AccountCreateViewController: UIViewController {
     }()
     
     private var formatter: DateFormatter = {
-       let format = DateFormatter()
+        let format = DateFormatter()
         format.dateFormat = "yyyy年MM月dd日"
         return format
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -171,29 +171,29 @@ class AccountCreateViewController: UIViewController {
                 try self.realm.write {
                     user.birthdayDate = self.birthdayDate!
                 }
-                }catch {
-                    print("error")
+            }catch {
+                print("error")
             }
         })
     }
     
     @objc func canselPickerAction() {
         UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseInOut, animations: {
-                   self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
-                   self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
-               }, completion: nil)
+            self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
+        }, completion: nil)
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSource {
@@ -209,7 +209,7 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
             textCell.leftLabel.text = tableArray[indexPath.row]
             // ここはもとのデータなら何もしない
             if (name != "") {
-            textCell.underLabel.text = name
+                textCell.underLabel.text = name
             }
             return textCell
         case 1:
@@ -228,8 +228,8 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    tableView.deselectRow(at: indexPath, animated: true)
-    tableViewSelecteIndexpath = indexPath
+        tableView.deselectRow(at: indexPath, animated: true)
+        tableViewSelecteIndexpath = indexPath
         switch (indexPath.row) {
         case 0:
             let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
@@ -237,8 +237,8 @@ extension AccountCreateViewController: UITableViewDelegate, UITableViewDataSourc
             self.navigationController?.pushViewController(textInputVC, animated: true)
         case 1:
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
-            self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
-            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
+                self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+                self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
             }, completion: nil)
         default:
             print("error")

@@ -40,7 +40,7 @@ class BookmarkHistoryViewController: UIViewController {
     }()
     
     private let underNottingDataLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
         label.sizeToFit()
         label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -110,9 +110,9 @@ class BookmarkHistoryViewController: UIViewController {
     func reload() {
         DispatchQueue.global().async {
             self.getdataAtReload()
-        DispatchQueue.main.async {
-            self.myTableview.reloadData()
-        }
+            DispatchQueue.main.async {
+                self.myTableview.reloadData()
+            }
         }
     }
     
@@ -134,17 +134,17 @@ class BookmarkHistoryViewController: UIViewController {
         }
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension BookmarkHistoryViewController: UITableViewDataSource, UITableViewDelegate {

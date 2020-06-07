@@ -12,7 +12,7 @@ import RealmSwift
 import Firebase
 
 class ProfileRegisterViewController: UIViewController {
-
+    
     @IBOutlet weak var avaterImageView: UIImageView!
     @IBOutlet weak var imageOnLabel: UILabel!
     @IBOutlet weak var singleWordLabel: UILabel!
@@ -41,7 +41,7 @@ class ProfileRegisterViewController: UIViewController {
     private let usersDB = Firestore.firestore().collection("users")
     
     lazy var datePickerView: UIDatePicker = {
-       let picker = UIDatePicker()
+        let picker = UIDatePicker()
         picker.backgroundColor = .white
         picker.locale = Locale.current
         picker.timeZone = NSTimeZone.local
@@ -51,7 +51,7 @@ class ProfileRegisterViewController: UIViewController {
     }()
     
     lazy var pickerView: UIPickerView = {
-       let picker = UIPickerView()
+        let picker = UIPickerView()
         picker.backgroundColor = .white
         picker.delegate = self
         picker.dataSource = self
@@ -60,7 +60,7 @@ class ProfileRegisterViewController: UIViewController {
     }()
     
     lazy var pickerToolbar: UIToolbar = {
-       let toolBar = UIToolbar()
+        let toolBar = UIToolbar()
         toolBar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
         return toolBar
     }()
@@ -86,22 +86,22 @@ class ProfileRegisterViewController: UIViewController {
         "未選択",
         "男", "女"]
     private let jobsArray: [String] = [
-           "未選択",
-           "営業", "販売,フード,アミューズメント", "医療・福祉", "企画・経営", "建築・土木",
-           "ITエンジニア", "電気・電子・機械", "医薬・化学・素材", "コンサルタント・金融",
-           "不動産専門職", "クリエイティブ", "技能工・設備・配送", "農業", "公共サービス",
-           "管理・事務", "美容・ブライダル・ホテル", "保育・教育", "WEB・インターネット"
-       ]
+        "未選択",
+        "営業", "販売,フード,アミューズメント", "医療・福祉", "企画・経営", "建築・土木",
+        "ITエンジニア", "電気・電子・機械", "医薬・化学・素材", "コンサルタント・金融",
+        "不動産専門職", "クリエイティブ", "技能工・設備・配送", "農業", "公共サービス",
+        "管理・事務", "美容・ブライダル・ホテル", "保育・教育", "WEB・インターネット"
+    ]
     
     private var formatter: DateFormatter = {
-       let format = DateFormatter()
+        let format = DateFormatter()
         format.dateFormat = "yyyy年MM月dd日"
         return format
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         view.addSubview(datePickerView)
@@ -130,23 +130,23 @@ class ProfileRegisterViewController: UIViewController {
         super.viewWillAppear(animated)
         // データの取り出し
         do {
-        realm = try Realm()
-        let user = realm.objects(User.self).last!
-        self.name = user.name
-        self.birthdayDate = user.birthdayDate
-        self.jobs = user.jobs
-        self.area = user.area
-        self.hobby = user.hobby
-        self.selfintroText = user.selfintroText
-        self.singlewordText = user.singlewordText
-        self.medicalhistoryText = user.medicalhistoryText
-        self.gender = user.gender
-        self.uid = user.uid
-        self.type = user.type
-        // imagePathからUIImageを生成
-        let image = self.loadImageFromPath(path: user.imagePath)
-        self.photoImage = image
-        print(user, "user")
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            self.name = user.name
+            self.birthdayDate = user.birthdayDate
+            self.jobs = user.jobs
+            self.area = user.area
+            self.hobby = user.hobby
+            self.selfintroText = user.selfintroText
+            self.singlewordText = user.singlewordText
+            self.medicalhistoryText = user.medicalhistoryText
+            self.gender = user.gender
+            self.uid = user.uid
+            self.type = user.type
+            // imagePathからUIImageを生成
+            let image = self.loadImageFromPath(path: user.imagePath)
+            self.photoImage = image
+            print(user, "user")
         }catch {
             print("error")
         }
@@ -203,28 +203,28 @@ class ProfileRegisterViewController: UIViewController {
         }, completion: {(_) in
             // データの書き込み(tableViewのindexPathで絞り込み)
             if (self.tableViewSelecteIndexpath != nil) {
-            do {
-                self.realm = try Realm()
-                let user = self.realm.objects(User.self).last!
-                try self.realm.write {
-                    switch (self.tableViewSelecteIndexpath.row) {
-                    case 1:
-                        // 生年月日
-                        self.birthdayDate = self.datePickerView.date
-                        user.birthdayDate = self.birthdayDate!
-                case 2:
-                    // 性別
-                    user.gender = self.gender!
-                case 3:
-                    // 職業
-                    user.jobs = self.jobs!
-                default:
+                do {
+                    self.realm = try Realm()
+                    let user = self.realm.objects(User.self).last!
+                    try self.realm.write {
+                        switch (self.tableViewSelecteIndexpath.row) {
+                        case 1:
+                            // 生年月日
+                            self.birthdayDate = self.datePickerView.date
+                            user.birthdayDate = self.birthdayDate!
+                        case 2:
+                            // 性別
+                            user.gender = self.gender!
+                        case 3:
+                            // 職業
+                            user.jobs = self.jobs!
+                        default:
+                            print("error")
+                        }
+                    }
+                }catch {
                     print("error")
                 }
-                }
-            }catch {
-                print("error")
-            }
             }
         })
     }
@@ -239,28 +239,28 @@ class ProfileRegisterViewController: UIViewController {
     
     @objc func avaterImageTapAction(_ sender: UITapGestureRecognizer) {
         let aleatController = UIAlertController(title: "自分のアバターを設定する", message: "選択してください", preferredStyle: .alert)
-            let cameraAction = UIAlertAction(title: "カメラ", style: .default) { (action:UIAlertAction) in
-                if UIImagePickerController.isSourceTypeAvailable(.camera){
-                    let picker = UIImagePickerController()
-                    picker.sourceType = .camera
-                    picker.delegate = self
-                    self.present(picker,animated: true)
-                }
+        let cameraAction = UIAlertAction(title: "カメラ", style: .default) { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                let picker = UIImagePickerController()
+                picker.sourceType = .camera
+                picker.delegate = self
+                self.present(picker,animated: true)
             }
-            aleatController.addAction(cameraAction)
-            
-            let photoAction = UIAlertAction(title: "アルバム", style: .default) { (action:UIAlertAction) in
-                if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-                    let picker = UIImagePickerController()
-                    picker.sourceType = .photoLibrary
-                    picker.delegate = self
-                    self.present(picker,animated: true)
-                }}
-            aleatController.addAction(photoAction)
-            
-            let canselAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
-            aleatController.addAction(canselAction)
-            self.present(aleatController,animated: true)
+        }
+        aleatController.addAction(cameraAction)
+        
+        let photoAction = UIAlertAction(title: "アルバム", style: .default) { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                let picker = UIImagePickerController()
+                picker.sourceType = .photoLibrary
+                picker.delegate = self
+                self.present(picker,animated: true)
+            }}
+        aleatController.addAction(photoAction)
+        
+        let canselAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        aleatController.addAction(canselAction)
+        self.present(aleatController,animated: true)
     }
     
     @objc func singleWordLabelTapAction(_ sender: UITapGestureRecognizer) {
@@ -269,17 +269,17 @@ class ProfileRegisterViewController: UIViewController {
         self.navigationController?.pushViewController(textInputVC, animated: true)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSource {
@@ -383,18 +383,18 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             self.navigationController?.pushViewController(textInputVC, animated: true)
         case 1:
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
-            self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
-            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
+                self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+                self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
             }, completion: nil)
         case 2:
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
-            self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
-            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
+                self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+                self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
             }, completion: nil)
         case 3:
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveLinear, animations: {
-            self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
-            self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
+                self.pickerView.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+                self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height - self.view.frame.height * 0.25 - 40, width: self.view.frame.width, height: 40)
             }, completion: nil)
         case 4:
             let areaVC = self.storyboard?.instantiateViewController(withIdentifier: "areaVC") as! AreaViewController
@@ -436,14 +436,14 @@ extension ProfileRegisterViewController: UIPickerViewDelegate, UIPickerViewDataS
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if (tableViewSelecteIndexpath != nil) {
             switch (tableViewSelecteIndexpath.row) {
-        case 2:
-            return genderArray.count
-        case 3:
-            return jobsArray.count
-        default:
-            print("error")
-            return Int()
-        }
+            case 2:
+                return genderArray.count
+            case 3:
+                return jobsArray.count
+            default:
+                print("error")
+                return Int()
+            }
         }else {
             print("nil")
             return 0
@@ -451,15 +451,15 @@ extension ProfileRegisterViewController: UIPickerViewDelegate, UIPickerViewDataS
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            switch (tableViewSelecteIndexpath.row) {
-            case 2:
-                return genderArray[row]
-            case 3:
-                return jobsArray[row]
-            default:
-                print("error")
-                return ""
-            }
+        switch (tableViewSelecteIndexpath.row) {
+        case 2:
+            return genderArray[row]
+        case 3:
+            return jobsArray[row]
+        default:
+            print("error")
+            return ""
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -502,7 +502,7 @@ extension ProfileRegisterViewController: UIImagePickerControllerDelegate, UINavi
             print("ファイルに画像保存できず")
         }
         self.dismiss(animated: true, completion: nil)
-}
+    }
 }
 
 extension ProfileRegisterViewController: imageSaveProtocol {}

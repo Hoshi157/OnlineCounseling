@@ -16,7 +16,7 @@ class TutorialViewController: UIViewController {
     var screenSizeWidth: CGFloat?
     //スクロールビューは横3ページ分で設定
     lazy var myScrollView: UIScrollView = {
-       let scrolleView = UIScrollView()
+        let scrolleView = UIScrollView()
         scrolleView.frame = self.view.bounds
         scrolleView.contentSize = CGSize(width: self.view.bounds.width * 3, height: self.view.bounds.height)
         scrolleView.isPagingEnabled = true // これでページング可能
@@ -26,7 +26,7 @@ class TutorialViewController: UIViewController {
     }()
     // ページコントロール
     private let myPageControl: UIPageControl = {
-       let pagecontrol = UIPageControl()
+        let pagecontrol = UIPageControl()
         pagecontrol.numberOfPages = 3
         pagecontrol.pageIndicatorTintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1) // 非選択時
         pagecontrol.currentPageIndicatorTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) // 選択時
@@ -41,10 +41,10 @@ class TutorialViewController: UIViewController {
     }()
     
     private let explanatinView: UIView = {
-       let view = ExplanationView()
+        let view = ExplanationView()
         view.layer.cornerRadius = 20
         view.clipsToBounds = true
-       return view
+        return view
     }()
     
     private let reservationExplatinView: ReservationExplanationView = {
@@ -63,7 +63,7 @@ class TutorialViewController: UIViewController {
         button.addTarget(self, action: #selector(startButtonAction), for: .touchUpInside)
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,7 +112,7 @@ class TutorialViewController: UIViewController {
         }
         
         
-
+        
         // Do any additional setup after loading the view.
     }
     // スタートボタンを押したらTabbarVCのchildを解消
@@ -122,17 +122,17 @@ class TutorialViewController: UIViewController {
         view.removeFromSuperview()
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension TutorialViewController: UIScrollViewDelegate {

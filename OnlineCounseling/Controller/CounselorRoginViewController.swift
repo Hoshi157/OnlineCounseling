@@ -19,7 +19,7 @@ class CounselorRoginViewController: UIViewController {
     private var uid: String?
     
     private let explanationLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "カウンセラーとしてログインされますか？"
         label.font = UIFont.systemFont(ofSize: 19)
         label.sizeToFit()
@@ -37,7 +37,7 @@ class CounselorRoginViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,7 +61,7 @@ class CounselorRoginViewController: UIViewController {
         }
         
         getUid()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -113,15 +113,15 @@ class CounselorRoginViewController: UIViewController {
         completion()
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     private let tableviewArray: [String] = ["メールアドレス", "パスワード", "パスワードの確認"]
@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CustomAccountTakeOverTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountTakeoverCell")
         tableView.rowHeight = 50
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -42,16 +42,16 @@ class LoginViewController: UIViewController {
         let confirmationPassCell = self.tableView.cellForRow(at: [0,1]) as! CustomAccountTakeOverTableViewCell
         
         if let adress = mailCell.textField.text, let password = passwordCell.textField.text, let confimationPass = confirmationPassCell.textField.text {
-        // パスワード欄と確認用パスワードの一致確認
-        if (password != confimationPass) {
-            alert.okAlert(title: "パスワードが正しくありません", message: "パスワードと確認用パスワードが一致しませんでした", currentController: self)
-            return
-        }
-        // 入力されているか確認
-        if (adress.isEmpty || password.isEmpty || confimationPass.isEmpty) {
-            alert.okAlert(title: "入力されていません", message: "アドレス、パスワードを入力してください", currentController: self)
-            return
-        }
+            // パスワード欄と確認用パスワードの一致確認
+            if (password != confimationPass) {
+                alert.okAlert(title: "パスワードが正しくありません", message: "パスワードと確認用パスワードが一致しませんでした", currentController: self)
+                return
+            }
+            // 入力されているか確認
+            if (adress.isEmpty || password.isEmpty || confimationPass.isEmpty) {
+                alert.okAlert(title: "入力されていません", message: "アドレス、パスワードを入力してください", currentController: self)
+                return
+            }
             // 以前ログインしたユーザーをログインさせる(ログイン成功後、Firebaseから自分の情報を引っ張ってくる　未実装)
             Auth.auth().signIn(withEmail: adress, password: password) { (authResult, error) in
                 if (error != nil) {
@@ -74,15 +74,15 @@ class LoginViewController: UIViewController {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension LoginViewController: UITableViewDelegate, UITableViewDataSource {

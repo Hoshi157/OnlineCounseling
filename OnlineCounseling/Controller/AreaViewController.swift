@@ -22,7 +22,7 @@ class AreaViewController: UIViewController {
         "鳥取", "島根", "岡山", "広島", "山口", "徳島", "香川", "愛媛", "高知", "福岡",
         "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄"
     ]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +33,7 @@ class AreaViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AreaCell")
         tableView.rowHeight = 50
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -52,17 +52,17 @@ class AreaViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension AreaViewController: UITableViewDelegate, UITableViewDataSource {

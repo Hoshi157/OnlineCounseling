@@ -21,7 +21,7 @@ class MessageHistoryViewController: UIViewController {
     private var token: NotificationToken!
     
     lazy var myTableview: UITableView = {
-       let tableView = UITableView()
+        let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "CustomMessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
@@ -40,7 +40,7 @@ class MessageHistoryViewController: UIViewController {
     }()
     
     private let underNottingDataLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
         label.sizeToFit()
         label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -53,7 +53,7 @@ class MessageHistoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         localDataGet()
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -146,17 +146,17 @@ class MessageHistoryViewController: UIViewController {
         }
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension MessageHistoryViewController: UITableViewDelegate, UITableViewDataSource {

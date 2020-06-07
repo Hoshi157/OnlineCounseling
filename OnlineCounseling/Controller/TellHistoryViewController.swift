@@ -10,7 +10,7 @@ import UIKit
 import XLPagerTabStrip
 
 class TellHistoryViewController: UIViewController, IndicatorInfoProvider {
-
+    
     let itemInfo: IndicatorInfo = "通話した相手"
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,7 +21,7 @@ class TellHistoryViewController: UIViewController, IndicatorInfoProvider {
         tableView.dataSource = self
         tableView.rowHeight = 60
         tableView.register(UINib(nibName: "ImageNameOnlyTableViewCell", bundle: nil), forCellReuseIdentifier: "ImageNameOnlyTableViewCell")
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -29,17 +29,17 @@ class TellHistoryViewController: UIViewController, IndicatorInfoProvider {
         return itemInfo
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension TellHistoryViewController: UITableViewDataSource, UITableViewDelegate {

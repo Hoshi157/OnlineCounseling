@@ -21,7 +21,7 @@ class CollectionCellTappedViewController: UIViewController {
     }
     let screen = UIScreen.main.bounds
     private var formatter: DateFormatter = {
-       let format = DateFormatter()
+        let format = DateFormatter()
         format.dateFormat = "yyyy年MM月dd日"
         return format
     }()
@@ -41,13 +41,13 @@ class CollectionCellTappedViewController: UIViewController {
         return myView
     }()
     var avaterImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
         return imageView
     }()
     
     var nameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         label.sizeToFit()
         label.text = "Name"
@@ -55,7 +55,7 @@ class CollectionCellTappedViewController: UIViewController {
     }()
     
     var jobsLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         label.sizeToFit()
         label.text = "Jobs"
@@ -63,7 +63,7 @@ class CollectionCellTappedViewController: UIViewController {
     }()
     
     var genderImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "icons8-性中立ユーザー-25").withRenderingMode(.alwaysTemplate)
         imageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         return imageView
@@ -77,7 +77,7 @@ class CollectionCellTappedViewController: UIViewController {
     }()
     
     var singleWordLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.backgroundColor = #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 0.2)
         label.numberOfLines = 0
         label.layer.cornerRadius = 10
@@ -86,14 +86,14 @@ class CollectionCellTappedViewController: UIViewController {
     }()
     
     private let selfIntroTitle: UILabel = {
-      let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20)
         label.text = "自己紹介"
         return label
     }()
     
     var selfIntroInputLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.numberOfLines = 0
         label.layer.cornerRadius = 10
         label.clipsToBounds = true
@@ -102,7 +102,7 @@ class CollectionCellTappedViewController: UIViewController {
     }()
     
     lazy var myTableView: UITableView = {
-       let tableView = UITableView()
+        let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
@@ -110,7 +110,7 @@ class CollectionCellTappedViewController: UIViewController {
         tableView.allowsSelection = false
         return tableView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -220,50 +220,50 @@ class CollectionCellTappedViewController: UIViewController {
         }
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension CollectionCellTappedViewController: UITableViewDelegate, UITableViewDataSource {
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return profileDataDic.count
-}
-
-func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    // dataのkeyの配列を作成
-    let dataKeys: [String] = [String](profileDataDic.keys)
-    let dataKey: String = dataKeys[indexPath.row]
-    // 内容に応じてCell変更
-    if (dataKey == "地域" ) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
-        cell.textLabel?.text = dataKey
-        cell.rightLabel.text = profileDataDic[dataKey] as? String
-        cell.rightImage.image = UIImage()
-        return cell
-    }else if (dataKey == "趣味" || dataKey == "既往歴" ) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
-        cell.leftLabel.text = dataKey
-        cell.underLabel.text = profileDataDic[dataKey] as? String
-        return cell
-    }else if (dataKey == "生年月日") {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
-        cell.textLabel?.text = dataKey
-        cell.rightLabel.text = "\(formatter.string(from: profileDataDic[dataKey] as! Date))"
-        cell.rightImage.image = UIImage()
-        return cell
-    }else {
-        print("error")
-        return UITableViewCell()
     }
- }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // dataのkeyの配列を作成
+        let dataKeys: [String] = [String](profileDataDic.keys)
+        let dataKey: String = dataKeys[indexPath.row]
+        // 内容に応じてCell変更
+        if (dataKey == "地域" ) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
+            cell.textLabel?.text = dataKey
+            cell.rightLabel.text = profileDataDic[dataKey] as? String
+            cell.rightImage.image = UIImage()
+            return cell
+        }else if (dataKey == "趣味" || dataKey == "既往歴" ) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
+            cell.leftLabel.text = dataKey
+            cell.underLabel.text = profileDataDic[dataKey] as? String
+            return cell
+        }else if (dataKey == "生年月日") {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
+            cell.textLabel?.text = dataKey
+            cell.rightLabel.text = "\(formatter.string(from: profileDataDic[dataKey] as! Date))"
+            cell.rightImage.image = UIImage()
+            return cell
+        }else {
+            print("error")
+            return UITableViewCell()
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // 内容に応じて高さ変更

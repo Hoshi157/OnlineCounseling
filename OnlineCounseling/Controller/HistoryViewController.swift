@@ -10,7 +10,7 @@ import UIKit
 import XLPagerTabStrip
 
 class HistoryViewController: ButtonBarPagerTabStripViewController {
-
+    
     @IBOutlet weak var scrollView: UIScrollView!
     let sidemenuVC = SidemenuViewController()
     weak var sidemenuDelegate: SidemenuViewControllerDelegate?
@@ -24,7 +24,7 @@ class HistoryViewController: ButtonBarPagerTabStripViewController {
         settings.style.selectedBarHeight = 2
         
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         self.navigationController?.navigationBar.isTranslucent = false
@@ -33,7 +33,7 @@ class HistoryViewController: ButtonBarPagerTabStripViewController {
         self.title = "履歴"
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-メニュー-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-メニュー-25"), style: .plain, target: self, action: #selector(sidemenuButtonAction))
-        }
+    }
     
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         let bookmarkVC = self.storyboard?.instantiateViewController(identifier: "BookmarkHistory")
@@ -47,15 +47,15 @@ class HistoryViewController: ButtonBarPagerTabStripViewController {
         self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -27,10 +27,10 @@ class MessageViewController: MessagesViewController {
     private var realm: Realm!
     private var uid: String?
     private var name: String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         self.view.addSubview(messagesCollectionView)
@@ -163,8 +163,6 @@ class MessageViewController: MessagesViewController {
     }
     // nilチェックしルームナンバーを揃える(チャット履歴あり①)
     func historyGetroom() {
-        print("historyGetroom")
-        print(self.otherUid, "otheruid", self.uid, "self.uid")
         if (self.otherUid != nil && self.uid != self.otherUid) {
             print("wwwwww")
             // 自分と相手のルームナンバーを同じにする
@@ -176,7 +174,6 @@ class MessageViewController: MessagesViewController {
     // チャット開始(チャット履歴あり②)
     func alreadyRoomNumberGetMessage(){
         self.chatFlg = true
-        print(self.alreadyRoomNumber)
         // 追加されるたびイベント発火
         DB.collection("rooms").document(self.alreadyRoomNumber!).collection("chate").addSnapshotListener{ (querySnaoshot, eroor) in
             if let error = eroor {
@@ -202,15 +199,15 @@ class MessageViewController: MessagesViewController {
         }
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension MessageViewController: MessagesDataSource {

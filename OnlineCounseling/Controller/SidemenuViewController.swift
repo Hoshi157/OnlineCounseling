@@ -15,9 +15,9 @@ class SidemenuViewController: UIViewController {
     lazy var storyBoard = UIStoryboard(name: "Main", bundle: nil)
     weak var delegate: SidemenuViewControllerDelegate?
     private let contentView = UIView(frame: .zero)
-       private var contentMaxWidth: CGFloat {
-           return view.bounds.width * 0.8
-       }
+    private var contentMaxWidth: CGFloat {
+        return view.bounds.width * 0.8
+    }
     private var contentRatio: CGFloat {
         get{
             return contentView.frame.maxX / contentMaxWidth
@@ -42,7 +42,7 @@ class SidemenuViewController: UIViewController {
     private var photoImage: UIImage?
     private var name: String?
     private var bookmarkCount: String?
-
+    
     lazy var avaterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 30
@@ -69,7 +69,7 @@ class SidemenuViewController: UIViewController {
     }()
     
     private let bookmarkStrLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "お気に入り"
         label.sizeToFit()
         label.font = UIFont.systemFont(ofSize: 16)
@@ -78,7 +78,7 @@ class SidemenuViewController: UIViewController {
     }()
     
     lazy var tableView: UITableView = {
-       let tableview = UITableView()
+        let tableview = UITableView()
         tableview.rowHeight = 50
         tableview.register(UINib(nibName: "SidemenuTableViewCell", bundle: nil), forCellReuseIdentifier: "SidemenuCell")
         tableview.delegate = self
@@ -239,7 +239,7 @@ class SidemenuViewController: UIViewController {
             beganState = isShow
             beganLocation = location
             if translation.x >= 0 {
-                    self.delegate?.sidemenuViewControllerDidRequestShowing(self, contentAvailability: false, animeted: false)
+                self.delegate?.sidemenuViewControllerDidRequestShowing(self, contentAvailability: false, animeted: false)
             }
         case .changed:
             let distance = beganState ? beganLocation.x - location.x : location.x - beganLocation.x
@@ -263,17 +263,17 @@ class SidemenuViewController: UIViewController {
         
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 protocol SidemenuViewControllerDelegate: class {
