@@ -26,14 +26,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         window.makeKeyAndVisible()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last
             print(user?.uid ?? "nil", "user.uid")
             // RealmのuidがあればTabbarVC(ログインしている)
             if (user?.uid != nil) {
-                let tabbarVC = storyboard.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
-                window.rootViewController = tabbarVC
+                self.loginToCloud(myUid: user!.uid, completion: { (result) in
+                    if (result) {
+                        let tabbarVC = storyboard.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
+                        window.rootViewController = tabbarVC
+                    }else {
+                        let rootNavi = storyboard.instantiateViewController(withIdentifier: "rootNavi")
+                        window.rootViewController = rootNavi
+                    }
+                })
             }else {
                 // uidがなければrootNavi(ログインしていない)
                 let rootNavi = storyboard.instantiateViewController(withIdentifier: "rootNavi")
@@ -68,10 +76,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to undo the changes made on entering the background.
         
         self.addToLocaldata()
-        // サブスレッドにて処理
-        DispatchQueue.global().async {
-            self.getUidFromCloud()
-        }
+        self.getUidFromCloud()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -149,6 +154,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }catch {
             print("error")
+        }
+    }
+    
+    func loginToCloud(myUid: String, completion: @escaping(_ result: Bool) -> Void) {
+        usersDB.getDocuments { (qurySnapshot, error) in
+            if let error = error {
+                print(error.localizedDescription, "error Firebase")
+                completion(false)
+            }else {
+                let data = qurySnapshot?.documents.lazy.filter{ $0.documentID == myUid}.first
+                if (data != nil) {
+                    completion(true)
+                }else {
+                    completion(false)
+                }
+            }
         }
     }
     

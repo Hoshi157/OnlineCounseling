@@ -184,10 +184,10 @@ class UserByTappedContenerViewController: UIViewController {
                 // データをchildVCへ
                 self.childVC.nameLabel.text = name
                 self.childVC.jobsLabel.text = jobs
-                if (gender == "男性") {
+                if (gender == "男") {
                     self.childVC.genderImageView.image = #imageLiteral(resourceName: "icons8-ユーザ男性-25-2").withRenderingMode(.alwaysTemplate)
                     self.childVC.genderImageView.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-                }else if (gender == "女性") {
+                }else if (gender == "女") {
                     self.childVC.genderImageView.image = #imageLiteral(resourceName: "icons8-ユーザー女性-25").withRenderingMode(.alwaysTemplate)
                     self.childVC.genderImageView.tintColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
                 }

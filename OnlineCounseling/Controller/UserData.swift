@@ -30,7 +30,9 @@ class User: Object {
 }
 // 予約データ
 class Reservation: Object {
-    @objc dynamic var reservation = ""
+    @objc dynamic var reservation: Date? = nil
+    @objc dynamic var name = ""
+    @objc dynamic var uid = ""
 }
 // お気に入りした人の履歴
 class BookmarkHistory: Object {

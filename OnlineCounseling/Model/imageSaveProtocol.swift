@@ -34,7 +34,7 @@ extension imageSaveProtocol {
     }
     // ファイルに書き込み(判定処理あり)
     func saveImage(image: UIImage, path: String) -> Bool {
-        let pngImageData: Data? = image.jpegData(compressionQuality: 0.3)// imageをjpegDataに変換
+        let pngImageData: Data? = image.jpegData(compressionQuality: 0.2)// imageをjpegDataに変換
         do {
             try pngImageData!.write(to: URL(fileURLWithPath: path), options: .atomic) // imageDataをpathに書き込む
         }catch {

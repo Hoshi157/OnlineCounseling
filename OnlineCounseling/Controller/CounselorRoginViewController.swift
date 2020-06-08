@@ -80,14 +80,14 @@ class CounselorRoginViewController: UIViewController {
     }
     
     @objc func loginButtonAction() {
-        self.dismiss(animated: true, completion: { () in
-            // updata後tabbarVCを更新
-            self.updataClosure {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let tabbarVC = storyboard.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
-                tabbarVC.loadView()
-            }
-        })
+        updataLocaldata()
+        // Firebaseを更新後、tableView更新
+        updataClosere {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabbarVC = storyboard.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
+            tabbarVC.loadView()
+        }
+        self.dismiss(animated: true, completion: nil)
     }
     // Realmのユーザー情報書き換え
     func updataLocaldata() {
@@ -106,13 +106,11 @@ class CounselorRoginViewController: UIViewController {
         let post = ["type": "counselor"]
         usersDB.document(self.uid!).updateData(post)
     }
-    // クロージャを実装
-    func updataClosure(completion: () -> Void) {
+    
+    func updataClosere(completion: () -> Void) {
         updataLocaldata()
         updataCloud()
-        completion()
     }
-    
     
     /*
      // MARK: - Navigation

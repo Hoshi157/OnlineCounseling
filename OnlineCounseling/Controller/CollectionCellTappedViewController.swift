@@ -43,6 +43,7 @@ class CollectionCellTappedViewController: UIViewController {
     var avaterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     

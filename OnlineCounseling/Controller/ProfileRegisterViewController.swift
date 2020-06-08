@@ -353,7 +353,7 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[6]
             textCell.leftLabel.text = leftText
-            if (self.hobby != nil) {
+            if (self.hobby != "") {
                 textCell.underLabel.text = self.hobby!
             }
             return textCell
@@ -362,7 +362,7 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             let textCell: CustomTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             let leftText = tableArray[7]
             textCell.leftLabel.text = leftText
-            if (self.medicalhistoryText != nil) {
+            if (self.medicalhistoryText != "") {
                 textCell.underLabel.text = self.medicalhistoryText!
             }
             return textCell

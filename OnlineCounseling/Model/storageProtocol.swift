@@ -19,7 +19,7 @@ extension storageProtocol {
     // Storageに画像を保存する
     func storagetToUploadImage(image: UIImage?, childId: String) {
         let postRef = Storage.storage().reference(forURL: "gs://onlinecounseling-3c1ac.appspot.com").child(childId)
-        let data: Data? = image?.jpegData(compressionQuality: 0.3) // jpegに変換(データ圧縮しないとダウンロードできない)
+        let data: Data? = image?.jpegData(compressionQuality: 0.2) // jpegに変換(データ圧縮しないとダウンロードできない)
         if (data != nil) {
             postRef.putData(data!, metadata: nil) { (data, error) in
                 if (error != nil) {
