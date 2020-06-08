@@ -202,14 +202,13 @@ class UserByTappedContenerViewController: UIViewController {
     
     // お気に入りボタンタップ時(Realmで判断する事でレスポンスが早くなる)
     @objc func bookmarkImageTapped(_ sender: UITapGestureRecognizer) {
-        print("tap bookmark")
         if (self.uid == nil) {
             self.alert.okAlert(title: "エラーが発生しました", message: "もう一度やり直すか、アカウントを最初から作成してください", currentController: self)
             return
         }
         if (self.userTapUid != nil) {
             existenceLocaldataBookmark(targetId: self.userTapUid!, targetName: self.otherName!)
-            existenceCloudataBookmark(targetId: self.userTapUid!, myId: self.uid!)
+            existenceCloudataBookmark(targetId: self.userTapUid!, targetName: self.otherName!, myId: self.uid!)
         }
     }
     
@@ -234,7 +233,6 @@ class UserByTappedContenerViewController: UIViewController {
                     // 追加処理
                     let bookmarkHistory = BookmarkHistory(value: ["otherUid": targetId, "otherName": targetName])
                     user.bookmarks.append(bookmarkHistory)
-                    print("追加!")
                 }
             }
         }catch {
@@ -242,18 +240,18 @@ class UserByTappedContenerViewController: UIViewController {
         }
     }
     // Firebaseのお気に入り履歴のデータを判別して追加か削除
-    func existenceCloudataBookmark(targetId: String, myId: String) {
+    func existenceCloudataBookmark(targetId: String, targetName: String, myId: String) {
         self.userDB.document(myId).collection("bookmark").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print(error.localizedDescription, "error")
             }else {
-                let snapshot: QueryDocumentSnapshot? = querySnapshot?.documents.lazy.filter { $0.data()[targetId] as? String == targetId }.first
+                let snapshot: QueryDocumentSnapshot? = querySnapshot?.documents.lazy.filter { $0.data()["uid"] as? String == targetId }.first
                 // お気に入り履歴あり(削除)
                 if (snapshot != nil) {
                     let userDocumentId: String = snapshot!.documentID
                     self.userDB.document(myId).collection("bookmark").document(userDocumentId).delete()
                 }else { // お気に入り履歴なし(追加)
-                    self.userDB.document(myId).collection("bookmark").addDocument(data: [targetId: targetId])
+                    self.userDB.document(myId).collection("bookmark").addDocument(data: ["uid": targetId, "name": targetName])
                 }
             }
         }

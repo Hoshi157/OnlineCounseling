@@ -86,7 +86,8 @@ class MessageViewController: MessagesViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        messagesCollectionView.endEditing(true)
+        print("tap")
+        view.endEditing(true)
     }
     
     @objc func backviewAction() {
@@ -120,8 +121,10 @@ class MessageViewController: MessagesViewController {
         usersDB.document(self.otherUid!).updateData(["inRoom":self.roomId!])
         usersDB.document(self.uid!).updateData(["inRoom":self.roomId!])
         // お互いのチャット履歴を追加(Firestore)
-        usersDB.document(self.uid!).collection("alreadyMessage").addDocument(data: [self.otherUid!: self.roomId!])
-        usersDB.document(self.otherUid!).collection("alreadyMessage").addDocument(data: [self.uid!:self.roomId!])
+        let addself: [String: Any] = ["uid": self.otherUid!, "name": self.otherName!, "roomId": self.roomId!, "lastText": ""]
+        let addother: [String: Any] = ["uid": self.uid!, "name": self.name!, "roomId": self.roomId!, "lastText": ""]
+        usersDB.document(self.uid!).collection("alreadyMessage").addDocument(data: addself)
+        usersDB.document(self.otherUid!).collection("alreadyMessage").addDocument(data: addother)
         //　お互いのチャット履歴を追加(Realm)
         do {
             realm = try Realm()
@@ -156,6 +159,9 @@ class MessageViewController: MessagesViewController {
                         self.Messages.append(message)
                         self.messagesCollectionView.reloadData()
                         self.messagesCollectionView.scrollToBottom()
+                        
+                        self.localTextUpdata(targetId: self.otherUid!, text: text!)
+                        self.cloudTextUpdata(text: text!, myId: self.uid!, otherId: self.otherUid!)
                     }
                 }
             }
@@ -164,10 +170,9 @@ class MessageViewController: MessagesViewController {
     // nilチェックしルームナンバーを揃える(チャット履歴あり①)
     func historyGetroom() {
         if (self.otherUid != nil && self.uid != self.otherUid) {
-            print("wwwwww")
             // 自分と相手のルームナンバーを同じにする
-            usersDB.document(self.otherUid!).updateData(["inRoom":self.alreadyRoomNumber!])
-            usersDB.document(self.uid!).updateData(["inRoom":self.alreadyRoomNumber!])
+            usersDB.document(self.otherUid!).updateData(["inRoom": self.alreadyRoomNumber!])
+            usersDB.document(self.uid!).updateData(["inRoom": self.alreadyRoomNumber!])
             self.alreadyRoomNumberGetMessage()
         }
     }
@@ -193,11 +198,48 @@ class MessageViewController: MessagesViewController {
                         self.Messages.append(message)
                         self.messagesCollectionView.reloadData()
                         self.messagesCollectionView.scrollToBottom()
+                        
+                        self.localTextUpdata(targetId: self.otherUid!, text: text!)
+                        self.cloudTextUpdata(text: text!, myId: self.uid!, otherId: self.otherUid!)
                     }
                 }
             }
         }
     }
+    // チャットの最後の文のみを保存(トークルームに表示する)
+    func localTextUpdata(targetId: String, text: String) {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                // 相手のuidがあるか判別
+                let targetMessage: MessageHistory? = user.messages.lazy.filter { $0.otherUid == targetId}.first
+                if (targetMessage != nil) {
+                    // いたら文を更新
+                    targetMessage!.lastText = text
+                }
+            }
+        }catch {
+            print("error Realm")
+        }
+    }
+    // チャットの最後の文のみ保存(Firebase)
+    func cloudTextUpdata(text: String, myId: String, otherId: String) {
+        usersDB.document(myId).collection("alreadyMessage").whereField("uid", isEqualTo: otherId).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print(error.localizedDescription, "error")
+                return
+            }else {
+                if (querySnapshot != nil) {
+                    let document = querySnapshot!.documents.first
+                    let documentId = document!.documentID
+                    self.usersDB.document(myId).collection("alreadyMessage").document(documentId).updateData(["lastText": text])
+                }
+            }
+        }
+    }
+    
+    
     /*
      // MARK: - Navigation
      
@@ -232,14 +274,13 @@ extension MessageViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         if chatFlg == true {
             postData(text: text)
-            localTextUpdata(targetId: self.otherUid!, text: text)
         }else{
             print("error")
         }
         inputBar.inputTextView.text = String()
     }
     // データをfirebaseにPostする
-    func postData(text:String){
+    func postData(text:String) {
         let post = ["from": currentSender().senderId, "name": currentSender().displayName,"text": text]
         if self.roomId != nil { // チャット履歴がない場合,
             let chateDb = Firestore.firestore().collection("rooms").document(self.roomId!).collection("chate")
@@ -247,23 +288,6 @@ extension MessageViewController: InputBarAccessoryViewDelegate {
         }else{ // チャット履歴がある場合,
             let chateTargetDb = Firestore.firestore().collection("rooms").document(self.alreadyRoomNumber!).collection("chate")
             chateTargetDb.addDocument(data: post)
-        }
-    }
-    // チャットの最後の文のみを保存(トークルームに表示する)
-    func localTextUpdata(targetId: String, text: String) {
-        do {
-            realm = try Realm()
-            let user = realm.objects(User.self).last!
-            try realm.write {
-                // 相手のuidがあるか判別
-                let targetMessage: MessageHistory? = user.messages.lazy.filter { $0.otherUid == targetId}.first
-                if (targetMessage != nil) {
-                    // いたら文を更新
-                    targetMessage!.lastText = text
-                }
-            }
-        }catch {
-            print("error Realm")
         }
     }
     // アバターを設定
