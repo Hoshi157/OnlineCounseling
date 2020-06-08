@@ -55,6 +55,7 @@ class BookmarkHistoryViewController: UIViewController {
         super.viewDidLoad()
         
         localDataGet()
+        localdataObserve()
         
         // Do any additional setup after loading the view.
     }
@@ -90,10 +91,6 @@ class BookmarkHistoryViewController: UIViewController {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
-            // ブックマークデータの変更を監視する
-            token = user.bookmarks.observe { [weak self]  _ in
-                self?.reload()
-            }
             try realm.write {
                 for bookmark in user.bookmarks {
                     let name = bookmark.otherName
@@ -109,25 +106,20 @@ class BookmarkHistoryViewController: UIViewController {
     
     func reload() {
         DispatchQueue.global().async {
-            self.getdataAtReload()
+            self.localDataGet()
             DispatchQueue.main.async {
                 self.myTableview.reloadData()
             }
         }
     }
-    
-    func getdataAtReload() {
-        bookmarks = []
+    // Realmのbookmarksを監視
+    func localdataObserve() {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
-            try realm.write {
-                for bookmark in user.bookmarks {
-                    let name = bookmark.otherName
-                    let uid = bookmark.otherUid
-                    let bookmarkData = Bookmark(name: name, uid: uid)
-                    self.bookmarks.append(bookmarkData)
-                }
+            // ブックマークデータの変更を監視する
+            token = user.bookmarks.observe { [weak self]  _ in
+                self?.reload()
             }
         }catch {
             print(error.localizedDescription, "error Realm")

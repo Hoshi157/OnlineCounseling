@@ -56,6 +56,7 @@ class MessageHistoryViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         localDataGet()
+        localdataObserve()
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemBlue.withAlphaComponent(0.7)]
         self.title = "メッセージ"
@@ -73,10 +74,6 @@ class MessageHistoryViewController: UIViewController {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
-            // チャット履歴データの変更を監視する
-            token = user.messages.observe { [weak self]  _ in
-                self?.reload()
-            }
             try realm.write {
                 for message in user.messages {
                     let name = message.otherName
@@ -94,32 +91,26 @@ class MessageHistoryViewController: UIViewController {
     
     func reload() {
         DispatchQueue.global().async {
-            self.getdataAtReload()
+            self.localDataGet()
             DispatchQueue.main.async {
                 self.myTableview.reloadData()
             }
         }
     }
     
-    func getdataAtReload() {
-        talkrooms = []
+    func localdataObserve() {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
-            try realm.write {
-                for message in user.messages {
-                    let name = message.otherName
-                    let uid = message.otherUid
-                    let roomKey = message.otherRoomNumber
-                    let text = message.lastText
-                    let talkroom = Talkroom(name: name, uid: uid, roomNumber: roomKey, lastText: text)
-                    self.talkrooms.append(talkroom)
-                }
+            // チャット履歴データの変更を監視する
+            token = user.messages.observe { [weak self]  _ in
+                self?.reload()
             }
         }catch {
-            print("error Realm")
+            print(error.localizedDescription, "error Realm")
         }
     }
+    
     // tableviewのオートレイアウト
     func tableviewLayout() {
         view.addSubview(myTableview)

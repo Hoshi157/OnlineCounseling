@@ -172,10 +172,10 @@ class MyPageViewController: UIViewController {
             "area": self.area!, "hobby": self.hobby!, "gender": self.gender!, "medicalhistoryText": self.medicalhistoryText!,
             "singlewordText": self.singlewordText!, "selfintroText": self.selfintroText!
         ]
-        // updataする
+        // updataする(firebase, storage)
         usersDB.document(self.uid!).updateData(post)
         storagetToUploadImage(image: self.photoImage, childId: self.uid!)
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     // pickerのokボタン
     @objc func donePickerAction() {
@@ -251,7 +251,6 @@ class MyPageViewController: UIViewController {
         textInputVC.titleText = "カウンセラーに伝えておきたい事"
         self.navigationController?.pushViewController(textInputVC, animated: true)
     }
-    
     
     /*
      // MARK: - Navigation
