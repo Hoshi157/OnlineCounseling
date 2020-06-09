@@ -120,6 +120,29 @@ class TutorialViewController: UIViewController {
         willMove(toParent: self)
         removeFromParent()
         view.removeFromSuperview()
+        localNotigicationModal()
+    }
+    // ローカル通知の許可
+    func localNotigicationModal() {
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in
+                if let error = error {
+                    print(error.localizedDescription, "error　ローカルプッシュ")
+                }else {
+                    if (granted) {
+                        print("通知許可")
+                        let center = UNUserNotificationCenter.current()
+                        center.delegate = self
+                    }else {
+                        print("通知不可")
+                    }
+                }
+            })
+        }else {
+            let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
     }
     
     
@@ -140,5 +163,11 @@ extension TutorialViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // スクロールビューをx方向に移動した分 / フレームワイド = ページコントロールの表示数
         myPageControl.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+    }
+}
+// アプリ起動時にも通知する
+extension TutorialViewController: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.badge, .sound, .alert])
     }
 }

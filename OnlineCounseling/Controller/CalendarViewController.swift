@@ -13,18 +13,18 @@ import RealmSwift
 import Firebase
 
 class CalendarViewController: UIViewController {
-    
-    private var isPlayingCalendar: Bool = false //　日付選択のフラグ
-    private var isPlayinfTimeTable: Bool = false // 時間選択のフラグ
-    
+    // 選択されているかFlag
+    private var isPlayingCalendar: Bool = false
+    private var isPlayinfTimeTable: Bool = false
+    // timeTableview
     private let timeArray = [
         "0時~1時", "1時~2時", "2時~3時", "3時~4時", "4時~5時", "5時~6時", "6時~7時", "7時~8時", "8時~9時", "9時~10時", "10時~11時", "11時~12時",
         "12時~13時", "13時~14時", "14時~15時", "15時~16時", "16時~17時", "17時~18時", "18時~19時",
         "19時~20時", "20時~21時", "21時~22時", "22時~23時", "23時=24時"
     ]
+    
     var otherUid: String?
     var otherName: String?
-    
     
     private var yearNumber: Int?
     private var monthNumber: Int?
@@ -33,11 +33,22 @@ class CalendarViewController: UIViewController {
     
     private var timeArrayText: String?
     private var currentSelectedDate: String?
-    
+    // Realm
     private var realm: Realm!
     private var uid: String?
     private var name: String?
+    // Firebae
     private let usersDB = Firestore.firestore().collection("users")
+    // プッシュ通知
+    private var trigger: UNNotificationTrigger!
+    
+    // プッシュ送信の表示内容などを設定
+    private var content: UNMutableNotificationContent = {
+        let Content = UNMutableNotificationContent()
+        Content.title = "カウンセリング5分前となりましたのでお知らせ致します"
+        Content.sound = .default
+        return Content
+    }()
     
     private var dateformatter: DateFormatter = {
        let formatter = DateFormatter()
@@ -135,6 +146,7 @@ class CalendarViewController: UIViewController {
             guard let reservationDateText = selectedDateLabel.text else { return }
             self.postToRocaldata(completion: { (date) in
                 self.postToCloud(date: date)
+                self.localNotificationRequest(date: date)
             })
             self.alert.okAlert(title: "予約しました", message: "\(reservationDateText)にて\n予約致しました。", currentController: self, completionHandler: { (_) in
                 self.dismiss(animated: true, completion: nil)
@@ -162,11 +174,23 @@ class CalendarViewController: UIViewController {
     // Firebaseに予約日時を追加(自分と相手)
     func postToCloud(date: Date?) {
         if (date != nil) {
-        let postToSelfdata: [String: Any] = ["uid": self.otherUid!, "name": self.otherName!, "reservationDate": date!]
+        let postToSelfdata: [String: Any] = ["uid": self.otherUid!, "name": self.otherName!, "reservationDate": Timestamp(date: date!)]
         usersDB.document(self.uid!).collection("reservation").addDocument(data: postToSelfdata)
-        let postToOtherdata: [String: Any] = ["uid": self.uid!, "name": self.name!, "reservationDate": date!]
+        let postToOtherdata: [String: Any] = ["uid": self.uid!, "name": self.name!, "reservationDate": Timestamp(date: date!)]
             usersDB.document(self.otherUid!).collection("reservation").addDocument(data: postToOtherdata)
         }
+    }
+    // プッシュ送信をリクエストする
+    func localNotificationRequest(date: Date?) {
+        let calendar = Calendar.current
+        let dateComponent = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date!)
+        trigger = UNCalendarNotificationTrigger.init(dateMatching: dateComponent, repeats: false)
+        trigger = UNTimeIntervalNotificationTrigger(timeInterval: -300, repeats: false) // 予約(date)の5分前に通知
+        let dateSt = dateformatter.string(from: date!)
+        content.body = "カウンセリングは\(dateSt)~1時間となっております。"
+        let request = UNNotificationRequest.init(identifier: "request", content: content, trigger: trigger)
+        let center = UNUserNotificationCenter.current()
+        center.add(request, withCompletionHandler: nil)
     }
     
     
