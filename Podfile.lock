@@ -229,11 +229,6 @@ PODS:
     - FirebaseAuthInterop (~> 1.1)
     - FirebaseCore (~> 6.6)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseUI/Auth (8.4.2):
-    - Firebase/Auth (~> 6.0)
-    - GoogleUtilities/UserDefaults
-  - FirebaseUI/Phone (8.4.2):
-    - FirebaseUI/Auth
   - FSCalendar (2.8.1)
   - GoogleAppMeasurement (6.4.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
@@ -915,7 +910,6 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Firestore
   - Firebase/Storage
-  - FirebaseUI/Phone
   - FSCalendar
   - MaterialComponents
   - MessageKit
@@ -939,7 +933,6 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseInstallations
     - FirebaseStorage
-    - FirebaseUI
     - FSCalendar
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -978,7 +971,6 @@ SPEC CHECKSUMS:
   FirebaseFirestore: a750487e2019ac35464c78311dcf2fde9d817c52
   FirebaseInstallations: acb3216eb9784d3b1d2d2d635ff74fa892cc0c44
   FirebaseStorage: b43ee271294227e1a3225544b073f3b49b427f46
-  FirebaseUI: e57e9b9c4340631151fbe67a14206d23d0974f37
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   GoogleAppMeasurement: e49be3954045b17d046f271b9cc1ec052bad9702
   GoogleDataTransport: 6ffa4dd0b6d547f8d27b91bd92fa9e197a3f5f1f
@@ -1004,6 +996,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 8a3b7ad2c14409bf2bd1d0946bb0693f2ff2304f
+PODFILE CHECKSUM: 968a9a9666a6189d35ae44bcfb766bab7900e0cf
 
 COCOAPODS: 1.8.4

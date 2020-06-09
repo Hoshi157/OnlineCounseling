@@ -21,6 +21,7 @@
 		8D289401246FBE8900855CCD /* CustomMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2893FF246FBE8900855CCD /* CustomMessageTableViewCell.xib */; };
 		8D289404246FC0CB00855CCD /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D289402246FC0CB00855CCD /* TimelineTableViewCell.swift */; };
 		8D289405246FC0CB00855CCD /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */; };
+		8D323E25248F690C008076DD /* ReservationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D323E24248F690C008076DD /* ReservationData.swift */; };
 		8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436A246D6ECF0036F42F /* AppDelegate.swift */; };
 		8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436C246D6ECF0036F42F /* SceneDelegate.swift */; };
 		8D38436F246D6ECF0036F42F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436E246D6ECF0036F42F /* RootViewController.swift */; };
@@ -87,6 +88,7 @@
 		8D2893FF246FBE8900855CCD /* CustomMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageTableViewCell.xib; sourceTree = "<group>"; };
 		8D289402246FC0CB00855CCD /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
 		8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
+		8D323E24248F690C008076DD /* ReservationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationData.swift; sourceTree = "<group>"; };
 		8D384367246D6ECF0036F42F /* OnlineCounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineCounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D38436A246D6ECF0036F42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D38436C246D6ECF0036F42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */,
 				8D3CCCA72477608500590735 /* CalendarViewController.swift */,
 				8D88C75A246D7BAB00145BD2 /* ResevationViewController.swift */,
+				8D323E24248F690C008076DD /* ReservationData.swift */,
 				8D88C758246D7B7300145BD2 /* HistoryViewController.swift */,
 				8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */,
 				8D14FAA52489E94D00D1C6FA /* Bookmark.swift */,
@@ -289,7 +292,6 @@
 				8D384364246D6ECF0036F42F /* Frameworks */,
 				8D384365246D6ECF0036F42F /* Resources */,
 				BB56715E43EFB035D9301216 /* [CP] Embed Pods Frameworks */,
-				EA78C31423A781D6BA2E33D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -398,23 +400,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EA78C31423A781D6BA2E33D2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -460,6 +445,7 @@
 				8DB5CEAB24727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift in Sources */,
 				8D4AD12924850CBD00687447 /* GetCollections.swift in Sources */,
 				8D73A14D247BB6E500F27238 /* ImageNameOnlyTableViewCell.swift in Sources */,
+				8D323E25248F690C008076DD /* ReservationData.swift in Sources */,
 				8D997F16247163AE008EBA39 /* MessageViewController.swift in Sources */,
 				8D13206C24795C3100EB4BEC /* AlertController.swift in Sources */,
 				8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */,

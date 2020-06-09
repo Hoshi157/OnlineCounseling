@@ -9,20 +9,43 @@
 import UIKit
 import FSCalendar
 import SnapKit
+import RealmSwift
+import Firebase
 
 class CalendarViewController: UIViewController {
     
-    private var isPlayingCalendar: Bool = false
-    private var isPlayinfTimeTable: Bool = false
+    private var isPlayingCalendar: Bool = false //　日付選択のフラグ
+    private var isPlayinfTimeTable: Bool = false // 時間選択のフラグ
     
     private let timeArray = [
         "0時~1時", "1時~2時", "2時~3時", "3時~4時", "4時~5時", "5時~6時", "6時~7時", "7時~8時", "8時~9時", "9時~10時", "10時~11時", "11時~12時",
         "12時~13時", "13時~14時", "14時~15時", "15時~16時", "16時~17時", "17時~18時", "18時~19時",
         "19時~20時", "20時~21時", "21時~22時", "22時~23時", "23時=24時"
     ]
+    var otherUid: String?
+    var otherName: String?
+    
+    
+    private var yearNumber: Int?
+    private var monthNumber: Int?
+    private var dayNumber: Int?
+    private var timeNumber: Int?
     
     private var timeArrayText: String?
     private var currentSelectedDate: String?
+    
+    private var realm: Realm!
+    private var uid: String?
+    private var name: String?
+    private let usersDB = Firestore.firestore().collection("users")
+    
+    private var dateformatter: DateFormatter = {
+       let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+        formatter.locale = Locale(identifier: "ja/jP")
+        formatter.dateFormat = "yyyy/MM/dd HH"
+        return formatter
+    }()
     
     private var alert = AlertController()
     
@@ -91,6 +114,15 @@ class CalendarViewController: UIViewController {
             make.right.equalTo(self.view)
             make.bottom.equalTo(self.view)
         }
+        
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            self.uid = user.uid
+            self.name = user.name
+        }catch {
+            print(error.localizedDescription, "error Realm")
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -101,12 +133,39 @@ class CalendarViewController: UIViewController {
     @objc func ReservationButtonAction() {
         if (isPlayingCalendar == true && isPlayinfTimeTable == true) {
             guard let reservationDateText = selectedDateLabel.text else { return }
+            self.postToRocaldata(completion: { (date) in
+                self.postToCloud(date: date)
+            })
             self.alert.okAlert(title: "予約しました", message: "\(reservationDateText)にて\n予約致しました。", currentController: self, completionHandler: { (_) in
-                print("completinHandler")
                 self.dismiss(animated: true, completion: nil)
             })
         }else {
             self.alert.okAlert(title: "予約できません", message: "予約日時を正しく設定してください", currentController: self)
+        }
+    }
+    // Realmに予約日時を追加(自分だけ)
+    func postToRocaldata(completion: (_ date: Date?) -> Void){
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            let date: Date? = self.dateformatter.date(from: "\(self.yearNumber!)/\(self.monthNumber!)/\(self.dayNumber!) \(self.timeNumber!)")
+            try realm.write {
+                let reservation = Reservation(value: ["uid": self.otherUid!, "name": self.otherName!, "reservation": date!])
+                user.reservations.append(reservation)
+            }
+            completion(date)
+        }catch {
+            print(error.localizedDescription, "error Realm")
+            completion(nil)
+        }
+    }
+    // Firebaseに予約日時を追加(自分と相手)
+    func postToCloud(date: Date?) {
+        if (date != nil) {
+        let postToSelfdata: [String: Any] = ["uid": self.otherUid!, "name": self.otherName!, "reservationDate": date!]
+        usersDB.document(self.uid!).collection("reservation").addDocument(data: postToSelfdata)
+        let postToOtherdata: [String: Any] = ["uid": self.uid!, "name": self.name!, "reservationDate": date!]
+            usersDB.document(self.otherUid!).collection("reservation").addDocument(data: postToOtherdata)
         }
     }
     
@@ -142,6 +201,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.isPlayinfTimeTable = true
         timeArrayText = timeArray[indexPath.row]
+        self.timeNumber = indexPath.row
         guard let timeText = timeArrayText else {return}
         if (currentSelectedDate != nil) {
             guard let currentDate: String = currentSelectedDate else {return}
@@ -149,7 +209,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         }else {
             self.selectedDateLabel.text = "予約日を選択してください\(timeText)"
         }
-        
     }
 }
 
@@ -163,6 +222,9 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
             let year = tmpDate.component(.year, from: date)
             let month = tmpDate.component(.month, from: date)
             let day = tmpDate.component(.day, from: date)
+            self.yearNumber = year
+            self.monthNumber = month
+            self.dayNumber = day
             self.currentSelectedDate = "\(year)年\(month)月\(day)日"
             if (self.isPlayinfTimeTable == true) {
                 guard let timeText = timeArrayText else {return}

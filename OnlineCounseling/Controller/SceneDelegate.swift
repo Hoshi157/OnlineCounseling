@@ -75,8 +75,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         
-        self.addToLocaldata()
-        self.getUidFromCloud()
+        self.addToLocaldata(completion: { () in
+            self.getUidFromCloud()
+        })
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -141,19 +142,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     // まずはUser情報をrealmへ保存(開始時一度のみ)
-    func addToLocaldata() {
+    func addToLocaldata(completion: () -> Void) {
         do {
             realm = try Realm()
+            print(realm.objects(User.self).last ?? "nil", "User data")
             if (realm.objects(User.self).last == nil) {
                 let myUser = User()
                 myUser.type = "user"
                 try realm.write {
                     realm.add(myUser)
                     print(realm.objects(User.self), "realmの個数確認")
+                    completion()
                 }
             }
         }catch {
-            print("error")
+            print(error.localizedDescription, "error Realm")
         }
     }
     

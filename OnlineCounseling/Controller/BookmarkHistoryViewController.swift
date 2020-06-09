@@ -142,7 +142,6 @@ class BookmarkHistoryViewController: UIViewController {
 extension BookmarkHistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 履歴があったらtableviewを表示
-        print(bookmarks.count, "bookmarks.count!!!!")
         if (bookmarks.count >= 1) {
             tableviewLayout()
             return bookmarks.count

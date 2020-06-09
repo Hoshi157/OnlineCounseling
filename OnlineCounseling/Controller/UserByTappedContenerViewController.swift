@@ -128,6 +128,8 @@ class UserByTappedContenerViewController: UIViewController {
     // カレンダーボタンをタップした時
     @objc func calendarTransitionAction() {
         let calendarVC = CalendarViewController()
+        calendarVC.otherUid = userTapUid
+        calendarVC.otherName = otherName
         let naviController = UINavigationController(rootViewController: calendarVC)
         naviController.modalPresentationStyle = .fullScreen
         present(naviController, animated: true)
