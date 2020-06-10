@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import MaterialComponents
+import UserNotifications
 // チュートリアル画面
 class TutorialViewController: UIViewController {
     

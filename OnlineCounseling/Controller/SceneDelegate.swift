@@ -149,7 +149,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print(realm.objects(User.self).last ?? "nil", "User data")
             if (realm.objects(User.self).last == nil) {
                 let myUser = User()
-                myUser.type = "user"
                 try realm.write {
                     realm.add(myUser)
                     print(realm.objects(User.self), "realmの個数確認")

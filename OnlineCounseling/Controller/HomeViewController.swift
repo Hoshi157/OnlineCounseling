@@ -87,6 +87,7 @@ class HomeViewController: UIViewController {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
+            print(user, "tabber user")
             let type = user.type
             completion(type)
         }catch {

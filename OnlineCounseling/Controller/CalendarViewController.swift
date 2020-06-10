@@ -11,6 +11,7 @@ import FSCalendar
 import SnapKit
 import RealmSwift
 import Firebase
+import UserNotifications
 
 class CalendarViewController: UIViewController {
     // 選択されているかFlag
@@ -183,7 +184,7 @@ class CalendarViewController: UIViewController {
     // プッシュ送信をリクエストする(カウンセリング時間の5分前に通知)
     func localNotificationRequest(date: Date?) {
         print("リクエスト処理")
-        let calendar = Calendar(identifier: .gregorian)
+        let calendar = Calendar.current
         var dateComponent = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date!)
         if let hour = dateComponent.hour {
             dateComponent.hour = hour - 1

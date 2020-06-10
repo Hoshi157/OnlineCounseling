@@ -24,7 +24,7 @@ class ResevationViewController: UIViewController {
        let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
         formatter.locale = Locale(identifier: "ja/jP")
-        formatter.dateFormat = "yyyy/MM/dd HH"
+        formatter.dateFormat = "yyyy年MM月dd日 HH時"
         return formatter
     }()
     
@@ -65,12 +65,15 @@ class ResevationViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         view.addSubview(myTableView)
+        localDataGet()
+        localdataObserve()
         
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.title = "カウンセリング予約"
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemBlue.withAlphaComponent(0.7)]
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-メニュー-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-メニュー-25"), style: .plain, target: self, action: #selector(sidemenuButtonAction))
+        
     }
     
     @objc func sidemenuButtonAction() {
@@ -176,7 +179,7 @@ extension ResevationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! CustomMessageTableViewCell
         cell.nameLabel.text = Reservations[indexPath.row].name
-        cell.underLabel.text = Reservations[indexPath.row].dateSt
+        cell.underLabel.text = "\(Reservations[indexPath.row].dateSt!)　の予約"
         let uid = Reservations[indexPath.row].uid
         let filePath = self.fileInDocumentsDirectory(filename: uid!)
         let image = self.loadImageFromPath(path: filePath)

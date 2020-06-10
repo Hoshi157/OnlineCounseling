@@ -175,7 +175,7 @@ class ProfileRegisterViewController: UIViewController {
         // firebaseにPostするデータ
         let post: [String: Any] = [
             "name": self.name!, "birthday": Timestamp(date: self.birthdayDate!), "gender": self.gender!, "jobs":self.jobs!, "area": self.area!,
-            "hobby": self.hobby!, "selfintroText": self.selfintroText!, "singlewordText": self.singlewordText!, "medicalhistoryText": self.medicalhistoryText!, "type": self.type!
+            "hobby": self.hobby!, "selfintroText": self.selfintroText!, "singlewordText": self.singlewordText!, "medicalhistoryText": self.medicalhistoryText!, "type": self.type!, "loginFlg": false
         ]
         // 匿名ログインしているuidと変数に保存されているuidが同じか確認
         let anonymousUser = Auth.auth().currentUser
@@ -186,6 +186,7 @@ class ProfileRegisterViewController: UIViewController {
                         print(error.localizedDescription, "Firebase post error")
                     }else {
                         self.UpdataLoginstateToLocaldata()
+                        self.UpdataLoginstateClouddata()
                     }
                 } // userデータをFirebaseに保存
                 storagetToUploadImage(image: self.photoImage, childId: uid) // 画像をStorageに保存
@@ -285,6 +286,11 @@ class ProfileRegisterViewController: UIViewController {
         }catch {
             print(error.localizedDescription, "error Realm")
         }
+    }
+    // Firebaseにログイン状態を更新
+    func UpdataLoginstateClouddata() {
+        let post = ["loginFlg": true]
+        usersDB.document(self.uid!).updateData(post)
     }
     
     

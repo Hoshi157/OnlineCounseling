@@ -56,7 +56,7 @@ class CounselorRoginViewController: UIViewController {
         loginButton.snp.makeConstraints { (make) in
             make.top.equalTo(explanationLabel.snp.bottom).offset(100)
             make.centerX.equalToSuperview()
-            make.height.equalTo(50)
+            make.height.equalTo(40)
             make.width.equalTo(250)
         }
         

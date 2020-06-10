@@ -97,14 +97,15 @@ class LoginViewController: UIViewController {
                 let medicalhistory = data["medicalhistoryText"] as! String
                 let selfIntro = data["selfintroText"] as! String
                 let singleWord = data["singlewordText"] as! String
-                self.localdataSave(uid: uid, name: name, birthday: birthday, type: type, area: area, gender: gender, hobby: hobby, jobs: jobs, medicalhistory: medicalhistory, selfintro: selfIntro, singleword: singleWord)
+                let loginFlg = data["loginFlg"] as! Bool
+                self.localdataSave(uid: uid, name: name, birthday: birthday, type: type, area: area, gender: gender, hobby: hobby, jobs: jobs, medicalhistory: medicalhistory, selfintro: selfIntro, singleword: singleWord, loginFlg: loginFlg)
             }
         }
         completion()
     }
     
     // Realmに書き込み
-    func localdataSave(uid: String, name: String, birthday: Date, type: String, area: String, gender: String, hobby: String, jobs: String, medicalhistory: String, selfintro: String, singleword: String) {
+    func localdataSave(uid: String, name: String, birthday: Date, type: String, area: String, gender: String, hobby: String, jobs: String, medicalhistory: String, selfintro: String, singleword: String, loginFlg: Bool) {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
@@ -120,13 +121,24 @@ class LoginViewController: UIViewController {
                 user.medicalhistoryText = medicalhistory
                 user.selfintroText = selfintro
                 user.singlewordText = singleword
-                getBookmarkdataFromCloud(myUid: uid, completion:{ (uid, name) in
-                    let bookmark = BookmarkHistory(value: ["otherUid": uid, "otherName": name])
+                user.loginFlg = loginFlg
+                getBookmarkdataFromCloud(myUid: user.uid, completion: { (uid, name) in
+                try self.realm.write {
+                   let bookmark = BookmarkHistory(value: ["otherUid": uid, "otherName": name])
                     user.bookmarks.append(bookmark)
+                    }
                 })
-                getMessagedataFromCloud(myUid: uid, completion: { (uid, name, roomId, lasttext) in
-                    let message = BookmarkHistory(value: ["otherUid": uid, "otherName": name, "otherRoomNumber": roomId,  "lastText": lasttext])
-                    user.bookmarks.append(message)
+                getMessagedataFromCloud(myUid: user.uid, completion: { (uid, name, roomId, lastText) in
+                    try self.realm.write {
+                        let message = MessageHistory(value: ["otherName": name, "otherUid": uid, "otherRoomNumber": roomId, "lasttext": lastText])
+                        user.messages.append(message)
+                    }
+                })
+                getResevartiondataFromCloud(myUid: user.uid, completion: { (name, uid, date) in
+                    try self.realm.write {
+                        let reservation = Reservation(value: ["name": name, "uid": uid, "reservation": date])
+                        user.reservations.append(reservation)
+                    }
                 })
             }
         }catch {
@@ -135,7 +147,7 @@ class LoginViewController: UIViewController {
     }
     
     // FirebaseからBookmark情報を取得
-    func getBookmarkdataFromCloud(myUid: String, completion: @escaping (_ uid: String, _ name: String) -> Void) {
+    func getBookmarkdataFromCloud(myUid: String, completion: @escaping (_ uid: String, _ name: String) throws -> Void) {
         usersDB.document(myUid).collection("bookmark").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print(error.localizedDescription, "error bookmark firebase")
@@ -144,14 +156,18 @@ class LoginViewController: UIViewController {
                     for document in querySnapshot!.documents {
                         let uid: String = document["uid"] as! String
                         let name: String = document["name"] as! String
-                        completion(uid, name)
+                        do {
+                        try completion(uid, name)
+                        }catch {
+                            print(error.localizedDescription, "error Bookmarkdata")
+                        }
                     }
                 }
             }
         }
     }
     // FirebaseからMessage情報を取得
-    func getMessagedataFromCloud(myUid: String, completion: @escaping(_ uid: String, _ name: String, _ roomId: String, _ lastText: String) -> Void) {
+    func getMessagedataFromCloud(myUid: String, completion: @escaping (_ uid: String, _ name: String, _ roomId: String, _ lastText: String) throws -> Void) {
         usersDB.document(myUid).collection("alreadyMessage").getDocuments { (querySnapshot, error) in
             if let error = error {
                 print(error.localizedDescription, "error")
@@ -162,7 +178,33 @@ class LoginViewController: UIViewController {
                         let name = document["name"] as! String
                         let roomId = document["roomId"] as! String
                         let lasttext = document["lastText"] as! String
-                        completion(uid, name, roomId, lasttext)
+                        do {
+                        try completion(uid, name, roomId, lasttext)
+                        }catch {
+                            print(error.localizedDescription, "error messagedata")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // Firebaseからカウンセリング予約情報を取得
+    func getResevartiondataFromCloud(myUid: String, completion: @escaping (_ name: String, _ uid: String, _ date: Date) throws -> Void) {
+        usersDB.document(myUid).collection("reservation").getDocuments { (querySnaoshot, error) in
+            if let error = error {
+                print(error.localizedDescription, "error Realm")
+            }else {
+                if (querySnaoshot != nil) {
+                    for document in querySnaoshot!.documents {
+                        let name = document.data()["name"] as! String
+                        let uid = document.data()["uid"] as! String
+                        let dateStanp = document.data()["reservationDate"] as! Timestamp
+                        let date = dateStanp.dateValue()
+                        do {
+                        try completion(name, uid, date)
+                        }catch {
+                            print(error.localizedDescription, "error reservationdata")
+                        }
                     }
                 }
             }
