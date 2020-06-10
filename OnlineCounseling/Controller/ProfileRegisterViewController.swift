@@ -172,7 +172,7 @@ class ProfileRegisterViewController: UIViewController {
     
     // セグエする時にFirebaseにデータを保存する(Realmに必ずデータが入っているためアンラップできる)
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        // firebaseにPostするデータ(imageは後から追加)
+        // firebaseにPostするデータ
         let post: [String: Any] = [
             "name": self.name!, "birthday": Timestamp(date: self.birthdayDate!), "gender": self.gender!, "jobs":self.jobs!, "area": self.area!,
             "hobby": self.hobby!, "selfintroText": self.selfintroText!, "singlewordText": self.singlewordText!, "medicalhistoryText": self.medicalhistoryText!, "type": self.type!
@@ -181,7 +181,13 @@ class ProfileRegisterViewController: UIViewController {
         let anonymousUser = Auth.auth().currentUser
         if let uid = self.uid {
             if (uid == anonymousUser?.uid) {
-                self.usersDB.document(uid).setData(post) // userデータをFirebaseに保存
+                self.usersDB.document(uid).setData(post) { (error) in
+                    if let error = error {
+                        print(error.localizedDescription, "Firebase post error")
+                    }else {
+                        self.UpdataLoginstateToLocaldata()
+                    }
+                } // userデータをFirebaseに保存
                 storagetToUploadImage(image: self.photoImage, childId: uid) // 画像をStorageに保存
                 print("Dataをfirebaseに保存")
                 return true
@@ -267,6 +273,18 @@ class ProfileRegisterViewController: UIViewController {
         let textInputVC = self.storyboard?.instantiateViewController(withIdentifier: "textInputVC") as! TextInputProfileViewController
         textInputVC.titleText = "カウンセラーに伝えておきたい事"
         self.navigationController?.pushViewController(textInputVC, animated: true)
+    }
+    // Realmにログイン状態を更新
+    func UpdataLoginstateToLocaldata() {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                user.loginFlg = true
+            }
+        }catch {
+            print(error.localizedDescription, "error Realm")
+        }
     }
     
     

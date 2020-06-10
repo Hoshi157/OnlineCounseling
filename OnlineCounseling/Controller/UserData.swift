@@ -22,6 +22,7 @@ class User: Object {
     @objc dynamic var medicalhistoryText = ""
     @objc dynamic var type = ""
     @objc dynamic var imagePath: String = "" // imageはファイルのパスを保存
+    @objc dynamic var loginFlg = false // ログインしているかFlgを設置
     
     let reservations = List<Reservation>()
     let bookmarks = List<BookmarkHistory>()

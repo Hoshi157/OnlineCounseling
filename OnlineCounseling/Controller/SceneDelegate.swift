@@ -23,34 +23,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 起動時画面変更
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
-        self.window = window
-        window.makeKeyAndVisible()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last
             print(user?.uid ?? "nil", "user.uid")
-            // RealmのuidがあればTabbarVC(ログインしている)
-            if (user?.uid != nil) {
-                self.loginToCloud(myUid: user!.uid, completion: { (result) in
-                    if (result) {
-                        let tabbarVC = storyboard.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
-                        window.rootViewController = tabbarVC
-                    }else {
-                        let rootNavi = storyboard.instantiateViewController(withIdentifier: "rootNavi")
-                        window.rootViewController = rootNavi
-                    }
-                })
+            if (user != nil) {
+                if (user!.loginFlg) {
+                    let tabbarVC = storyboard.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
+                    window.rootViewController = tabbarVC
+                    self.window = window
+                    window.makeKeyAndVisible()
+                }else {
+                    let rootNavi = storyboard.instantiateViewController(withIdentifier: "rootNavi")
+                    window.rootViewController = rootNavi
+                    self.window = window
+                    window.makeKeyAndVisible()
+                }
             }else {
-                // uidがなければrootNavi(ログインしていない)
                 let rootNavi = storyboard.instantiateViewController(withIdentifier: "rootNavi")
                 window.rootViewController = rootNavi
+                self.window = window
+                window.makeKeyAndVisible()
             }
         }catch {
-            print("error")
+            print(error.localizedDescription, "error Realm")
             let rootNavi = storyboard.instantiateViewController(withIdentifier: "rootNavi")
             window.rootViewController = rootNavi
+            self.window = window
+            window.makeKeyAndVisible()
         }
     }
     
@@ -104,6 +105,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             let saveJudge = self.saveImage(image: image, path: filePath)
                             if (saveJudge) {
                                 self.toLocaldataSaveTheImagepath(targetUid: uid, path: filePath)
+                                print("imgePath セーブできた")
                             }
                         })
                     }
@@ -127,7 +129,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return false
         }
     }
-    // Realmへ保存する
+    // Realmへ保存する(imagePath)
     func toLocaldataSaveTheImagepath (targetUid: String, path: String) {
         do {
             realm = try Realm()
@@ -140,7 +142,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print(error.localizedDescription, "Realm error")
         }
     }
-    
     // まずはUser情報をrealmへ保存(開始時一度のみ)
     func addToLocaldata(completion: () -> Void) {
         do {
@@ -159,23 +160,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print(error.localizedDescription, "error Realm")
         }
     }
-    
-    func loginToCloud(myUid: String, completion: @escaping(_ result: Bool) -> Void) {
-        usersDB.getDocuments { (qurySnapshot, error) in
-            if let error = error {
-                print(error.localizedDescription, "error Firebase")
-                completion(false)
-            }else {
-                let data = qurySnapshot?.documents.lazy.filter{ $0.documentID == myUid}.first
-                if (data != nil) {
-                    completion(true)
-                }else {
-                    completion(false)
-                }
-            }
-        }
-    }
-    
 }
 
 extension SceneDelegate: imageSaveProtocol {}

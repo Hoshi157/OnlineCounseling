@@ -232,9 +232,9 @@
 				8D997F17247163D8008EBA39 /* MockMessage.swift */,
 				8DCD2FCC247058A700D2C9ED /* SidemenuViewController.swift */,
 				8D88C75C246D7BE400145BD2 /* MyPageViewController.swift */,
+				8D69B4F8248CD1D30092BBB2 /* CounselorRoginViewController.swift */,
 				8D13206B24795C3100EB4BEC /* AlertController.swift */,
 				8D852300247E2B4E00654314 /* UserData.swift */,
-				8D69B4F8248CD1D30092BBB2 /* CounselorRoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

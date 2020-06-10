@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vqv-IV-bkL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -70,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アカウント作成" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9b-uB-mhK">
-                                <rect key="frame" x="20" y="108" width="163.5" height="30"/>
+                                <rect key="frame" x="10" y="108" width="394" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="4P1-nc-Bs4"/>
                                 </constraints>
@@ -98,9 +98,10 @@
                             <constraint firstItem="w9b-uB-mhK" firstAttribute="top" secondItem="qHW-aK-TLa" secondAttribute="top" constant="20" id="512-EX-wPc"/>
                             <constraint firstItem="4cz-rx-7Lm" firstAttribute="leading" secondItem="qHW-aK-TLa" secondAttribute="leading" constant="33" id="Gkh-3a-kQc"/>
                             <constraint firstItem="qHW-aK-TLa" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4cz-rx-7Lm" secondAttribute="trailing" id="KYF-Ke-gG2"/>
+                            <constraint firstItem="qHW-aK-TLa" firstAttribute="trailing" secondItem="w9b-uB-mhK" secondAttribute="trailing" constant="10" id="M0y-cG-ixg"/>
+                            <constraint firstItem="w9b-uB-mhK" firstAttribute="leading" secondItem="qHW-aK-TLa" secondAttribute="leading" constant="10" id="Ret-lJ-lA1"/>
                             <constraint firstItem="4cz-rx-7Lm" firstAttribute="centerY" secondItem="jef-C6-OTm" secondAttribute="centerY" constant="-30" id="VV2-rs-9Z3"/>
-                            <constraint firstItem="w9b-uB-mhK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qHW-aK-TLa" secondAttribute="leading" id="imz-ki-rgh"/>
-                            <constraint firstItem="qHW-aK-TLa" firstAttribute="trailing" secondItem="w9b-uB-mhK" secondAttribute="trailing" constant="230.5" id="jmH-Tm-smi"/>
+                            <constraint firstItem="w9b-uB-mhK" firstAttribute="centerX" secondItem="jef-C6-OTm" secondAttribute="centerX" id="mfA-by-ILX"/>
                             <constraint firstItem="4cz-rx-7Lm" firstAttribute="centerX" secondItem="jef-C6-OTm" secondAttribute="centerX" id="tvc-ff-1EU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qHW-aK-TLa"/>
