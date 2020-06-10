@@ -140,13 +140,13 @@ class CalendarViewController: UIViewController {
     @objc func backViewAction() {
         dismiss(animated: true, completion: nil)
     }
-    
+    // 予約ボタンタップ処理
     @objc func ReservationButtonAction() {
         if (isPlayingCalendar == true && isPlayinfTimeTable == true) {
             guard let reservationDateText = selectedDateLabel.text else { return }
             self.postToRocaldata(completion: { (date) in
                 self.postToCloud(date: date)
-                self.localNotificationRequest(date: date)
+                self.localNotificationRequest(date: date) // ここがクラッシュ
             })
             self.alert.okAlert(title: "予約しました", message: "\(reservationDateText)にて\n予約致しました。", currentController: self, completionHandler: { (_) in
                 self.dismiss(animated: true, completion: nil)
@@ -155,7 +155,7 @@ class CalendarViewController: UIViewController {
             self.alert.okAlert(title: "予約できません", message: "予約日時を正しく設定してください", currentController: self)
         }
     }
-    // Realmに予約日時を追加(自分だけ)
+    // Realmに予約日時を追加
     func postToRocaldata(completion: (_ date: Date?) -> Void){
         do {
             realm = try Realm()
@@ -180,12 +180,19 @@ class CalendarViewController: UIViewController {
             usersDB.document(self.otherUid!).collection("reservation").addDocument(data: postToOtherdata)
         }
     }
-    // プッシュ送信をリクエストする
+    // プッシュ送信をリクエストする(カウンセリング時間の5分前に通知)
     func localNotificationRequest(date: Date?) {
-        let calendar = Calendar.current
-        let dateComponent = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date!)
+        print("リクエスト処理")
+        let calendar = Calendar(identifier: .gregorian)
+        var dateComponent = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date!)
+        if let hour = dateComponent.hour {
+            dateComponent.hour = hour - 1
+        }
+        if let minute = dateComponent.minute {
+            dateComponent.minute = minute + 55
+        }
         trigger = UNCalendarNotificationTrigger.init(dateMatching: dateComponent, repeats: false)
-        trigger = UNTimeIntervalNotificationTrigger(timeInterval: -300, repeats: false) // 予約(date)の5分前に通知
+        print(dateComponent, "指定したdateComponemt")
         let dateSt = dateformatter.string(from: date!)
         content.body = "カウンセリングは\(dateSt)~1時間となっております。"
         let request = UNNotificationRequest.init(identifier: "request", content: content, trigger: trigger)
