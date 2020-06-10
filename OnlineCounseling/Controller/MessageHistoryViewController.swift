@@ -60,10 +60,9 @@ class MessageHistoryViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.systemBlue.withAlphaComponent(0.7)]
         self.title = "メッセージ"
-        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-メニュー-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-メニュー-25"), style: .plain, target: self, action: #selector(sidemenuButtonAction))
-        
-    }
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-メニュー-25").withRenderingMode(.alwaysTemplate), landscapeImagePhone: #imageLiteral(resourceName: "icons8-メニュー-25").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(sidemenuButtonAction))
+        }
     
     @objc func sidemenuButtonAction() {
         self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true)
@@ -170,7 +169,7 @@ extension MessageHistoryViewController: UITableViewDelegate, UITableViewDataSour
         let uid = talkrooms[indexPath.row].uid
         let filePath = self.fileInDocumentsDirectory(filename: uid!)
         let image = self.loadImageFromPath(path: filePath)
-        cell.avaterImageView.layer.cornerRadius = 10
+        cell.avaterImageView.layer.cornerRadius = 35
         cell.avaterImageView.clipsToBounds = true
         DispatchQueue.main.async {
             if (image != nil) {

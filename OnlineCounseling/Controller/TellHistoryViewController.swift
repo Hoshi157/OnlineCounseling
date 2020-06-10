@@ -49,7 +49,7 @@ extension TellHistoryViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ImageNameOnlyTableViewCell", for: indexPath) as! ImageNameOnlyTableViewCell
-        cell.avaterImageView.layer.cornerRadius = 10
+        cell.avaterImageView.layer.cornerRadius = 30
         cell.avaterImageView.clipsToBounds = true
         return cell
     }

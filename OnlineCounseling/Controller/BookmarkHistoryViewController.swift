@@ -158,7 +158,7 @@ extension BookmarkHistoryViewController: UITableViewDataSource, UITableViewDeleg
         let uid = bookmarks[indexPath.row].uid
         let filePath = self.fileInDocumentsDirectory(filename: uid!)
         let image = self.loadImageFromPath(path: filePath)
-        cell.avaterImageView.layer.cornerRadius = 10
+        cell.avaterImageView.layer.cornerRadius = 30
         cell.avaterImageView.clipsToBounds = true
         DispatchQueue.main.async {
             if (image != nil) {
