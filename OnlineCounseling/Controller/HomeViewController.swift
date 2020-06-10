@@ -87,7 +87,6 @@ class HomeViewController: UIViewController {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
-            print(user, "tabber user")
             let type = user.type
             completion(type)
         }catch {
@@ -115,13 +114,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCell", for: indexPath) as! CustomCollectionViewCell
-        cell.layer.cornerRadius = 10
-        cell.clipsToBounds = true
         cell.nameLabel.text = collectionArray[indexPath.row].name
         cell.jobsLabel.text = collectionArray[indexPath.row].jobs
         let uid = collectionArray[indexPath.row].uid
         let filePath = self.fileInDocumentsDirectory(filename: uid!)
         let image = self.loadImageFromPath(path: filePath)
+        cell.avaterImageView.layer.cornerRadius = 10
+        cell.avaterImageView.clipsToBounds = true
         DispatchQueue.main.async {
             if (image != nil) {
                 cell.avaterImageView.image = image

@@ -170,6 +170,8 @@ extension MessageHistoryViewController: UITableViewDelegate, UITableViewDataSour
         let uid = talkrooms[indexPath.row].uid
         let filePath = self.fileInDocumentsDirectory(filename: uid!)
         let image = self.loadImageFromPath(path: filePath)
+        cell.avaterImageView.layer.cornerRadius = 10
+        cell.avaterImageView.clipsToBounds = true
         DispatchQueue.main.async {
             if (image != nil) {
                 cell.avaterImageView.image = image
