@@ -46,7 +46,7 @@ class CalendarViewController: UIViewController {
     // プッシュ送信の表示内容などを設定
     private var content: UNMutableNotificationContent = {
         let Content = UNMutableNotificationContent()
-        Content.title = "カウンセリング5分前となりましたのでお知らせ致します"
+        Content.title = "カウンセリング5分前です"
         Content.sound = .default
         return Content
     }()
@@ -280,5 +280,9 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
                 }
             }
         }
+    }
+    // 過去のカレンダーは選択不可にする
+    func minimumDate(for calendar: FSCalendar) -> Date {
+        return Date()
     }
 }
