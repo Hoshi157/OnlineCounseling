@@ -195,6 +195,14 @@ extension ResevationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let connectVC = ConnectViewController()
+        let name = Reservations[indexPath.row].name
+        let uid = Reservations[indexPath.row].uid
+        connectVC.otherName = name
+        connectVC.otherUid = uid
+        let navi = UINavigationController(rootViewController: connectVC)
+        navi.modalPresentationStyle = .fullScreen
+        self.present(navi, animated: true)
     }
 }
 

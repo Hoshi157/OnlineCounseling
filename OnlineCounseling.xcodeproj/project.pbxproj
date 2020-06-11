@@ -13,7 +13,6 @@
 		8D14FAA62489E94D00D1C6FA /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D14FAA52489E94D00D1C6FA /* Bookmark.swift */; };
 		8D1566DB246E4AE4009E73D0 /* CollectionCellTappedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */; };
 		8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */; };
-		8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */; };
 		8D1767842488CF9D0056AA99 /* Talkroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1767832488CF9D0056AA99 /* Talkroom.swift */; };
 		8D2893FB246FB89B00855CCD /* BookmarkHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */; };
 		8D2893FD246FB8CF00855CCD /* TellHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */; };
@@ -68,6 +67,7 @@
 		8DE057C4247121C300E97943 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE057C3247121C300E97943 /* WelcomeView.swift */; };
 		8DE057C62471230800E97943 /* ExplanationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE057C52471230800E97943 /* ExplanationView.xib */; };
 		8DE057C82471232400E97943 /* ExplenationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE057C72471232400E97943 /* ExplenationView.swift */; };
+		8DFD8F012491FE050086F236 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD8F002491FE050086F236 /* ConnectViewController.swift */; };
 		D0F9A2F8D10464F11C14F1BF /* Pods_OnlineCounseling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1254F21FA75B2904B0420527 /* Pods_OnlineCounseling.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,7 +80,6 @@
 		8D14FAA52489E94D00D1C6FA /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellTappedViewController.swift; sourceTree = "<group>"; };
 		8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserByTappedContenerViewController.swift; sourceTree = "<group>"; };
-		8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounselorByTappedContenerViewController.swift; sourceTree = "<group>"; };
 		8D1767832488CF9D0056AA99 /* Talkroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Talkroom.swift; sourceTree = "<group>"; };
 		8D2893FA246FB89B00855CCD /* BookmarkHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkHistoryViewController.swift; sourceTree = "<group>"; };
 		8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TellHistoryViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +136,7 @@
 		8DE057C3247121C300E97943 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		8DE057C52471230800E97943 /* ExplanationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExplanationView.xib; sourceTree = "<group>"; };
 		8DE057C72471232400E97943 /* ExplenationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplenationView.swift; sourceTree = "<group>"; };
+		8DFD8F002491FE050086F236 /* ConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		92E5C629918B0906E252E473 /* Pods-OnlineCounseling.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineCounseling.debug.xcconfig"; path = "Target Support Files/Pods-OnlineCounseling/Pods-OnlineCounseling.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,7 +218,6 @@
 				8D4AD12824850CBD00687447 /* GetCollections.swift */,
 				8D1566DA246E4AE4009E73D0 /* CollectionCellTappedViewController.swift */,
 				8D1566DE246E4C6F009E73D0 /* UserByTappedContenerViewController.swift */,
-				8D1566E0246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift */,
 				8D3CCCA72477608500590735 /* CalendarViewController.swift */,
 				8D88C75A246D7BAB00145BD2 /* ResevationViewController.swift */,
 				8D323E24248F690C008076DD /* ReservationData.swift */,
@@ -235,6 +234,7 @@
 				8D69B4F8248CD1D30092BBB2 /* CounselorRoginViewController.swift */,
 				8D13206B24795C3100EB4BEC /* AlertController.swift */,
 				8D852300247E2B4E00654314 /* UserData.swift */,
+				8DFD8F002491FE050086F236 /* ConnectViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -434,10 +434,10 @@
 				8D88C75D246D7BE400145BD2 /* MyPageViewController.swift in Sources */,
 				8DE057C82471232400E97943 /* ExplenationView.swift in Sources */,
 				8D88C755246D7A0A00145BD2 /* HomeViewController.swift in Sources */,
+				8DFD8F012491FE050086F236 /* ConnectViewController.swift in Sources */,
 				8D997F18247163D8008EBA39 /* MockMessage.swift in Sources */,
 				8D750688246DA88B0054497A /* LoginViewController.swift in Sources */,
 				8D3CCCA82477608500590735 /* CalendarViewController.swift in Sources */,
-				8D1566E1246E4C8F009E73D0 /* CounselorByTappedContenerViewController.swift in Sources */,
 				8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */,
 				8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */,
 				8D88C74B246D74F600145BD2 /* Model.swift in Sources */,
