@@ -88,12 +88,14 @@ class ConnectViewController: UIViewController {
         self.peer.destroy()
         DispatchQueue.main.async {
             self.mediaConnection?.close()
+            self.sfuRoom?.close()
         }
     }
     // 終了時
     @objc func tapConnectEnd() {
         DispatchQueue.main.async {
             self.mediaConnection?.close()
+            self.sfuRoom?.close()
         }   
     }
     
@@ -156,22 +158,20 @@ extension ConnectViewController {
             option.mode = .ROOM_MODE_SFU
             option.stream = self.localStream
             sfuRoom = peer.joinRoom(withName: roomId, options: option) as? SKWSFURoom
-            
-            sfuRoom?.on(.ROOM_EVENT_OPEN, callback: { (obj) in
-                
-            })
-            
+            // クローズ
             sfuRoom?.on(.ROOM_EVENT_CLOSE, callback: { (obj) in
                 if let _sfuRoom = self.sfuRoom {
                     _sfuRoom.offAll()
                     self.sfuRoom = nil
                 }
             })
+        
     }
-    
+    // カメラ、音声のオプションを設定(MediaConnectionオブジェクト)
     func setupStream(peer: SKWPeer) {
         SKWNavigator.initialize(peer);
         let constarants = SKWMediaConstraints()
+        constarants.cameraPosition = .CAMERA_POSITION_FRONT
         self.localStream = SKWNavigator.getUserMedia(constarants)
         self.localStream?.addVideoRenderer(self.connectLocalVideo, track: 0)
     }
@@ -189,7 +189,7 @@ extension ConnectViewController {
 }
 
 extension ConnectViewController {
-    // イベント
+    // 接続イベント
     func setupPeerCallBacks(peer: SKWPeer) {
         // エラー
         peer.on(.PEER_EVENT_ERROR, callback: { (obj) in
@@ -203,7 +203,7 @@ extension ConnectViewController {
                 print(peerId, "your peerId")
             }
         })
-        // 接続
+        // 着信
         peer.on(.PEER_EVENT_CALL, callback: { (obj) in
             print("peer call")
             
@@ -214,8 +214,9 @@ extension ConnectViewController {
             }
         })
     }
-    
+    //   カメラ、マイク処理のイベント(MediaConnectionイベント)
     func setupMediaConnectionCallBacks(mediaConnection: SKWMediaConnection) {
+        // カメラ映像、音声を受診した時
         mediaConnection.on(SKWMediaConnectionEventEnum.MEDIACONNECTION_EVENT_STREAM, callback: { (obj) in
             self.remoteAudioSpeaker()
             
