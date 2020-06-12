@@ -183,7 +183,7 @@ extension ResevationViewController: UITableViewDelegate, UITableViewDataSource {
         let uid = Reservations[indexPath.row].uid
         let filePath = self.fileInDocumentsDirectory(filename: uid!)
         let image = self.loadImageFromPath(path: filePath)
-        cell.avaterImageView.layer.cornerRadius = 35
+        cell.avaterImageView.layer.cornerRadius = 25
         cell.avaterImageView.clipsToBounds = true
         DispatchQueue.main.async {
             if (image != nil) {

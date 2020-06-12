@@ -24,7 +24,7 @@ class BookmarkHistoryViewController: UIViewController {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 60
+        tableView.rowHeight = 70
         tableView.register(UINib(nibName: "ImageNameOnlyTableViewCell", bundle: nil), forCellReuseIdentifier: "ImageNameOnlyTableViewCell")
         tableView.separatorStyle = .none
         return tableView
@@ -158,7 +158,7 @@ extension BookmarkHistoryViewController: UITableViewDataSource, UITableViewDeleg
         let uid = bookmarks[indexPath.row].uid
         let filePath = self.fileInDocumentsDirectory(filename: uid!)
         let image = self.loadImageFromPath(path: filePath)
-        cell.avaterImageView.layer.cornerRadius = 30
+        cell.avaterImageView.layer.cornerRadius = 25
         cell.avaterImageView.clipsToBounds = true
         DispatchQueue.main.async {
             if (image != nil) {

@@ -161,7 +161,7 @@ extension TellHistoryViewController: UITableViewDataSource, UITableViewDelegate 
         let uid = counselors[indexPath.row].uid
         let filePath = self.fileInDocumentsDirectory(filename: uid!)
         let image = self.loadImageFromPath(path: filePath)
-        cell.avaterImageView.layer.cornerRadius = 30
+        cell.avaterImageView.layer.cornerRadius = 25
         cell.avaterImageView.clipsToBounds = true
         DispatchQueue.main.async {
             if (image != nil) {

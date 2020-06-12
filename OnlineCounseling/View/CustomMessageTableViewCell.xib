@@ -12,31 +12,30 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="KGk-i7-Jjw" customClass="CustomMessageTableViewCell" customModule="OnlineCounseling" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="337" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="337" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture-973460_640-e1542530002984" translatesAutoresizingMaskIntoConstraints="NO" id="oLS-y8-CbL">
-                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                        <rect key="frame" x="10" y="10" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="LDX-5B-apZ"/>
-                            <constraint firstAttribute="height" constant="70" id="paZ-xL-HBa"/>
+                            <constraint firstAttribute="width" constant="50" id="0Gn-4j-JCs"/>
+                            <constraint firstAttribute="height" constant="50" id="zTA-HR-hRF"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jg-H8-lFc">
-                        <rect key="frame" x="80" y="10" width="40.5" height="20"/>
+                        <rect key="frame" x="70" y="10" width="40.5" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="LQV-lu-H0e"/>
+                            <constraint firstAttribute="height" constant="20" id="89G-pl-DJh"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新しい文を表示する" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoN-aO-nk3">
-                        <rect key="frame" x="80" y="35" width="200" height="10"/>
+                        <rect key="frame" x="70" y="40" width="129" height="10"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="10" id="69P-ik-hMY"/>
-                            <constraint firstAttribute="width" constant="200" id="h7g-za-9K4"/>
+                            <constraint firstAttribute="height" constant="10" id="bGF-kG-D5S"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -44,14 +43,13 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="oLS-y8-CbL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="34U-Tl-zBi"/>
-                    <constraint firstAttribute="bottom" secondItem="CoN-aO-nk3" secondAttribute="bottom" constant="5" id="4D7-vX-rLx"/>
-                    <constraint firstItem="CoN-aO-nk3" firstAttribute="leading" secondItem="5Jg-H8-lFc" secondAttribute="leading" id="H2Y-jB-HWV"/>
-                    <constraint firstItem="oLS-y8-CbL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="HuD-Ct-gdf"/>
-                    <constraint firstAttribute="bottom" secondItem="oLS-y8-CbL" secondAttribute="bottom" id="I1H-f7-OLh"/>
-                    <constraint firstItem="CoN-aO-nk3" firstAttribute="top" secondItem="5Jg-H8-lFc" secondAttribute="bottom" constant="5" id="Rls-Js-KdX"/>
-                    <constraint firstItem="5Jg-H8-lFc" firstAttribute="leading" secondItem="oLS-y8-CbL" secondAttribute="trailing" constant="10" id="VG2-Z9-iCa"/>
-                    <constraint firstItem="5Jg-H8-lFc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="rYh-gP-AoW"/>
+                    <constraint firstAttribute="bottom" secondItem="oLS-y8-CbL" secondAttribute="bottom" constant="10" id="6Nu-8X-gZE"/>
+                    <constraint firstItem="CoN-aO-nk3" firstAttribute="top" secondItem="5Jg-H8-lFc" secondAttribute="bottom" constant="10" id="LiX-We-oki"/>
+                    <constraint firstItem="oLS-y8-CbL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="PIS-Eb-qp6"/>
+                    <constraint firstItem="5Jg-H8-lFc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="WIv-yr-UnE"/>
+                    <constraint firstItem="5Jg-H8-lFc" firstAttribute="leading" secondItem="oLS-y8-CbL" secondAttribute="trailing" constant="10" id="jov-eR-iCR"/>
+                    <constraint firstItem="CoN-aO-nk3" firstAttribute="leading" secondItem="oLS-y8-CbL" secondAttribute="trailing" constant="10" id="oiR-Sr-Jhf"/>
+                    <constraint firstItem="oLS-y8-CbL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="raG-R9-Ey1"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

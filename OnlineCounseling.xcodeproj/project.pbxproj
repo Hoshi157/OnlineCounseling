@@ -18,8 +18,6 @@
 		8D2893FD246FB8CF00855CCD /* TellHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */; };
 		8D289400246FBE8900855CCD /* CustomMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2893FE246FBE8900855CCD /* CustomMessageTableViewCell.swift */; };
 		8D289401246FBE8900855CCD /* CustomMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2893FF246FBE8900855CCD /* CustomMessageTableViewCell.xib */; };
-		8D289404246FC0CB00855CCD /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D289402246FC0CB00855CCD /* TimelineTableViewCell.swift */; };
-		8D289405246FC0CB00855CCD /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */; };
 		8D28DFD724933E4600652974 /* Counselor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D28DFD624933E4600652974 /* Counselor.swift */; };
 		8D323E25248F690C008076DD /* ReservationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D323E24248F690C008076DD /* ReservationData.swift */; };
 		8D38436B246D6ECF0036F42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D38436A246D6ECF0036F42F /* AppDelegate.swift */; };
@@ -86,8 +84,6 @@
 		8D2893FC246FB8CF00855CCD /* TellHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TellHistoryViewController.swift; sourceTree = "<group>"; };
 		8D2893FE246FBE8900855CCD /* CustomMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageTableViewCell.swift; sourceTree = "<group>"; };
 		8D2893FF246FBE8900855CCD /* CustomMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMessageTableViewCell.xib; sourceTree = "<group>"; };
-		8D289402246FC0CB00855CCD /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
-		8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
 		8D28DFD624933E4600652974 /* Counselor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counselor.swift; sourceTree = "<group>"; };
 		8D323E24248F690C008076DD /* ReservationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationData.swift; sourceTree = "<group>"; };
 		8D384367246D6ECF0036F42F /* OnlineCounseling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnlineCounseling.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,8 +249,6 @@
 				8D421AB4246F1BAF00758F4B /* CustomCollectionViewCell.xib */,
 				8D2893FE246FBE8900855CCD /* CustomMessageTableViewCell.swift */,
 				8D2893FF246FBE8900855CCD /* CustomMessageTableViewCell.xib */,
-				8D289402246FC0CB00855CCD /* TimelineTableViewCell.swift */,
-				8D289403246FC0CB00855CCD /* TimelineTableViewCell.xib */,
 				8DCD2FCE24705B8000D2C9ED /* CustomTextTableViewCell.swift */,
 				8DCD2FCF24705B8000D2C9ED /* CustomTextTableViewCell.xib */,
 				8DE057C124711DF900E97943 /* WelcomeView.xib */,
@@ -352,7 +346,6 @@
 				8D421AB6246F1BAF00758F4B /* CustomCollectionViewCell.xib in Resources */,
 				8D384377246D6ED10036F42F /* LaunchScreen.storyboard in Resources */,
 				8DCD2FD124705B8000D2C9ED /* CustomTextTableViewCell.xib in Resources */,
-				8D289405246FC0CB00855CCD /* TimelineTableViewCell.xib in Resources */,
 				8DE057C62471230800E97943 /* ExplanationView.xib in Resources */,
 				8D38437F246D6F6F0036F42F /* GoogleService-Info.plist in Resources */,
 				8D384374246D6ED10036F42F /* Assets.xcassets in Resources */,
@@ -434,7 +427,6 @@
 				8D289400246FBE8900855CCD /* CustomMessageTableViewCell.swift in Sources */,
 				8D88C757246D7A8000145BD2 /* MessageHistoryViewController.swift in Sources */,
 				8D88C74D246D760300145BD2 /* AccountCreateViewController.swift in Sources */,
-				8D289404246FC0CB00855CCD /* TimelineTableViewCell.swift in Sources */,
 				8D88C75D246D7BE400145BD2 /* MyPageViewController.swift in Sources */,
 				8DE057C82471232400E97943 /* ExplenationView.swift in Sources */,
 				8D88C755246D7A0A00145BD2 /* HomeViewController.swift in Sources */,
