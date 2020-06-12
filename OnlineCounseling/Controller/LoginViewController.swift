@@ -122,6 +122,7 @@ class LoginViewController: UIViewController {
                 user.selfintroText = selfintro
                 user.singlewordText = singleword
                 user.loginFlg = loginFlg
+                
                 getBookmarkdataFromCloud(myUid: user.uid, completion: { (uid, name) in
                 try self.realm.write {
                    let bookmark = BookmarkHistory(value: ["otherUid": uid, "otherName": name])
@@ -138,6 +139,12 @@ class LoginViewController: UIViewController {
                     try self.realm.write {
                         let reservation = Reservation(value: ["name": name, "uid": uid, "reservation": date])
                         user.reservations.append(reservation)
+                    }
+                })
+                getCounselingdataFromCloud(myUid: user.uid, completion: { (name, uid) in
+                    try self.realm.write {
+                        let counseling = CounselingHistory(value: ["name": name, "uid": uid])
+                        user.counselings.append(counseling)
                     }
                 })
             }
@@ -192,7 +199,7 @@ class LoginViewController: UIViewController {
     func getResevartiondataFromCloud(myUid: String, completion: @escaping (_ name: String, _ uid: String, _ date: Date) throws -> Void) {
         usersDB.document(myUid).collection("reservation").getDocuments { (querySnaoshot, error) in
             if let error = error {
-                print(error.localizedDescription, "error Realm")
+                print(error.localizedDescription, "error Firebase")
             }else {
                 if (querySnaoshot != nil) {
                     for document in querySnaoshot!.documents {
@@ -204,6 +211,26 @@ class LoginViewController: UIViewController {
                         try completion(name, uid, date)
                         }catch {
                             print(error.localizedDescription, "error reservationdata")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // Firebaseからカウンセリングした履歴を取得
+    func getCounselingdataFromCloud(myUid: String, completion: @escaping (_ name: String, _ uid: String) throws -> Void) {
+        usersDB.document(myUid).collection("counseling").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print(error.localizedDescription, "error Firebase")
+            }else {
+                if (querySnapshot != nil) {
+                    for document in querySnapshot!.documents {
+                        let name = document.data()["name"] as! String
+                        let uid = document.data()["uid"] as! String
+                        do {
+                            try completion(name, uid)
+                        }catch {
+                            print(error.localizedDescription, "error counseling")
                         }
                     }
                 }

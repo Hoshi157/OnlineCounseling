@@ -12,6 +12,7 @@ import MaterialComponents
 import SnapKit
 import AVFoundation
 import RealmSwift
+import Firebase
 
 // ビデオチャット画面
 class ConnectViewController: UIViewController {
@@ -31,6 +32,8 @@ class ConnectViewController: UIViewController {
     var otherUid: String?
     
     private var realm: Realm!
+    private var uid: String?
+    private let usersDB = Firestore.firestore().collection("users")
     
     lazy var connectEndButton: MDCFloatingButton = {
         let button = MDCFloatingButton()
@@ -71,10 +74,11 @@ class ConnectViewController: UIViewController {
         
         connectLocalVideo.snp.makeConstraints { (make) in
             make.size.equalTo(150)
-            make.top.equalTo(50)
+            make.top.equalTo(self.connectRemoteVideo).offset(90)
             make.right.equalTo(self.connectRemoteVideo)
         }
         
+        self.uid = getSelfuid()
         self.setup()
         self.joinRoom()
         
@@ -93,28 +97,59 @@ class ConnectViewController: UIViewController {
     }
     // 終了時
     @objc func tapConnectEnd() {
-        DispatchQueue.main.async {
-            self.mediaConnection?.close()
-            self.sfuRoom?.close()
-        }   
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func backViewAction() {
         dismiss(animated: true, completion: nil)
     }
-    // RoomIdはカウンセラーのuid
+    // RoomIdはカウンセラーのuid+ユーザーId
     func getRoomId() -> String? {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
             let type = user.type
             if (type == "user") {
-                return self.otherUid
+                let uid = user.uid
+                let roomId = self.otherUid! + uid
+                return roomId
             }else {
-                return user.uid
+                let uid = user.uid
+                let roomId = uid + self.otherUid!
+                return roomId
             }
         }catch {
             print(error.localizedDescription, "error Realm")
+            return nil
+        }
+    }
+    // カウンセリング履歴をRealmへ保存
+    func updataToLocaldata() {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                let counseling = CounselingHistory(value: ["name": self.otherName!, "uid": self.otherUid!])
+                user.counselings.append(counseling)
+            }
+        }catch {
+            print(error.localizedDescription, "error Realm")
+        }
+    }
+    // カウンセリング履歴をFirebaseへ保存
+    func updataToCloud(myUid: String) {
+        usersDB.document(myUid).collection("counseling").addDocument(data: ["name": self.otherName!, "uid": self.otherUid!])
+    }
+    
+    // 自分のuidを取得
+    func getSelfuid() -> String? {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            let uid = user.uid
+            return uid
+        }catch {
+            print(error.localizedDescription, "error getUid")
             return nil
         }
     }
@@ -165,6 +200,12 @@ extension ConnectViewController {
                     self.sfuRoom = nil
                 }
             })
+        // 相手が入室した時
+        sfuRoom?.on(.ROOM_EVENT_PEER_JOIN, callback: { (obj) in
+            print("入室した")
+            self.updataToLocaldata()
+            self.updataToCloud(myUid: self.uid!)
+        })
         
     }
     // カメラ、音声のオプションを設定(MediaConnectionオブジェクト)
