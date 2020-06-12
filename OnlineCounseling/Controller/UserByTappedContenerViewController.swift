@@ -53,6 +53,18 @@ class UserByTappedContenerViewController: UIViewController {
         return button
     }()
     
+    lazy var counselingButton: MDCFloatingButton = {
+       let button = MDCFloatingButton()
+        button.layer.cornerRadius = 30
+        button.clipsToBounds = true
+        button.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        let image = #imageLiteral(resourceName: "icons8-ビデオ通話-25").withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
+        button.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        button.addTarget(self, action: #selector(counselingTransitionAction), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var dismissButton: MDCFloatingButton = {
         let button = MDCFloatingButton()
         button.layer.cornerRadius = 20
@@ -74,18 +86,25 @@ class UserByTappedContenerViewController: UIViewController {
         // ウィジット類
         view.addSubview(messageButton)
         view.addSubview(calendarButton)
+        view.addSubview(counselingButton)
         view.addSubview(dismissButton)
         
         messageButton.snp.makeConstraints { (make) in
             make.size.equalTo(60)
-            make.left.equalTo(self.view).offset(80)
+            make.left.equalTo(self.view).offset(50)
             make.bottom.equalTo(self.view).offset(-50)
         }
         
         calendarButton.snp.makeConstraints { (make) in
             make.size.equalTo(60)
             make.bottom.equalTo(messageButton)
-            make.right.equalTo(self.view).offset(-80)
+            make.centerX.equalToSuperview()
+        }
+        
+        counselingButton.snp.makeConstraints { (make) in
+            make.size.equalTo(60)
+            make.bottom.equalTo(messageButton)
+            make.right.equalTo(self.view).offset(-50)
         }
         
         dismissButton.snp.makeConstraints { (make) in
@@ -163,6 +182,15 @@ class UserByTappedContenerViewController: UIViewController {
         navi.modalPresentationStyle = .fullScreen
         self.present(navi, animated: true)
         
+    }
+    // カウンセリングボタンをタップした時
+    @objc func counselingTransitionAction() {
+        let connectVC = ConnectViewController()
+        connectVC.otherUid = self.otherName
+        connectVC.otherUid = self.userTapUid
+        let navi = UINavigationController(rootViewController: connectVC)
+        navi.modalPresentationStyle = .fullScreen
+        self.present(navi, animated: true)
     }
     // user情報を取得
     func getData() {

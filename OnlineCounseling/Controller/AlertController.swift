@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// アラート
 class AlertController {
     
     func okAlert(title: String, message: String, currentController: UIViewController, completionHandler: ((UIAlertAction) -> Void)? = nil) {
