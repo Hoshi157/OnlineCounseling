@@ -18,7 +18,7 @@ import Firebase
 class ConnectViewController: UIViewController {
     
     // Skyway
-    private let apikey: String = "8ffb8987-872d-4c6b-bd87-4b7e1067607a" // apiは消す!!!!!!!!!!!!!!!
+    private let apikey: String = "" // apiは消す!!!!!!!!!!!!!!!
     private let domain: String = "localhost"
     private var peer: SKWPeer!
     private var localStream: SKWMediaStream?
