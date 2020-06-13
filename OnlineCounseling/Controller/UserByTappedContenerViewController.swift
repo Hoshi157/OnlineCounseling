@@ -186,7 +186,7 @@ class UserByTappedContenerViewController: UIViewController {
     // カウンセリングボタンをタップした時
     @objc func counselingTransitionAction() {
         let connectVC = ConnectViewController()
-        connectVC.otherUid = self.otherName
+        connectVC.otherName = self.otherName
         connectVC.otherUid = self.userTapUid
         let navi = UINavigationController(rootViewController: connectVC)
         navi.modalPresentationStyle = .fullScreen

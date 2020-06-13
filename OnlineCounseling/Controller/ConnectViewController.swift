@@ -18,7 +18,7 @@ import Firebase
 class ConnectViewController: UIViewController {
     
     // Skyway
-    private let apikey: String = "" // apiは消す!!!!!!!!!!!!!!!
+    private let apikey: String = "8ffb8987-872d-4c6b-bd87-4b7e1067607a" // apiは消す!!!!!!!!!!!!!!!
     private let domain: String = "localhost"
     private var peer: SKWPeer!
     private var localStream: SKWMediaStream?
@@ -27,6 +27,8 @@ class ConnectViewController: UIViewController {
     var connectLocalVideo = SKWVideo() // 自分のVideoView
     var connectRemoteVideo = SKWVideo() // 相手のVideoView
     private var sfuRoom: SKWSFURoom?
+    private var arrayMediaStreams: NSMutableArray = []
+    private var arrayVideoViews: NSMutableDictionary = [:]
     
     var otherName: String?
     var otherUid: String?
@@ -81,7 +83,6 @@ class ConnectViewController: UIViewController {
         
         self.uid = getSelfuid()
         self.setup()
-        self.joinRoom()
         
 
         // Do any additional setup after loading the view.
@@ -104,6 +105,7 @@ class ConnectViewController: UIViewController {
     @objc func backViewAction() {
         dismiss(animated: true, completion: nil)
     }
+    
     // RoomIdはカウンセラーのuid+ユーザーId
     func getRoomId() -> String? {
         do {
@@ -130,7 +132,7 @@ class ConnectViewController: UIViewController {
             realm = try Realm()
             let user = realm.objects(User.self).last!
             try realm.write {
-                let counseling = CounselingHistory(value: ["name": self.otherName!, "uid": self.otherUid!])
+                let counseling = CounselingHistory(value: ["uid": self.otherUid!, "name": self.otherName!])
                 user.counselings.append(counseling)
             }
         }catch {
@@ -168,6 +170,7 @@ class ConnectViewController: UIViewController {
 
 }
 
+
 extension ConnectViewController {
     // peerオブジェクト作成
     func setup() {
@@ -183,54 +186,6 @@ extension ConnectViewController {
             print("faild to create peer setup")
         }
     }
-    // roomを作成
-    func joinRoom() {
-        guard let roomId = getRoomId() else {
-            print(getRoomId() ?? "nil", "getroomがnil")
-            return
-        }
-        
-            let option = SKWRoomOption.init()
-            option.mode = .ROOM_MODE_SFU
-            option.stream = self.localStream
-            sfuRoom = peer.joinRoom(withName: roomId, options: option) as? SKWSFURoom
-            // クローズ
-            sfuRoom?.on(.ROOM_EVENT_CLOSE, callback: { (obj) in
-                if let _sfuRoom = self.sfuRoom {
-                    _sfuRoom.offAll()
-                    self.sfuRoom = nil
-                }
-            })
-        // 相手が入室した時
-        sfuRoom?.on(.ROOM_EVENT_PEER_JOIN, callback: { (obj) in
-            print("入室した")
-            self.updataToLocaldata()
-            self.updataToCloud(myUid: self.uid!)
-        })
-        
-    }
-    // カメラ、音声のオプションを設定(MediaConnectionオブジェクト)
-    func setupStream(peer: SKWPeer) {
-        SKWNavigator.initialize(peer);
-        let constarants = SKWMediaConstraints()
-        constarants.cameraPosition = .CAMERA_POSITION_FRONT
-        self.localStream = SKWNavigator.getUserMedia(constarants)
-        self.localStream?.addVideoRenderer(self.connectLocalVideo, track: 0)
-    }
-    
-    func call(targetPeerId: String) {
-        let option = SKWCallOption()
-        
-        if let mediaConnection = self.peer.call(withId: targetPeerId, stream: self.localStream, options: option) {
-            self.mediaConnection = mediaConnection
-            self.setupMediaConnectionCallBacks(mediaConnection: mediaConnection)
-        }else {
-            print(targetPeerId, "failed to call")
-        }
-    }
-}
-
-extension ConnectViewController {
     // 接続イベント
     func setupPeerCallBacks(peer: SKWPeer) {
         // エラー
@@ -243,22 +198,24 @@ extension ConnectViewController {
         peer.on(.PEER_EVENT_OPEN, callback: { (obj) in
             if let peerId = obj as? String {
                 print(peerId, "your peerId")
-            }
-        })
-        // 着信
-        peer.on(.PEER_EVENT_CALL, callback: { (obj) in
-            print("peer call")
-            
-            if let connection = obj as? SKWMediaConnection {
-                self.setupMediaConnectionCallBacks(mediaConnection: connection)
-                self.mediaConnection = connection
-                connection.answer(self.localStream)
+                self.joinRoom() // ここでjoinroomしないとerror
             }
         })
     }
+    // カメラ、音声のオプションを設定(MediaConnectionオブジェクト)
+    func setupStream(peer: SKWPeer) {
+        SKWNavigator.initialize(peer);
+        let constarants = SKWMediaConstraints()
+        constarants.cameraPosition = .CAMERA_POSITION_FRONT
+        self.localStream = SKWNavigator.getUserMedia(constarants)
+        self.localStream?.addVideoRenderer(self.connectLocalVideo, track: 0)
+    }
+}
+
+extension ConnectViewController {
     //   カメラ、マイク処理のイベント(MediaConnectionイベント)
     func setupMediaConnectionCallBacks(mediaConnection: SKWMediaConnection) {
-        // カメラ映像、音声を受診した時
+        // カメラ映像、音声を受信した時
         mediaConnection.on(SKWMediaConnectionEventEnum.MEDIACONNECTION_EVENT_STREAM, callback: { (obj) in
             self.remoteAudioSpeaker()
             
@@ -293,6 +250,52 @@ extension ConnectViewController {
         }
     }
     
+    // roomを作成
+    func joinRoom() {
+        print("join Room")
+        guard let roomId = getRoomId() else {
+            print(getRoomId() ?? "nil", "getroomId")
+            return
+        }
+        
+            let option = SKWRoomOption.init()
+            option.mode = .ROOM_MODE_SFU
+            option.stream = self.localStream
+            sfuRoom = peer.joinRoom(withName: roomId, options: option) as? SKWSFURoom
+            
+        // 相手が入室した時
+        sfuRoom?.on(.ROOM_EVENT_PEER_JOIN, callback: { (obj) in
+            print("入室した")
+            self.updataToLocaldata()
+            self.updataToCloud(myUid: self.uid!)
+        })
+        
+        sfuRoom?.on(.ROOM_EVENT_REMOVE_STREAM, callback: { (obj) in
+            let mediaStream = obj as? SKWMediaStream
+            let peerId = mediaStream?.peerId
+            
+            if let video = self.arrayVideoViews.object(forKey: peerId!) as? SKWVideo {
+                mediaStream?.removeVideoRenderer(video, track:  0)
+                video.removeFromSuperview()
+                self.arrayVideoViews.removeObject(forKey: peerId!)
+            }
+            self.arrayVideoViews.removeObject(forKey: peerId!)
+        })
+        
+        sfuRoom?.on(.ROOM_EVENT_STREAM, callback: { (obj) in
+            let mediaStream = obj as! SKWMediaStream
+            self.arrayMediaStreams.add(mediaStream)
+        })
+        
+        // クローズ
+        sfuRoom?.on(.ROOM_EVENT_CLOSE, callback: { (obj) in
+            if let _sfuRoom = self.sfuRoom {
+                _sfuRoom.offAll()
+                self.sfuRoom = nil
+            }
+        })
+        
+    }
 }
 
 
