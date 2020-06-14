@@ -25,6 +25,8 @@
 
 ### 4. カウンセリング
 * 予約した日時になったらプロフィール画面のビデオ通話ボタンかカウンセリング履歴のセルをタップしカウンセリングルームへ入室となり、カウンセリング開始となります。
+  
+  <img src="https://user-images.githubusercontent.com/51669998/84589197-f98f3d00-ae67-11ea-8aaf-5b18403a71c0.gif" width="200px">&emsp;
 
 
 ## Features
