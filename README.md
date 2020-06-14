@@ -46,7 +46,7 @@
 #### チュートリアルページ
 * 初回のみチュートリアルが表示されるようにしました。(画像、アイコンが入る予定)
   
-  <img src="https://user-images.githubusercontent.com/51669998/84589528-0c0a7600-ae6a-11ea-8e97-01d29c430c13.gif" width="200px">&emsp;
+  <img src="https://user-images.githubusercontent.com/51669998/84589791-1168c000-ae6c-11ea-8ba9-ee1651cfbc58.gif" width="200px">&emsp;
 
 
 ## Library
