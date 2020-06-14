@@ -19,7 +19,7 @@ class TellHistoryViewController: UIViewController, IndicatorInfoProvider {
     private var counselors: [Counselor] = []
     
     lazy var myTableView: UITableView = {
-       let tableView = UITableView()
+        let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 70

@@ -54,7 +54,7 @@ class UserByTappedContenerViewController: UIViewController {
     }()
     
     lazy var counselingButton: MDCFloatingButton = {
-       let button = MDCFloatingButton()
+        let button = MDCFloatingButton()
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
         button.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)

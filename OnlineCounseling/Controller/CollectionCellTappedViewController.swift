@@ -150,7 +150,7 @@ class CollectionCellTappedViewController: UIViewController {
         
         genderImageView.snp.makeConstraints { (make) in
             make.top.equalTo(nameLabel)
-            make.right.equalTo(self.view).offset(-30)
+            make.right.equalTo(self.view).offset(-20)
             make.size.equalTo(40)
         }
         
@@ -158,7 +158,7 @@ class CollectionCellTappedViewController: UIViewController {
         
         bookmarkImageView.snp.makeConstraints { (make) in
             make.top.equalTo(nameLabel)
-            make.right.equalTo(genderImageView.snp.left).offset(-15)
+            make.right.equalTo(genderImageView.snp.left).offset(-10)
             make.size.equalTo(40)
         }
         

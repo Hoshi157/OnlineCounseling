@@ -124,9 +124,9 @@ class LoginViewController: UIViewController {
                 user.loginFlg = loginFlg
                 
                 getBookmarkdataFromCloud(myUid: user.uid, completion: { (uid, name) in
-                try self.realm.write {
-                   let bookmark = BookmarkHistory(value: ["otherUid": uid, "otherName": name])
-                    user.bookmarks.append(bookmark)
+                    try self.realm.write {
+                        let bookmark = BookmarkHistory(value: ["otherUid": uid, "otherName": name])
+                        user.bookmarks.append(bookmark)
                     }
                 })
                 getMessagedataFromCloud(myUid: user.uid, completion: { (uid, name, roomId, lastText) in
@@ -164,7 +164,7 @@ class LoginViewController: UIViewController {
                         let uid: String = document["uid"] as! String
                         let name: String = document["name"] as! String
                         do {
-                        try completion(uid, name)
+                            try completion(uid, name)
                         }catch {
                             print(error.localizedDescription, "error Bookmarkdata")
                         }
@@ -186,7 +186,7 @@ class LoginViewController: UIViewController {
                         let roomId = document["roomId"] as! String
                         let lasttext = document["lastText"] as! String
                         do {
-                        try completion(uid, name, roomId, lasttext)
+                            try completion(uid, name, roomId, lasttext)
                         }catch {
                             print(error.localizedDescription, "error messagedata")
                         }
@@ -208,7 +208,7 @@ class LoginViewController: UIViewController {
                         let dateStanp = document.data()["reservationDate"] as! Timestamp
                         let date = dateStanp.dateValue()
                         do {
-                        try completion(name, uid, date)
+                            try completion(name, uid, date)
                         }catch {
                             print(error.localizedDescription, "error reservationdata")
                         }

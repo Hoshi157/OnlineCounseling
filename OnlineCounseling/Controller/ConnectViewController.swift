@@ -18,7 +18,7 @@ import Firebase
 class ConnectViewController: UIViewController {
     
     // Skyway
-    private let apikey: String = "" // apiは消す!!!!!!!!!!!!!!!
+    private let apikey: String = "8ffb8987-872d-4c6b-bd87-4b7e1067607a" // apiは消す!!!!!!!!!!!!!!!
     private let domain: String = "localhost"
     private var peer: SKWPeer!
     private var localStream: SKWMediaStream?
@@ -47,7 +47,7 @@ class ConnectViewController: UIViewController {
         button.addTarget(self, action: #selector(tapConnectEnd), for: .touchUpInside)
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +56,7 @@ class ConnectViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         title = otherName
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1).withAlphaComponent(0.3)
-    
+        
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(connectRemoteVideo)
         connectRemoteVideo.addSubview(connectLocalVideo)
@@ -84,7 +84,7 @@ class ConnectViewController: UIViewController {
         self.uid = getSelfuid()
         self.setup()
         
-
+        
         // Do any additional setup after loading the view.
     }
     // 離れる時
@@ -157,17 +157,17 @@ class ConnectViewController: UIViewController {
         }
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 
@@ -258,11 +258,11 @@ extension ConnectViewController {
             return
         }
         
-            let option = SKWRoomOption.init()
-            option.mode = .ROOM_MODE_SFU
-            option.stream = self.localStream
-            sfuRoom = peer.joinRoom(withName: roomId, options: option) as? SKWSFURoom
-            
+        let option = SKWRoomOption.init()
+        option.mode = .ROOM_MODE_SFU
+        option.stream = self.localStream
+        sfuRoom = peer.joinRoom(withName: roomId, options: option) as? SKWSFURoom
+        
         // 相手が入室した時
         sfuRoom?.on(.ROOM_EVENT_PEER_JOIN, callback: { (obj) in
             print("入室した")

@@ -62,7 +62,7 @@ class MessageHistoryViewController: UIViewController {
         self.title = "メッセージ"
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-メニュー-25").withRenderingMode(.alwaysTemplate), landscapeImagePhone: #imageLiteral(resourceName: "icons8-メニュー-25").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(sidemenuButtonAction))
-        }
+    }
     
     @objc func sidemenuButtonAction() {
         self.sidemenuDelegate?.sidemenuViewControllerDidRequestShowing(sidemenuVC, contentAvailability: true, animeted: true)

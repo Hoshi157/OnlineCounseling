@@ -21,7 +21,7 @@ class ResevationViewController: UIViewController {
     private var token: NotificationToken!
     
     private var dateformatter: DateFormatter = {
-       let formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
         formatter.locale = Locale(identifier: "ja/jP")
         formatter.dateFormat = "yyyy年MM月dd日 HH時"
@@ -81,73 +81,73 @@ class ResevationViewController: UIViewController {
     }
     
     // tableviewのオートレイアウト
-       func tableviewLayout() {
-           view.addSubview(myTableView)
-           self.myTableView.snp.makeConstraints { (make) in
-               make.top.equalTo(self.view)
-               make.right.equalTo(self.view)
-               make.left.equalTo(self.view)
-               make.bottom.equalTo(self.view)
-           }
-       }
-       // データがないときのView
-       func notingDataLayout() {
-           self.view.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
-           self.view.addSubview(topNottingDataLabel)
-           self.view.addSubview(underNottingDataLabel)
-           
-           topNottingDataLabel.snp.makeConstraints { (make) in
-               make.centerX.equalToSuperview()
-               make.centerY.equalToSuperview().offset(-50)
-           }
-           underNottingDataLabel.snp.makeConstraints { (make) in
-               make.centerX.equalToSuperview()
-               make.top.equalTo(self.topNottingDataLabel.snp.bottom).offset(10)
-           }
-       }
-       
-       // Realmからお気に入りデータを取得する
-       func localDataGet() {
-           Reservations = []
-           do {
-               realm = try Realm()
-               let user = realm.objects(User.self).last!
-               try realm.write {
-                   for reservation in user.reservations {
+    func tableviewLayout() {
+        view.addSubview(myTableView)
+        self.myTableView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.view)
+            make.right.equalTo(self.view)
+            make.left.equalTo(self.view)
+            make.bottom.equalTo(self.view)
+        }
+    }
+    // データがないときのView
+    func notingDataLayout() {
+        self.view.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+        self.view.addSubview(topNottingDataLabel)
+        self.view.addSubview(underNottingDataLabel)
+        
+        topNottingDataLabel.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-50)
+        }
+        underNottingDataLabel.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.topNottingDataLabel.snp.bottom).offset(10)
+        }
+    }
+    
+    // Realmからお気に入りデータを取得する
+    func localDataGet() {
+        Reservations = []
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                for reservation in user.reservations {
                     let name = reservation.name
                     let uid = reservation.uid
                     let date: Date? = reservation.reservation
                     let dataSt = dateformatter.string(from:date!)
                     let reservationData = ReservationData(uid: uid, name: name, dateSt: dataSt)
                     self.Reservations.append(reservationData)
-                   }
-               }
-           }catch {
-               print("error Realm")
-           }
-       }
-       
-       func reload() {
-           DispatchQueue.global().async {
-               self.localDataGet()
-               DispatchQueue.main.async {
-                   self.myTableView.reloadData()
-               }
-           }
-       }
-       // Realmのbookmarksを監視
-       func localdataObserve() {
-           do {
-               realm = try Realm()
-               let user = realm.objects(User.self).last!
-               // ブックマークデータの変更を監視する
-               token = user.reservations.observe { [weak self]  _ in
-                   self?.reload()
-               }
-           }catch {
-               print(error.localizedDescription, "error Realm")
-           }
-       }
+                }
+            }
+        }catch {
+            print("error Realm")
+        }
+    }
+    
+    func reload() {
+        DispatchQueue.global().async {
+            self.localDataGet()
+            DispatchQueue.main.async {
+                self.myTableView.reloadData()
+            }
+        }
+    }
+    // Realmのbookmarksを監視
+    func localdataObserve() {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            // ブックマークデータの変更を監視する
+            token = user.reservations.observe { [weak self]  _ in
+                self?.reload()
+            }
+        }catch {
+            print(error.localizedDescription, "error Realm")
+        }
+    }
     
     
     

@@ -52,7 +52,7 @@ class CalendarViewController: UIViewController {
     }()
     
     private var dateformatter: DateFormatter = {
-       let formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
         formatter.locale = Locale(identifier: "ja/jP")
         formatter.dateFormat = "yyyy/MM/dd HH"
@@ -176,9 +176,9 @@ class CalendarViewController: UIViewController {
     // Firebaseに予約日時を追加(自分と相手)
     func postToCloud(date: Date?) {
         if (date != nil) {
-        let postToSelfdata: [String: Any] = ["uid": self.otherUid!, "name": self.otherName!, "reservationDate": Timestamp(date: date!)]
-        usersDB.document(self.uid!).collection("reservation").addDocument(data: postToSelfdata)
-        let postToOtherdata: [String: Any] = ["uid": self.uid!, "name": self.name!, "reservationDate": Timestamp(date: date!)]
+            let postToSelfdata: [String: Any] = ["uid": self.otherUid!, "name": self.otherName!, "reservationDate": Timestamp(date: date!)]
+            usersDB.document(self.uid!).collection("reservation").addDocument(data: postToSelfdata)
+            let postToOtherdata: [String: Any] = ["uid": self.uid!, "name": self.name!, "reservationDate": Timestamp(date: date!)]
             usersDB.document(self.otherUid!).collection("reservation").addDocument(data: postToOtherdata)
         }
     }
