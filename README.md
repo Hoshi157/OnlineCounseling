@@ -6,7 +6,7 @@
 
 ### 1. アカウントを登録する
 * プロフィールを作成し自分のアカウントを作成します。
-<img src="(https://user-images.githubusercontent.com/51669998/84586805-5b927700-ae55-11ea-9030-0ea32b88f83e.gif" width="200px">&emsp;
+<img src="https://user-images.githubusercontent.com/51669998/84586805-5b927700-ae55-11ea-9030-0ea32b88f83e.gif" width="200px">&emsp;
 
 ### 2. カウンセラーを探す
 * ホーム画面のセルをタップするとカウンセラーのプロフィール画面が見れます。
