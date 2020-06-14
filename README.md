@@ -22,7 +22,7 @@
 * 予約した日時の5分前に通知がきます。
   
   <img src="https://user-images.githubusercontent.com/51669998/84589049-09f2e800-ae67-11ea-9ec3-b10e5ce076fc.gif" width="200px">&emsp;
-  <img src="https://user-images.githubusercontent.com/51669998/84589281-686c9600-ae68-11ea-9dd1-fcf9a3a61b18.gif" width="200px">&emsp;
+  <img src="https://user-images.githubusercontent.com/51669998/84589334-bb464d80-ae68-11ea-9253-70793b9b0dfc.gif" width="200px">&emsp;
 
 ### 4. カウンセリング
 * 予約した日時になったらプロフィール画面のビデオ通話ボタンかカウンセリング履歴のセルをタップしカウンセリングルームへ入室となり、カウンセリング開始となります。
