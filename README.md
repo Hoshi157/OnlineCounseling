@@ -40,6 +40,8 @@
 
 ### サイドメニューを実装
 * Pan, Tapに対応したスライドメニューの実装。
+  
+  <img src="https://user-images.githubusercontent.com/51669998/84589460-90a8c480-ae69-11ea-9ec7-d11c7db6ef0f.gif" width="200px">&emsp;
 
 
 ## Library
