@@ -42,6 +42,9 @@
 * Pan, Tapに対応したスライドメニューの実装。
   
   <img src="https://user-images.githubusercontent.com/51669998/84589528-0c0a7600-ae6a-11ea-8e97-01d29c430c13.gif" width="200px">&emsp;
+  
+#### チュートリアルページ
+* 初回のみチュートリアルが表示されるようにしました。(画像、アイコンが入る予定)
 
 
 ## Library
