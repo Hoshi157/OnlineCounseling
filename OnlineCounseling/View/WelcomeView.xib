@@ -10,59 +10,43 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeView" customModule="OnlineCounseling" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="welcomeView" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tg9-FP-Ks8">
-                    <rect key="frame" x="11.5" y="320" width="277.5" height="50.5"/>
-                    <string key="text">オンラインカウンセリングへ
-ようこそ！</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <color key="textColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="\ 3ステップでカウンセリング /" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1D7-xu-Tcu">
+                    <rect key="frame" x="0.0" y="84" width="414" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxQ-Wx-LBb">
-                    <rect key="frame" x="42" y="380.5" width="216" height="100"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="216" id="0Cq-fz-RPJ"/>
-                        <constraint firstAttribute="height" constant="100" id="hur-L0-L36"/>
-                    </constraints>
-                    <attributedString key="attributedText">
-                        <fragment>
-                            <string key="content" base64-UTF8="YES">
-44Kq44Oz44Op44Kk44Oz44Kr44Km44Oz44K744Oq44Oz44Kw44GvEeKAqOacieizh+agvOiAheOBrhHj
-gqvjgqbjg7Pjgrvjg6njg7zjgajjg4Hjg6Pjg4Pjg4jjgoTjg5Pjg4fjgqrpgJroqbHjgafjgqvjgqbj
-g7Pjgrvjg6rjg7PjgrDjgYzjgafjgY3jgovjgqLjg5fjg6rjgafjgZnjgII
-</string>
-                            <attributes>
-                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                <font key="NSFont" metaFont="system"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1, カウンセラーを探す" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0f-Lx-dDC">
+                    <rect key="frame" x="0.0" y="128" width="414" height="38.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                    <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ES0-Qb-NuU">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EDf-Qn-Ulj">
+                    <rect key="frame" x="0.0" y="186.5" width="414" height="300"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="300" id="oLi-dJ-aIw"/>
+                        <constraint firstAttribute="height" constant="300" id="YZZ-6B-yXb"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="Tg9-FP-Ks8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3Ls-KF-90M"/>
-                <constraint firstItem="Tg9-FP-Ks8" firstAttribute="top" secondItem="ES0-Qb-NuU" secondAttribute="bottom" constant="20" id="RK1-PX-ZLI"/>
-                <constraint firstItem="ES0-Qb-NuU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VRC-cT-23Q"/>
-                <constraint firstItem="ES0-Qb-NuU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Wrs-HT-vDd"/>
-                <constraint firstItem="dxQ-Wx-LBb" firstAttribute="top" secondItem="Tg9-FP-Ks8" secondAttribute="bottom" constant="10" id="rga-vr-cbq"/>
-                <constraint firstItem="dxQ-Wx-LBb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="s86-dw-QTs"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ES0-Qb-NuU" secondAttribute="trailing" id="wPq-ky-LQD"/>
+                <constraint firstItem="EDf-Qn-Ulj" firstAttribute="top" secondItem="L0f-Lx-dDC" secondAttribute="bottom" constant="20" id="00Y-1v-hlY"/>
+                <constraint firstAttribute="trailing" secondItem="1D7-xu-Tcu" secondAttribute="trailing" id="9cJ-v3-9X2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="EDf-Qn-Ulj" secondAttribute="trailing" id="Ba6-eP-7gk"/>
+                <constraint firstItem="1D7-xu-Tcu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="DgM-fV-8d3"/>
+                <constraint firstItem="L0f-Lx-dDC" firstAttribute="top" secondItem="1D7-xu-Tcu" secondAttribute="bottom" constant="20" id="EQy-G8-rTE"/>
+                <constraint firstItem="1D7-xu-Tcu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="PMI-Me-3K1"/>
+                <constraint firstItem="EDf-Qn-Ulj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fEA-xM-Ko4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="L0f-Lx-dDC" secondAttribute="trailing" id="r5O-EU-5IM"/>
+                <constraint firstItem="L0f-Lx-dDC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="rER-qz-93K"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="140.57971014492756" y="166.74107142857142"/>
+            <point key="canvasLocation" x="155.07246376811597" y="190.17857142857142"/>
         </view>
     </objects>
 </document>

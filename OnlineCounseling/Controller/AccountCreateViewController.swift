@@ -82,6 +82,7 @@ class AccountCreateViewController: UIViewController {
         view.addSubview(datePickerView)
         view.addSubview(pickerToolbar)
         pickerToolbar.items = [canselPickerButton, flexble, donePickerButton]
+        consentButton.addTarget(self, action: #selector(profileRegisterTransition), for: .touchUpInside)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
         
@@ -90,20 +91,6 @@ class AccountCreateViewController: UIViewController {
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
             make.height.equalTo(120)
-        }
-        
-        // 匿名認証
-        Auth.auth().signInAnonymously() { (authResult, error) in
-            if (error != nil) {
-                print(error!.localizedDescription, "error")
-                self.alert.okAlert(title: "エラーが発生しました", message: "ネットワークに繋ぎ,最初からやり直してください", currentController: self)
-            }
-            guard let user = authResult?.user else {
-                return
-            }
-            // uidを取得
-            self.uid = user.uid
-            print(user.uid, "user.uid")
         }
     }
     
@@ -117,7 +104,7 @@ class AccountCreateViewController: UIViewController {
             print(realm.objects(User.self).count, "realmData,個数") //複数入ってないか確認
             self.name = user.name
             self.birthdayDate = user.birthdayDate
-            print("Realm　処理終わった")
+            self.uid = user.uid
             // uidが入っているか確認
             if (user.uid == "") {
                 try realm.write {
@@ -134,24 +121,8 @@ class AccountCreateViewController: UIViewController {
         }
     }
     
-    // 名前、生年月日を入力しなければセグエキャンセル
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
-        if (self.name == "" || self.birthdayDate == nil) {
-            alert.okAlert(title: "必要項目を入力してください", message: "名前、生年月日を入力してください", currentController: self)
-            return false
-        }
-        // uidがあるか確認
-        if (self.uid == nil) {
-            alert.okAlert(title: "エラーが発生しました", message: "通信状態を確認してやり直してください", currentController: self)
-            return false
-        }
-        
-        return true
-    }
-    
     @objc func backViewAction() {
-        self.navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
     
     
@@ -182,6 +153,20 @@ class AccountCreateViewController: UIViewController {
             self.datePickerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height * 0.25)
             self.pickerToolbar.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 40)
         }, completion: nil)
+    }
+    
+    @objc func profileRegisterTransition() {
+        if (self.name == "" || self.birthdayDate == nil) {
+            alert.okAlert(title: "必要項目を入力してください", message: "名前、生年月日を入力してください", currentController: self)
+            return;
+        }
+        // uidがあるか確認
+        if (self.uid == nil) {
+            alert.okAlert(title: "エラーが発生しました", message: "通信状態を確認してやり直してください", currentController: self)
+            return;
+        }
+        let profileRegisterVC = self.storyboard?.instantiateViewController(withIdentifier: "profileRegisterVC") as! ProfileRegisterViewController
+        self.navigationController?.pushViewController(profileRegisterVC, animated: true)
     }
     
     /*

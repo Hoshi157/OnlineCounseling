@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 // Documentディレクトリに画像を保存する処理
 protocol imageSaveProtocol {
-    // DocumentディレクトリのfileURLを取得
-    func getDoumentsURL() -> NSURL
     // DocumentのpathにFilenameを繋げてファイルのフルパスを作成
     func fileInDocumentsDirectory(filename: String) -> String
     // ファイルに書き込み(pathはfileInDocumentsDirectoryを入れる)
@@ -23,7 +21,7 @@ protocol imageSaveProtocol {
 // 画像のFileフルパスを作成し書き込む
 extension imageSaveProtocol {
     // DocumentディレクトリのfileURLを取得
-    func getDoumentsURL() -> NSURL {
+    private func getDoumentsURL() -> NSURL {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
         return documentsURL
     }

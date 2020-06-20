@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
+import Firebase
 
 class TabbarController: UITabBarController {
+    
+    private let usersDB = Firestore.firestore().collection("users")
+    private var realm: Realm!
     
     var ViewControllers = [UIViewController]()
     
@@ -16,8 +21,6 @@ class TabbarController: UITabBarController {
     private var isShowSidemenu: Bool {
         return sidemenuVC.parent == self
     }
-    // チュートリアルを表示するか
-    var isTutorialShow: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +60,10 @@ class TabbarController: UITabBarController {
         
         sidemenuVC.delegate = self
         sidemenuVC.startPanGestureRecognizing()
-        // チュートリアルを表示するか判定
-        if (isTutorialShow) {
-            turtorialDisplay()
+        
+        UpdataLoginstateToLocaldata {
+            let uid = self.getUid()
+            self.UpdataLoginstateClouddata(uid: uid)
         }
     }
     
@@ -85,14 +89,40 @@ class TabbarController: UITabBarController {
             self.sidemenuVC.view.removeFromSuperview()
         })
     }
-    // チュートリアル画面を表示する
-    func turtorialDisplay() {
-        let turtorialVC = TutorialViewController()
-        addChild(turtorialVC)
-        view.addSubview(turtorialVC.view)
-        turtorialVC.didMove(toParent: self)
-    }
     
+    // Realmにログイン状態を更新
+    func UpdataLoginstateToLocaldata(completion: () -> Void) {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            if (user.loginFlg == false) {
+            try realm.write {
+                user.loginFlg = true
+                completion()
+            }
+            }
+        }catch {
+            print(error.localizedDescription, "error Realm")
+        }
+    }
+    // Firebaseにログイン状態を更新
+    func UpdataLoginstateClouddata(uid: String?) {
+        guard let _uid = uid else { return }
+        let post = ["loginFlg": true]
+        usersDB.document(_uid).updateData(post)
+    }
+    // uidを取得
+    func getUid() -> String? {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            let uid = user.uid
+            return uid
+        }catch {
+            print(error.localizedDescription, "uid nil")
+            return nil
+        }
+    }
     
     /*
      // MARK: - Navigation

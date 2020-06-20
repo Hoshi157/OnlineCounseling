@@ -27,7 +27,6 @@ class User: Object {
     let reservations = List<Reservation>()
     let bookmarks = List<BookmarkHistory>()
     let messages = List<MessageHistory>()
-    let otherUsers = List<OtherUser>()
     let counselings = List<CounselingHistory>()
 }
 // 予約データ
@@ -47,11 +46,6 @@ class MessageHistory: Object {
     @objc dynamic var otherName = ""
     @objc dynamic var otherRoomNumber = ""
     @objc dynamic var lastText = "" // チャットの最後の文のみ格納
-}
-// 他のユーザーの情報
-class OtherUser: Object {
-    @objc dynamic var uid = ""
-    @objc dynamic var imagePath = ""
 }
 // カウンセリング履歴(ビデオチャット)　roomIdは保持せずに一回ずつ生成した方がいいか？
 class CounselingHistory: Object {

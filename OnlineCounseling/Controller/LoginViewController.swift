@@ -261,10 +261,4 @@ extension LoginViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textField.placeholder = text
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
-    
 }

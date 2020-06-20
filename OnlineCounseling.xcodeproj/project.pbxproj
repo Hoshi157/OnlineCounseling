@@ -43,7 +43,6 @@
 		8D750686246DA4CD0054497A /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750685246DA4CD0054497A /* TabbarController.swift */; };
 		8D750688246DA88B0054497A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750687246DA88B0054497A /* LoginViewController.swift */; };
 		8D852301247E2B4E00654314 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D852300247E2B4E00654314 /* UserData.swift */; };
-		8D88C74B246D74F600145BD2 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C74A246D74F600145BD2 /* Model.swift */; };
 		8D88C74D246D760300145BD2 /* AccountCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C74C246D760300145BD2 /* AccountCreateViewController.swift */; };
 		8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C74E246D76A600145BD2 /* ProfileRegisterViewController.swift */; };
 		8D88C751246D778300145BD2 /* AccountTakeoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D88C750246D778300145BD2 /* AccountTakeoverViewController.swift */; };
@@ -55,6 +54,7 @@
 		8D997F1424713BCA008EBA39 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D997F1324713BCA008EBA39 /* TutorialViewController.swift */; };
 		8D997F16247163AE008EBA39 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D997F15247163AE008EBA39 /* MessageViewController.swift */; };
 		8D997F18247163D8008EBA39 /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D997F17247163D8008EBA39 /* MockMessage.swift */; };
+		8DA58242249D00C80061BF68 /* LoginSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA58241249D00C80061BF68 /* LoginSelectionViewController.swift */; };
 		8DA9DEFA2471279A0078524B /* ReservationExplanationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DA9DEF92471279A0078524B /* ReservationExplanationView.xib */; };
 		8DA9DEFC247127D20078524B /* ReservationExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9DEFB247127D20078524B /* ReservationExplanationView.swift */; };
 		8DB5CEAB24727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB5CEA924727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift */; };
@@ -111,7 +111,6 @@
 		8D750685246DA4CD0054497A /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		8D750687246DA88B0054497A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8D852300247E2B4E00654314 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
-		8D88C74A246D74F600145BD2 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8D88C74C246D760300145BD2 /* AccountCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreateViewController.swift; sourceTree = "<group>"; };
 		8D88C74E246D76A600145BD2 /* ProfileRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRegisterViewController.swift; sourceTree = "<group>"; };
 		8D88C750246D778300145BD2 /* AccountTakeoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTakeoverViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +122,7 @@
 		8D997F1324713BCA008EBA39 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		8D997F15247163AE008EBA39 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		8D997F17247163D8008EBA39 /* MockMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
+		8DA58241249D00C80061BF68 /* LoginSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSelectionViewController.swift; sourceTree = "<group>"; };
 		8DA9DEF92471279A0078524B /* ReservationExplanationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReservationExplanationView.xib; sourceTree = "<group>"; };
 		8DA9DEFB247127D20078524B /* ReservationExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationExplanationView.swift; sourceTree = "<group>"; };
 		8DB5CEA924727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAccountTakeOverTableViewCell.swift; sourceTree = "<group>"; };
@@ -205,12 +205,13 @@
 				8D38436C246D6ECF0036F42F /* SceneDelegate.swift */,
 				8D38436E246D6ECF0036F42F /* RootViewController.swift */,
 				8D750687246DA88B0054497A /* LoginViewController.swift */,
+				8D997F1324713BCA008EBA39 /* TutorialViewController.swift */,
+				8DA58241249D00C80061BF68 /* LoginSelectionViewController.swift */,
 				8D88C74C246D760300145BD2 /* AccountCreateViewController.swift */,
 				8D88C74E246D76A600145BD2 /* ProfileRegisterViewController.swift */,
 				8D75067F246D9EA00054497A /* AreaViewController.swift */,
 				8D421AB1246F150700758F4B /* TextInputProfileViewController.swift */,
 				8D88C750246D778300145BD2 /* AccountTakeoverViewController.swift */,
-				8D997F1324713BCA008EBA39 /* TutorialViewController.swift */,
 				8D750685246DA4CD0054497A /* TabbarController.swift */,
 				8D88C754246D7A0A00145BD2 /* HomeViewController.swift */,
 				8D4AD12824850CBD00687447 /* GetCollections.swift */,
@@ -270,7 +271,6 @@
 		8D88C749246D748C00145BD2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8D88C74A246D74F600145BD2 /* Model.swift */,
 				8D692ACF248B725300634880 /* storageProtocol.swift */,
 				8D692AD1248B8B0C00634880 /* imageSaveProtocol.swift */,
 			);
@@ -436,7 +436,6 @@
 				8D3CCCA82477608500590735 /* CalendarViewController.swift in Sources */,
 				8D1566DF246E4C6F009E73D0 /* UserByTappedContenerViewController.swift in Sources */,
 				8D38436D246D6ECF0036F42F /* SceneDelegate.swift in Sources */,
-				8D88C74B246D74F600145BD2 /* Model.swift in Sources */,
 				8D1767842488CF9D0056AA99 /* Talkroom.swift in Sources */,
 				8DB5CEAB24727D99007AF747 /* CustomAccountTakeOverTableViewCell.swift in Sources */,
 				8D4AD12924850CBD00687447 /* GetCollections.swift in Sources */,
@@ -444,6 +443,7 @@
 				8D323E25248F690C008076DD /* ReservationData.swift in Sources */,
 				8D997F16247163AE008EBA39 /* MessageViewController.swift in Sources */,
 				8D13206C24795C3100EB4BEC /* AlertController.swift in Sources */,
+				8DA58242249D00C80061BF68 /* LoginSelectionViewController.swift in Sources */,
 				8D88C74F246D76A600145BD2 /* ProfileRegisterViewController.swift in Sources */,
 				8D997F1424713BCA008EBA39 /* TutorialViewController.swift in Sources */,
 				8D421AB5246F1BAF00758F4B /* CustomCollectionViewCell.swift in Sources */,

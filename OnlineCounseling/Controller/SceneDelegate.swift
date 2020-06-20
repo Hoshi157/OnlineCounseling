@@ -7,14 +7,12 @@
 //
 
 import UIKit
-import Firebase
 import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     private var realm: Realm!
-    private let usersDB = Firestore.firestore().collection("users")
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -77,9 +75,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         
-        self.addToLocaldata(completion: { () in
-            self.getUidFromCloud()
-        })
+        addToLocaldata()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -88,63 +84,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    // Firebaseからuidを取得して処理を実行
-    func getUidFromCloud() {
-        usersDB.getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print(error.localizedDescription, "firebase error")
-            }else {
-                for data in querySnapshot!.documents {
-                    let uid = data.documentID
-                    let judge = self.localdataSaveJudge(targetUid: uid)
-                    if (judge) {
-                        return;
-                    }else {
-                        self.loadImage(targetUid: uid, completionClosure: { (image) -> Void in
-                            guard let image = image else { return}
-                            let filePath = self.fileInDocumentsDirectory(filename: uid)
-                            let saveJudge = self.saveImage(image: image, path: filePath)
-                            if (saveJudge) {
-                                self.toLocaldataSaveTheImagepath(targetUid: uid, path: filePath)
-                                print("imgePath セーブできた")
-                            }
-                        })
-                    }
-                }
-            }
-        }
-    }
-    // targetUidがRealmに保存されているか判定
-    func localdataSaveJudge (targetUid: String) -> Bool {
-        do {
-            realm = try Realm()
-            let user = realm.objects(User.self).last!
-            let otherUser: OtherUser? = user.otherUsers.lazy.filter { $0.uid == targetUid}.first
-            if (otherUser != nil) {
-                return true
-            }else {
-                return false
-            }
-        }catch {
-            print(error.localizedDescription, "error Realm")
-            return false
-        }
-    }
-    // Realmへ保存する(imagePath)
-    func toLocaldataSaveTheImagepath (targetUid: String, path: String) {
-        do {
-            realm = try Realm()
-            let user = realm.objects(User.self).last!
-            try realm.write {
-                let otherUser = OtherUser(value: ["uid": targetUid, "imagePath": path])
-                user.otherUsers.append(otherUser)
-            }
-        }catch {
-            print(error.localizedDescription, "Realm error")
-        }
-    }
     // まずはUser情報をrealmへ保存(開始時一度のみ)
-    func addToLocaldata(completion: () -> Void) {
+    func addToLocaldata() {
         do {
             realm = try Realm()
             print(realm.objects(User.self).last ?? "nil", "User data")
@@ -153,7 +94,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 try realm.write {
                     realm.add(myUser)
                     print(realm.objects(User.self), "realmの個数確認")
-                    completion()
                 }
             }
         }catch {
@@ -161,6 +101,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 }
-
-extension SceneDelegate: imageSaveProtocol {}
-extension SceneDelegate: storageProtocol {}

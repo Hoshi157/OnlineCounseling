@@ -11,7 +11,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>カメラ使用の許可が必要です。</string>
 	<key>CFBundleDisplayName</key>
-	<string></string>
+	<string>client</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>CFBundleDevelopmentRegion</key>

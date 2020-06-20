@@ -116,19 +116,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCell", for: indexPath) as! CustomCollectionViewCell
         cell.nameLabel.text = collectionArray[indexPath.row].name
         cell.jobsLabel.text = collectionArray[indexPath.row].jobs
-        let uid = collectionArray[indexPath.row].uid
-        let filePath = self.fileInDocumentsDirectory(filename: uid!)
-        let image = self.loadImageFromPath(path: filePath)
         cell.avaterImageView.layer.cornerRadius = 10
         cell.avaterImageView.clipsToBounds = true
-        DispatchQueue.main.async {
+        let uid = collectionArray[indexPath.row].uid
+        self.loadImage(targetUid: uid, completionClosure: { (image) in
             if (image != nil) {
                 cell.avaterImageView.image = image
-            }else {
-                cell.avaterImageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
             }
-        }
-        
+        })
         return cell
     }
     
@@ -151,4 +146,5 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: cellWidth, height: cellHeight)
     }
 }
-extension HomeViewController: imageSaveProtocol {}
+
+extension HomeViewController: storageProtocol {}

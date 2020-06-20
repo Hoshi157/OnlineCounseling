@@ -38,7 +38,6 @@ class AccountTakeoverViewController: UIViewController {
     @IBAction func skipButtonAction(_ sender: Any) {
         let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
         tabbarController.modalPresentationStyle = .fullScreen
-        tabbarController.isTutorialShow = true // チュートリアルを表示する
         self.present(tabbarController, animated: true)
     }
     
@@ -77,7 +76,6 @@ class AccountTakeoverViewController: UIViewController {
                 if !(user.isAnonymous) {
                     let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
                     tabbarController.modalPresentationStyle = .fullScreen
-                    tabbarController.isTutorialShow = true // チュートリアルを表示する
                     self.present(tabbarController, animated: true)
                 }else {
                     self.alert.okAlert(title: "エラー", message: "メール認証によるアカウント認証はできませんでした", currentController: self)

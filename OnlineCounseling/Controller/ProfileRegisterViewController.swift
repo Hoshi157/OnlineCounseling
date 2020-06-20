@@ -111,6 +111,7 @@ class ProfileRegisterViewController: UIViewController {
         pickerToolbar.items = [canselPickerButton, flexble, donePickerButton]
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "完了", style: .plain, target: self, action: #selector(doneNavigationAction))
         
         avaterImageView.isUserInteractionEnabled = true
         avaterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avaterImageTapAction(_:))))
@@ -171,7 +172,7 @@ class ProfileRegisterViewController: UIViewController {
     }
     
     // セグエする時にFirebaseにデータを保存する(Realmに必ずデータが入っているためアンラップできる)
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+    @objc func doneNavigationAction() {
         // firebaseにPostするデータ
         let post: [String: Any] = [
             "name": self.name!, "birthday": Timestamp(date: self.birthdayDate!), "gender": self.gender!, "jobs":self.jobs!, "area": self.area!,
@@ -184,18 +185,15 @@ class ProfileRegisterViewController: UIViewController {
                 self.usersDB.document(uid).setData(post) { (error) in
                     if let error = error {
                         print(error.localizedDescription, "Firebase post error")
-                    }else {
-                        self.UpdataLoginstateToLocaldata()
-                        self.UpdataLoginstateClouddata()
+                        self.alert.okAlert(title: "エラーが発生しました", message: "通信状態を確認して最初からやり直してください", currentController: self)
                     }
                 } // userデータをFirebaseに保存
                 storagetToUploadImage(image: self.photoImage, childId: uid) // 画像をStorageに保存
                 print("Dataをfirebaseに保存")
-                return true
+                let accountTakeVC = self.storyboard?.instantiateViewController(withIdentifier: "accountTakeVC") as! AccountTakeoverViewController
+                self.navigationController?.pushViewController(accountTakeVC, animated: true)
             }
         }
-        alert.okAlert(title: "エラーが発生しました", message: "通信状態を確認して最初からやり直してください", currentController: self)
-        return false
     }
     
     @objc func backViewAction(){
@@ -275,24 +273,6 @@ class ProfileRegisterViewController: UIViewController {
         textInputVC.titleText = "カウンセラーに伝えておきたい事"
         self.navigationController?.pushViewController(textInputVC, animated: true)
     }
-    // Realmにログイン状態を更新
-    func UpdataLoginstateToLocaldata() {
-        do {
-            realm = try Realm()
-            let user = realm.objects(User.self).last!
-            try realm.write {
-                user.loginFlg = true
-            }
-        }catch {
-            print(error.localizedDescription, "error Realm")
-        }
-    }
-    // Firebaseにログイン状態を更新
-    func UpdataLoginstateClouddata() {
-        let post = ["loginFlg": true]
-        usersDB.document(self.uid!).updateData(post)
-    }
-    
     
     /*
      // MARK: - Navigation
@@ -328,7 +308,7 @@ extension ProfileRegisterViewController: UITableViewDelegate, UITableViewDataSou
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[1]
             pickerCell.textLabel?.text = leftText
-            if (self.birthdayDate != Date()) {
+            if (self.birthdayDate != nil) {
                 pickerCell.rightLabel.text = "\(formatter.string(from: self.birthdayDate!))"
                 pickerCell.rightImage.image = UIImage()
             }
