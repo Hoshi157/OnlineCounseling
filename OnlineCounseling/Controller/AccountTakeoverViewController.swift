@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RealmSwift
 
 class AccountTakeoverViewController: UIViewController {
     
@@ -17,6 +18,7 @@ class AccountTakeoverViewController: UIViewController {
     // cellを取得するためのインデックス
     private var tableIndexPath: IndexPath!
     private let alert = AlertController()
+    private var realm: Realm!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +77,7 @@ class AccountTakeoverViewController: UIViewController {
                 print(user.isAnonymous, "永久アカウントになればfalse")
                 // 永久アカウントになればセグエ
                 if !(user.isAnonymous) {
+                    self.updataToAccountTakeoverFlg()
                     let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar") as! TabbarController
                     tabbarController.modalPresentationStyle = .fullScreen
                     self.present(tabbarController, animated: true)
@@ -89,6 +92,18 @@ class AccountTakeoverViewController: UIViewController {
     // 戻るボタン
     @objc func backViewButtonAction() {
         self.navigationController?.popViewController(animated: true)
+    }
+    // アドレス、パスワードの登録したかを更新
+    func updataToAccountTakeoverFlg() {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                user.accountTakeoverFlg = true
+            }
+        }catch {
+            print(error.localizedDescription, "error Realm")
+        }
     }
     
     

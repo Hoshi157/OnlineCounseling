@@ -69,11 +69,13 @@ class TabbarController: UITabBarController {
     func showSidemenu(contentAvailabilty: Bool = true, animated: Bool) {
         
         if isShowSidemenu {return}
+        sidemenuVC.beginAppearanceTransition(true, animated: true)
         sidemenuVC.view.autoresizingMask = .flexibleHeight
         sidemenuVC.view.frame = self.view.bounds
-        addChild(sidemenuVC)
         view.addSubview(sidemenuVC.view)
+        addChild(sidemenuVC)
         sidemenuVC.didMove(toParent: self)
+        sidemenuVC.endAppearanceTransition()
         
         if contentAvailabilty {
             sidemenuVC.showContentView(animated: animated)
@@ -83,9 +85,9 @@ class TabbarController: UITabBarController {
     func hideSideMenu(animated: Bool) {
         if !isShowSidemenu {return}
         sidemenuVC.hideContentView(animated: animated, completion: { (_) in
-            self.sidemenuVC.willMove(toParent: nil)
-            self.sidemenuVC.removeFromParent()
             self.sidemenuVC.view.removeFromSuperview()
+            self.sidemenuVC.removeFromParent()
+            self.sidemenuVC.willMove(toParent: nil)
         })
     }
     

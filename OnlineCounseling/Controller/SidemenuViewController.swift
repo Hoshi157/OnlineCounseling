@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import RealmSwift
+import MaterialComponents
 
 class SidemenuViewController: UIViewController {
     
@@ -88,6 +89,49 @@ class SidemenuViewController: UIViewController {
         return tableview
     }()
     
+    private let accountcreateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "アカウントを作成してカウンセリングしましょう。"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    lazy var accountcreateButton: MDCRaisedButton = {
+        let button = MDCRaisedButton()
+        button.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+        button.setTitle("アカウント作成", for: .normal)
+        button.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.addTarget(self, action: #selector(accountcreateTransition), for: .touchUpInside)
+        return button
+    }()
+    
+    private let accountTakeoverLabel: UILabel = {
+        let label = UILabel()
+        label.text = "メールアドレス・パスワードを登録するとアプリを削除してもデータを引き継ぐことができます"
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    lazy var accountTakeoverButton: MDCRaisedButton = {
+        let button = MDCRaisedButton()
+        button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        button.setTitle("アカウント引き継ぎ", for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.setBorderWidth(1, for: .normal)
+        button.setBorderColor(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), for: .normal)
+        button.addTarget(self, action: #selector(accountTakeoverTransition), for: .touchUpInside)
+        return button
+    }()
+    
+    
     private let tableArray: [String] = ["マイページ", "カウンセラーログイン"]
     private let tableImageArray: [UIImage] = [#imageLiteral(resourceName: "icons8-性中立ユーザー-25"), #imageLiteral(resourceName: "icons8-カウンセラー-25")]
     
@@ -131,6 +175,8 @@ class SidemenuViewController: UIViewController {
             make.width.equalTo(contentView.frame.width * 0.8)
         }
         
+        displayAccountcreateWidget()
+        displayAccountTakeoverWidget()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backViewTapped(_:)))
         tapGestureRecognizer.delegate = self
@@ -140,6 +186,12 @@ class SidemenuViewController: UIViewController {
         getAccountcreateFlg()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("スライドメニュー")
+        super.viewWillAppear(animated)
+        print("スライドメニュー willApper")
     }
     
     func dataDisplay() {
@@ -280,6 +332,57 @@ class SidemenuViewController: UIViewController {
             print(error.localizedDescription, "error Realm")
         }
     }
+    // アカウント作成ウィジット
+    func displayAccountcreateWidget() {
+        contentView.addSubview(accountcreateLabel)
+        contentView.addSubview(accountcreateButton)
+        
+        accountcreateLabel.snp.makeConstraints { (make) in
+            make.width.equalTo(contentView.frame.width * 0.8)
+            make.top.equalTo(tableView.snp.bottom).offset(50)
+            make.left.equalTo(contentView).offset(10)
+        }
+        
+        accountcreateButton.snp.makeConstraints { (make) in
+            make.width.equalTo(contentView.frame.width * 0.8)
+            make.top.equalTo(accountcreateLabel.snp.bottom).offset(10)
+            make.left.equalTo(accountcreateLabel)
+            make.height.equalTo(40)
+        }
+    }
+    
+    func displayAccountTakeoverWidget() {
+        contentView.addSubview(accountTakeoverLabel)
+        contentView.addSubview(accountTakeoverButton)
+        
+        accountTakeoverLabel.snp.makeConstraints { (make) in
+            make.width.equalTo(contentView.frame.width * 0.8)
+            make.top.equalTo(accountcreateButton.snp.bottom).offset(30)
+            make.left.equalTo(contentView).offset(10)
+        }
+        
+        accountTakeoverButton.snp.makeConstraints { (make) in
+            make.width.equalTo(contentView.frame.width * 0.8)
+            make.top.equalTo(accountTakeoverLabel.snp.bottom).offset(10)
+            make.left.equalTo(accountTakeoverLabel)
+            make.height.equalTo(40)
+        }
+    }
+    
+    @objc func accountcreateTransition() {
+        let accountCreateVC = self.storyBoard.instantiateViewController(withIdentifier: "accountCreateVC") as! AccountCreateViewController
+        let navi = UINavigationController(rootViewController: accountCreateVC)
+        navi.modalPresentationStyle = .fullScreen
+        present(navi, animated: true)
+    }
+    
+    @objc func accountTakeoverTransition() {
+        let accountTakeoverVC = self.storyBoard.instantiateViewController(withIdentifier: "accountTakeVC") as! AccountTakeoverViewController
+        let navi = UINavigationController(rootViewController: accountTakeoverVC)
+        navi.modalPresentationStyle = .fullScreen
+        present(navi, animated: true)
+    }
+    
     
     
     /*
