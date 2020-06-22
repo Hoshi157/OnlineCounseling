@@ -12,6 +12,7 @@ import RealmSwift
 
 class SidemenuViewController: UIViewController {
     
+    private var accountcreateFlg: Bool! // アカウント作成しているか
     lazy var storyBoard = UIStoryboard(name: "Main", bundle: nil)
     weak var delegate: SidemenuViewControllerDelegate?
     private let contentView = UIView(frame: .zero)
@@ -136,6 +137,7 @@ class SidemenuViewController: UIViewController {
         view.addGestureRecognizer(tapGestureRecognizer)
         
         self.dataDisplay()
+        getAccountcreateFlg()
         
         // Do any additional setup after loading the view.
     }
@@ -159,7 +161,7 @@ class SidemenuViewController: UIViewController {
         if (self.name != "") {
             nameLabel.text = self.name!
         }else {
-            nameLabel.text = "名称未設定"
+            nameLabel.text = "ゲストさん"
         }
         if (self.photoImage != nil) {
             DispatchQueue.main.async {
@@ -182,10 +184,17 @@ class SidemenuViewController: UIViewController {
     }
     
     @objc func myPageViewAction(_ sender: UITapGestureRecognizer) {
-        let mypageVC = storyBoard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
-        let naviController = UINavigationController(rootViewController: mypageVC)
-        naviController.modalPresentationStyle = .fullScreen
-        self.present(naviController, animated: true)
+        if (self.accountcreateFlg == true) {
+            let mypageVC = storyBoard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
+            let navi = UINavigationController(rootViewController: mypageVC)
+            navi.modalPresentationStyle = .fullScreen
+            self.present(navi, animated: true)
+        }else {
+            let accountCreateVC = self.storyBoard.instantiateViewController(withIdentifier: "accountCreateVC") as! AccountCreateViewController
+            let navi = UINavigationController(rootViewController: accountCreateVC)
+            navi.modalPresentationStyle = .fullScreen
+            present(navi, animated: true)
+        }
     }
     
     func showContentView(animated: Bool) {
@@ -260,7 +269,16 @@ class SidemenuViewController: UIViewController {
             beganState = false
         default: break
         }
-        
+    }
+    
+    func getAccountcreateFlg() {
+        do {
+            realm = try Realm()
+            let user = realm.objects(User.self).last!
+            self.accountcreateFlg = user.accountCreateFlg
+        }catch {
+            print(error.localizedDescription, "error Realm")
+        }
     }
     
     
@@ -309,16 +327,20 @@ extension SidemenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(indexPath.row)
-        
         switch (indexPath.row) {
         case 0:
-            let mypageVC = storyBoard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
-            let naviController = UINavigationController(rootViewController: mypageVC)
-            naviController.modalPresentationStyle = .fullScreen
-            self.present(naviController, animated: true)
+            if (self.accountcreateFlg == true) {
+                let mypageVC = storyBoard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
+                let navi = UINavigationController(rootViewController: mypageVC)
+                navi.modalPresentationStyle = .fullScreen
+                self.present(navi, animated: true)
+            }else {
+                let accountCreateVC = self.storyBoard.instantiateViewController(withIdentifier: "accountCreateVC") as! AccountCreateViewController
+                let navi = UINavigationController(rootViewController: accountCreateVC)
+                navi.modalPresentationStyle = .fullScreen
+                present(navi, animated: true)
+            }
         case 1:
-            print("カウンセラーページへ")
             let counselorRoginVC: UIViewController = CounselorRoginViewController()
             let navi = UINavigationController(rootViewController: counselorRoginVC)
             navi.modalPresentationStyle = .fullScreen

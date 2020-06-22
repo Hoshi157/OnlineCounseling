@@ -13,24 +13,18 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="\ 通知がくるよ /" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNj-og-sBF">
-                    <rect key="frame" x="0.0" y="84" width="414" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="\ 開始前に通知がくるよ /" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNj-og-sBF">
+                    <rect key="frame" x="0.0" y="114" width="414" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. カウンセリング開始" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="454-9h-NbI">
-                    <rect key="frame" x="0.0" y="128" width="414" height="39"/>
+                    <rect key="frame" x="0.0" y="158" width="414" height="39"/>
                     <fontDescription key="fontDescription" type="system" pointSize="32"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Nv-Vx-7pj">
-                    <rect key="frame" x="0.0" y="187" width="414" height="300"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="300" id="mg0-Vm-5Jn"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -38,11 +32,8 @@
                 <constraint firstItem="454-9h-NbI" firstAttribute="top" secondItem="TNj-og-sBF" secondAttribute="bottom" constant="20" id="0qt-a6-8IA"/>
                 <constraint firstAttribute="trailing" secondItem="454-9h-NbI" secondAttribute="trailing" id="M9C-5h-pji"/>
                 <constraint firstItem="TNj-og-sBF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="h9u-bT-TgE"/>
-                <constraint firstItem="TNj-og-sBF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="kyB-Af-lwY"/>
-                <constraint firstItem="6Nv-Vx-7pj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="loK-nr-ah3"/>
+                <constraint firstItem="TNj-og-sBF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="70" id="kyB-Af-lwY"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TNj-og-sBF" secondAttribute="trailing" id="nuc-f4-ugo"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6Nv-Vx-7pj" secondAttribute="trailing" id="qrZ-Lg-YIs"/>
-                <constraint firstItem="6Nv-Vx-7pj" firstAttribute="top" secondItem="454-9h-NbI" secondAttribute="bottom" constant="20" id="ydy-64-hCg"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

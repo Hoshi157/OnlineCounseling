@@ -116,8 +116,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCell", for: indexPath) as! CustomCollectionViewCell
         cell.nameLabel.text = collectionArray[indexPath.row].name
         cell.jobsLabel.text = collectionArray[indexPath.row].jobs
-        cell.avaterImageView.layer.cornerRadius = 10
-        cell.avaterImageView.clipsToBounds = true
         let uid = collectionArray[indexPath.row].uid
         self.loadImage(targetUid: uid, completionClosure: { (image) in
             if (image != nil) {

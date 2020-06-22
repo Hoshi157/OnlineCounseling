@@ -284,7 +284,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             let pickerCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             let leftText = tableArray[1]
             pickerCell.textLabel?.text = leftText
-            if (self.birthdayDate != Date()) {
+            if (self.birthdayDate != nil) {
                 pickerCell.rightLabel.text = "\(formatter.string(from: self.birthdayDate!))"
                 pickerCell.rightImage.image = UIImage()
             }

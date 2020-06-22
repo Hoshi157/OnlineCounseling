@@ -288,10 +288,10 @@ gb7jgZvjgpPjgII
                                 </constraints>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pww-ZA-zRK" customClass="MDCRaisedButton">
-                                <rect key="frame" x="67" y="396" width="280" height="38"/>
+                                <rect key="frame" x="67" y="407" width="280" height="38"/>
                                 <color key="backgroundColor" red="0.097080042160000005" green="0.72044608740000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="w9T-f3-Mmu"/>
+                                    <constraint firstAttribute="width" constant="280" id="165-Xs-Oht"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="ログイン">
@@ -301,22 +301,53 @@ gb7jgZvjgpPjgII
                                     <action selector="loginButtonAction:" destination="p23-ck-z5S" eventType="touchUpInside" id="hOS-MN-BA5"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZe-LK-ftg">
+                                <rect key="frame" x="67" y="356" width="245" height="36"/>
+                                <string key="text">以前使用したことのあるユーザー様(上記を入力してください)</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5i-Kz-XCm" customClass="MDCRaisedButton">
+                                <rect key="frame" x="67" y="578" width="280" height="38"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="7l8-7K-Ifq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="アカウント作成ページへ">
+                                    <color key="titleColor" red="0.097080042160000005" green="0.72044608740000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="初めてご利用される方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FR4-XO-dho">
+                                <rect key="frame" x="67" y="545" width="153" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="s5i-Kz-XCm" firstAttribute="leading" secondItem="FR4-XO-dho" secondAttribute="leading" id="25C-1t-bTb"/>
+                            <constraint firstItem="pww-ZA-zRK" firstAttribute="leading" secondItem="fZe-LK-ftg" secondAttribute="leading" id="Bvw-fG-jYm"/>
                             <constraint firstItem="Fsm-8x-MUi" firstAttribute="trailing" secondItem="uhZ-88-eWB" secondAttribute="trailing" constant="84" id="Hr1-af-H4l"/>
-                            <constraint firstItem="pww-ZA-zRK" firstAttribute="centerX" secondItem="z4A-ty-TNc" secondAttribute="centerX" id="LVh-BV-JkJ"/>
+                            <constraint firstItem="fZe-LK-ftg" firstAttribute="top" secondItem="Qkj-t3-A7X" secondAttribute="bottom" constant="40" id="NtZ-zK-kfY"/>
                             <constraint firstItem="Qkj-t3-A7X" firstAttribute="trailing" secondItem="Fsm-8x-MUi" secondAttribute="trailing" id="OID-Ml-FYl"/>
+                            <constraint firstItem="pww-ZA-zRK" firstAttribute="centerX" secondItem="z4A-ty-TNc" secondAttribute="centerX" id="Pz0-YG-GXV"/>
                             <constraint firstItem="Qkj-t3-A7X" firstAttribute="leading" secondItem="Fsm-8x-MUi" secondAttribute="leading" id="ZQp-Le-MWm"/>
                             <constraint firstItem="uhZ-88-eWB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Fsm-8x-MUi" secondAttribute="leading" id="hB3-Ie-pvT"/>
                             <constraint firstItem="uhZ-88-eWB" firstAttribute="top" secondItem="Fsm-8x-MUi" secondAttribute="top" constant="20" id="iaj-fi-R09"/>
-                            <constraint firstItem="pww-ZA-zRK" firstAttribute="top" secondItem="Qkj-t3-A7X" secondAttribute="bottom" constant="80" id="liL-5a-zf2"/>
+                            <constraint firstItem="pww-ZA-zRK" firstAttribute="top" secondItem="fZe-LK-ftg" secondAttribute="bottom" constant="15" id="mhJ-vQ-77Y"/>
                             <constraint firstItem="Qkj-t3-A7X" firstAttribute="top" secondItem="uhZ-88-eWB" secondAttribute="bottom" constant="20" id="q8A-p0-wrI"/>
+                            <constraint firstItem="s5i-Kz-XCm" firstAttribute="top" secondItem="FR4-XO-dho" secondAttribute="bottom" constant="15" id="xXG-WA-onQ"/>
+                            <constraint firstItem="s5i-Kz-XCm" firstAttribute="leading" secondItem="pww-ZA-zRK" secondAttribute="leading" id="yAQ-wG-93R"/>
+                            <constraint firstItem="FR4-XO-dho" firstAttribute="top" secondItem="pww-ZA-zRK" secondAttribute="bottom" constant="100" id="zUQ-bj-6xP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fsm-8x-MUi"/>
                     </view>
                     <navigationItem key="navigationItem" title="ログイン" id="wp7-nl-296"/>
                     <connections>
+                        <outlet property="accountcreateButton" destination="s5i-Kz-XCm" id="VIh-5T-yrD"/>
                         <outlet property="tableView" destination="Qkj-t3-A7X" id="9iw-iF-poS"/>
                     </connections>
                 </viewController>

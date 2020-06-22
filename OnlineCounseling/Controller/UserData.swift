@@ -23,6 +23,7 @@ class User: Object {
     @objc dynamic var type = "user"
     @objc dynamic var imagePath: String = "" // imageはファイルのパスを保存
     @objc dynamic var loginFlg: Bool = false // ログインしているかFlgを設置
+    @objc dynamic var accountCreateFlg: Bool = false
     
     let reservations = List<Reservation>()
     let bookmarks = List<BookmarkHistory>()

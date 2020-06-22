@@ -35,6 +35,8 @@ class LoginSelectionViewController: UIViewController {
         button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         button.setTitleColor(#colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.setBorderWidth(1, for: .normal)
+        button.setBorderColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), for: .normal)
         button.addTarget(self, action: #selector(loginLessTransition), for: .touchUpInside)
         return button
     }()

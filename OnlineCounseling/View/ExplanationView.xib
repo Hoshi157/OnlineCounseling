@@ -14,34 +14,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. 予約する" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ppo-PN-Tc1">
-                    <rect key="frame" x="0.0" y="128" width="414" height="39"/>
+                    <rect key="frame" x="0.0" y="158" width="414" height="39"/>
                     <fontDescription key="fontDescription" type="system" pointSize="32"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="\ カレンダーをタップするだけ /" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bah-mg-8bO">
-                    <rect key="frame" x="0.0" y="84" width="414" height="24"/>
+                    <rect key="frame" x="0.0" y="114" width="414" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RMP-3d-96E">
-                    <rect key="frame" x="0.0" y="187" width="414" height="300"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="300" id="j8z-Ag-jwb"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Bah-mg-8bO" secondAttribute="trailing" id="AxS-Lr-taU"/>
                 <constraint firstItem="ppo-PN-Tc1" firstAttribute="top" secondItem="Bah-mg-8bO" secondAttribute="bottom" constant="20" id="TXN-5B-Ecb"/>
                 <constraint firstItem="Bah-mg-8bO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="V5D-Qr-XHq"/>
-                <constraint firstItem="RMP-3d-96E" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Yo5-Hl-be4"/>
-                <constraint firstItem="RMP-3d-96E" firstAttribute="top" secondItem="ppo-PN-Tc1" secondAttribute="bottom" constant="20" id="bLJ-hc-y4M"/>
                 <constraint firstItem="ppo-PN-Tc1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fJi-qo-yyp"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RMP-3d-96E" secondAttribute="trailing" id="fRP-8X-9uu"/>
-                <constraint firstItem="Bah-mg-8bO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="kaq-XT-ykS"/>
+                <constraint firstItem="Bah-mg-8bO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="70" id="kaq-XT-ykS"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ppo-PN-Tc1" secondAttribute="trailing" id="wa2-oe-Tfl"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

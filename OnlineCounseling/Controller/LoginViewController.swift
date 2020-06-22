@@ -9,10 +9,12 @@
 import UIKit
 import Firebase
 import RealmSwift
+import MaterialComponents
 
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var accountcreateButton: MDCRaisedButton!
     private let tableviewArray: [String] = ["メールアドレス", "パスワード", "パスワードの確認"]
     private let alert = AlertController()
     private let usersDB = Firestore.firestore().collection("users")
@@ -26,6 +28,10 @@ class LoginViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CustomAccountTakeOverTableViewCell", bundle: nil), forCellReuseIdentifier: "AccountTakeoverCell")
         tableView.rowHeight = 50
+        // accountButton
+        accountcreateButton.setBorderWidth(1, for: .normal)
+        accountcreateButton.setBorderColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), for: .normal)
+        accountcreateButton.addTarget(self, action: #selector(accountCreateTransition), for: .touchUpInside)
         
         // Do any additional setup after loading the view.
     }
@@ -73,6 +79,13 @@ class LoginViewController: UIViewController {
                 })
             }
         }
+    }
+    
+    @objc func accountCreateTransition() {
+        let accountCreateVC = self.storyboard?.instantiateViewController(withIdentifier: "accountCreateVC") as! AccountCreateViewController
+        let navi = UINavigationController(rootViewController: accountCreateVC)
+        navi.modalPresentationStyle = .fullScreen
+        present(navi, animated: true)
     }
     
     

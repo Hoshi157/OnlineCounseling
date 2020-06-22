@@ -22,6 +22,7 @@ class AccountTakeoverViewController: UIViewController {
         super.viewDidLoad()
         // navigationbar
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewButtonAction))
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         // tableview
         tableView.delegate = self
         tableView.dataSource = self

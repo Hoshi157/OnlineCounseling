@@ -85,6 +85,7 @@ class AccountCreateViewController: UIViewController {
         consentButton.addTarget(self, action: #selector(profileRegisterTransition), for: .touchUpInside)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icons8-ダブル左-25"), landscapeImagePhone: #imageLiteral(resourceName: "icons8-ダブル左-25"), style: .plain, target: self, action: #selector(backViewAction))
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         self.myTableView.snp.makeConstraints { (make) in
             make.top.equalTo(self.accountLabel.snp.bottom).offset(20)
@@ -165,8 +166,22 @@ class AccountCreateViewController: UIViewController {
             alert.okAlert(title: "エラーが発生しました", message: "通信状態を確認してやり直してください", currentController: self)
             return;
         }
+        updataToAccountcreateFlg()
         let profileRegisterVC = self.storyboard?.instantiateViewController(withIdentifier: "profileRegisterVC") as! ProfileRegisterViewController
         self.navigationController?.pushViewController(profileRegisterVC, animated: true)
+    }
+    
+    // アカウント作成フラグを更新
+    func updataToAccountcreateFlg() {
+        do {
+           realm = try Realm()
+            let user = realm.objects(User.self).last!
+            try realm.write {
+                user.accountCreateFlg = true
+            }
+        }catch {
+            print(error.localizedDescription, "accountFlg error")
+        }
     }
     
     /*
