@@ -175,6 +175,8 @@ class MyPageViewController: UIViewController {
         // updataする(firebase, storage)
         usersDB.document(self.uid!).updateData(post)
         storagetToUploadImage(image: self.photoImage, childId: self.uid!)
+        sideVC.beginAppearanceTransition(true, animated: true)
+        sideVC.endAppearanceTransition()
         dismiss(animated: true, completion: nil)
     }
     // pickerのokボタン

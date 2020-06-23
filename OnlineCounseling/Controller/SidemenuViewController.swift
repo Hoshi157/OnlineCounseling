@@ -13,7 +13,8 @@ import MaterialComponents
 
 class SidemenuViewController: UIViewController {
     
-    private var accountcreateFlg: Bool! // アカウント作成しているか
+    private var accountcreateFlg: Bool!
+    private var accountTakeoverFlg: Bool!
     lazy var storyBoard = UIStoryboard(name: "Main", bundle: nil)
     weak var delegate: SidemenuViewControllerDelegate?
     private let contentView = UIView(frame: .zero)
@@ -131,7 +132,6 @@ class SidemenuViewController: UIViewController {
         return button
     }()
     
-    
     private let tableArray: [String] = ["マイページ", "カウンセラーログイン"]
     private let tableImageArray: [UIImage] = [#imageLiteral(resourceName: "icons8-性中立ユーザー-25"), #imageLiteral(resourceName: "icons8-カウンセラー-25")]
     
@@ -177,21 +177,35 @@ class SidemenuViewController: UIViewController {
         
         displayAccountcreateWidget()
         displayAccountTakeoverWidget()
+        getAccountcreateFlgAndTakeoverFlg()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(backViewTapped(_:)))
         tapGestureRecognizer.delegate = self
         view.addGestureRecognizer(tapGestureRecognizer)
         
-        self.dataDisplay()
-        getAccountcreateFlg()
-        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("スライドメニュー")
         super.viewWillAppear(animated)
         print("スライドメニュー willApper")
+        // アカウント作成かデータ引き継ぎをするとウィジットを表示しない
+        getAccountcreateFlgAndTakeoverFlg(completion: { (createFlg, takeoverFlg) in
+            if (createFlg) {
+                self.accountcreateLabel.isHidden = true
+                self.accountcreateButton.isHidden = true
+                
+                self.accountTakeoverLabel.snp.makeConstraints { (make) in
+                    make.top.equalTo(self.tableView.snp.bottom).offset(30)
+                }
+            }
+            
+            if (takeoverFlg) {
+                self.accountTakeoverLabel.isHidden = true
+                self.accountTakeoverButton.isHidden = true
+            }
+        })
+        self.dataDisplay()
     }
     
     func dataDisplay() {
@@ -199,7 +213,6 @@ class SidemenuViewController: UIViewController {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
-            print(user, "user")
             try realm.write {
                 self.name = user.name
                 self.bookmarkCount = "\(user.bookmarks.count)"
@@ -207,13 +220,17 @@ class SidemenuViewController: UIViewController {
                 self.photoImage = image
             }
         }catch {
-            print("error")
+            print(error.localizedDescription, "error")
         }
         // データを表示
         if (self.name != "") {
-            nameLabel.text = self.name!
+            DispatchQueue.main.async {
+                self.nameLabel.text = self.name!
+            }
         }else {
-            nameLabel.text = "ゲストさん"
+            DispatchQueue.main.async {
+                self.nameLabel.text = "ゲストさん"
+            }
         }
         if (self.photoImage != nil) {
             DispatchQueue.main.async {
@@ -224,7 +241,9 @@ class SidemenuViewController: UIViewController {
                 self.avaterImageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
             }
         }
-        bookmarkIntLabel.text = self.bookmarkCount
+        DispatchQueue.main.async {
+            self.bookmarkIntLabel.text = self.bookmarkCount
+        }
     }
     
     @objc func backViewTapped(_ sender: UITapGestureRecognizer) {
@@ -322,12 +341,14 @@ class SidemenuViewController: UIViewController {
         default: break
         }
     }
-    
-    func getAccountcreateFlg() {
+    // アカウント作成しているか
+    func getAccountcreateFlgAndTakeoverFlg(completion: ((_ accountCreate: Bool, _ accountTakeover: Bool) -> Void)? = nil) {
         do {
             realm = try Realm()
             let user = realm.objects(User.self).last!
             self.accountcreateFlg = user.accountCreateFlg
+            self.accountTakeoverFlg = user.accountTakeoverFlg
+            completion?(self.accountcreateFlg, self.accountTakeoverFlg)
         }catch {
             print(error.localizedDescription, "error Realm")
         }
@@ -339,7 +360,7 @@ class SidemenuViewController: UIViewController {
         
         accountcreateLabel.snp.makeConstraints { (make) in
             make.width.equalTo(contentView.frame.width * 0.8)
-            make.top.equalTo(tableView.snp.bottom).offset(50)
+            make.top.equalTo(tableView.snp.bottom).offset(30)
             make.left.equalTo(contentView).offset(10)
         }
         
@@ -350,7 +371,7 @@ class SidemenuViewController: UIViewController {
             make.height.equalTo(40)
         }
     }
-    
+    // データ引き継ぎウィジット
     func displayAccountTakeoverWidget() {
         contentView.addSubview(accountTakeoverLabel)
         contentView.addSubview(accountTakeoverButton)
@@ -367,6 +388,7 @@ class SidemenuViewController: UIViewController {
             make.left.equalTo(accountTakeoverLabel)
             make.height.equalTo(40)
         }
+        
     }
     
     @objc func accountcreateTransition() {

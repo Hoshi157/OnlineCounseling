@@ -114,11 +114,6 @@ class LoginSelectionViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    
-
     /*
     // MARK: - Navigation
 
