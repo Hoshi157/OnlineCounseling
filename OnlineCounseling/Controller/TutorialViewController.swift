@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import MaterialComponents
 import UserNotifications
-// チュートリアル画面
+// ウォークスルー画面
 class TutorialViewController: UIViewController {
     
     let screenSize = UIScreen.main.bounds
@@ -54,8 +54,8 @@ class TutorialViewController: UIViewController {
         let button = MDCFloatingButton()
         button.layer.cornerRadius = 30
         button.clipsToBounds = true
-        button.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        button.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        button.setBorderWidth(3, for: .normal)
+        button.setBorderColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), for: .normal)
         button.addTarget(self, action: #selector(nextOrStartAction), for: .touchUpInside)
         return button
     }()
@@ -132,11 +132,15 @@ class TutorialViewController: UIViewController {
             DispatchQueue.main.async {
                 self.toggleButton.setTitle(String(), for: .normal)
                 self.toggleButton.setImage(image, for: .normal)
+                self.toggleButton.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                self.toggleButton.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
             }
         }else {
             DispatchQueue.main.async {
                 self.toggleButton.setImage(UIImage(), for: .normal)
                 self.toggleButton.setTitle("Start", for: .normal)
+                self.toggleButton.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+                self.toggleButton.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             }
         }
     }

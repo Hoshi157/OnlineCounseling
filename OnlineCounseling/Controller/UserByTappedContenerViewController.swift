@@ -120,23 +120,22 @@ class UserByTappedContenerViewController: UIViewController {
         }catch {
             print("Realm error")
         }
-        // お気に入りボタンをタップ可能にする
-        childVC.bookmarkImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bookmarkImageTapped(_:))))
-        childVC.bookmarkImageView.isUserInteractionEnabled = true
+        
         // 相手のuidをアンラップ
         if let otherUid = userTapUid {
             self.bookmarkStateRetention(targetId: otherUid)
             // Firebaseから情報を取得する
             getData()
             // 画像を表示する
-            let filePath = fileInDocumentsDirectory(filename: otherUid)
-            let image = loadImageFromPath(path: filePath)
-            DispatchQueue.main.async {
+            self.loadImage(targetUid: otherUid, completionClosure: { (image) in
                 if (image != nil) {
                     self.childVC.avaterImageView.image = image
                 }
-            }
+            })
+            
         }
+        
+        childVC.bookmarkButton.addTarget(self, action: #selector(bookmarkButtonTapped), for: .touchUpInside)
         
         // Do any additional setup after loading the view.
     }
@@ -204,34 +203,26 @@ class UserByTappedContenerViewController: UIViewController {
                 let jobs = data["jobs"] as! String
                 let gender = data["gender"] as! String
                 let singleword = data["singlewordText"] as! String
-                let selfinfo = data["selfintroText"] as! String
+                let selfintro = data["selfintroText"] as! String
                 // ここからはtableviewのデータ
                 let birthday = data["birthday"] as! Timestamp
                 let birthdayDate = birthday.dateValue()  // Date型にキャストしてから表示
                 let area = data["area"] as! String
                 let hobby = data["hobby"] as! String
-                let medecalhistory = data["medicalhistoryText"] as! String
                 // データをchildVCへ
                 self.childVC.nameLabel.text = name
-                self.childVC.jobsLabel.text = jobs
-                if (gender == "男") {
-                    self.childVC.genderImageView.image = #imageLiteral(resourceName: "icons8-ユーザ男性-25-2").withRenderingMode(.alwaysTemplate)
-                    self.childVC.genderImageView.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-                }else if (gender == "女") {
-                    self.childVC.genderImageView.image = #imageLiteral(resourceName: "icons8-ユーザー女性-25").withRenderingMode(.alwaysTemplate)
-                    self.childVC.genderImageView.tintColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-                }
-                self.childVC.singleWordLabel.text = singleword
-                self.childVC.selfIntroInputLabel.text = selfinfo
+                
+                self.childVC.singlewordText.text = singleword
+                self.childVC.selfintroText.text = selfintro
                 // ここからはtableviewのデータ(dictionary型にて渡す)
-                let profileDataDic: [String: Any] = ["生年月日": birthdayDate, "地域": area, "趣味": hobby, "既往歴": medecalhistory]
+                let profileDataDic: [String: Any] = ["生年月日": birthdayDate, "地域": area, "趣味": hobby, "性別": gender, "仕事": jobs]
                 self.childVC.profileDataDic = profileDataDic
             }
         }
     }
     
     // お気に入りボタンタップ時(Realmで判断する事でレスポンスが早くなる)
-    @objc func bookmarkImageTapped(_ sender: UITapGestureRecognizer) {
+    @objc func bookmarkButtonTapped() {
         if (self.uid == nil) {
             self.alert.okAlert(title: "エラーが発生しました", message: "もう一度やり直すか、アカウントを最初から作成してください", currentController: self)
             return
@@ -251,7 +242,11 @@ class UserByTappedContenerViewController: UIViewController {
                 // lazy.filterはtargetIdを見つけた時点で処理を抜ける
                 let targetBookmark: BookmarkHistory? = user.bookmarks.lazy.filter { $0.otherUid == targetId}.first
                 if (targetBookmark != nil) { // お気に入り履歴あり(削除)
-                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                    DispatchQueue.main.async {
+                        self.childVC.bookmarkButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+                        self.childVC.bookmarkButton.setTitleColor(#colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 1), for: .normal)
+                        self.childVC.bookmarkButton.setTitle("お気に入り", for: .normal)
+                    }
                     // 削除処理(enumeratedは配列の番号を付属させる)
                     for (index, bookmark) in user.bookmarks.enumerated() {
                         if (bookmark.otherUid == targetId) {
@@ -259,7 +254,11 @@ class UserByTappedContenerViewController: UIViewController {
                         }
                     }
                 }else { // お気に入り履歴なし(追加)
-                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+                    DispatchQueue.main.async {
+                        self.childVC.bookmarkButton.backgroundColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
+                        self.childVC.bookmarkButton.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
+                        self.childVC.bookmarkButton.setTitle("お気に入り中", for: .normal)
+                    }
                     // 追加処理
                     let bookmarkHistory = BookmarkHistory(value: ["otherUid": targetId, "otherName": targetName])
                     user.bookmarks.append(bookmarkHistory)
@@ -296,9 +295,11 @@ class UserByTappedContenerViewController: UIViewController {
                 let targetBookmark: BookmarkHistory? = user.bookmarks.lazy.filter { $0.otherUid == targetId}.first
                 // お気に入り履歴にあったら色表示
                 if (targetBookmark != nil) {
-                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
-                }else {
-                    self.childVC.bookmarkImageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                    DispatchQueue.main.async {
+                        self.childVC.bookmarkButton.backgroundColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1)
+                        self.childVC.bookmarkButton.setTitleColor(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), for: .normal)
+                        self.childVC.bookmarkButton.setTitle("お気に入り中", for: .normal)
+                    }
                 }
             }
         }catch {
@@ -319,4 +320,4 @@ class UserByTappedContenerViewController: UIViewController {
     
 }
 
-extension UserByTappedContenerViewController: imageSaveProtocol {}
+extension UserByTappedContenerViewController: storageProtocol {}

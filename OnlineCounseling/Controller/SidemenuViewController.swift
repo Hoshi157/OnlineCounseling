@@ -196,7 +196,7 @@ class SidemenuViewController: UIViewController {
                 self.accountcreateButton.isHidden = true
                 
                 self.accountTakeoverLabel.snp.makeConstraints { (make) in
-                    make.top.equalTo(self.tableView.snp.bottom).offset(30)
+                    make.top.equalTo(self.tableView.snp.bottom).offset(50)
                 }
             }
             
@@ -360,7 +360,7 @@ class SidemenuViewController: UIViewController {
         
         accountcreateLabel.snp.makeConstraints { (make) in
             make.width.equalTo(contentView.frame.width * 0.8)
-            make.top.equalTo(tableView.snp.bottom).offset(30)
+            make.top.equalTo(tableView.snp.bottom).offset(50)
             make.left.equalTo(contentView).offset(10)
         }
         

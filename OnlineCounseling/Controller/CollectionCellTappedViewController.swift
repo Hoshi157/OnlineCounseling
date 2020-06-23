@@ -8,12 +8,12 @@
 
 import UIKit
 import SnapKit
+import MaterialComponents
 
 class CollectionCellTappedViewController: UIViewController {
     // tableviewに表示するユーザー情報を格納
     var profileDataDic: [String: Any] = [:] {
         didSet {
-            print(profileDataDic, "profileDataDic")
             DispatchQueue.main.async {
                 self.myTableView.reloadData()
             }
@@ -28,22 +28,42 @@ class CollectionCellTappedViewController: UIViewController {
     
     lazy var myScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.frame = self.view.bounds
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 10) // ボタンがあるから余分に足す
-        scrollView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        scrollView.frame = self.view.frame
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height * 1.5)
         return scrollView
     }()
     
-    lazy var contentView: UIView = {
+    lazy var firstView: UIView = {
         let myView = UIView()
         myView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        myView.frame = CGRect(x: self.screen.origin.x, y: self.screen.origin.y - 45, width: self.view.frame.width, height: self.myScrollView.contentSize.height)
+        myView.layer.cornerRadius = 40
+        myView.clipsToBounds = true
+        myView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.8)
         return myView
     }()
+    
+    lazy var secoundView: UIView = {
+       let myview = UIView()
+        myview.layer.cornerRadius = 40
+        myview.clipsToBounds = true
+        myview.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        myview.frame = CGRect(x: self.firstView.frame.origin.x, y: self.firstView.frame.origin.y + self.firstView.frame.height + 5, width: self.view.frame.width, height: self.view.frame.height * 0.25)
+        return myview
+    }()
+    
+    lazy var thirdView: UIView = {
+        let myview = UIView()
+        myview.layer.cornerRadius = 40
+        myview.clipsToBounds = true
+        myview.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        myview.frame = CGRect(x: self.secoundView.frame.origin.x, y: self.secoundView.frame.origin.y + self.secoundView.frame.height + 5, width: self.view.frame.width, height: self.view.frame.height * 0.4)
+        return myview
+    }()
+    
     var avaterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "blank-profile-picture-973460_640-e1542530002984")
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -55,50 +75,75 @@ class CollectionCellTappedViewController: UIViewController {
         return label
     }()
     
-    var jobsLabel: UILabel = {
+    var bookmarkCountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.text = "00"
         label.sizeToFit()
-        label.text = "Jobs"
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
-    var genderImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "icons8-性中立ユーザー-25").withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        return imageView
-    }()
-    
-    var bookmarkImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "icons8-スター-25").withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        return imageView
-    }()
-    
-    var singleWordLabel: UILabel = {
+    private let bookmarkTextLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = #colorLiteral(red: 0.4513868093, green: 0.9930960536, blue: 1, alpha: 0.2)
+        label.text = "お気に入り"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.sizeToFit()
+        return label
+    }()
+    
+    var bookmarkButton: MDCRaisedButton = {
+        let button = MDCRaisedButton()
+        button.setTitle("お気に入り", for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+        button.layer.cornerRadius = 25
+        button.clipsToBounds = true
+        button.setTitleColor(#colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1), for: .normal)
+        button.setTitleFont(UIFont.systemFont(ofSize: 14, weight: .bold), for: .normal)
+        return button
+    }()
+    
+    private let singlewordLabel: UILabel = {
+        let label = UILabel()
+        label.text = "ひとこと"
+        label.textAlignment = .center
+        label.sizeToFit()
+        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        return label
+    }()
+    
+    var singlewordText: UILabel = {
+        let label = UILabel()
+        label.text = "ひとことテキスト"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textAlignment = .left
         label.numberOfLines = 0
-        label.layer.cornerRadius = 10
-        label.clipsToBounds = true
         return label
     }()
     
-    private let selfIntroTitle: UILabel = {
+    private let selfintroLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 20)
         label.text = "自己紹介"
+        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.textAlignment = .center
+        label.sizeToFit()
         return label
     }()
     
-    var selfIntroInputLabel: UILabel = {
+    var selfintroText: UILabel = {
         let label = UILabel()
+        label.text = "自己紹介テキスト"
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textAlignment = .left
         label.numberOfLines = 0
-        label.layer.cornerRadius = 10
-        label.clipsToBounds = true
-        label.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+        return label
+    }()
+    
+    private let profileLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.text = "プロフィール"
+        label.textAlignment = .center
+        label.sizeToFit()
         return label
     }()
     
@@ -109,116 +154,111 @@ class CollectionCellTappedViewController: UIViewController {
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableCell")
         tableView.register(UINib(nibName: "CustomTextTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTextTableCell")
         tableView.allowsSelection = false
+        tableView.separatorStyle = .none
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(myScrollView)
-        myScrollView.addSubview(contentView)
-        contentView.addSubview(avaterImageView)
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(jobsLabel)
-        contentView.addSubview(genderImageView)
-        contentView.addSubview(bookmarkImageView)
-        contentView.addSubview(singleWordLabel)
-        contentView.addSubview(selfIntroTitle)
-        contentView.addSubview(selfIntroInputLabel)
-        contentView.addSubview(myTableView)
+        view.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        view.layer.cornerRadius = 40
+        view.clipsToBounds = true
         
-        self.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        view.addSubview(myScrollView)
+        myScrollView.addSubview(firstView)
+        firstView.addSubview(avaterImageView)
+        firstView.addSubview(nameLabel)
+        firstView.addSubview(bookmarkCountLabel)
+        firstView.addSubview(bookmarkTextLabel)
+        firstView.addSubview(bookmarkButton)
+        firstView.addSubview(singlewordLabel)
+        firstView.addSubview(singlewordText)
+        myScrollView.addSubview(secoundView)
+        secoundView.addSubview(selfintroLabel)
+        secoundView.addSubview(selfintroText)
+        myScrollView.addSubview(thirdView)
+        thirdView.addSubview(profileLabel)
+        thirdView.addSubview(myTableView)
         
         avaterImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.contentView)
-            make.right.equalTo(contentView)
-            make.left.equalTo(contentView)
-            make.height.equalTo(400)
+            make.top.equalTo(firstView)
+            make.right.equalTo(firstView)
+            make.left.equalTo(firstView)
+            make.height.equalTo(screen.height * 0.5)
         }
         
         nameLabel.snp.makeConstraints { (make) in
             make.top.equalTo(avaterImageView.snp.bottom).offset(20)
-            make.left.equalTo(self.view).offset(20)
-            make.height.equalTo(35)
+            make.left.equalTo(firstView).offset(20)
+            make.height.equalTo(25)
         }
         
-        jobsLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(nameLabel)
-            make.left.equalTo(nameLabel.snp.right).offset(20)
-            make.height.equalTo(35)
-        }
-        
-        genderImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(nameLabel)
-            make.right.equalTo(self.view).offset(-20)
-            make.size.equalTo(40)
-        }
-        
-        
-        
-        bookmarkImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(nameLabel)
-            make.right.equalTo(genderImageView.snp.left).offset(-10)
-            make.size.equalTo(40)
-        }
-        
-        singleWordLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(nameLabel.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(350)
-            make.height.equalTo(100)
-        }
-        
-        selfIntroTitle.snp.makeConstraints { (make) in
-            make.top.equalTo(singleWordLabel.snp.bottom).offset(20)
+        bookmarkCountLabel.snp.makeConstraints { (make) in
             make.left.equalTo(nameLabel)
-            make.height.equalTo(40)
-            make.width.equalTo(130)
+            make.top.equalTo(nameLabel.snp.bottom).offset(5)
+            make.height.equalTo(20)
         }
         
-        selfIntroInputLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(selfIntroTitle.snp.bottom).offset(10)
+        bookmarkTextLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(bookmarkCountLabel)
+            make.left.equalTo(bookmarkCountLabel.snp.right).offset(10)
+            make.height.equalTo(20)
+        }
+        
+        bookmarkButton.snp.makeConstraints { (make) in
+            make.top.equalTo(nameLabel)
+            make.right.equalTo(firstView).offset(-20)
+            make.height.equalTo(50)
+            make.width.equalTo(115)
+        }
+        
+        singlewordLabel.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.width.equalTo(350)
-            make.height.equalTo(100)
+            make.top.equalTo(bookmarkCountLabel.snp.bottom).offset(20)
+            make.height.equalTo(35)
+        }
+        
+        singlewordText.snp.makeConstraints { (make) in
+            make.top.equalTo(singlewordLabel.snp.bottom).offset(10)
+            make.left.equalTo(firstView).offset(50)
+            make.right.equalTo(firstView).offset(-50)
+            make.bottom.equalTo(firstView).offset(-20)
+        }
+        
+        selfintroLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(secoundView).offset(10)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(35)
+        }
+        
+        selfintroText.snp.makeConstraints { (make) in
+            make.top.equalTo(selfintroLabel.snp.bottom).offset(10)
+            make.left.equalTo(secoundView).offset(50)
+            make.right.equalTo(-50)
+            make.bottom.equalTo(-20)
+        }
+        
+        profileLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(thirdView).offset(10)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(35)
         }
         
         myTableView.snp.makeConstraints { (make) in
-            make.top.equalTo(selfIntroInputLabel.snp.bottom).offset(20)
-            make.left.equalTo(self.view).offset(10)
-            make.right.equalTo(self.view).offset(-10)
-            make.height.equalTo(240)
+            make.top.equalTo(profileLabel.snp.bottom).offset(15)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(self.view.frame.width * 0.9)
+            make.height.equalTo(150)
         }
-        // Do any additional setup after loading the view.
-    }
-    // なぜかここの処理がないとオートリサイズできない
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        DispatchQueue.main.async {
-            self.myTableView.frame.size.height = self.myTableView.contentSize.height
-            self.myTableView.reloadData()
-        }
-    }
-    
-    // セルの高さの合計に合わせてtableviewの高さを決める
-    func automaticTableviewHight() {
-        self.view.layoutIfNeeded()
-        print(myTableView.contentSize.height, "tableviewの高さ")
-        self.myTableView.frame.size.height = self.myTableView.contentSize.height
-        automaticScrollviewHight()
-    }
-    // tableviewの可変に合わせてscrollviewを可変にする
-    func automaticScrollviewHight() {
-        let viewBottomOrigin: CGFloat = self.view.frame.origin.y + self.view.frame.size.height
-        let tableviewBottomOrigin: CGFloat = self.myTableView.frame.origin.y + self.myTableView.frame.size.height
-        // tableViewがViewより大きい場合,
-        if (tableviewBottomOrigin > viewBottomOrigin) {
-            // 大きい分だけ引き伸ばす
-            let tableviewRemainig = tableviewBottomOrigin - viewBottomOrigin
-            print(tableviewRemainig, "はみ出した分")
-            myScrollView.contentSize.height += tableviewRemainig
-        }
+        
+        
+        
+        
+        
+        
+        // Do any additional setup after loading the view.
     }
     /*
      // MARK: - Navigation
@@ -243,13 +283,13 @@ extension CollectionCellTappedViewController: UITableViewDelegate, UITableViewDa
         let dataKeys: [String] = [String](profileDataDic.keys)
         let dataKey: String = dataKeys[indexPath.row]
         // 内容に応じてCell変更
-        if (dataKey == "地域" ) {
+        if (dataKey == "地域" || dataKey == "性別" || dataKey == "仕事") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableCell", for: indexPath) as! CustomTableViewCell
             cell.textLabel?.text = dataKey
             cell.rightLabel.text = profileDataDic[dataKey] as? String
             cell.rightImage.image = UIImage()
             return cell
-        }else if (dataKey == "趣味" || dataKey == "既往歴" ) {
+        }else if (dataKey == "趣味") {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTextTableCell", for: indexPath) as! CustomTextTableViewCell
             cell.leftLabel.text = dataKey
             cell.underLabel.text = profileDataDic[dataKey] as? String
@@ -275,20 +315,10 @@ extension CollectionCellTappedViewController: UITableViewDelegate, UITableViewDa
         if (datavalue == "") { // 空の場合は0
             return 0
         }
-        if (dataKey  == "既往歴" || dataKey == "趣味") {
+        if (dataKey == "趣味") {
             return 70
         }else {
             return 50
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // heightForRowの後に一度のみ検知する
-        let rowAddNum = indexPath.row + 1
-        print(rowAddNum)
-        if (self.profileDataDic.count == rowAddNum) {
-            print("検知1")
-            self.automaticTableviewHight()
         }
     }
 }
