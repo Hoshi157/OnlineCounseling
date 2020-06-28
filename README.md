@@ -43,10 +43,12 @@
   
   <img src="https://user-images.githubusercontent.com/51669998/84589528-0c0a7600-ae6a-11ea-8e97-01d29c430c13.gif" width="200px">&emsp;
   
-#### チュートリアルページ
-* 初回のみチュートリアルが表示されるようにしました。(画像、アイコンが入る予定)
+#### ウォークスルーページを作成
+* トップページからのみウォークスルーを作成した。
   
-  <img src="https://user-images.githubusercontent.com/51669998/84589791-1168c000-ae6c-11ea-8ba9-ee1651cfbc58.gif" width="200px">&emsp;
+  <img src="https://user-images.githubusercontent.com/51669998/85939902-15a8d900-b954-11ea-8e45-350ec6357cb9.png" width="200px">&emsp;
+  <img src="https://user-images.githubusercontent.com/51669998/85939956-746e5280-b954-11ea-9af8-d2171532c479.png" width="200px">&emsp;
+  <img src="https://user-images.githubusercontent.com/51669998/85939958-76d0ac80-b954-11ea-8c22-f6fed4cc1fd8.png" width="200px">&emsp;
 
 
 ## Library
